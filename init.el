@@ -1,3 +1,5 @@
+;;emacs init.el
+
 ;; load-pathを追加する関数
 (defun add-to-load-path (&rest paths)
   (let (path)
