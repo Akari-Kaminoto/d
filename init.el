@@ -49,7 +49,8 @@
 
 (add-hook 'c++-mode-hook
           '(lambda ()
-             (setq tab-width 32)
+             ;;(setq tab-width 32)
+             (setq tab-width 4)
              (setq c-basic-offset 2)
              (setq c++-auto-newline nil)
              (setq c++-tab-always-indent t)
@@ -139,7 +140,6 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
-(use-package calendar+)
 ;;---
 ;; rainbow-delimiter
 ;;
