@@ -47,14 +47,16 @@
               tab-width 4          ;;タブ幅4
               indent-tabs-mode nil)  ;;インデントをタブでするかスペースでするか
 
+;; 自分の書き方にあわせて調整
 (add-hook 'c++-mode-hook
           '(lambda ()
              ;;(setq tab-width 32)
              (setq tab-width 4)
-             (setq c-basic-offset 2)
+             (setq c-basic-offset 4) 
+             ;; 以下 *:*1 -:*-1 ++:*2 --:*-2 *:*0.5 /*:*-0.5
              (setq c++-auto-newline nil)
              (setq c++-tab-always-indent t)
-             (c-set-offset 'access-label '-)
+             (c-set-offset 'access-label -2)
              (c-set-offset 'arglist-close 0)
              (c-set-offset 'arglist-cont 0)
              (c-set-offset 'arglist-cont-nonempty 0)
@@ -65,18 +67,18 @@
              (c-set-offset 'brace-list-close 0)
              (c-set-offset 'brace-list-entry 0)
              (c-set-offset 'brace-list-intro '+)
-             (c-set-offset 'brace-list-open '+)
+             (c-set-offset 'brace-list-open 0)
              (c-set-offset 'c 1)
-             (c-set-offset 'case-label 0)
+             (c-set-offset 'case-label '*)
              (c-set-offset 'catch-clause 0)
-             (c-set-offset 'class-close '+)
-             (c-set-offset 'class-open '+)
+             (c-set-offset 'class-close '-)
+             (c-set-offset 'class-open '-)
              (c-set-offset 'comment-intro 0)
              (c-set-offset 'cpp-macro 0)
              (c-set-offset 'cpp-macro-cont '+)
              (c-set-offset 'defun-block-intro '+)
-             (c-set-offset 'defun-close 0)
-             (c-set-offset 'defun-open 0)
+             (c-set-offset 'defun-close '-)
+             (c-set-offset 'defun-open '-)
              (c-set-offset 'do-while-closure 0)
              (c-set-offset 'else-clause 0)
              (c-set-offset 'extern-lang-close '+)
@@ -93,18 +95,18 @@
              (c-set-offset 'label 0)
              (c-set-offset 'member-init-cont 0)
              (c-set-offset 'member-init-intro 0)
-             (c-set-offset 'namespace-close '+)
-             (c-set-offset 'namespace-open '+)
+             (c-set-offset 'namespace-close 0)
+             (c-set-offset 'namespace-open 0)
              (c-set-offset 'statement 0)
              (c-set-offset 'statement-block-intro '+)
-             (c-set-offset 'statement-case-intro '+)
-             (c-set-offset 'statement-case-open '+)
+             (c-set-offset 'statement-case-intro '*)
+             (c-set-offset 'statement-case-open '*)
              (c-set-offset 'statement-cont '+)
-             (c-set-offset 'stream-op 0)
+             (c-set-offset 'stream-op '+)
              (c-set-offset 'string 0)
-             (c-set-offset 'substatement '+)
-             (c-set-offset 'substatement-open '+)
-             (c-set-offset 'template-args-cont '++)
+             (c-set-offset 'substatement '*)
+             (c-set-offset 'substatement-open 0)
+             (c-set-offset 'template-args-cont '+)
              (c-set-offset 'topmost-intro 0)
              (c-set-offset 'topmost-intro-cont '+)
              ))
@@ -123,6 +125,8 @@
 ;; c言語系全部にフックを設定する
 (add-hook 'c-mode-common-hook 'my-c-mode-common-conf)
 
+;; 以下、PROXYが必要な場合の設定。いらない場合はコメントアウトすること
+
 ;;; Proxy設定
 (setq url-proxy-services
 	'(("http" . "proxy-auth.ntt-el.com:8050")
@@ -130,6 +134,10 @@
 
 (setq url-http-proxy-basic-auth-storage
 	'(("proxy-auth.ntt-el.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
+
+;; ここまで
+
+
 
 ;;el-get
 (add-to-list 'load-path (locate-user-emacs-file "el-get/el-get"))
