@@ -28,6 +28,7 @@
 
 (require 'use-package)
 
+
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
@@ -124,6 +125,9 @@
 
 ;; c言語系全部にフックを設定する
 (add-hook 'c-mode-common-hook 'my-c-mode-common-conf)
+
+;; 自動補完
+(ac-config-default)
 
 ;; 以下、PROXYが必要な場合の設定。いらない場合はコメントアウトすること
 
