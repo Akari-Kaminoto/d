@@ -77,7 +77,7 @@
              (c-set-offset 'comment-intro 0)
              (c-set-offset 'cpp-macro 0)
              (c-set-offset 'cpp-macro-cont '+)
-             (c-set-offset 'defun-block-intro '+)
+             (c-set-offset 'defun-block-intro 0)
              (c-set-offset 'defun-close '-)
              (c-set-offset 'defun-open '-)
              (c-set-offset 'do-while-closure 0)
@@ -109,7 +109,7 @@
              (c-set-offset 'substatement-open 0)
              (c-set-offset 'template-args-cont '+)
              (c-set-offset 'topmost-intro 0)
-             (c-set-offset 'topmost-intro-cont '+)
+             (c-set-offset 'topmost-intro-cont 0)
              ))
 
 (defun my-c-mode-common-conf ()
