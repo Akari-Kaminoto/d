@@ -129,7 +129,7 @@
 (add-hook 'c-mode-common-hook 'my-c-mode-common-conf)
 
 ;; 自動補完
-(ac-config-default)
+;;(ac-config-default)
 
 ;; 以下、PROXYが必要な場合の設定。いらない場合はコメントアウトすること
 
@@ -142,7 +142,6 @@
 	'(("proxy-auth.ntt-el.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
 
 ;; ここまで
-
 
 
 ;;el-get
@@ -171,6 +170,7 @@
    (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
     (cl-callf color-saturate-name (face-foreground face) 30))))
 (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
+
 
 ;;----
 ;; 行番号表示
@@ -332,6 +332,9 @@
 ;;----
 (keyboard-translate ?\C-h ?\C-?)
 
+
+
+
 ;; OS によって設定を切り替える例
 (when (eq system-type 'windows-nt) ; Windows
    
@@ -368,5 +371,38 @@
 					 '("ＭＳ ゴシック" . "unicode-bmp")
 					 )
 );;; ここまでwindows用
+
+;;; FLYCHECK
+(require 'flycheck)
+
+(global-flycheck-mode)
+
+(define-key global-map (kbd "\C-cn") 'flycheck-next-error)
+(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
+(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
+
+(add-hook 'c++-mode-hook (lambda()
+                           (setq flycheck-gcc-language-standard "c++11")
+                           (setq flycheck-clang-language-standard "c++11")))
+
+
+;;;company
+
+(when (locate-library "company")
+  (global-company-mode 1)
+  (global-set-key (kbd "C-M-i") 'company-complete)
+  ;; (setq company-idle-delay nil) ; 自動補完をしない
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  (define-key company-search-map (kbd "C-n") 'company-select-next)
+  (define-key company-search-map (kbd "C-p") 'company-select-previous)
+  (define-key company-active-map (kbd "<tab>") 'company-complete-selection))
+
+(eval-after-load "irony"
+  '(progn
+     (custom-set-variables '(irony-additional-clang-options '("-std=c++11")))
+     (add-to-list 'company-backends 'company-irony)
+     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+     (add-hook 'c-mode-common-hook 'irony-mode)))
 
 
