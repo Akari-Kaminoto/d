@@ -1,5 +1,9 @@
 ;;emacs init.el
 
+;; 予約語を色分けする
+(global-font-lock-mode t)
+
+
 ;; load-pathを追加する関数
 (defun add-to-load-path (&rest paths)
   (let (path)
@@ -25,6 +29,8 @@
       '(("gnu" . "http://elpa.gnu.org/packages/")
         ("melpa" . "http://melpa.org/packages/")
         ("org" . "http://orgmode.org/elpa/")))
+
+
 
 (require 'use-package)
 
@@ -303,7 +309,8 @@
 ;; global-set-keyはdefine-keyのラッパーなので、どっちを使ってもOK
 ;; (define-key global-map (kbd "C-t") 'other-window)
 ;; (global-set-key (kbd "<C-tab>") 'other-window)
- 
+
+(global-set-key (kbd "C-c g") 'goto-line) 
  
 ;;----
 ;; ウィンドウ切り替え
@@ -372,6 +379,35 @@
 					 )
 );;; ここまでwindows用
 
+(when (eq system-type 'gnu/linux) ; Unix
+  ;;;
+  ;;; mozc
+  ;;;
+  (require 'mozc)
+
+  (set-language-environment "Japanese")
+  (setq default-input-method "japanese-mozc")
+  
+  ;; GUIの候補選択ウィンドウをカーソルの直下にぶら下げる（デフォルト）
+  (setq mozc-candidate-style 'overlay)
+  
+  ;; mozcのon/offでカーソルの色を変える
+  ;; on
+  (add-hook 'input-method-activate-hook
+            (lambda() (set-cursor-color "DarkOrange")))
+  ;; off
+  (add-hook 'input-method-inactivate-hook
+            (lambda() (set-cursor-color "grey46")))
+  
+  
+  
+);;;ここまでUNIX用
+
+(when (equal system-type 'darwin)
+
+);;; ここまでMACOS用
+
+ 
 ;;; FLYCHECK
 (require 'flycheck)
 
