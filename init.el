@@ -71,11 +71,11 @@
 
   ;; 初期フレームの設定
   (setq initial-frame-alist
-          '((width . 86) (height . 45)))
+          '((width . 80) (height . 40)))
 
   ;; 新規フレームのデフォルト設定
   (setq default-frame-alist
-          '((width . 86) (height . 45)))
+          '((width . 80) (height . 40)))
 
 ))
 
@@ -171,13 +171,13 @@
 ;; 以下、PROXYが必要な場合の設定。いらない場合はコメントアウトすること
 
 ;;; Proxy設定
-(setq url-proxy-services
-	'(("http" . "proxy-auth.ntt-el.com:8050")
-	  ("https" . "proxy-auth.ntt-el.com:8050")))
-
-(setq url-http-proxy-basic-auth-storage
-	'(("proxy-auth.ntt-el.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
-
+;;;(setq url-proxy-services
+;;;	'(("http" . "proxy-auth.ntt-el.com:8050")
+;;;	  ("https" . "proxy-auth.ntt-el.com:8050")))
+;;;
+;;;(setq url-http-proxy-basic-auth-storage
+;;;	'(("proxy-auth.ntt-el.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
+;;;
 ;; ここまで
 
 
@@ -405,15 +405,31 @@
    (setq w32-ime-buffer-switch-p nil)
    
 ;;;** Consolas + MSゴシック
-   (set-default-font "Consolas 10")
-   (set-fontset-font (frame-parameter nil 'font)
-					 'japanese-jisx0208
-					 '("ＭＳ ゴシック" . "unicode-bmp")
-					 )
-   (set-fontset-font (frame-parameter nil 'font)
-					 'katakana-jisx0201
-					 '("ＭＳ ゴシック" . "unicode-bmp")
-					 )
+;;;   (set-default-font "Consolas 14")
+;;;   (set-fontset-font (frame-parameter nil 'font)
+;;;					 'japanese-jisx0208
+;;;					 '("ＭＳ ゴシック" . "unicode-bmp")
+;;;					 )
+;;;   (set-fontset-font (frame-parameter nil 'font)
+;;;					 'katakana-jisx0201
+;;;					 '("ＭＳ ゴシック" . "unicode-bmp")
+;;;
+;;;                      )
+;;;
+;;;http://xiuxing.blog.jp/archives/8346924.html
+;;;
+(set-default-font "MeiryoKe_Console 14")
+(set-fontset-font (frame-parameter nil 'font)
+                  'japanese-jisx0208
+                  '("MeiryoKe_Console" . "unicode-bmp")
+;                  '("Ricty Diminished" . "unicode-bmp")
+                  )
+
+(set-fontset-font (frame-parameter nil 'font)
+                  'katakana-jisx0201
+                 '("MeiryoKe_Consolex" . "unicode-bmp")
+;                  '("Ricty Diminished" . "unicode-bmp")
+                  )
 );;; ここまでwindows用
 
 (when (eq system-type 'gnu/linux) ; Unix
