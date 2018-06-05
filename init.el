@@ -1,4 +1,7 @@
-;;emacs init.el
+;;;emacs init.el
+
+;;;seq.el emacs v25 over
+(require 'seq)
 
 ;; 予約語を色分けする
 (global-font-lock-mode t)
@@ -48,6 +51,34 @@
 (prefer-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
 (setq file-name-coding-system 'shift_jis)
+
+;;
+;; CUI時の設定
+;;
+(if (not window-system) (progn
+  ;; 現在行をアンダーライン
+  (setq hl-line-face 'underline)     ; 現在行をアンダーライン
+  (global-hl-line-mode)
+
+))
+;;
+;; GUI時の設定
+;;
+(if window-system (progn
+  ;; 現在行に色をつける
+  (global-hl-line-mode t)            ;現在行に色をつける
+  (set-face-background 'hl-line "spring green")
+
+  ;; 初期フレームの設定
+  (setq initial-frame-alist
+          '((width . 86) (height . 45)))
+
+  ;; 新規フレームのデフォルト設定
+  (setq default-frame-alist
+          '((width . 86) (height . 45)))
+
+))
+
 
 ;;インデント
 (setq-default c-basic-offset 4     ;;基本インデント量4
@@ -178,6 +209,12 @@
 (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
 
 
+;; バックアップファイルを作成させない
+(setq make-backup-files nil)
+
+;; 終了時にオートセーブファイルを削除する
+(setq delete-auto-save-files t)
+
 ;;----
 ;; 行番号表示
 ;;----
@@ -197,8 +234,8 @@
 ;;----
 ;; カーソル行に下線を表示
 ;;----
-(setq hl-line-face 'underline)
-(global-hl-line-mode)
+;(setq hl-line-face 'underline)
+;(global-hl-line-mode)
  
 ;;----
 ;; 対応する括弧を強調表示
