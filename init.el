@@ -1,12 +1,30 @@
-;;;emacs init.el
 
-;;;seq.el emacs v25 over
-(require 'seq)
+;; ロゴの設定
+(setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
+
+
+
+;;; PROXY設定
+;;; いらない場合はコメントアウトすること
+
+;;; Proxy設定
+(setq url-proxy-services
+	'(("http" . "proxy-auth.ntt-el.com:8050")
+	  ("https" . "proxy-auth.ntt-el.com:8050")))
+
+(setq url-http-proxy-basic-auth-storage
+	'(("proxy-auth.ntt-el.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
+
+;; ここまで
 
 ;; 予約語を色分けする
 (global-font-lock-mode t)
 
 
+;;;seq.el emacs v25 over
+(require 'seq)
+
+;;; load-path 追加
 ;; load-pathを追加する関数
 (defun add-to-load-path (&rest paths)
   (let (path)
@@ -20,12 +38,14 @@
 ;; 引数のディレクトリ以下をload-pathに追加
 (add-to-load-path "el-get" "elpa")
 
+;;; package系
+
+;;; use-package 設定
 ;; use-package を require の代わりに使う
 (if (require 'use-package nil t)
     (setq use-package-verbose t)
   (message "Use-package is unavailable!")
   (defmacro use-package (&rest _args)))
-
 
 (package-initialize)
 (setq package-archives
@@ -33,13 +53,25 @@
         ("melpa" . "http://melpa.org/packages/")
         ("org" . "http://orgmode.org/elpa/")))
 
-
-
 (require 'use-package)
-
 
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
+
+;;; el-get
+
+;; load-path で ~/.emacs.d とか書かなくてよくなる
+;;(when load-file-name
+;;  (setq user-emacs-directory (file-name-directory load-file-name)))
+
+;; el-get
+(add-to-list 'load-path (locate-user-emacs-file "el-get"))
+(require 'el-get)
+;; el-getでダウンロードしたパッケージは ~/.emacs.d/ に入るようにする
+;(setq el-get-dir (locate-user-emacs-file ""))
+
+;;; package系終わり
+
 
 ;; FILE CODE設定
 (when (equal emacs-major-version 21) (require 'un-define))
@@ -52,6 +84,7 @@
 (set-default-coding-systems 'utf-8-unix)
 (setq file-name-coding-system 'shift_jis)
 
+;;; CUI/GUIで分ける設定
 ;;
 ;; CUI時の設定
 ;;
@@ -78,12 +111,15 @@
           '((width . 80) (height . 40)))
 
 ))
+;;; CUI/GUIで分ける設定ここまで
 
+;;; インデント設定
 
-;;インデント
 (setq-default c-basic-offset 4     ;;基本インデント量4
               tab-width 4          ;;タブ幅4
               indent-tabs-mode nil)  ;;インデントをタブでするかスペースでするか
+
+;;; C,C++の設定
 
 ;; 自分の書き方にあわせて調整
 (add-hook 'c++-mode-hook
@@ -165,30 +201,9 @@
 ;; c言語系全部にフックを設定する
 (add-hook 'c-mode-common-hook 'my-c-mode-common-conf)
 
-;; 自動補完
-;;(ac-config-default)
-
-;; 以下、PROXYが必要な場合の設定。いらない場合はコメントアウトすること
-
-;;; Proxy設定
-(setq url-proxy-services
-	'(("http" . "proxy-auth.ntt-el.com:8050")
-	  ("https" . "proxy-auth.ntt-el.com:8050")))
-
-(setq url-http-proxy-basic-auth-storage
-	'(("proxy-auth.ntt-el.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
-
-;; ここまで
 
 
-;;el-get
-;; (add-to-list 'load-path (locate-user-emacs-file "el-get/el-get"))
-;; (unless (require 'el-get nil 'noerror)
-;;   (with-current-buffer
-;;       (url-retrieve-synchronously
-;;        "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-;;     (goto-char (point-max))
-;;     (eval-print-last-sexp)))
+;;; 括弧の色を色分けする設定
 
 ;;---
 ;; rainbow-delimiter
@@ -230,13 +245,7 @@
 ;; ビープ音を消す
 ;;----
 (setq ring-bell-function 'ignore)
- 
-;;----
-;; カーソル行に下線を表示
-;;----
-;(setq hl-line-face 'underline)
-;(global-hl-line-mode)
- 
+  
 ;;----
 ;; 対応する括弧を強調表示
 ;;----
@@ -245,7 +254,6 @@
 ;;----
 ;; 時計表示
 ;;----
-;; 不採用    ;; 時間を表示
 ;; 不採用    (display-time)
 (setq display-time-day-and-date t)  ;; 曜日・月・日
 (setq display-time-24hr-format t)   ;; 24時表示
@@ -376,12 +384,26 @@
 ;;----
 (keyboard-translate ?\C-h ?\C-?)
 
+;;; マウスの設定
+
+;; スクロールは1行ごとに
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))
+
+;; スクロールの加速をやめる
+(setq mouse-wheel-progressive-speed nil)
 
 
 
-;; OS によって設定を切り替える例
+;;;
+;;; OS によって設定を切り替える例
+;;;
+
 (when (eq system-type 'windows-nt) ; Windows
-   
+
+;;;
+;;; IME関連の設定
+;;;
+  
 ;;;** 標準IMEの設定
    (setq default-input-method "W32-IME")
 
@@ -397,22 +419,26 @@
    
 ;;;** IME ON/OFF時のカーソルカラー
    (add-hook 'input-method-activate-hook
-			 (lambda() (set-cursor-color "green")))
+             (lambda() (set-cursor-color "green")))
    (add-hook 'input-method-inactivate-hook
-			 (lambda() (set-cursor-color "red")))
+             (lambda() (set-cursor-color "red")))
    
 ;;;** バッファ切り替え時にIME状態を引き継ぐ
    (setq w32-ime-buffer-switch-p nil)
+
+;;;
+;;; フォント関連の設定
+;;;
    
 ;;;** Consolas + MSゴシック
 ;;;   (set-default-font "Consolas 14")
 ;;;   (set-fontset-font (frame-parameter nil 'font)
-;;;					 'japanese-jisx0208
-;;;					 '("ＭＳ ゴシック" . "unicode-bmp")
-;;;					 )
+;;;                     'japanese-jisx0208
+;;;                     '("ＭＳ ゴシック" . "unicode-bmp")
+;;;                     )
 ;;;   (set-fontset-font (frame-parameter nil 'font)
-;;;					 'katakana-jisx0201
-;;;					 '("ＭＳ ゴシック" . "unicode-bmp")
+;;;                     'katakana-jisx0201
+;;;                     '("ＭＳ ゴシック" . "unicode-bmp")
 ;;;
 ;;;                      )
 ;;;
@@ -475,6 +501,9 @@
                            (setq flycheck-clang-language-standard "c++11")))
 
 
+;; 自動補完
+;;(ac-config-default)
+
 ;;;company
 
 (when (locate-library "company")
@@ -495,3 +524,13 @@
      (add-hook 'c-mode-common-hook 'irony-mode)))
 
 
+
+;; neotree
+
+(el-get-bundle neotree)
+;; C-c tでnetreee-windowが開くようにする
+(global-set-key "\C-ct" 'neotree-toggle)
+;; neotreeでファイルを新規作成した場合のそのファイルを開く
+(setq neo-create-file-auto-open t)
+;; delete-other-window で neotree ウィンドウを消さない
+(setq neo-persist-show t)
