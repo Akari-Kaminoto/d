@@ -307,34 +307,34 @@
 ;; 参考：http://d.hatena.ne.jp/t_ume_tky/20120906/1346943019
 ;;----
 ;; タブや全角空白などを強調表示
-;;(global-whitespace-mode 1)
+(global-whitespace-mode 1)
 ;; whitespace-mode の 色設定
 ;;http://ergoemacs.org/emacs/whitespace-mode.html
-;;(require 'whitespace)
-;; (setq whitespace-style 
-;;       '(face tabs tab-mark spaces space-mark newline newline-mark))
-;; (setq whitespace-display-mappings
-;;       '(
-;;         (tab-mark   ?\t     [?\xBB ?\t])  ; タブ
-;;         (space-mark ?\u3000 [?□])        ; 全角スペース
-;; ;        (space-mark ?\u0020 [?\xB7])      ; 半角スペース
-;; ;        (newline-mark ?\n   [?$ ?\n])     ; 改行記号
-;;         ) )
-;; (setq whitespace-space-regexp "\\([\x0020\x3000]+\\)" )
+(require 'whitespace)
+ (setq whitespace-style 
+       '(face tabs tab-mark spaces space-mark newline newline-mark))
+ (setq whitespace-display-mappings
+       '(
+         (tab-mark   ?\t     [?\xBB ?\t])  ; タブ
+         (space-mark ?\u3000 [?□])        ; 全角スペース
+;;        (space-mark ?\u0020 [?\xB7])      ; 半角スペース
+;;        (newline-mark ?\n   [?$ ?\n])     ; 改行記号
+         ) )
+ (setq whitespace-space-regexp "\\([\x0020\x3000]+\\)" )
 ;正規表現に関する文書。 Emacs Lispには、正規表現リテラルがないことへの言及
 ;http://www.mew.org/~kazu/doc/elisp/regexp.html
 ;
 ;なぜか、全体をグループ化 \(\) しておかないと、うまくマッチしなかった罠
 ;
-;; (set-face-foreground 'whitespace-space "DimGray")
-;; (set-face-background 'whitespace-space 'nil)
-;; ;(set-face-bold-p 'whitespace-space t)
+(set-face-foreground 'whitespace-space "DimGray")
+(set-face-background 'whitespace-space 'nil)
+;(set-face-bold-p 'whitespace-space t)
  
-;; (set-face-foreground 'whitespace-tab "DimGray")
-;; (set-face-background 'whitespace-tab "nil")
+(set-face-foreground 'whitespace-tab "DimGray")
+(set-face-background 'whitespace-tab "nil")
  
-;; (set-face-foreground 'whitespace-newline  "DimGray")
-;; (set-face-background 'whitespace-newline 'nil)
+(set-face-foreground 'whitespace-newline  "DimGray")
+(set-face-background 'whitespace-newline 'nil)
  
  
 ;;===========================================
@@ -427,7 +427,7 @@
 
 (set-fontset-font (frame-parameter nil 'font)
                   'katakana-jisx0201
-                 '("MeiryoKe_Consolex" . "unicode-bmp")
+                  '("MeiryoKe_Console" . "unicode-bmp")
 ;                  '("Ricty Diminished" . "unicode-bmp")
                   )
 );;; ここまでwindows用
