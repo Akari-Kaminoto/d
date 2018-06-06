@@ -71,11 +71,11 @@
 
   ;; 初期フレームの設定
   (setq initial-frame-alist
-          '((width . 86) (height . 45)))
+          '((width . 80) (height . 40)))
 
   ;; 新規フレームのデフォルト設定
   (setq default-frame-alist
-          '((width . 86) (height . 45)))
+          '((width . 80) (height . 40)))
 
 ))
 
@@ -172,11 +172,11 @@
 
 ;;; Proxy設定
 (setq url-proxy-services
-	'(("http" . "proxy-auth.ntt-el.com:8050")
-	  ("https" . "proxy-auth.ntt-el.com:8050")))
+    '(("http" . "proxy-auth.ntt-el.com:8050")
+      ("https" . "proxy-auth.ntt-el.com:8050")))
 
 (setq url-http-proxy-basic-auth-storage
-	'(("proxy-auth.ntt-el.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
+    '(("proxy-auth.ntt-el.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
 
 ;; ここまで
 
@@ -397,9 +397,9 @@
    
 ;;;** IME ON/OFF時のカーソルカラー
    (add-hook 'input-method-activate-hook
-			 (lambda() (set-cursor-color "green")))
+             (lambda() (set-cursor-color "green")))
    (add-hook 'input-method-inactivate-hook
-			 (lambda() (set-cursor-color "red")))
+             (lambda() (set-cursor-color "red")))
    
 ;;;** バッファ切り替え時にIME状態を引き継ぐ
    (setq w32-ime-buffer-switch-p nil)
@@ -407,13 +407,13 @@
 ;;;** Consolas + MSゴシック
    (set-default-font "Consolas 10")
    (set-fontset-font (frame-parameter nil 'font)
-					 'japanese-jisx0208
-					 '("ＭＳ ゴシック" . "unicode-bmp")
-					 )
+                     'japanese-jisx0208
+                     '("ＭＳ ゴシック" . "unicode-bmp")
+                     )
    (set-fontset-font (frame-parameter nil 'font)
-					 'katakana-jisx0201
-					 '("ＭＳ ゴシック" . "unicode-bmp")
-					 )
+                     'katakana-jisx0201
+                     '("ＭＳ ゴシック" . "unicode-bmp")
+                     )
 );;; ここまでwindows用
 
 (when (eq system-type 'gnu/linux) ; Unix
