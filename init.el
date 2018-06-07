@@ -76,15 +76,14 @@
 
 ;; FILE CODE設定
 (when (equal emacs-major-version 21) (require 'un-define))
-(set-language-environment "Japanese")
+;(set-language-environment "Japanese")
 (set-terminal-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8-unix)
 (set-buffer-file-coding-system 'utf-8-unix)
 (setq default-buffer-file-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
-(setq file-name-coding-system 'shift_jis)
-
+(setq default-file-name-coding-system 'shift_jis) ;dired用
 ;;; CUI/GUIで分ける設定
 ;;
 ;; CUI時の設定
@@ -414,7 +413,7 @@
    (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
    
 ;;;** IME OFF時の初期カーソルカラー
-   (set-cursor-color "red")
+   (set-cursor-color "redd")
    
 ;;;** IME ON/OFF時のカーソルカラー
    (add-hook 'input-method-activate-hook
@@ -461,21 +460,23 @@
   ;;;
   ;;; mozc
   ;;;
-  (require 'mozc)
+  (use-package mozc)
 
   (set-language-environment "Japanese")
   (setq default-input-method "japanese-mozc")
   
   ;; GUIの候補選択ウィンドウをカーソルの直下にぶら下げる（デフォルト）
   (setq mozc-candidate-style 'overlay)
-  
-  ;; mozcのon/offでカーソルの色を変える
+
+
+  (set-cursor-color "red")  
+  ;; mozcのon/offでカーソルの色を変える(うまく動いていない）
   ;; on
   (add-hook 'input-method-activate-hook
-            (lambda() (set-cursor-color "DarkOrange")))
+            (lambda() (set-cursor-color "green")))
   ;; off
   (add-hook 'input-method-inactivate-hook
-            (lambda() (set-cursor-color "grey46")))
+            (lambda() (set-cursor-color "red")))
   
   
   
@@ -540,7 +541,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (hlinum smooth-scroll magit dired-du ztree use-package rainbow-mode rainbow-delimiters mozc melpa-upstream-visit irony flycheck company auto-read-only auto-complete anti-zenburn-theme))))
+    (diredful use-package-el-get forecast package-utils poker hlinum smooth-scroll magit dired-du ztree use-package rainbow-mode rainbow-delimiters mozc melpa-upstream-visit irony flycheck company auto-read-only auto-complete anti-zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -548,7 +549,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-;;; volatile-highlight
+;;; wvolatile-highlight
 (use-package volatile-highlights)
 (volatile-highlights-mode t)
 
