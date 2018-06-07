@@ -51,6 +51,7 @@
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
         ("melpa" . "http://melpa.org/packages/")
+        ("marmalade" . "http://marmalade-repo.org/packages/")
         ("org" . "http://orgmode.org/elpa/")))
 
 (require 'use-package)
@@ -61,8 +62,8 @@
 ;;; el-get
 
 ;; load-path で ~/.emacs.d とか書かなくてよくなる
-;;(when load-file-name
-;;  (setq user-emacs-directory (file-name-directory load-file-name)))
+(when load-file-name
+  (setq user-emacs-directory (file-name-directory load-file-name)))
 
 ;; el-get
 (add-to-list 'load-path (locate-user-emacs-file "el-get"))
@@ -126,7 +127,7 @@
           '(lambda ()
              ;;(setq tab-width 32)
              (setq tab-width 4)
-             (setq c-basic-offset 4) 
+             (setq c-basic-offset 4)
              ;; 以下 *:*1 -:*-1 ++:*2 --:*-2 *:*0.5 /:*-0.5
              (setq c++-auto-newline nil)
              (setq c++-tab-always-indent t)
@@ -285,8 +286,6 @@
 
 ;; タブをスペースで扱う
 (setq-default indent-tabs-mode nil)
-
-
 (setq-default tab-width 4)
  
 ;;----
@@ -362,15 +361,15 @@
 ;; SはShiftキーのこと
 ;; 参考：http://qiita.com/saku/items/6ef40a0bbaadb2cffbce
 ;;----
-(defun other-window-or-split (val)
-  (interactive)
-  (when (one-window-p)
-    (split-window-horizontally) ;split horizontally 縦分割にしたい場合はこちら
-;;    (split-window-vertically) ;split vertically   横分割にしたい場合はこちら
-  )
-  (other-window val))
-(global-set-key (kbd "<C-tab>") (lambda () (interactive) (other-window-or-split 1)))
-(global-set-key (kbd "<C-S-tab>") (lambda () (interactive) (other-window-or-split -1)))
+;;(defun other-window-or-split (val)
+;;  (interactive)
+;;  (when (one-window-p)
+;;    (split-window-horizontally) ;split horizontally 縦分割にしたい場合はこちら
+;;;;    (split-window-vertically) ;split vertically   横分割にしたい場合はこちら
+;;  )
+;; (other-window val))
+;;(global-set-key (kbd "<C-tab>") (lambda () (interactive) (other-window-or-split 1)))
+;;(global-set-key (kbd "<C-S-tab>") (lambda () (interactive) (other-window-or-split -1)))
  
 ;;----
 ;; 折り返しトグルコマンド
@@ -502,7 +501,7 @@
 
 
 ;; 自動補完
-;;(ac-config-default)
+(ac-config-default)
 
 ;;;company
 
@@ -534,3 +533,29 @@
 (setq neo-create-file-auto-open t)
 ;; delete-other-window で neotree ウィンドウを消さない
 (setq neo-persist-show t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (hlinum smooth-scroll magit dired-du ztree use-package rainbow-mode rainbow-delimiters mozc melpa-upstream-visit irony flycheck company auto-read-only auto-complete anti-zenburn-theme))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;;; volatile-highlight
+(use-package volatile-highlights)
+(volatile-highlights-mode t)
+
+;;smoooth-scroll
+(use-package smooth-scroll)
+(smooth-scroll-mode t)
+
+(provide 'init)
+;;;
+
