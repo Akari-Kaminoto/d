@@ -87,6 +87,24 @@ Show the NeoTree window.")
 
 ;;;***
 
+;;;### (autoloads nil "c-eldoc/c-eldoc" "c-eldoc/c-eldoc.el" (0 0
+;;;;;;  0 0))
+;;; Generated autoloads from c-eldoc/c-eldoc.el
+
+(autoload 'c-turn-on-eldoc-mode "c-eldoc/c-eldoc" "\
+Enable c-eldoc-mode
+
+\(fn)" t nil)
+
+(autoload 'c-eldoc-print-current-symbol-info "c-eldoc/c-eldoc" "\
+Returns documentation string for the current symbol.
+
+\(fn)" nil nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "c-eldoc/c-eldoc" '("call-c-eldoc-cleanup" "c-eldoc-")))
+
+;;;***
+
 ;;;### (autoloads nil "calendar+/calendar+" "calendar+/calendar+.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from calendar+/calendar+.el

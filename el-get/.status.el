@@ -20,6 +20,9 @@
       (:name avy :description "Jump to things in Emacs tree-style." :type github :pkgname "abo-abo/avy" :depends
              (cl-lib)))
  (bar-cursor status "required" recipe nil)
+ (c-eldoc status "installed" recipe
+          (:name c-eldoc :description "eldoc-mode plugin for C source code" :type github :pkgname "nflath/c-eldoc" :post-init
+                 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)))
  (calendar+ status "required" recipe
             (:name calendar+ :auto-generated t :type emacswiki :description "Calendar, diary and appointments stuff." :website "https://raw.github.com/emacsmirror/emacswiki.org/master/calendar+.el"))
  (cl-lib status "required" recipe
