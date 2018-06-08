@@ -491,6 +491,30 @@
   (add-hook 'input-method-inactivate-hook
             (lambda() (set-cursor-color "red")))
   
+  ;; helm
+  (use-package helm-config)
+  (helm-mode t)
+  
+  ;; 最近開いたファイルをショートカットから開けるようにする
+  ;; C-hで前の文字削除
+  (define-key helm-map (kbd "C-h") 'delete-backward-char)
+  (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+  
+  ;; TABとC-zを入れ替える
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)   ; rebind tab to run persistent action
+  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)       ; make TAB work in terminal
+  (define-key helm-map (kbd "C-z")  'helm-select-action)            ; list actions using C-z
+  (global-set-key "\C-c\C-r" 'helm-recentf)
+  (define-key global-map (kbd "C-x b")   'helm-buffers-list)
+                                        ;(define-key global-map (kbd "C-x b") 'helm-for-files)
+  (define-key global-map (kbd "C-x C-f") 'helm-find-files)
+  (define-key global-map (kbd "M-x")     'helm-M-x)
+  (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+  (add-hook 'helm-after-initialize-hook
+            #'(lambda ()
+                ;; EmacsのデフォルトのC-kの動作に戻す
+                (define-key helm-map (kbd "C-k") 'kill-line)
+                ))
   
   
 );;;ここまでUNIX用
@@ -578,30 +602,6 @@
 ;;hlinum
 (hlinum-activate)
 
-;; helm
-(use-package helm-config)
-(helm-mode t)
-
-;; 最近開いたファイルをショートカットから開けるようにする
-;; C-hで前の文字削除
-(define-key helm-map (kbd "C-h") 'delete-backward-char)
-(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-
-;; TABとC-zを入れ替える
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)   ; rebind tab to run persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)       ; make TAB work in terminal
-(define-key helm-map (kbd "C-z")  'helm-select-action)            ; list actions using C-z
-(global-set-key "\C-c\C-r" 'helm-recentf)
-(define-key global-map (kbd "C-x b")   'helm-buffers-list)
-;(define-key global-map (kbd "C-x b") 'helm-for-files)
-(define-key global-map (kbd "C-x C-f") 'helm-find-files)
-(define-key global-map (kbd "M-x")     'helm-M-x)
-(define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-(add-hook 'helm-after-initialize-hook
-            #'(lambda ()
-                ;; EmacsのデフォルトのC-kの動作に戻す
-                (define-key helm-map (kbd "C-k") 'kill-line)
-                ))
 
 (provide 'init)
 ;;;
