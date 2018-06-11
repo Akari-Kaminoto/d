@@ -523,7 +523,26 @@
 
 );;; ここまでMACOS用
 
- 
+;;;yasnippet
+;;
+;; (use-package yasnippet)
+;; ;; 自分用・追加用テンプレート
+;; ;; -> mysnippetに作成したテンプレートが格納される
+;; (setq yas-snippet-dirs
+;;       '("~/.emacs.d/mysnippets"
+;;         "~/.emacs.d/yasnippets"
+;;         ))
+
+;; ;; 既存スニペットを挿入する
+;; (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
+;; ;; 新規スニペットを作成するバッファを用意する
+;; (define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
+;; ;; 既存スニペットを閲覧・編集する
+;; (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+
+;; (yas-global-mode 1)
+;; (custom-set-variables '(yas-trigger-key "TAB"))
+
 ;;; FLYCHECK
 (require 'flycheck)
 
@@ -539,7 +558,16 @@
 
 
 ;; 自動補完
-(ac-config-default)
+;; (use-package auto-complete-config)
+;; (ac-config-default)
+;; (add-to-list 'ac-modes 'text-mode)         ;; text-modeでも自動的に有効にする
+;; (add-to-list 'ac-modes 'fundamental-mode)  ;; fundamental-mode
+;; (add-to-list 'ac-modes 'org-mode)
+;; (add-to-list 'ac-modes 'yatex-mode)
+;; (ac-set-trigger-key "TAB")
+;; (setq ac-use-menu-map t)       ;; 補完メニュー表示時にC-n/C-pで補完候補選択
+;; (setq ac-use-fuzzy t)          ;; 曖昧マッチ
+
 
 ;;;company
 
@@ -547,12 +575,42 @@
   (global-company-mode 1)
   (global-set-key (kbd "C-M-i") 'company-complete)
   ;; (setq company-idle-delay nil) ; 自動補完をしない
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 2) ; デフォルトは4
+  (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に
+
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
-  (define-key company-search-map (kbd "C-n") 'company-select-next)
-  (define-key company-search-map (kbd "C-p") 'company-select-previous)
-  (define-key company-active-map (kbd "<tab>") 'company-complete-selection))
+  (define-key company-active-map (kbd "C-h") nil)
+  ;;(define-key company-active-map (kbd "<tab>") 'company-complete-selection))
 
+  (defun company--insert-candidate2 (candidate)
+    (when (> (length candidate) 0)
+      (setq candidate (substring-no-properties candidate))
+      (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
+          (insert (company-strip-prefix candidate))
+        (if (equal company-prefix candidate)
+          (company-select-next)
+          (delete-region (- (point) (length company-prefix)) (point))
+          (insert candidate))
+        )))
+  
+  (defun company-complete-common2 ()
+    (interactive)
+    (when (company-manual-begin)
+      (if (and (not (cdr company-candidates))
+               (equal company-common (car company-candidates)))
+          (company-complete-selection)
+        (company--insert-candidate2 company-common))))
+  
+  (define-key company-active-map [tab] 'company-complete-common2)
+  (define-key company-active-map [backtab] 'company-select-previous)
+)
+;;;irony
+  
 (eval-after-load "irony"
   '(progn
      (custom-set-variables '(irony-additional-clang-options '("-std=c++11")))
@@ -571,19 +629,7 @@
 (setq neo-create-file-auto-open t)
 ;; delete-other-window で neotree ウィンドウを消さない
 (setq neo-persist-show t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(display-time-mode t)
- '(package-selected-packages
-   (quote
-    (helm use-package-el-get forecast package-utils poker hlinum smooth-scroll magit dired-du use-package rainbow-mode rainbow-delimiters mozc melpa-upstream-visit irony flycheck company auto-read-only auto-complete anti-zenburn-theme)))
- '(show-paren-mode t)
- '(size-indication-mode t)
- '(tool-bar-mode nil))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -603,6 +649,16 @@
 (hlinum-activate)
 
 
+
 (provide 'init)
 ;;;
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-yasnippet auto-read-only auto-complete anti-zenburn-theme)))
+ '(yas-trigger-key "TAB"))
