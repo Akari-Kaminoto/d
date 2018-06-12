@@ -386,10 +386,10 @@
 ;;; マウスの設定
 
 ;; スクロールは1行ごとに
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))
+;(setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))
 
 ;; スクロールの加速をやめる
-(setq mouse-wheel-progressive-speed nil)
+;setq mouse-wheel-progressive-speed nil)
 
 
 
@@ -425,6 +425,8 @@
 ;;;** バッファ切り替え時にIME状態を引き継ぐ
    (setq w32-ime-buffer-switch-p nil)
 
+
+   
 ;;;
 ;;; フォント関連の設定
 ;;;
@@ -455,6 +457,8 @@
                   '("MeiryoKe_Console" . "unicode-bmp")
 ;                  '("Ricty Diminished" . "unicode-bmp")
                   )
+;;ctags
+(setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
 );;; ここまでwindows用
 
 (when (eq system-type 'gnu/linux) ; Unix
@@ -515,7 +519,15 @@
                 ;; EmacsのデフォルトのC-kの動作に戻す
                 (define-key helm-map (kbd "C-k") 'kill-line)
                 ))
+
+
+  ;;ctags
   
+  ;;; 注意！exuberant-ctagsを指定する必要がある
+  ;;; Emacs標準のctagsでは動作しない！！
+  (setq ctags-update-command "/usr/bin/ctags")
+
+
   
 );;;ここまでUNIX用
 
@@ -637,7 +649,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-;;; wvolatile-highlight
+;;; volatile-highlight
 (use-package volatile-highlights)
 (volatile-highlights-mode t)
 
@@ -648,11 +660,11 @@
 ;;hlinum
 (hlinum-activate)
 
+;;ctags
 
+(ctags-global-auto-update-mode)  
 
-(provide 'init)
-;;;
-
+;;; w3 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -660,5 +672,8 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-yasnippet auto-read-only auto-complete anti-zenburn-theme)))
+    (ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
  '(yas-trigger-key "TAB"))
+
+(provide 'init)
+;;;
