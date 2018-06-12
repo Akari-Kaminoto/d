@@ -526,7 +526,7 @@
   ;;; 注意！exuberant-ctagsを指定する必要がある
   ;;; Emacs標準のctagsでは動作しない！！
   (setq ctags-update-command "/usr/bin/ctags")
-
+  
 
   
 );;;ここまでUNIX用
@@ -663,6 +663,9 @@
 ;;ctags
 
 (ctags-global-auto-update-mode)  
+;; M-.で移動してM-*で戻るはずが戻れないのでC-c u に再定義
+;; C-x 4 . C-x 5 .も使えるがなんかいまいち
+(define-key global-map (kbd "\C-cu") 'pop-tag-mark)
 
 ;;; w3 
 (custom-set-variables

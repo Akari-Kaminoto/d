@@ -10132,22 +10132,13 @@ elpa/pkg-info-20150517.443/pkg-info.el,1852
 elpa/pkg-info-20150517.443/pkg-info-pkg.el,109
 (define-package "pkg-info" "20150517.443" "Information about packages" (quote ((epl "0.8"))))"pkg-info"1,0
 
-flycheck_init.el,587
+init.el,660
 (defun add-to-load-path (&rest paths)add-to-load-path29,581
 (defun my-c-mode-common-conf ()my-c-mode-common-conf191,6367
 (defun rainbow-delimiters-using-stronger-colors ()rainbow-delimiters-using-stronger-colors218,7172
 (defvar my-lines-page-mode t)my-lines-page-mode264,8245
 (defvar my-mode-line-format)my-mode-line-format265,8275
-(define-key global-map (kbd "\C-cn") 'flycheck-next-error)global-map563,17544
-(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)global-map564,17603
-(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)global-map565,17666
-
-init.el,587
-(defun add-to-load-path (&rest paths)add-to-load-path29,581
-(defun my-c-mode-common-conf ()my-c-mode-common-conf191,6367
-(defun rainbow-delimiters-using-stronger-colors ()rainbow-delimiters-using-stronger-colors218,7172
-(defvar my-lines-page-mode t)my-lines-page-mode264,8245
-(defvar my-mode-line-format)my-mode-line-format265,8275
-(define-key global-map (kbd "\C-cn") 'flycheck-next-error)global-map563,17544
-(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)global-map564,17603
-(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)global-map565,17666
+(define-key global-map (kbd "\C-cn") 'flycheck-next-error)global-map563,17546
+(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)global-map564,17605
+(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)global-map565,17668
+(define-key global-map (kbd "\C-cu") 'pop-tag-mark)global-map666,21156
