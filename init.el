@@ -393,147 +393,7 @@
 
 
 
-;;;
-;;; OS によって設定を切り替える例
-;;;
 
-(when (eq system-type 'windows-nt) ; Windows
-
-;;;
-;;; IME関連の設定
-;;;
-  
-;;;** 標準IMEの設定
-   (setq default-input-method "W32-IME")
-
-;;;** IMEの初期化
-   (w32-ime-initialize)
-
-;;;** IME状態のモードライン表示
-   (setq-default w32-ime-mode-line-state-indicator "[--]")
-   (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
-   
-;;;** IME OFF時の初期カーソルカラー
-   (set-cursor-color "redd")
-   
-;;;** IME ON/OFF時のカーソルカラー
-   (add-hook 'input-method-activate-hook
-             (lambda() (set-cursor-color "green")))
-   (add-hook 'input-method-inactivate-hook
-             (lambda() (set-cursor-color "red")))
-   
-;;;** バッファ切り替え時にIME状態を引き継ぐ
-   (setq w32-ime-buffer-switch-p nil)
-
-
-   
-;;;
-;;; フォント関連の設定
-;;;
-   
-;;;** Consolas + MSゴシック
-;;;   (set-default-font "Consolas 14")
-;;;   (set-fontset-font (frame-parameter nil 'font)
-;;;                     'japanese-jisx0208
-;;;                     '("ＭＳ ゴシック" . "unicode-bmp")
-;;;                     )
-;;;   (set-fontset-font (frame-parameter nil 'font)
-;;;                     'katakana-jisx0201
-;;;                     '("ＭＳ ゴシック" . "unicode-bmp")
-;;;
-;;;                      )
-;;;
-;;;http://xiuxing.blog.jp/archives/8346924.html
-;;;
-(set-default-font "MeiryoKe_Console 14")
-(set-fontset-font (frame-parameter nil 'font)
-                  'japanese-jisx0208
-                  '("MeiryoKe_Console" . "unicode-bmp")
-;                  '("Ricty Diminished" . "unicode-bmp")
-                  )
-
-(set-fontset-font (frame-parameter nil 'font)
-                  'katakana-jisx0201
-                  '("MeiryoKe_Console" . "unicode-bmp")
-;                  '("Ricty Diminished" . "unicode-bmp")
-                  )
-;;ctags
-(setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
-);;; ここまでwindows用
-
-(when (eq system-type 'gnu/linux) ; Unix
-
-  ;;;;;;;;;;;;;;;;;;;;
-  ;; Dired 
-  ;;;;;;;;;;;;;;;;;;;;
-  
-  ;; Dired のリストフォーマット設定 (ls へのオプション)
-  ;; (setq dired-listing-switches "-aoFLt")
-  ;; ls の出力を英語にする(ls を LANG=C で実行)
-  (add-hook 'dired-mode-hook
-            '(lambda ()
-               (setenv "LANG" "C")))
-
-  ;;;
-  ;;; mozc
-  ;;;
-  (use-package mozc)
-
-  (set-language-environment "Japanese")
-  (setq default-input-method "japanese-mozc")
-  
-  ;; GUIの候補選択ウィンドウをカーソルの直下にぶら下げる（デフォルト）
-  (setq mozc-candidate-style 'overlay)
-
-
-  (set-cursor-color "red")  
-  ;; mozcのon/offでカーソルの色を変える(うまく動いていない）
-  ;; on
-  (add-hook 'input-method-activate-hook
-            (lambda() (set-cursor-color "green")))
-  ;; off
-  (add-hook 'input-method-inactivate-hook
-            (lambda() (set-cursor-color "red")))
-  
-  ;; helm
-  (use-package helm-config)
-  (helm-mode t)
-  
-  ;; 最近開いたファイルをショートカットから開けるようにする
-  ;; C-hで前の文字削除
-  (define-key helm-map (kbd "C-h") 'delete-backward-char)
-  (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-  
-  ;; TABとC-zを入れ替える
-  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)   ; rebind tab to run persistent action
-  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)       ; make TAB work in terminal
-  (define-key helm-map (kbd "C-z")  'helm-select-action)            ; list actions using C-z
-  (global-set-key "\C-c\C-r" 'helm-recentf)
-  (define-key global-map (kbd "C-x b")   'helm-buffers-list)
-                                        ;(define-key global-map (kbd "C-x b") 'helm-for-files)
-  (define-key global-map (kbd "C-x C-f") 'helm-find-files)
-  (define-key global-map (kbd "M-x")     'helm-M-x)
-  (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-  (add-hook 'helm-after-initialize-hook
-            #'(lambda ()
-                ;; EmacsのデフォルトのC-kの動作に戻す
-                (define-key helm-map (kbd "C-k") 'kill-line)
-                ))
-
-
-  ;;ctags
-  
-  ;;; 注意！exuberant-ctagsを指定する必要がある
-  ;;; Emacs標準のctagsでは動作しない！！
-  (setq ctags-update-command "/usr/bin/ctags")
-  
-
-  
-);;;ここまでUNIX用
-
-(when (equal system-type 'darwin)
-
-);;; ここまでMACOS用
 
 ;;;yasnippet
 ;;
@@ -675,11 +535,6 @@
 (when (require 'anzu)
   (global-anzu-mode +1))
 
-;; ace-isearch
-(when (require 'ace-isearch)
-  (global-ace-isearch-mode +1)
-  (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
-
 ;;; w3 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -690,6 +545,153 @@
    (quote
     (helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
  '(yas-trigger-key "TAB"))
+
+;;;
+;;; OS によって設定を切り替える例
+;;;
+
+(when (eq system-type 'windows-nt) ; Windows
+
+;;;
+;;; IME関連の設定
+;;;
+  
+;;;** 標準IMEの設定
+   (setq default-input-method "W32-IME")
+
+;;;** IMEの初期化
+   (w32-ime-initialize)
+
+;;;** IME状態のモードライン表示
+   (setq-default w32-ime-mode-line-state-indicator "[--]")
+   (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
+   
+;;;** IME OFF時の初期カーソルカラー
+   (set-cursor-color "redd")
+   
+;;;** IME ON/OFF時のカーソルカラー
+   (add-hook 'input-method-activate-hook
+             (lambda() (set-cursor-color "green")))
+   (add-hook 'input-method-inactivate-hook
+             (lambda() (set-cursor-color "red")))
+   
+;;;** バッファ切り替え時にIME状態を引き継ぐ
+   (setq w32-ime-buffer-switch-p nil)
+
+
+   
+;;;
+;;; フォント関連の設定
+;;;
+   
+;;;** Consolas + MSゴシック
+;;;   (set-default-font "Consolas 14")
+;;;   (set-fontset-font (frame-parameter nil 'font)
+;;;                     'japanese-jisx0208
+;;;                     '("ＭＳ ゴシック" . "unicode-bmp")
+;;;                     )
+;;;   (set-fontset-font (frame-parameter nil 'font)
+;;;                     'katakana-jisx0201
+;;;                     '("ＭＳ ゴシック" . "unicode-bmp")
+;;;
+;;;                      )
+;;;
+;;;http://xiuxing.blog.jp/archives/8346924.html
+;;;
+(set-default-font "MeiryoKe_Console 14")
+(set-fontset-font (frame-parameter nil 'font)
+                  'japanese-jisx0208
+                  '("MeiryoKe_Console" . "unicode-bmp")
+;                  '("Ricty Diminished" . "unicode-bmp")
+                  )
+
+(set-fontset-font (frame-parameter nil 'font)
+                  'katakana-jisx0201
+                  '("MeiryoKe_Console" . "unicode-bmp")
+;                  '("Ricty Diminished" . "unicode-bmp")
+                  )
+;;ctags
+(setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
+);;; ここまでwindows用
+
+(when (eq system-type 'gnu/linux) ; Unix
+
+  ;;;;;;;;;;;;;;;;;;;;
+  ;; Dired 
+  ;;;;;;;;;;;;;;;;;;;;
+  
+  ;; Dired のリストフォーマット設定 (ls へのオプション)
+  ;; (setq dired-listing-switches "-aoFLt")
+  ;; ls の出力を英語にする(ls を LANG=C で実行)
+  (add-hook 'dired-mode-hook
+            '(lambda ()
+               (setenv "LANG" "C")))
+
+  ;;;
+  ;;; mozc
+  ;;;
+  (use-package mozc)
+
+  (set-language-environment "Japanese")
+  (setq default-input-method "japanese-mozc")
+  
+  ;; GUIの候補選択ウィンドウをカーソルの直下にぶら下げる（デフォルト）
+  (setq mozc-candidate-style 'overlay)
+
+
+  (set-cursor-color "red")  
+  ;; mozcのon/offでカーソルの色を変える(うまく動いていない）
+  ;; on
+  (add-hook 'input-method-activate-hook
+            (lambda() (set-cursor-color "green")))
+  ;; off
+  (add-hook 'input-method-inactivate-hook
+            (lambda() (set-cursor-color "red")))
+  
+  ;; helm
+  (use-package helm-config)
+  (helm-mode t)
+  
+  ;; 最近開いたファイルをショートカットから開けるようにする
+  ;; C-hで前の文字削除
+  (define-key helm-map (kbd "C-h") 'delete-backward-char)
+  (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+  
+  ;; TABとC-zを入れ替える
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)   ; rebind tab to run persistent action
+  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)       ; make TAB work in terminal
+  (define-key helm-map (kbd "C-z")  'helm-select-action)            ; list actions using C-z
+  (global-set-key "\C-c\C-r" 'helm-recentf)
+  (define-key global-map (kbd "C-x b")   'helm-buffers-list)
+                                        ;(define-key global-map (kbd "C-x b") 'helm-for-files)
+  (define-key global-map (kbd "C-x C-f") 'helm-find-files)
+  (define-key global-map (kbd "M-x")     'helm-M-x)
+  (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+  (add-hook 'helm-after-initialize-hook
+            #'(lambda ()
+                ;; EmacsのデフォルトのC-kの動作に戻す
+                (define-key helm-map (kbd "C-k") 'kill-line)
+                ))
+
+
+  ;;ctags
+  
+  ;;; 注意！exuberant-ctagsを指定する必要がある
+  ;;; Emacs標準のctagsでは動作しない！！
+  (setq ctags-update-command "/usr/bin/ctags")
+  
+  ;; ace-isearch
+  (when (require 'ace-isearch)
+    (global-ace-isearch-mode +1)
+    (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
+  
+  
+);;;ここまでUNIX用
+
+(when (equal system-type 'darwin)
+;;;なし
+);;; ここまでMACOS用
+
 
 (provide 'init)
 ;;;

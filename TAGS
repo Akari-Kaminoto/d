@@ -9613,6 +9613,147 @@ elpa/ace-jump-mode-20140616.115/ace-jump-mode-autoloads.el,0
 elpa/ace-jump-mode-20140616.115/ace-jump-mode-pkg.el,265
 (define-package "ace-jump-mode" "20140616.115" "a quick cursor location minor mode for emacs" 'nil :commit "8351e2df4fbbeb2a4003f2fb39f46d33803f3dac" :keywords '("motion" "location" "cursor") :url "https://github.com/winterTTr/ace-jump-mode/")"ace-jump-mode"2,31
 
+elpa/helm-swoop-20180215.354/helm-swoop-pkg.el,314
+(define-package "helm-swoop" "20180215.354" "Efficiently hopping squeezed lines powered by helm interface" '((helm "1.0") (emacs "24.3")) :commit "c66336b8245ddc51c4206f19c119f1081920985c" :keywords '("helm" "swoop" "inner" "buffer" "search") :url "https://github.com/ShingoFukuyama/helm-swoop")"helm-swoop"2,31
+
+elpa/helm-swoop-20180215.354/helm-swoop-autoloads.el,0
+
+elpa/helm-swoop-20180215.354/helm-swoop.el,11722
+(defvar projectile-buffers-filter-function)projectile-buffers-filter-function98,3997
+(defgroup helm-swoop nilhelm-swoop102,4107
+(defface helm-swoop-target-line-facehelm-swoop-target-line-face106,4192
+(defface helm-swoop-target-line-block-facehelm-swoop-target-line-block-face110,4342
+(defface helm-swoop-target-word-facehelm-swoop-target-word-face114,4487
+(defface helm-swoop-line-number-facehelm-swoop-line-number-face118,4626
+(defcustom helm-swoop-speed-or-color nilhelm-swoop-speed-or-color123,4745
+(defcustom helm-swoop-use-line-number-face nilhelm-swoop-use-line-number-face126,4896
+(defcustom helm-swoop-split-with-multiple-windows nilhelm-swoop-split-with-multiple-windows129,5030
+(defcustom helm-swoop-move-to-line-cycle thelm-swoop-move-to-line-cycle132,5170
+(defcustom helm-swoop-split-direction 'split-window-verticallyhelm-swoop-split-direction135,5288
+(defcustom helm-swoop-use-fuzzy-match nilhelm-swoop-use-fuzzy-match140,5530
+(defvar helm-swoop-split-window-functionhelm-swoop-split-window-function144,5675
+(defcustom helm-swoop-after-goto-line-action-hook nilhelm-swoop-after-goto-line-action-hook154,6032
+(defcustom helm-swoop-before-goto-line-action-hook nilhelm-swoop-before-goto-line-action-hook158,6165
+(defvar helm-swoop-candidate-number-limit 19999)helm-swoop-candidate-number-limit163,6301
+(defvar helm-swoop-buffer "*Helm Swoop*")helm-swoop-buffer164,6350
+(defvar helm-swoop-prompt "Swoop: ")helm-swoop-prompt165,6392
+(defvar helm-swoop-last-point nil)helm-swoop-last-point166,6429
+(defvar helm-swoop-invisible-targets nil)helm-swoop-invisible-targets167,6464
+(defvar helm-swoop-last-line-info nil)helm-swoop-last-line-info168,6506
+(defvar helm-swoop-list-cache)helm-swoop-list-cache171,6572
+(defvar helm-swoop-pattern)            ; Keep helm-pattern valuehelm-swoop-pattern172,6603
+(defvar helm-swoop-last-query)         ; Last search query for resumehelm-swoop-last-query173,6668
+(defvar-local helm-swoop-last-prefix-number 1) ; For multiline highlighthelm-swoop-last-prefix-number174,6738
+(defvar helm-swoop-synchronizing-window nilhelm-swoop-synchronizing-window177,6832
+(defvar helm-swoop-target-buffer nilhelm-swoop-target-buffer179,6926
+(defvar helm-swoop-line-overlay nilhelm-swoop-line-overlay181,7013
+(defvar helm-swoop-maphelm-swoop-map184,7102
+(defvar helm-multi-swoop-maphelm-multi-swoop-map194,7498
+(defvar helm-c-source-swoop-match-functionshelm-c-source-swoop-match-functions200,7686
+(defvar helm-c-source-swoop-search-functionshelm-c-source-swoop-search-functions205,7802
+(defun helm-swoop-match-functions ()helm-swoop-match-functions211,7974
+(defun helm-swoop-search-functions ()helm-swoop-search-functions216,8158
+(defcustom helm-swoop-pre-input-functionhelm-swoop-pre-input-function221,8346
+(defun helm-swoop-pre-input-optimize ($query)helm-swoop-pre-input-optimize226,8530
+(defsubst helm-swoop--goto-line ($line)helm-swoop--goto-line236,8867
+(defsubst helm-swoop--recenter ()helm-swoop--recenter240,8963
+(defsubst helm-swoop--delete-overlay ($identity &optional $beg $end)helm-swoop--delete-overlay243,9034
+(defsubst helm-swoop--get-string-at-line ()helm-swoop--get-string-at-line252,9334
+(defsubst helm-swoop--buffer-substring ($point-min $point-max)helm-swoop--buffer-substring255,9445
+(defun helm-swoop-back-to-last-point (&optional $cancel)helm-swoop-back-to-last-point267,9944
+(defun helm-swoop--split-lines-by ($string $regexp $step)helm-swoop--split-lines-by278,10360
+(defun helm-swoop--target-line-overlay-move (&optional $buf)helm-swoop--target-line-overlay-move297,11048
+(defun helm-swoop--validate-regexp (regexp)helm-swoop--validate-regexp314,11589
+(defun helm-swoop--target-word-overlay ($identity &optional $threshold)helm-swoop--target-word-overlay321,11742
+(defun helm-swoop--restore-unveiled-overlay ()helm-swoop--restore-unveiled-overlay348,13014
+(defun helm-swoop--unveil-invisible-overlay ()helm-swoop--unveil-invisible-overlay354,13255
+(defadvice helm-next-line (around helm-swoop-next-line disable)helm-next-line369,13938
+(defadvice helm-previous-line (around helm-swoop-previous-line disable)helm-previous-line375,14143
+(defadvice helm-toggle-visible-mark (around helm-swoop-toggle-visible-mark disable)helm-toggle-visible-mark381,14356
+(defun helm-swoop--move-line-action ()helm-swoop--move-line-action387,14581
+(defun helm-swoop--nearest-line ($target $list)helm-swoop--nearest-line404,15293
+(defun helm-swoop--keep-nearest-position ()helm-swoop--keep-nearest-position433,16524
+(defun helm-swoop--pattern-match ()helm-swoop--pattern-match464,17913
+(defun helm-swoop-flash-word ($match-beg $match-end)helm-swoop-flash-word475,18354
+(defun helm-swoop--get-content ($buffer &optional $linum)helm-swoop--get-content487,18809
+(defun helm-swoop--goto-line-action ($line)helm-swoop--goto-line-action513,19938
+(defun helm-c-source-swoop ()helm-c-source-swoop530,20626
+(defun helm-c-source-multi-swoop ($buf $func $action $multiline)helm-c-source-multi-swoop554,21821
+(defun helm-swoop--set-prefix ($multiline)helm-swoop--set-prefix569,22388
+(defun helm-swoop--clear-cache ()helm-swoop--clear-cache575,22599
+(defadvice narrow-to-region (around helm-swoop-advice-narrow-to-region activate)narrow-to-region579,22760
+(defadvice narrow-to-defun (around helm-swoop-advice-narrow-to-defun activate)narrow-to-defun582,22881
+(defadvice narrow-to-page (around helm-swoop-advice-narrow-to-page activate)narrow-to-page585,23000
+(defadvice widen (around helm-swoop-advice-widen activate)widen588,23117
+(defun helm-swoop--restore ()helm-swoop--restore592,23217
+(defun helm-swoop-from-isearch ()helm-swoop-from-isearch706,28776
+(define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)isearch-mode-map716,29138
+(defun helm-swoop-from-evil-search ()helm-swoop-from-evil-search719,29255
+(defun helm-swoop-yank-thing-at-point ()helm-swoop-yank-thing-at-point731,29794
+(defadvice helm-resume-select-bufferhelm-resume-select-buffer747,30368
+(defadvice helm-resume (around helm-swoop-resume activate)helm-resume762,30989
+(defun helm-swoop--caret-match-delete ($o $aft $beg $end &optional $len)helm-swoop--caret-match-delete774,31547
+(defun helm-swoop-caret-match (&optional _$resume)helm-swoop-caret-match779,31768
+(defvar helm-swoop-edit-target-buffer)helm-swoop-edit-target-buffer810,33087
+(defvar helm-swoop-edit-buffer "*Helm Swoop Edit*")helm-swoop-edit-buffer811,33126
+(defvar helm-swoop-edit-maphelm-swoop-edit-map812,33178
+(defun helm-swoop--clear-edit-buffer ($prop)helm-swoop--clear-edit-buffer819,33460
+(defun helm-swoop--collect-edited-lines ()helm-swoop--collect-edited-lines829,33792
+(defun helm-swoop--edit ($candidate)helm-swoop--edit848,34556
+(defun helm-swoop--edit-complete ()helm-swoop--edit-complete920,37776
+(defun helm-swoop--edit-delete-all-lines ()helm-swoop--edit-delete-all-lines939,38549
+(defun helm-swoop--edit-cancel ()helm-swoop--edit-cancel958,39381
+(defun helm-swoop-edit ()helm-swoop-edit965,39616
+(defvar helm-multi-swoop-buffer-list "*helm-multi-swoop buffers list*"helm-multi-swoop-buffer-list970,39775
+(defvar helm-multi-swoop-ignore-buffers-match "^\\*"helm-multi-swoop-ignore-buffers-match972,39863
+(defvar helm-multi-swoop-candidate-number-limit 250)helm-multi-swoop-candidate-number-limit974,39971
+(defvar helm-multi-swoop-last-selected-buffers nil)helm-multi-swoop-last-selected-buffers975,40024
+(defvar helm-multi-swoop-last-query nil)helm-multi-swoop-last-query976,40076
+(defvar helm-multi-swoop-query nil)helm-multi-swoop-query977,40117
+(defvar helm-multi-swoop-buffer "*Helm Multi Swoop*")helm-multi-swoop-buffer978,40153
+(defvar helm-multi-swoop-all-from-helm-swoop-last-point nilhelm-multi-swoop-all-from-helm-swoop-last-point979,40207
+(defvar helm-multi-swoop-move-line-action-last-buffer nil)helm-multi-swoop-move-line-action-last-buffer981,40346
+(defvar helm-multi-swoop-buffers-maphelm-multi-swoop-buffers-map983,40406
+(defvar helm-multi-swoop-projectile-buffers-filterhelm-multi-swoop-projectile-buffers-filter991,40670
+(defadvice helm-next-line (around helm-multi-swoop-next-line disable)helm-next-line995,40831
+(defadvice helm-previous-line (around helm-multi-swoop-previous-line disable)helm-previous-line1001,41050
+(defadvice helm-toggle-visible-mark (around helm-multi-swoop-toggle-visible-mark disable)helm-toggle-visible-mark1007,41277
+(defadvice helm-move--next-line-fn (around helm-multi-swoop-next-line-cycle disable)helm-move--next-line-fn1013,41516
+(defadvice helm-move--previous-line-fn (around helm-multi-swoop-previous-line-cycle disable)helm-move--previous-line-fn1026,42073
+(defun helm-multi-swoop--move-line-action ()helm-multi-swoop--move-line-action1037,42521
+(defun helm-multi-swoop--get-marked-buffers ()helm-multi-swoop--get-marked-buffers1058,43516
+(defun helm-multi-swoop--get-buffer-list ()helm-multi-swoop--get-buffer-list1212,51279
+(defun helm-c-source-helm-multi-swoop-buffers ()helm-c-source-helm-multi-swoop-buffers1230,51970
+(defun helm-multi-swoop--get-query ($query)helm-multi-swoop--get-query1239,52350
+(defun helm-multi-swoop (&optional $query $buflist)helm-multi-swoop1255,52992
+(defun helm-multi-swoop-all (&optional $query)helm-multi-swoop-all1281,53939
+(defun get-buffers-matching-mode ($mode)get-buffers-matching-mode1289,54275
+(defun helm-multi-swoop-by-mode ($mode &optional $query)helm-multi-swoop-by-mode1300,54704
+(defun helm-multi-swoop-org (&optional $query)helm-multi-swoop-org1310,55179
+(defun helm-multi-swoop-current-mode (&optional $query)helm-multi-swoop-current-mode1316,55358
+(defun helm-multi-swoop-projectile (&optional $query)helm-multi-swoop-projectile1322,55577
+(defun helm-swoop--wrap-function-with-pre-input-function ($target-func $pre-input-func)helm-swoop--wrap-function-with-pre-input-function1337,56308
+(defun helm-swoop-without-pre-input ()helm-swoop-without-pre-input1346,56649
+(defun helm-swoop-symble-pre-input ()helm-swoop-symble-pre-input1353,56852
+(defun helm-multi-swoop-all-from-isearch ()helm-multi-swoop-all-from-isearch1361,57150
+(defun helm-multi-swoop-all-from-helm-swoop ()helm-multi-swoop-all-from-helm-swoop1373,57619
+(defun helm-multi-swoop-current-mode-from-helm-swoop ()helm-multi-swoop-current-mode-from-helm-swoop1383,58007
+(defadvice helm-resume (around helm-multi-swoop-resume activate)helm-resume1394,58503
+(defvar helm-multi-swoop-edit-save thelm-multi-swoop-edit-save1407,59087
+(defvar helm-multi-swoop-edit-buffer "*Helm Multi Swoop Edit*")helm-multi-swoop-edit-buffer1409,59180
+(defvar helm-multi-swoop-edit-maphelm-multi-swoop-edit-map1411,59245
+(defun helm-multi-swoop--edit ($candidate)helm-multi-swoop--edit1418,59551
+(defun helm-multi-swoop--separate-text-property-into-list ($property)helm-multi-swoop--separate-text-property-into-list1511,63931
+(defun helm-multi-swoop--collect-edited-lines ()helm-multi-swoop--collect-edited-lines1529,64687
+(defun helm-multi-swoop--edit-complete ()helm-multi-swoop--edit-complete1561,66148
+(defun helm-multi-swoop--edit-delete-all-lines ()helm-multi-swoop--edit-delete-all-lines1589,67382
+(defun helm-multi-swoop--edit-cancel ()helm-multi-swoop--edit-cancel1617,68675
+(defun helm-multi-swoop-edit ()helm-multi-swoop-edit1625,68943
+(defsubst helm-swoop--get-at-face (&optional $point)helm-swoop--get-at-face1631,69123
+(defun helm-swoop--cull-face-include-line ($face)helm-swoop--cull-face-include-line1637,69344
+(defun helm-swoop-same-face-at-point (&optional $face)helm-swoop-same-face-at-point1653,70149
+(defun helm-multi-swoop-same-face-at-point (&optional $face)helm-multi-swoop-same-face-at-point1674,71184
+
 elpa/mozc-20180101.0/mozc-autoloads.el,2171
 (defvar mozc-mode-map (let ((map (make-sparse-keymap))) (prog1 map (mapc (lambda (command) (mapc (lambda (key-sequence) (and (= (length key-sequence) 1) (integerp (aref key-sequence 0)) (define-key map key-sequence command))) (where-is-internal command global-map))) '(execute-extended-command toggle-input-method)) (mapc (lambda (event) (define-key map (vector event) nil)) '(delete-frame iconify-frame make-frame-visible select-window switch-frame)) (define-key map [t] #'mozc-handle-event))) "\mozc-mode-map12,385
 (defvar mozc-mode nil "\mozc-mode15,919
@@ -10370,15 +10511,36 @@ elpa/pkg-info-20150517.443/pkg-info.el,1852
 elpa/pkg-info-20150517.443/pkg-info-pkg.el,109
 (define-package "pkg-info" "20150517.443" "Information about packages" (quote ((epl "0.8"))))"pkg-info"1,0
 
+flycheck_init.el,660
+(defun add-to-load-path (&rest paths)add-to-load-path29,581
+(defun my-c-mode-common-conf ()my-c-mode-common-conf191,6367
+(defun rainbow-delimiters-using-stronger-colors ()rainbow-delimiters-using-stronger-colors218,7172
+(defvar my-lines-page-mode t)my-lines-page-mode264,8245
+(defvar my-mode-line-format)my-mode-line-format265,8275
+(define-key global-map (kbd "\C-cn") 'flycheck-next-error)global-map423,13122
+(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)global-map424,13181
+(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)global-map425,13244
+(define-key global-map (kbd "\C-cu") 'pop-tag-mark)global-map528,16866
+
 init.el,660
 (defun add-to-load-path (&rest paths)add-to-load-path29,581
 (defun my-c-mode-common-conf ()my-c-mode-common-conf191,6367
 (defun rainbow-delimiters-using-stronger-colors ()rainbow-delimiters-using-stronger-colors218,7172
 (defvar my-lines-page-mode t)my-lines-page-mode264,8245
 (defvar my-mode-line-format)my-mode-line-format265,8275
-(define-key global-map (kbd "\C-cn") 'flycheck-next-error)global-map563,17546
-(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)global-map564,17605
-(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)global-map565,17668
-(define-key global-map (kbd "\C-cu") 'pop-tag-mark)global-map668,21290
+(define-key global-map (kbd "\C-cn") 'flycheck-next-error)global-map423,13122
+(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)global-map424,13181
+(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)global-map425,13244
+(define-key global-map (kbd "\C-cu") 'pop-tag-mark)global-map528,16866
 
-undohist/!home!tsubasa!.emacs.d!init.el,0
+undohist/!home!tsubasa!4k120p!src!Test!UpdataFW!UpdataFWEnc!EncUpdata.cpp,0
+
+undohist/!home!tsubasa!4k120p!src!Test!UpdataFW!UpdataFWDec!UpdataFw.cpp,0
+
+undohist/!home!tsubasa!.emacs.d!init.el,327
+(define-key global-map (kbd \"\\C-cn\") 'flycheck-next-error)global-map27,40937
+(define-key global-map (kbd \"\\C-cp\") 'flycheck-previous-error)global-map28,40999
+(define-key global-map (kbd \"\\C-cd\") 'flycheck-list-errors)global-map29,41065
+(define-key global-map (kbd \"\\C-cu\") 'pop-tag-mark)global-map132,44719
+
+undohist/!home!tsubasa!4k120p!src!Test!UpdataFW!UpdataFWEnc!UpdataFw.cpp,0
