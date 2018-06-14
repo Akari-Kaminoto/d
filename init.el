@@ -612,6 +612,10 @@
                   )
 ;;ctags
 (setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
+;;
+;; 環境変数でgitのPATHを通しておくのを忘れずに
+;;
+
 );;; ここまでwindows用
 
 (when (eq system-type 'gnu/linux) ; Unix
@@ -648,11 +652,10 @@
   (add-hook 'input-method-inactivate-hook
             (lambda() (set-cursor-color "red")))
   
-  ;; helm
+  ;; helm なぜかwindowsでは動かないのです。
   (use-package helm-config)
   (helm-mode t)
   
-  ;; 最近開いたファイルをショートカットから開けるようにする
   ;; C-hで前の文字削除
   (define-key helm-map (kbd "C-h") 'delete-backward-char)
   (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
