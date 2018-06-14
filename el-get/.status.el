@@ -73,6 +73,8 @@
     (:name s :description "The long lost Emacs string manipulation library." :type github :pkgname "magnars/s.el"))
  (smooth-scroll status "installed" recipe
                 (:name smooth-scroll :description "Minor mode for smooth scrolling." :type emacswiki :features smooth-scroll))
+ (undohist status "installed" recipe
+           (:name undohist :type github :pkgname "m2ym/undohist-el" :description "Record and recover undo history" :website "http://d.hatena.ne.jp/m2ym/20090707/1246933894"))
  (volatile-highlights status "installed" recipe
                       (:name volatile-highlights :description "Minor mode for visual feedback on some operations in Emacs" :type github :pkgname "k-talo/volatile-highlights.el" :features volatile-highlights))
  (xcscope status "required" recipe

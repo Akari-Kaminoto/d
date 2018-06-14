@@ -479,6 +479,14 @@ Show the NeoTree window.")
 
 ;;;***
 
+;;;### (autoloads nil "undohist/undohist" "undohist/undohist.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from undohist/undohist.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "undohist/undohist" '("undohist-" "make-undohist-file-name")))
+
+;;;***
+
 ;;;### (autoloads nil "volatile-highlights/volatile-highlights" "volatile-highlights/volatile-highlights.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from volatile-highlights/volatile-highlights.el

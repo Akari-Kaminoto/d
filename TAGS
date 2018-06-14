@@ -133,8 +133,6 @@ auto-highlight-symbol/auto-highlight-symbol.el,9444
 (define-globalized-minor-mode global-auto-highlight-symbol-modeglobal-auto-highlight-symbol-mode1602,52555
 (define-minor-mode auto-highlight-symbol-modeauto-highlight-symbol-mode1607,52712
 
-test.c,0
-
 neotree/test/test-utils.el,0
 
 neotree/test/test-vc.el,0
@@ -1368,7 +1366,7 @@ el-get/.loaddefs.el,1147
 (defvar calendar-region-marker (if (not window-system) "X" (require 'faces) (make-face 'calendar-region-face) (if (x-display-color-p) (set-face-background 'calendar-region-face "LightGray") (copy-face 'bold 'calendar-region-face)) 'calendar-region-face) "\calendar-region-marker123,3968
 (defvar calendar-local-holiday-marker (if (not window-system) "*" (require 'faces) (make-face 'local-holiday-face) (if (x-display-color-p) (set-face-background 'local-holiday-face "Pink") (set-face-background 'local-holiday-face "Black") (set-face-foreground 'local-holiday-face "White")) 'local-holiday-face) "\calendar-local-holiday-marker129,4385
 (defalias 'neotree 'neotree-show "\neotree475,16622
-(defvar volatile-highlights-mode nil "\volatile-highlights-mode486,17008
+(defvar volatile-highlights-mode nil "\volatile-highlights-mode494,17290
 
 el-get/.status.el,0
 
@@ -1415,6 +1413,24 @@ el-get/volatile-highlights/volatile-highlights.el,3117
 (defun vhl/ext/hideshow/.activate ()vhl/ext/hideshow/.activate825,30855
 (defun vhl/ext/hideshow/on ()vhl/ext/hideshow/on843,31645
 (defun vhl/ext/hideshow/off ()vhl/ext/hideshow/off853,31884
+
+el-get/undohist/undohist.el,921
+(defgroup undohist nilundohist41,1258
+(defcustom undohist-directoryundohist-directory46,1353
+(defcustom undohist-ignored-files nilundohist-ignored-files56,1589
+(defun undohist-initialize ()undohist-initialize61,1742
+(defun make-undohist-file-name (file)make-undohist-file-name70,2074
+(defun undohist-walk-tree (function tree)undohist-walk-tree86,2680
+(defun undohist-encode (tree)undohist-encode117,3804
+(defun undohist-decode (tree)undohist-decode132,4206
+(defun undohist-recover-file-p (file)undohist-recover-file-p158,5041
+(defun undohist-save-1 ()undohist-save-1166,5349
+(defun undohist-save-safe ()undohist-save-safe176,5767
+(defun undohist-save ()undohist-save181,5903
+(defun undohist-recover-1 ()undohist-recover-1186,5991
+(defun undohist-recover-safe ()undohist-recover-safe205,6855
+(defun undohist-recover ()undohist-recover210,7000
+(defun undohist--test ()undohist--test215,7097
 
 elpa/epl-20180205.1249/epl.el,3901
 (defsubst epl--package-desc-p (package)epl--package-desc-p145,4956
@@ -2326,6 +2342,123 @@ elpa/restart-emacs-20180601.331/restart-emacs.el,2761
 (defun restart-emacs (&optional args)restart-emacs389,17340
 
 elpa/restart-emacs-20180601.331/restart-emacs-autoloads.el,0
+
+elpa/anzu-20161017.907/anzu.el,8421
+(defgroup anzu nilanzu45,1460
+(defcustom anzu-mode-lighter " Anzu"anzu-mode-lighter49,1539
+(defcustom anzu-cons-mode-line-p tanzu-cons-mode-line-p53,1619
+(defcustom anzu-minimum-input-length 1anzu-minimum-input-length57,1723
+(defcustom anzu-search-threshold nilanzu-search-threshold61,1821
+(defcustom anzu-replace-threshold nilanzu-replace-threshold66,1991
+(defcustom anzu-use-migemo nilanzu-use-migemo71,2184
+(defcustom anzu-mode-line-update-function #'anzu--update-mode-line-defaultanzu-mode-line-update-function75,2259
+(defcustom anzu-regexp-search-commands '(isearch-forward-regexpanzu-regexp-search-commands79,2420
+(defcustom anzu-input-idle-delay 0.05anzu-input-idle-delay84,2617
+(defcustom anzu-deactivate-region nilanzu-deactivate-region88,2731
+(defcustom anzu-replace-at-cursor-thing 'defunanzu-replace-at-cursor-thing92,2854
+(defcustom anzu-replace-to-string-separator ""anzu-replace-to-string-separator96,2981
+(defface anzu-mode-lineanzu-mode-line100,3075
+(defface anzu-mode-line-no-matchanzu-mode-line-no-match104,3173
+(defface anzu-replace-highlightanzu-replace-highlight108,3286
+(defface anzu-match-1anzu-match-1112,3385
+(defface anzu-match-2anzu-match-2120,3641
+(defface anzu-match-3anzu-match-3128,3896
+(defface anzu-replace-toanzu-replace-to136,4149
+(defvar anzu--total-matched 0)anzu--total-matched143,4339
+(defvar anzu--current-position 0)anzu--current-position144,4370
+(defvar anzu--overflow-p nil)anzu--overflow-p145,4404
+(defvar anzu--last-isearch-string nil)anzu--last-isearch-string146,4434
+(defvar anzu--cached-positions nil)anzu--cached-positions147,4473
+(defvar anzu--last-command nil)anzu--last-command148,4509
+(defvar anzu--state nil)anzu--state149,4541
+(defvar anzu--cached-count 0)anzu--cached-count150,4566
+(defvar anzu--last-replace-input "")anzu--last-replace-input151,4596
+(defvar anzu--last-search-state nil)anzu--last-search-state152,4633
+(defvar anzu--last-replaced-count nil)anzu--last-replaced-count153,4670
+(defvar anzu--outside-point nil)anzu--outside-point154,4709
+(defvar anzu--history nil)anzu--history155,4742
+(defvar anzu--query-defaults nil)anzu--query-defaults156,4769
+(defun anzu--validate-regexp (regexp)anzu--validate-regexp158,4804
+(defsubst anzu--construct-position-info (count overflow positions)anzu--construct-position-info165,4951
+(defsubst anzu--case-fold-search (input)anzu--case-fold-search168,5082
+(defsubst anzu--word-search-p ()anzu--word-search-p173,5229
+(defsubst anzu--isearch-regexp-function ()anzu--isearch-regexp-function177,5360
+(defun anzu--transform-input (str)anzu--transform-input181,5493
+(defsubst anzu--use-migemo-p ()anzu--use-migemo-p188,5736
+(defun anzu--search-all-position (str)anzu--search-all-position194,5918
+(defun anzu--where-is-here (positions here)anzu--where-is-here225,7339
+(defun anzu--use-result-cache-p (input)anzu--use-result-cache-p232,7561
+(defun anzu--update (query)anzu--update237,7784
+(defun anzu--update-post-hook ()anzu--update-post-hook250,8446
+(defconst anzu--mode-line-format '(:eval (anzu--update-mode-line)))anzu--mode-line-format253,8513
+(defsubst anzu--mode-line-not-set-p ()anzu--mode-line-not-set-p255,8582
+(defun anzu--cons-mode-line-search ()anzu--cons-mode-line-search259,8712
+(defun anzu--cons-mode-line (state)anzu--cons-mode-line262,8785
+(defsubst anzu--reset-status ()anzu--reset-status267,8996
+(defun anzu--reset-mode-line ()anzu--reset-mode-line275,9216
+(defsubst anzu--format-here-position (here total)anzu--format-here-position280,9415
+(defun anzu--update-mode-line-default (here total)anzu--update-mode-line-default285,9546
+(defun anzu--update-mode-line ()anzu--update-mode-line298,10178
+(define-minor-mode anzu-modeanzu-mode302,10314
+(defun anzu--turn-on ()anzu--turn-on318,11000
+(define-globalized-minor-mode global-anzu-mode anzu-mode anzu--turn-on)global-anzu-mode323,11085
+(defsubst anzu--query-prompt-base (use-region use-regexp)anzu--query-prompt-base325,11158
+(defun anzu--query-prompt (use-region use-regexp at-cursor isearch-p)anzu--query-prompt331,11373
+(defvar anzu--replaced-markers nil)anzu--replaced-markers340,11790
+(defsubst anzu--set-marker (beg buf)anzu--set-marker341,11826
+(defun anzu--make-overlay (begin end face prio)anzu--make-overlay346,11956
+(defun anzu--add-match-group-overlay (match-data groups)anzu--add-match-group-overlay353,12158
+(defun anzu--add-overlay (beg end)anzu--add-overlay363,12597
+(defsubst anzu--cleanup-markers ()anzu--cleanup-markers372,13000
+(defun anzu--count-and-highlight-matched (buf str replace-beg replace-endanzu--count-and-highlight-matched377,13165
+(defun anzu--search-outside-visible (buf input beg end use-regexp)anzu--search-outside-visible411,14584
+(defconst anzu--from-to-separatoranzu--from-to-separator422,15168
+(defsubst anzu--separator ()anzu--separator429,15346
+(defun anzu--check-minibuffer-input (buf beg end use-regexp overlay-limit)anzu--check-minibuffer-input432,15443
+(defun anzu--clear-overlays (buf beg end)anzu--clear-overlays456,16649
+(defun anzu--transform-from-to-history ()anzu--transform-from-to-history462,16867
+(defun anzu--read-from-string (prompt beg end use-regexp overlay-limit)anzu--read-from-string471,17269
+(defun anzu--query-validate-from-regexp (from)anzu--query-validate-from-regexp497,18431
+(defun anzu--query-from-string (prompt beg end use-regexp overlay-limit)anzu--query-from-string507,18855
+(defun anzu--compile-replace-text (str)anzu--compile-replace-text523,19653
+(defun anzu--evaluate-occurrence (ov to-regexp replacements fixed-case from-regexp)anzu--evaluate-occurrence533,20038
+(defun anzu--overlay-sort (a b)anzu--overlay-sort550,20753
+(defsubst anzu--overlays-in-range (beg end)anzu--overlays-in-range553,20829
+(defsubst anzu--propertize-to-string (str)anzu--propertize-to-string564,21259
+(defsubst anzu--replaced-literal-string (ov replaced from)anzu--replaced-literal-string568,21430
+(defun anzu--append-replaced-string (content buf beg end use-regexp overlay-limit from)anzu--append-replaced-string574,21700
+(defsubst anzu--outside-overlay-limit (orig-beg orig-limit)anzu--outside-overlay-limit589,22542
+(defun anzu--read-to-string (from prompt beg end use-regexp overlay-limit)anzu--read-to-string594,22711
+(defun anzu--query-replace-read-to (from prompt beg end use-regexp overlay-limit)anzu--query-replace-read-to628,24221
+(defun anzu--overlay-limit ()anzu--overlay-limit636,24579
+(defun anzu--query-from-at-cursor (buf beg end overlay-limit)anzu--query-from-at-cursor642,24692
+(defun anzu--query-from-isearch-string (buf beg end use-regexp overlay-limit)anzu--query-from-isearch-string652,25120
+(defun anzu--thing-begin (thing)anzu--thing-begin659,25460
+(defsubst anzu--thing-end (thing)anzu--thing-end668,25726
+(defun anzu--region-begin (use-region thing backward)anzu--region-begin674,25866
+(defsubst anzu--line-end-position (num)anzu--line-end-position681,26111
+(defun anzu--region-end (use-region thing)anzu--region-end686,26224
+(defun anzu--begin-thing (at-cursor thing)anzu--begin-thing693,26474
+(defun anzu--replace-backward-p (prefix)anzu--replace-backward-p698,26620
+(defun anzu--construct-perform-replace-arguments (from to delimited beg end backward query)anzu--construct-perform-replace-arguments704,26846
+(defun anzu--construct-query-replace-arguments (from to delimited beg end backward)anzu--construct-query-replace-arguments709,27073
+(defsubst anzu--current-replaced-index (curpoint)anzu--current-replaced-index714,27260
+(defadvice replace-highlight (before anzu-replace-highlight activate)replace-highlight721,27483
+(defun anzu--set-replaced-markers (from beg end use-regexp)anzu--set-replaced-markers728,27833
+(defun anzu-query-replace-at-cursor ()anzu-query-replace-at-cursor799,31351
+(defun anzu-query-replace-at-cursor-thing ()anzu-query-replace-at-cursor-thing805,31514
+(defun anzu-query-replace (arg)anzu-query-replace811,31747
+(defun anzu-query-replace-regexp (arg)anzu-query-replace-regexp817,31904
+(defun anzu-replace-at-cursor-thing ()anzu-replace-at-cursor-thing823,32073
+(defun anzu--isearch-query-replace-common (use-regexp arg)anzu--isearch-query-replace-common834,32472
+(defun anzu-isearch-query-replace (arg)anzu-isearch-query-replace851,33150
+(defun anzu-isearch-query-replace-regexp (arg)anzu-isearch-query-replace-regexp857,33319
+
+elpa/anzu-20161017.907/anzu-autoloads.el,56
+(defvar global-anzu-mode nil "\global-anzu-mode17,402
+
+elpa/anzu-20161017.907/anzu-pkg.el,218
+(define-package "anzu" "20161017.907" "Show number of matches in mode-line while searching" '((emacs "24.3")) :commit "e6c56ca8b23ac433f7be58b6f3f50801dd4164e4" :url "https://github.com/syohex/emacs-anzu")"anzu"2,31
 
 elpa/helm-20180610.2230/helm-command.el,1908
 (defgroup helm-command nilhelm-command27,915
@@ -6892,6 +7025,46 @@ elpa/magit-20180610.1519/git-rebase.el,3206
 (defun git-rebase-mode-disable-before-save-hook ()git-rebase-mode-disable-before-save-hook571,21896
 (defconst git-rebase-filename-regexp "/git-rebase-todo\\'")git-rebase-filename-regexp577,22092
 
+elpa/ace-isearch-20170506.12/ace-isearch-autoloads.el,70
+(defvar global-ace-isearch-mode nil "\global-ace-isearch-mode22,602
+
+elpa/ace-isearch-20170506.12/ace-isearch.el,2643
+(defgroup ace-isearch nilace-isearch49,1706
+(defcustom ace-isearch-function 'ace-jump-word-modeace-isearch-function54,1807
+(defcustom ace-isearch-function-from-isearch 'ace-isearch-helm-swoop-from-isearchace-isearch-function-from-isearch68,2498
+(defcustom ace-isearch-lighter " AceI"ace-isearch-lighter80,2984
+(defcustom ace-isearch-jump-delay 0.3ace-isearch-jump-delay85,3096
+(defcustom ace-isearch-func-delay 0.0ace-isearch-func-delay90,3246
+(defcustom ace-isearch-input-length 6ace-isearch-input-length95,3407
+(defcustom ace-isearch-use-jump tace-isearch-use-jump101,3587
+(defcustom ace-isearch-use-function-from-isearch tace-isearch-use-function-from-isearch117,4213
+(defcustom ace-isearch-fallback-function 'ace-isearch-helm-swoop-from-isearchace-isearch-fallback-function123,4455
+(defcustom ace-isearch-use-fallback-function nilace-isearch-use-fallback-function129,4689
+(defvar ace-isearch--ace-jump-function-listace-isearch--ace-jump-function-list134,4856
+(defvar ace-isearch--avy-function-listace-isearch--avy-function-list137,4953
+(defvar ace-isearch--function-listace-isearch--function-list141,5095
+(defvar ace-isearch--ace-jump-or-avy)ace-isearch--ace-jump-or-avy145,5244
+(defsubst ace-isearch--isearch-regexp-function ()ace-isearch--isearch-regexp-function147,5283
+(defun ace-isearch-switch-function ()ace-isearch-switch-function151,5423
+(defun ace-isearch--fboundp (func flag)ace-isearch--fboundp161,5826
+(defun ace-isearch--jumper-function ()ace-isearch--jumper-function170,6071
+(defun ace-isearch-pop-mark ()ace-isearch-pop-mark208,7931
+(defun ace-isearch--make-ace-jump-or-avy ()ace-isearch--make-ace-jump-or-avy216,8224
+(defun ace-isearch-helm-swoop-from-isearch ()ace-isearch-helm-swoop-from-isearch227,8785
+(defun ace-isearch-swiper-from-isearch ()ace-isearch-swiper-from-isearch237,9124
+(defun ace-isearch-jump-during-isearch ()ace-isearch-jump-during-isearch248,9458
+(define-minor-mode ace-isearch-modeace-isearch-mode261,9972
+(defun ace-isearch--turn-on ()ace-isearch--turn-on273,10439
+(define-globalized-minor-mode global-ace-isearch-modeglobal-ace-isearch-mode278,10538
+(define-obsolete-function-alias 'ace-isearch-switch-submodeace-isearch-switch-submode283,10692
+(define-obsolete-variable-alias 'ace-isearch-submodeace-isearch-submode285,10792
+(define-obsolete-variable-alias 'ace-isearch-input-idle-jump-delayace-isearch-input-idle-jump-delay287,10878
+(define-obsolete-variable-alias 'ace-isearch-input-idle-func-delayace-isearch-input-idle-func-delay289,10980
+(define-obsolete-variable-alias 'ace-isearch-use-ace-jumpace-isearch-use-ace-jump291,11082
+
+elpa/ace-isearch-20170506.12/ace-isearch-pkg.el,257
+(define-package "ace-isearch" "20170506.12" "A seamless bridge between isearch, ace-jump-mode, avy, helm-swoop and swiper" '((emacs "24")) :commit "0502f95e333c8059a678745e5a112542965661d1" :url "https://github.com/tam17aki/ace-isearch")"ace-isearch"2,31
+
 elpa/smooth-scroll-20130321.2114/smooth-scroll-pkg.el,297
 (define-package "smooth-scroll" "20130321.2114" "Minor mode for smooth scrolling and in-place scrolling." 'nil :commit "02320f28abb5cae28b3a18f6b9ce93129bdbfc45" :keywords '("convenience" "emulations" "frames") :url "http://www.emacswiki.org/emacs/download/smooth-scroll.el")"smooth-scroll"2,31
 
@@ -9375,6 +9548,71 @@ elpa/flycheck-20180610.1331/flycheck-pkg.el,87
 elpa/flycheck-20180610.1331/flycheck-autoloads.el,65
 (defvar global-flycheck-mode nil "\global-flycheck-mode37,1037
 
+elpa/ace-jump-mode-20140616.115/ace-jump-mode.el,4248
+(defstruct aj-position offset visual-area)aj-position107,3341
+(defmacro aj-position-buffer (aj-pos)aj-position-buffer109,3385
+(defmacro aj-position-window (aj-pos)aj-position-window113,3532
+(defmacro aj-position-frame (aj-pos)aj-position-frame117,3679
+(defmacro aj-position-recover-buffer (aj-pos)aj-position-recover-buffer121,3823
+(defstruct aj-visual-area buffer window frame recover-buffer)aj-visual-area132,4178
+(defstruct aj-queue head tail)aj-queue138,4323
+(defun aj-queue-push (item q)aj-queue-push140,4355
+(defun aj-queue-pop (q)aj-queue-pop153,4688
+(defvar ace-jump-word-mode-use-query-char tace-jump-word-mode-use-query-char178,5309
+(defvar ace-jump-mode-case-fold case-fold-searchace-jump-mode-case-fold181,5430
+(defvar ace-jump-mode-mark-ring nilace-jump-mode-mark-ring186,5594
+(defvar ace-jump-mode-mark-ring-max 100ace-jump-mode-mark-ring-max189,5694
+(defvar ace-jump-mode-gray-background tace-jump-mode-gray-background193,5785
+(defvar ace-jump-mode-scope 'globalace-jump-mode-scope199,6018
+(defvar ace-jump-mode-detect-punc tace-jump-mode-detect-punc209,6503
+(defvar ace-jump-mode-submode-listace-jump-mode-submode-list217,6828
+(defvar ace-jump-mode-move-keysace-jump-mode-move-keys243,7528
+(defvar ace-jump-mode nilace-jump-mode256,8035
+(defvar ace-jump-background-overlay-list nilace-jump-background-overlay-list258,8086
+(defvar ace-jump-search-tree nilace-jump-search-tree260,8188
+(defvar ace-jump-query-char nilace-jump-query-char263,8330
+(defvar ace-jump-current-mode nilace-jump-current-mode265,8415
+(defvar ace-jump-sync-emacs-mark-ring nilace-jump-sync-emacs-mark-ring269,8531
+(defvar ace-jump-search-filter nilace-jump-search-filter280,9005
+(defgroup ace-jump nilace-jump284,9163
+(defface ace-jump-face-backgroundace-jump-face-background289,9249
+(defface ace-jump-face-foregroundace-jump-face-foreground295,9379
+(defvar ace-jump-mode-before-jump-hook nilace-jump-mode-before-jump-hook304,9711
+(defvar ace-jump-mode-end-hook nilace-jump-mode-end-hook307,9830
+(defvar ace-jump-allow-invisible nilace-jump-allow-invisible310,9929
+(defun ace-jump-char-category ( query-char )ace-jump-char-category316,10206
+(defun ace-jump-search-candidate (re-query-string visual-area-list)ace-jump-search-candidate351,11221
+(defun ace-jump-tree-breadth-first-construct (total-leaf-node max-child-node)ace-jump-tree-breadth-first-construct385,13255
+(defun ace-jump-tree-preorder-traverse (tree &optional leaf-func branch-func)ace-jump-tree-preorder-traverse425,15065
+(defun ace-jump-populate-overlay-to-search-tree (tree candidate-list)ace-jump-populate-overlay-to-search-tree449,15873
+(defun ace-jump-delete-overlay-in-search-tree (tree)ace-jump-delete-overlay-in-search-tree484,18202
+(defun ace-jump-buffer-substring (pos)ace-jump-buffer-substring491,18532
+(defun ace-jump-update-overlay-in-search-tree (tree keys)ace-jump-update-overlay-in-search-tree498,18793
+(defun ace-jump-list-visual-area()ace-jump-list-visual-area540,20864
+(defun ace-jump-do( re-query-string )ace-jump-do571,22245
+(defun ace-jump-jump-to (position)ace-jump-jump-to646,25632
+(defun ace-jump-push-mark ()ace-jump-push-mark684,27015
+(defun ace-jump-mode-pop-mark ()ace-jump-mode-pop-mark701,27923
+(defun ace-jump-quick-exchange ()ace-jump-quick-exchange769,31930
+(defun ace-jump-char-mode (query-char)ace-jump-char-mode796,32757
+(defun ace-jump-word-mode (head-char)ace-jump-word-mode815,33412
+(defun ace-jump-line-mode ()ace-jump-line-mode853,34811
+(defun ace-jump-mode(&optional prefix)ace-jump-mode867,35248
+(defun ace-jump-move ()ace-jump-move896,36216
+(defun ace-jump-done()ace-jump-done939,38011
+(defun ace-jump-kill-buffer(buffer)ace-jump-kill-buffer965,38701
+(defun ace-jump-move-to-end-if ( l pred )ace-jump-move-to-end-if977,39126
+(defun ace-jump-move-first-to-end-if (l pred)ace-jump-move-first-to-end-if992,39694
+(defadvice pop-mark (before ace-jump-pop-mark-advice)pop-mark1004,40069
+(defadvice pop-global-mark (before ace-jump-pop-global-mark-advice)pop-global-mark1017,40702
+(defun ace-jump-mode-enable-mark-sync ()ace-jump-mode-enable-mark-sync1035,41557
+(defun ace-jump-mode-disable-mark-sync ()ace-jump-mode-disable-mark-sync1051,42263
+
+elpa/ace-jump-mode-20140616.115/ace-jump-mode-autoloads.el,0
+
+elpa/ace-jump-mode-20140616.115/ace-jump-mode-pkg.el,265
+(define-package "ace-jump-mode" "20140616.115" "a quick cursor location minor mode for emacs" 'nil :commit "8351e2df4fbbeb2a4003f2fb39f46d33803f3dac" :keywords '("motion" "location" "cursor") :url "https://github.com/winterTTr/ace-jump-mode/")"ace-jump-mode"2,31
+
 elpa/mozc-20180101.0/mozc-autoloads.el,2171
 (defvar mozc-mode-map (let ((map (make-sparse-keymap))) (prog1 map (mapc (lambda (command) (mapc (lambda (key-sequence) (and (= (length key-sequence) 1) (integerp (aref key-sequence 0)) (define-key map key-sequence command))) (where-is-internal command global-map))) '(execute-extended-command toggle-input-method)) (mapc (lambda (event) (define-key map (vector event) nil)) '(delete-frame iconify-frame make-frame-visible select-window switch-frame)) (define-key map [t] #'mozc-handle-event))) "\mozc-mode-map12,385
 (defvar mozc-mode nil "\mozc-mode15,919
@@ -10141,4 +10379,6 @@ init.el,660
 (define-key global-map (kbd "\C-cn") 'flycheck-next-error)global-map563,17546
 (define-key global-map (kbd "\C-cp") 'flycheck-previous-error)global-map564,17605
 (define-key global-map (kbd "\C-cd") 'flycheck-list-errors)global-map565,17668
-(define-key global-map (kbd "\C-cu") 'pop-tag-mark)global-map666,21156
+(define-key global-map (kbd "\C-cu") 'pop-tag-mark)global-map668,21290
+
+undohist/!home!tsubasa!.emacs.d!init.el,0

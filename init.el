@@ -667,6 +667,19 @@
 ;; C-x 4 . C-x 5 .も使えるがなんかいまいち
 (define-key global-map (kbd "\C-cu") 'pop-tag-mark)
 
+;; undohist
+(when (require 'undohist nil t)
+  (undohist-initialize))
+
+;; anzu
+(when (require 'anzu)
+  (global-anzu-mode +1))
+
+;; ace-isearch
+(when (require 'ace-isearch)
+  (global-ace-isearch-mode +1)
+  (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
+
 ;;; w3 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -675,7 +688,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
+    (helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
  '(yas-trigger-key "TAB"))
 
 (provide 'init)
