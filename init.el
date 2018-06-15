@@ -5,6 +5,7 @@
 ;;; theme select:
 (load-theme 'leuven t)
 
+
 ;;; PROXY設定
 ;;; いらない場合はコメントアウトすること
 
@@ -39,8 +40,6 @@
 ;; 引数のディレクトリ以下をload-pathに追加
 (add-to-load-path "el-get" "elpa")
 
-
-
 ;;; package系
 
 ;;; use-package 設定
@@ -70,8 +69,7 @@
 
 ;; el-get
 (add-to-list 'load-path (locate-user-emacs-file "el-get"))
-
-;;(require 'el-get)
+(require 'el-get)
 ;; el-getでダウンロードしたパッケージは ~/.emacs.d/ に入るようにする
 ;(setq el-get-dir (locate-user-emacs-file ""))
 
@@ -105,7 +103,7 @@
 (if window-system (progn
   ;; 現在行に色をつける
   (global-hl-line-mode t)            ;現在行に色をつける
-;;  (set-face-background 'hl-line "spring green")
+;;(set-face-background 'hl-line "spring green")
 
   ;; 初期フレームの設定
   (setq initial-frame-alist
@@ -311,8 +309,7 @@
 ;;----
 ;; カラーテーマ
 ;;----
-;;(load-theme 'deeper-blue t)
-;;(load-theme 'adwaita t)
+;(load-theme 'deeper-blue t)
  
 ;;----
 ;; 全角空白とタブを可視化
@@ -433,9 +430,6 @@
                            (setq flycheck-gcc-language-standard "c++11")
                            (setq flycheck-clang-language-standard "c++11")))
 
-;;; flycheck-popup
-(with-eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook 'flycheck-popup-tip-mode))
 
 ;; 自動補完
 ;; (use-package auto-complete-config)
@@ -510,6 +504,12 @@
 ;; delete-other-window で neotree ウィンドウを消さない
 (setq neo-persist-show t)
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
 ;;; volatile-highlight
 (use-package volatile-highlights)
@@ -536,7 +536,6 @@
 ;; anzu
 (when (require 'anzu)
   (global-anzu-mode +1))
-
 ;; shell-pop
 ;;(setq shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
 (setq shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
@@ -544,14 +543,14 @@
 ;; (setq shell-pop-shell-type '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell))))
 (global-set-key (kbd "C-c s") 'shell-pop)
 
-;;; auto-complete-c-headers
+;; ;;; auto-complete-c-headers
 
-(defun my:ac-c-headers-init ()
-  (require 'auto-complete-c-headers)
-  (add-to-list 'ac-sources 'ac-source-c-headers))
+;; (defun my:ac-c-headers-init ()
+;;   (require 'auto-complete-c-headers)
+;;   (add-to-list 'ac-sources 'ac-source-c-headers))
 
-(add-hook 'c++-mode-hook 'my:ac-c-headers-init)
-(add-hook 'c-mode-hook 'my:ac-c-headers-init)
+;; (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
+;; (add-hook 'c-mode-hook 'my:ac-c-headers-init)
 
 ;; web mode
 ;; http://web-mode.org/
@@ -579,20 +578,7 @@
 (add-hook 'web-mode-hook  'web-mode-hook)
 
 ;; web-mode 色の設定
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(web-mode-comment-face ((t (:foreground "#D9333F"))))
- '(web-mode-css-at-rule-face ((t (:foreground "#FF7F00"))))
- '(web-mode-css-pseudo-class-face ((t (:foreground "#FF7F00"))))
- '(web-mode-css-rule-face ((t (:foreground "#A0D8EF"))))
- '(web-mode-doctype-face ((t (:foreground "#82AE46"))))
- '(web-mode-html-attr-name-face ((t (:foreground "#C97586"))))
- '(web-mode-html-attr-value-face ((t (:foreground "#82AE46"))))
- '(web-mode-html-tag-face ((t (:foreground "#E6B422" :weight bold))))
- '(web-mode-server-comment-face ((t (:foreground "#D9333F")))))
+
 
 
 ;; ;;; w3 
@@ -601,15 +587,9 @@
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
 ;;  ;; Your init file should contain only one such instance.
 ;;  ;; If there is more than one, they won't work right.
-;;  '(ansi-color-faces-vector
-;;    [default default default italic underline success warning error])
-;;  '(custom-safe-themes
-;;    (quote
-;;     ("9a155066ec746201156bb39f7518c1828a73d67742e11271e4f24b7b178c4710" default)))
-;;  '(hl-sexp-background-color "#efebe9")
 ;;  '(package-selected-packages
 ;;    (quote
-;;     (leuven-theme zen-and-art-theme json-mode js2-mode auto-complete-c-headers shell-pop helm-flycheck flycheck-popup-tip helm-swoop ace-jump-mode anzu ace-isearch ctags-update use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete)))
+;;     (leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
 ;;  '(yas-trigger-key "TAB"))
 
 ;;;
@@ -771,4 +751,5 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (use-package-el-get smooth-scroll shell-pop rainbow-mode rainbow-delimiters package-utils neotree mozc melpa-upstream-visit magit leuven-theme json-mode js2-mode irony hlinum helm-swoop helm-flycheck fuzzy forecast flycheck-popup-tip ctags-update company auto-read-only auto-complete-c-headers anzu ace-jump-mode ace-isearch))))
+    (shell-pop leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
+ '(yas-trigger-key "TAB"))

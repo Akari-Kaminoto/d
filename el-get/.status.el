@@ -53,7 +53,6 @@
                           (feat feats)
                         (unload-feature feat t))))
                   (require 'el-get))))
- (emms status "required" recipe nil)
  (f status "required" recipe
     (:name f :website "https://github.com/rejeep/f.el" :description "Modern API for working with files and directories in Emacs" :depends
            (s dash)
@@ -78,8 +77,6 @@
            (:name undohist :type github :pkgname "m2ym/undohist-el" :description "Record and recover undo history" :website "http://d.hatena.ne.jp/m2ym/20090707/1246933894"))
  (volatile-highlights status "installed" recipe
                       (:name volatile-highlights :description "Minor mode for visual feedback on some operations in Emacs" :type github :pkgname "k-talo/volatile-highlights.el" :features volatile-highlights))
- (web-mode status "installed" recipe
-           (:name web-mode :description "emacs major mode for editing PHP/JSP/ASP HTML templates (with embedded CSS and JS blocks)" :type github :pkgname "fxbois/web-mode"))
  (xcscope status "required" recipe
           (:name xcscope :description "Cscope interface for (X)Emacs" :type github :pkgname "dkogan/xcscope.el" :prepare
                  (progn
