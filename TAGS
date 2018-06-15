@@ -5293,6 +5293,249 @@ elpa/anzu-20161017.907/anzu-autoloads.el,56
 elpa/anzu-20161017.907/anzu-pkg.el,218
 (define-package "anzu" "20161017.907" "Show number of matches in mode-line while searching" '((emacs "24.3")) :commit "e6c56ca8b23ac433f7be58b6f3f50801dd4164e4" :url "https://github.com/syohex/emacs-anzu")"anzu"2,31
 
+elpa/neotree-20170522.758/neotree-autoloads.el,52
+(defalias 'neotree 'neotree-show "\neotree49,1113
+
+elpa/neotree-20170522.758/neotree.el,17410
+(defconst neo-buffer-name " *NeoTree*"neo-buffer-name45,1231
+(defconst neo-dirneo-dir48,1335
+(defconst neo-header-height 5)neo-header-height53,1497
+(defmacro neo-util--to-bool (obj)neo-util--to-bool84,2475
+(defmacro neo-global--with-buffer (&rest body)neo-global--with-buffer88,2577
+(defmacro neo-global--with-window (&rest body)neo-global--with-window96,2866
+(defmacro neo-global--when-window (&rest body)neo-global--when-window103,3077
+(defmacro neo-global--switch-to-buffer ()neo-global--switch-to-buffer109,3293
+(defmacro neo-buffer--with-editing-buffer (&rest body)neo-buffer--with-editing-buffer115,3497
+(defmacro neo-buffer--with-resizable-window (&rest body)neo-buffer--with-resizable-window124,3776
+(defmacro neotree-make-executor (&rest fn-form)neotree-make-executor134,4094
+(defgroup neotree nilneotree150,4568
+(defgroup neotree-vc-options nilneotree-vc-options155,4650
+(defgroup neotree-confirmations nilneotree-confirmations161,4800
+(defcustom neo-window-position 'leftneo-window-position166,4922
+(defcustom neo-display-action '(neo-default-display-fn)neo-display-action172,5078
+(defcustom neo-create-file-auto-open nilneo-create-file-auto-open181,5386
+(defcustom neo-banner-message nilneo-banner-message186,5519
+(defcustom neo-show-updir-line tneo-show-updir-line191,5632
+(defcustom neo-theme 'classicneo-theme196,5745
+(defcustom neo-mode-line-type 'neotreeneo-mode-line-type210,6228
+(defcustom neo-mode-line-custom-format nilneo-mode-line-custom-format222,6724
+(defcustom neo-smart-open nilneo-smart-open228,6897
+(defcustom neo-show-hidden-files nilneo-show-hidden-files233,7078
+(defcustom neo-autorefresh nilneo-autorefresh238,7208
+(defcustom neo-window-width 25neo-window-width243,7331
+(defcustom neo-window-fixed-size tneo-window-fixed-size248,7447
+(defcustom neo-keymap-style 'defaultneo-keymap-style253,7600
+(defcustom neo-cwd-line-style 'textneo-cwd-line-style259,7775
+(defcustom neo-help-echo-style 'defaultneo-help-echo-style265,7925
+(defcustom neo-click-changes-root nilneo-click-changes-root274,8286
+(defcustom neo-auto-indent-point nilneo-auto-indent-point279,8449
+(defcustom neo-hidden-regexp-listneo-hidden-regexp-list284,8600
+(defcustom neo-enter-hook nilneo-enter-hook290,8779
+(defcustom neo-after-create-hook nilneo-after-create-hook295,8887
+(defcustom neo-vc-integration nilneo-vc-integration300,9010
+(defcustom neo-vc-state-char-alistneo-vc-state-char-alist306,9213
+(defcustom neo-confirm-change-root 'yes-or-no-pneo-confirm-change-root327,9846
+(defcustom neo-confirm-create-file 'yes-or-no-pneo-confirm-create-file334,10187
+(defcustom neo-confirm-create-directory 'yes-or-no-pneo-confirm-create-directory341,10502
+(defcustom neo-confirm-delete-file 'yes-or-no-pneo-confirm-delete-file348,10827
+(defcustom neo-confirm-delete-directory-recursively 'yes-or-no-pneo-confirm-delete-directory-recursively355,11144
+(defcustom neo-confirm-kill-buffers-for-files-in-directory 'yes-or-no-pneo-confirm-kill-buffers-for-files-in-directory362,11489
+(defcustom neo-toggle-window-keep-p nilneo-toggle-window-keep-p369,11857
+(defcustom neo-force-change-root nilneo-force-change-root374,12014
+(defcustom neo-filepath-sort-function 'string<neo-filepath-sort-function379,12139
+(defcustom neo-default-system-application "xdg-open"neo-default-system-application386,12424
+(defface neo-banner-faceneo-banner-face396,12626
+(defvar neo-banner-face 'neo-banner-face)neo-banner-face401,12876
+(defface neo-header-faceneo-header-face403,12919
+(defvar neo-header-face 'neo-header-face)neo-header-face408,13152
+(defface neo-root-dir-faceneo-root-dir-face410,13195
+(defvar neo-root-dir-face 'neo-root-dir-face)neo-root-dir-face415,13449
+(defface neo-dir-link-faceneo-dir-link-face417,13496
+(defvar neo-dir-link-face 'neo-dir-link-face)neo-dir-link-face422,13741
+(defface neo-file-link-faceneo-file-link-face424,13788
+(defvar neo-file-link-face 'neo-file-link-face)neo-file-link-face429,14021
+(defface neo-button-faceneo-button-face431,14070
+(defvar neo-button-face 'neo-button-face)neo-button-face435,14229
+(defface neo-expand-btn-faceneo-expand-btn-face437,14272
+(defvar neo-expand-btn-face 'neo-expand-btn-face)neo-expand-btn-face442,14511
+(defface neo-vc-default-faceneo-vc-default-face444,14562
+(defvar  neo-vc-default-face 'neo-vc-default-face)neo-vc-default-face450,14849
+(defface neo-vc-user-faceneo-vc-user-face452,14901
+(defvar  neo-vc-user-face 'neo-vc-user-face)neo-vc-user-face456,15107
+(defface neo-vc-up-to-date-faceneo-vc-up-to-date-face458,15153
+(defvar  neo-vc-up-to-date-face 'neo-vc-up-to-date-face)neo-vc-up-to-date-face463,15410
+(defface neo-vc-edited-faceneo-vc-edited-face465,15468
+(defvar  neo-vc-edited-face 'neo-vc-edited-face)neo-vc-edited-face470,15718
+(defface neo-vc-needs-update-faceneo-vc-needs-update-face472,15768
+(defvar  neo-vc-needs-update-face 'neo-vc-needs-update-face)neo-vc-needs-update-face476,15967
+(defface neo-vc-needs-merge-faceneo-vc-needs-merge-face478,16029
+(defvar  neo-vc-needs-merge-face 'neo-vc-needs-merge-face)neo-vc-needs-merge-face483,16279
+(defface neo-vc-unlocked-changes-faceneo-vc-unlocked-changes-face485,16339
+(defvar  neo-vc-unlocked-changes-face 'neo-vc-unlocked-changes-face)neo-vc-unlocked-changes-face489,16570
+(defface neo-vc-added-faceneo-vc-added-face491,16640
+(defvar  neo-vc-added-face 'neo-vc-added-face)neo-vc-added-face496,16889
+(defface neo-vc-removed-faceneo-vc-removed-face498,16937
+(defvar  neo-vc-removed-face 'neo-vc-removed-face)neo-vc-removed-face502,17132
+(defface neo-vc-conflict-faceneo-vc-conflict-face504,17184
+(defvar  neo-vc-conflict-face 'neo-vc-conflict-face)neo-vc-conflict-face509,17428
+(defface neo-vc-missing-faceneo-vc-missing-face511,17482
+(defvar  neo-vc-missing-face 'neo-vc-missing-face)neo-vc-missing-face516,17724
+(defface neo-vc-ignored-faceneo-vc-ignored-face518,17776
+(defvar  neo-vc-ignored-face 'neo-vc-ignored-face)neo-vc-ignored-face523,18027
+(defface neo-vc-unregistered-faceneo-vc-unregistered-face525,18079
+(defvar  neo-vc-unregistered-face 'neo-vc-unregistered-face)neo-vc-unregistered-face529,18242
+(defvar neo-global--buffer nil)neo-global--buffer535,18324
+(defvar neo-global--window nil)neo-global--window537,18357
+(defvar neo-global--autorefresh-timer nil)neo-global--autorefresh-timer539,18390
+(defvar neo-mode-line-formatneo-mode-line-format541,18434
+(defvar-local neo-buffer--start-node nilneo-buffer--start-node561,19306
+(defvar-local neo-buffer--start-line nilneo-buffer--start-line564,19396
+(defvar-local neo-buffer--cursor-pos (cons nil 1)neo-buffer--cursor-pos567,19480
+(defvar-local neo-buffer--last-window-pos (cons nil 1)neo-buffer--last-window-pos571,19638
+(defvar-local neo-buffer--show-hidden-file-p nilneo-buffer--show-hidden-file-p574,19747
+(defvar-local neo-buffer--expanded-node-list nilneo-buffer--expanded-node-list577,19829
+(defvar-local neo-buffer--node-list nilneo-buffer--node-list580,19914
+(defvar-local neo-buffer--node-list-1 nilneo-buffer--node-list-1583,19997
+(defvar neotree-file-button-keymapneotree-file-button-keymap590,20122
+(defvar neotree-dir-button-keymapneotree-dir-button-keymap598,20329
+(defvar neotree-mode-mapneotree-mode-map605,20526
+(define-derived-mode neotree-mode special-mode "NeoTree"neotree-mode657,23369
+(defun neo-global--window-exists-p ()neo-global--window-exists-p686,24437
+(defun neo-global--select-window ()neo-global--select-window691,24651
+(defun neo-global--get-window (&optional auto-create-p)neo-global--get-window697,24809
+(defun neo-default-display-fn (buffer _alist)neo-default-display-fn709,25282
+(defun neo-global--create-window ()neo-global--create-window717,25662
+(defun neo-global--get-buffer (&optional init-p)neo-global--get-buffer729,26002
+(defun neo-global--file-in-root-p (path)neo-global--file-in-root-p742,26473
+(defun neo-global--alone-p ()neo-global--alone-p748,26699
+(defun neo-global--do-autorefresh ()neo-global--do-autorefresh755,26932
+(defun neo-global--open ()neo-global--open761,27093
+(defun neo-global--open-dir (path)neo-global--open-dir770,27407
+(defun neo-global--open-and-find (path)neo-global--open-and-find776,27590
+(defun neo-global--select-mru-window (arg)neo-global--select-mru-window790,28128
+(defun neo-global--detach ()neo-global--detach827,29440
+(defun neo-global--attach ()neo-global--attach836,29720
+(defun neo-global--set-window-width (width)neo-global--set-window-width850,30272
+(defun neo-global--reset-width ()neo-global--reset-width856,30483
+(defadvice mouse-drag-vertical-linemouse-drag-vertical-line864,30639
+(defadvice balance-windowsbalance-windows870,30837
+(defun neo-hook--node-first-letter ()neo-hook--node-first-letter909,31983
+(defun neo-util--filter (condp lst)neo-util--filter919,32218
+(defun neo-util--find (where which)neo-util--find930,32541
+(defun neo-util--make-printable-string (string)neo-util--make-printable-string938,32750
+(defun neo-util--walk-dir (path)neo-util--walk-dir942,32900
+(defun neo-util--hidden-path-filter (node)neo-util--hidden-path-filter952,33233
+(defun neo-str--trim-left (s)neo-str--trim-left962,33632
+(defun neo-str--trim-right (s)neo-str--trim-right968,33786
+(defun neo-str--trim (s)neo-str--trim974,33935
+(defun neo-path--expand-name (path &optional current-dir)neo-path--expand-name978,34062
+(defun neo-path--shorten (path len)neo-path--shorten985,34332
+(defun neo-path--insert-chroot-button (label path face)neo-path--insert-chroot-button997,34780
+(defun neo-path--insert-header-buttonized (path)neo-path--insert-header-buttonized1005,34967
+(defun neo-path--updir (path)neo-path--updir1028,36023
+(defun neo-path--join (root &rest dirs)neo-path--join1038,36351
+(defun neo-path--file-short-name (file)neo-path--file-short-name1053,36892
+(defun neo-path--file-truename (path)neo-path--file-truename1059,37178
+(defun neo-path--has-subfile-p (dir)neo-path--has-subfile-p1070,37501
+(defun neo-path--match-path-directory (path)neo-path--match-path-directory1077,37696
+(defun neo-path--get-working-dir ()neo-path--get-working-dir1092,38214
+(defun neo-path--strip (path)neo-path--strip1096,38364
+(defun neo-path--path-equal-p (path1 path2)neo-path--path-equal-p1106,38647
+(defun neo-path--file-equal-p (file1 file2)neo-path--file-equal-p1111,38838
+(defun neo-path--file-in-directory-p (file dir)neo-path--file-in-directory-p1120,39194
+(defun neo-util--kill-buffers-for-path (path)neo-util--kill-buffers-for-path1129,39551
+(defun neo-util--set-window-width (window n)neo-util--set-window-width1143,40075
+(defun neo-point-auto-indent ()neo-point-auto-indent1152,40410
+(defun off-p (msg)off-p1159,40658
+(defun neo-sort-hidden-last (x y)neo-sort-hidden-last1163,40745
+(defun neo-filepath-hidden-p (node)neo-filepath-hidden-p1175,41051
+(defun neo-get-unsaved-buffers-from-projectile ()neo-get-unsaved-buffers-from-projectile1182,41304
+(defun neo-buffer--newline-and-begin ()neo-buffer--newline-and-begin1202,41872
+(defun neo-buffer--get-icon (name)neo-buffer--get-icon1207,41969
+(defun neo-buffer--insert-fold-symbol (name &optional node-name)neo-buffer--insert-fold-symbol1216,42268
+(defun neo-buffer--save-cursor-pos (&optional node-path line-pos)neo-buffer--save-cursor-pos1250,44109
+(defun neo-buffer--goto-cursor-pos ()neo-buffer--goto-cursor-pos1266,44803
+(defun neo-buffer--node-list-clear ()neo-buffer--node-list-clear1292,45711
+(defun neo-buffer--node-list-set (line-num path)neo-buffer--node-list-set1296,45807
+(defun neo-buffer--insert-with-face (content face)neo-buffer--insert-with-face1311,46372
+(defun neo-buffer--valid-start-node-p ()neo-buffer--valid-start-node-p1318,46588
+(defun neo-buffer--create ()neo-buffer--create1322,46735
+(defun neo-buffer--insert-banner ()neo-buffer--insert-banner1333,47027
+(defun neo-buffer--insert-root-entry (node)neo-buffer--insert-root-entry1340,47266
+(defun neo-buffer--help-echo-message (node-name)neo-buffer--help-echo-message1360,48028
+(defun neo-buffer--insert-dir-entry (node depth expanded)neo-buffer--insert-dir-entry1369,48255
+(defun neo-buffer--insert-file-entry (node depth)neo-buffer--insert-file-entry1385,48941
+(defun neo-vc-for-node (node)neo-vc-for-node1404,49784
+(defun neo-buffer--get-nodes (path)neo-buffer--get-nodes1424,50733
+(defun neo-buffer--get-node-index (node nodes)neo-buffer--get-node-index1431,51086
+(defun neo-buffer--expanded-node-p (node)neo-buffer--expanded-node-p1446,51505
+(defun neo-buffer--set-expand (node do-expand)neo-buffer--set-expand1453,51700
+(defun neo-buffer--toggle-expand (node)neo-buffer--toggle-expand1464,52126
+(defun neo-buffer--insert-tree (path depth)neo-buffer--insert-tree1467,52241
+(defun neo-buffer--refresh (save-pos-p &optional non-neotree-buffer)neo-buffer--refresh1482,52806
+(defun neo-buffer--post-move ()neo-buffer--post-move1503,53554
+(defun neo-buffer--get-button-current-line ()neo-buffer--get-button-current-line1514,53848
+(defun neo-buffer--get-filename-current-line (&optional default)neo-buffer--get-filename-current-line1538,54876
+(defun neo-buffer--lock-width ()neo-buffer--lock-width1546,55191
+(defun neo-buffer--unlock-width ()neo-buffer--unlock-width1551,55337
+(defun neo-buffer--rename-node ()neo-buffer--rename-node1555,55451
+(defun neo-buffer--copy-node ()neo-buffer--copy-node1572,56107
+(defun neo-buffer--select-file-node (file &optional recursive-p)neo-buffer--select-file-node1588,56739
+(defun neo-buffer--change-root (root-dir)neo-buffer--change-root1617,57885
+(defun neo-buffer--get-nodes-for-select-down-node (path)neo-buffer--get-nodes-for-select-down-node1630,58361
+(defun neo-buffer--get-nodes-for-sibling (path)neo-buffer--get-nodes-for-sibling1639,58751
+(defun neo-buffer--sibling (path &optional previous)neo-buffer--sibling1650,59143
+(defun neo-buffer--execute (arg &optional file-fn dir-fn)neo-buffer--execute1659,59523
+(defun neo-buffer--set-show-hidden-file-p (show-p)neo-buffer--set-show-hidden-file-p1680,60272
+(defun neo-buffer--forward-line (n)neo-buffer--forward-line1685,60451
+(defun neo-mode-line--compute-format (parent index ndirs nfiles)neo-mode-line--compute-format1694,60613
+(defun neo-window--init (window buffer)neo-window--init1720,61882
+(defun neo-window--zoom (method)neo-window--zoom1728,62097
+(defun neo-window--minimize-p ()neo-window--minimize-p1743,62574
+(defun neotree-next-line (&optional count)neotree-next-line1751,62736
+(defun neotree-previous-line (&optional count)neotree-previous-line1757,62930
+(defun neotree-find (&optional path default-path)neotree-find1764,63149
+(defun neotree-click-changes-root-toggle ()neotree-click-changes-root-toggle1784,63997
+(defun neo-open-dir (full-path &optional arg)neo-open-dir1791,64290
+(defun neo-open-dired (full-path &optional arg)neo-open-dired1805,64710
+(defun neo-open-file (full-path &optional arg)neo-open-file1813,64931
+(defun neo-open-file-vertical-split (full-path arg)neo-open-file-vertical-split1824,65398
+(defun neo-open-file-horizontal-split (full-path arg)neo-open-file-horizontal-split1829,65591
+(defun neo-open-file-ace-window (full-path arg)neo-open-file-ace-window1834,65786
+(defun neotree-open-file-in-system-application ()neotree-open-file-in-system-application1839,65979
+(defun neotree-change-root ()neotree-change-root1845,66216
+(defun neotree-select-up-node ()neotree-select-up-node1856,66643
+(defun neotree-select-down-node ()neotree-select-down-node1870,67282
+(defun neotree-select-next-sibling-node ()neotree-select-next-sibling-node1907,69066
+(defun neotree-select-previous-sibling-node ()neotree-select-previous-sibling-node1914,69366
+(defun neotree-create-node (filename)neotree-create-node1921,69676
+(defun neotree-delete-node ()neotree-delete-node1956,71297
+(defun neotree-rename-node ()neotree-rename-node1995,72863
+(defun neotree-copy-node ()neotree-copy-node2000,72964
+(defun neotree-hidden-file-toggle ()neotree-hidden-file-toggle2005,73059
+(defun neotree-empty-fn ()neotree-empty-fn2010,73220
+(defun neotree-refresh (&optional is-auto-refresh)neotree-refresh2014,73318
+(defun neotree-stretch-toggle ()neotree-stretch-toggle2034,74166
+(defun neotree-projectile-action ()neotree-projectile-action2043,74420
+(defun neotree-toggle ()neotree-toggle2059,74841
+(defun neotree-show ()neotree-show2067,75012
+(defun neotree-hide ()neotree-hide2079,75319
+(defun neotree-dir (path)neotree-dir2086,75483
+(defalias 'neotree 'neotree-show "Show the NeoTree window.")neotree2093,75671
+(defun neo-bc--make-obsolete-message (from to)neo-bc--make-obsolete-message2099,75763
+(defun neo-buffer--enter-file (path)neo-buffer--enter-file2102,75879
+(defun neo-buffer--enter-dir (path)neo-buffer--enter-dir2105,75991
+(defun neotree-enter (&optional arg)neotree-enter2108,76100
+(defun neotree-quick-look (&optional arg)neotree-quick-look2114,76285
+(defun neotree-enter-vertical-split ()neotree-enter-vertical-split2121,76478
+(defun neotree-enter-horizontal-split ()neotree-enter-horizontal-split2126,76685
+(defun neotree-enter-ace-window ()neotree-enter-ace-window2131,76898
+(defun neotree-copy-filepath-to-yank-ring ()neotree-copy-filepath-to-yank-ring2136,77100
+(defun neotree-split-window-sensibly (&optional window)neotree-split-window-sensibly2141,77309
+
+elpa/neotree-20170522.758/neotree-pkg.el,93
+(define-package "neotree" "20170522.758" "A tree plugin like NerdTree for Vim""neotree"1,0
+
 elpa/with-editor-20180414.757/with-editor.el,4480
 (defvar eshell-preoutput-filter-functions)eshell-preoutput-filter-functions100,4073
 (defgroup with-editor nilwith-editor104,4130
@@ -11359,25 +11602,6 @@ elpa/pkg-info-20150517.443/pkg-info-pkg.el,109
 leuven-theme.el,28
 (deftheme leuvenleuven1,0
 
-flycheck_init.el,770
-(defun add-to-load-path (&rest paths)add-to-load-path30,621
-(defun my-c-mode-common-conf ()my-c-mode-common-conf195,6414
-(defun rainbow-delimiters-using-stronger-colors ()rainbow-delimiters-using-stronger-colors222,7219
-(defvar my-lines-page-mode t)my-lines-page-mode268,8292
-(defvar my-mode-line-format)my-mode-line-format269,8322
-(define-key global-map (kbd "\C-cn") 'flycheck-next-error)global-map428,13196
-(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)global-map429,13255
-(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)global-map430,13318
-(define-key global-map (kbd "\C-cu") 'pop-tag-mark)global-map544,17603
-(defun my:ac-c-headers-init ()my:ac-c-headers-init563,18213
-(defun web-mode-hook ()web-mode-hook578,18679
-
-themes/misterioso-theme.el,39
-(deftheme misteriosomisterioso24,828
-
-themes/my-misterioso-theme.el,36
-(deftheme misteriosomisterioso1,0
-
 init.el,770
 (defun add-to-load-path (&rest paths)add-to-load-path30,621
 (defun my-c-mode-common-conf ()my-c-mode-common-conf195,6414
@@ -11387,9 +11611,9 @@ init.el,770
 (define-key global-map (kbd "\C-cn") 'flycheck-next-error)global-map428,13196
 (define-key global-map (kbd "\C-cp") 'flycheck-previous-error)global-map429,13255
 (define-key global-map (kbd "\C-cd") 'flycheck-list-errors)global-map430,13318
-(define-key global-map (kbd "\C-cu") 'pop-tag-mark)global-map544,17603
-(defun my:ac-c-headers-init ()my:ac-c-headers-init563,18213
-(defun web-mode-hook ()web-mode-hook578,18679
+(define-key global-map (kbd "\C-cu") 'pop-tag-mark)global-map530,16809
+(defun my:ac-c-headers-init ()my:ac-c-headers-init549,17419
+(defun web-mode-hook ()web-mode-hook564,17885
 
 undohist/!home!tsubasa!4k120p!src!Test!UpdataFW!UpdataFWEnc!EncUpdata.cpp,0
 

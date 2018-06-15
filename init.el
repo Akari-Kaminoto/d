@@ -502,7 +502,7 @@
 
 ;; neotree
 
-(el-get-bundle neotree)
+(use-package neotree)
 ;; C-c tでnetreee-windowが開くようにする
 (global-set-key "\C-ct" 'neotree-toggle)
 ;; neotreeでファイルを新規作成した場合のそのファイルを開く
@@ -510,20 +510,6 @@
 ;; delete-other-window で neotree ウィンドウを消さない
 (setq neo-persist-show t)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(web-mode-comment-face ((t (:foreground "#D9333F"))))
- '(web-mode-css-at-rule-face ((t (:foreground "#FF7F00"))))
- '(web-mode-css-pseudo-class-face ((t (:foreground "#FF7F00"))))
- '(web-mode-css-rule-face ((t (:foreground "#A0D8EF"))))
- '(web-mode-doctype-face ((t (:foreground "#82AE46"))))
- '(web-mode-html-attr-name-face ((t (:foreground "#C97586"))))
- '(web-mode-html-attr-value-face ((t (:foreground "#82AE46"))))
- '(web-mode-html-tag-face ((t (:foreground "#E6B422" :weight bold))))
- '(web-mode-server-comment-face ((t (:foreground "#D9333F")))))
 
 ;;; volatile-highlight
 (use-package volatile-highlights)
@@ -592,25 +578,39 @@
 
 (add-hook 'web-mode-hook  'web-mode-hook)
 
-;; 色の設定
-
-
-;;; w3 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
+;; web-mode 色の設定
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(custom-safe-themes
-   (quote
-    ("9a155066ec746201156bb39f7518c1828a73d67742e11271e4f24b7b178c4710" default)))
- '(hl-sexp-background-color "#efebe9")
- '(package-selected-packages
-   (quote
-    (leuven-theme zen-and-art-theme json-mode js2-mode auto-complete-c-headers shell-pop helm-flycheck flycheck-popup-tip helm-swoop ace-jump-mode anzu ace-isearch ctags-update use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete)))
- '(yas-trigger-key "TAB"))
+ '(web-mode-comment-face ((t (:foreground "#D9333F"))))
+ '(web-mode-css-at-rule-face ((t (:foreground "#FF7F00"))))
+ '(web-mode-css-pseudo-class-face ((t (:foreground "#FF7F00"))))
+ '(web-mode-css-rule-face ((t (:foreground "#A0D8EF"))))
+ '(web-mode-doctype-face ((t (:foreground "#82AE46"))))
+ '(web-mode-html-attr-name-face ((t (:foreground "#C97586"))))
+ '(web-mode-html-attr-value-face ((t (:foreground "#82AE46"))))
+ '(web-mode-html-tag-face ((t (:foreground "#E6B422" :weight bold))))
+ '(web-mode-server-comment-face ((t (:foreground "#D9333F")))))
+
+
+;; ;;; w3 
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(ansi-color-faces-vector
+;;    [default default default italic underline success warning error])
+;;  '(custom-safe-themes
+;;    (quote
+;;     ("9a155066ec746201156bb39f7518c1828a73d67742e11271e4f24b7b178c4710" default)))
+;;  '(hl-sexp-background-color "#efebe9")
+;;  '(package-selected-packages
+;;    (quote
+;;     (leuven-theme zen-and-art-theme json-mode js2-mode auto-complete-c-headers shell-pop helm-flycheck flycheck-popup-tip helm-swoop ace-jump-mode anzu ace-isearch ctags-update use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete)))
+;;  '(yas-trigger-key "TAB"))
 
 ;;;
 ;;; OS によって設定を切り替える例
@@ -764,3 +764,11 @@
 
 (provide 'init)
 ;;;
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (use-package-el-get smooth-scroll shell-pop rainbow-mode rainbow-delimiters package-utils neotree mozc melpa-upstream-visit magit leuven-theme json-mode js2-mode irony hlinum helm-swoop helm-flycheck fuzzy forecast flycheck-popup-tip ctags-update company auto-read-only auto-complete-c-headers anzu ace-jump-mode ace-isearch))))
