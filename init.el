@@ -32,8 +32,7 @@
   (let (path)
     (dolist (path paths paths)
       (let ((default-directory
-              (expand-file-name (concat user-emacs-directory path))))
-        (add-to-list 'load-path default-directory)
+              (expand-file-name (concat user-emacs-directory path))))        (add-to-list 'load-path default-directory)
         (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
             (normal-top-level-add-subdirs-to-load-path))))))
 
@@ -601,29 +600,35 @@
 ;;;
 ;;; IME関連の設定
 ;;;
+
+;; Windows-patchVerでも動くように
   
 ;;;** 標準IMEの設定
-   (setq default-input-method "W32-IME")
+(when (locate-library "w32-ime")
+  (progn
 
+    (setq default-input-method "W32-IME")
+    
 ;;;** IMEの初期化
-   (w32-ime-initialize)
-
+    (w32-ime-initialize)
+    
 ;;;** IME状態のモードライン表示
-   (setq-default w32-ime-mode-line-state-indicator "[--]")
-   (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
-   
+    (setq-default w32-ime-mode-line-state-indicator "[--]")
+    (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
+    
 ;;;** IME OFF時の初期カーソルカラー
-   (set-cursor-color "redd")
-   
+    (set-cursor-color "green")
+    
 ;;;** IME ON/OFF時のカーソルカラー
-   (add-hook 'input-method-activate-hook
-             (lambda() (set-cursor-color "green")))
-   (add-hook 'input-method-inactivate-hook
-             (lambda() (set-cursor-color "red")))
+    (add-hook 'input-method-activate-hook
+              (lambda() (set-cursor-color "red")))
+    (add-hook 'input-method-inactivate-hook
+              (lambda() (set-cursor-color "green")))
    
 ;;;** バッファ切り替え時にIME状態を引き継ぐ
-   (setq w32-ime-buffer-switch-p nil)
-
+    (setq w32-ime-buffer-switch-p nil)
+  )
+)
 
    
 ;;;
