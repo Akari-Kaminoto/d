@@ -21,6 +21,7 @@
 
 ;; 予約語を色分けする
 (global-font-lock-mode t)
+(set-cursor-color "green")
 
 
 ;;;seq.el emacs v25 over
@@ -416,19 +417,6 @@
 ;; (yas-global-mode 1)
 ;; (custom-set-variables '(yas-trigger-key "TAB"))
 
-;;; FLYCHECK
-(require 'flycheck)
-
-(global-flycheck-mode)
-
-(define-key global-map (kbd "\C-cn") 'flycheck-next-error)
-(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
-(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
-
-(add-hook 'c++-mode-hook (lambda()
-                           (setq flycheck-gcc-language-standard "c++11")
-                           (setq flycheck-clang-language-standard "c++11")))
-
 
 ;; 自動補完
 ;; (use-package auto-complete-config)
@@ -521,7 +509,7 @@
 ;;hlinum
 (hlinum-activate)
 
-;;ctags
+;;ctags 共用設定
 
 (ctags-global-auto-update-mode)  
 ;; M-.で移動してM-*で戻るはずが戻れないのでC-c u に再定義
@@ -576,7 +564,20 @@
 
 (add-hook 'web-mode-hook  'web-mode-hook)
 
-;; web-mode 色の設定
+;;; web -mode end
+
+;;; GDB 関連
+;;; 有用なバッファを開くモード
+(setq gdb-many-windows t)
+
+;;; 変数の上にマウスカーソルを置くと値を表示
+(add-hook 'gdb-mode-hook '(lambda () (gud-tooltip-mode t)))
+
+;;; I/O バッファを表示
+(setq gdb-use-separate-io-buffer t)
+
+;;; t にすると mini buffer に値が表示される
+(setq gud-tooltip-echo-area nil)
 
 
 
@@ -661,8 +662,10 @@
                   '("MeiryoKe_Console" . "unicode-bmp")
 ;                  '("Ricty Diminished" . "unicode-bmp")
                   )
-;;ctags
+
+;;ctags windows用設定
 (setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
+
 ;;
 ;; 環境変数でgitのPATHを通しておくのを忘れずに
 ;;
@@ -727,9 +730,27 @@
                 (define-key helm-map (kbd "C-k") 'kill-line)
                 ))
 
+;;; FLYCHECK
+(require 'flycheck)
 
-  ;;ctags
-  
+(global-flycheck-mode)
+
+(define-key global-map (kbd "\C-cn") 'flycheck-next-error)
+(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
+(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
+
+(eval-after-load 'flycheck
+  '(custom-set-variables
+   '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
+
+
+(add-hook 'c++-mode-hook (lambda()
+                           (setq flycheck-gcc-language-standard "c++11")
+                           (setq flycheck-clang-language-standard "c++11")))
+
+
+  ;;;ctags unix用設定
+
   ;;; 注意！exuberant-ctagsを指定する必要がある
   ;;; Emacs標準のctagsでは動作しない！！
   (setq ctags-update-command "/usr/bin/ctags")
@@ -746,15 +767,17 @@
 ;;;なし
 );;; ここまでMACOS用
 
-
-(provide 'init)
 ;;;
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
  '(package-selected-packages
    (quote
-    (shell-pop leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
+    (company-math flycheck-pos-tip csv-mode shell-pop leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
  '(yas-trigger-key "TAB"))
+
+(provide 'init)
