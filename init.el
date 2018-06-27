@@ -546,7 +546,7 @@
 (add-to-list 'auto-mode-alist '("\\.ctp\\'"   . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
-;; web-modeの設定
+;; web-mode 設定
 (defun web-mode-hook ()
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -592,6 +592,13 @@
 ;;     (leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
 ;;  '(yas-trigger-key "TAB"))
 
+;;; beacon
+(beacon-mode 1)
+(setq beacon-push-mark 35)
+(setq beacon-color "#F5DE34")
+(setq beacon-size 400)
+(setq beacon-blink-when-focused t)
+(setq beacon-blink-duration 1)
 ;;;
 ;;; OS によって設定を切り替える例
 ;;;
@@ -777,7 +784,7 @@
  '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
  '(package-selected-packages
    (quote
-    (company-math flycheck-pos-tip csv-mode shell-pop leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
+    (beacon company-math flycheck-pos-tip csv-mode shell-pop leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
  '(yas-trigger-key "TAB"))
 
 (provide 'init)

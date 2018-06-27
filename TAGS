@@ -3206,6 +3206,28 @@ elpa/leuven-theme-20170919.252/leuven-theme-autoloads.el,0
 elpa/leuven-theme-20170919.252/leuven-theme.el,28
 (deftheme leuvenleuven1,0
 
+elpa/company-math-1.1/company-math-autoloads.el,0
+
+elpa/company-math-1.1/.dir-locals.el,0
+
+elpa/company-math-1.1/company-math.el,1279
+(defgroup company-math nilcompany-math39,1375
+(defcustom company-math-prefix-regexp "\\\\\\([^ \t]+\\)"company-math-prefix-regexp44,1522
+(defcustom company-math-allow-unicode-symbols-in-faces tcompany-math-allow-unicode-symbols-in-faces51,1754
+(defcustom company-math-allow-latex-symbols-in-faces '(tex-math font-latex-math-face)company-math-allow-latex-symbols-in-faces59,2085
+(defcustom company-math-disallow-unicode-symbols-in-faces '(font-latex-math-face)company-math-disallow-unicode-symbols-in-faces67,2457
+(defcustom company-math-disallow-latex-symbols-in-faces '()company-math-disallow-latex-symbols-in-faces72,2653
+(defun company-math--make-candidates (alist)company-math--make-candidates80,2855
+(defconst company-math--symbolscompany-math--symbols94,3417
+(defun company-math--prefix (allow-faces disallow-faces)company-math--prefix100,3643
+(defun company-math--substitute-unicode (symbol)company-math--substitute-unicode111,4093
+(defun company-latex-commands (command &optional arg &rest ignored)company-latex-commands123,4422
+(defun company-math-symbols-latex (command &optional arg &rest ignored)company-math-symbols-latex134,4851
+(defun company-math-symbols-unicode (command &optional arg &rest ignored)company-math-symbols-unicode146,5456
+
+elpa/company-math-1.1/company-math-pkg.el,259
+(define-package "company-math" "1.1" "Completion backends for unicode math symbols and latex tags" '((company "0.8.0") (math-symbol-lists "1.0")) :url "https://github.com/vspinu/company-math" :keywords '("unicode" "symbols" "completion"))"company-math"2,54
+
 elpa/csv-mode-1.7/csv-mode.el,3846
 (defgroup CSV nilCSV116,5001
 (defvar csv-separator-chars nilcsv-separator-chars120,5107
@@ -9024,6 +9046,19 @@ elpa/with-editor-20180414.757/with-editor-autoloads.el,84
 elpa/with-editor-20180414.757/with-editor-pkg.el,96
 (define-package "with-editor" "20180414.757" "Use the Emacsclient as $EDITOR""with-editor"1,0
 
+elpa/math-symbol-lists-1.1/.dir-locals.el,0
+
+elpa/math-symbol-lists-1.1/math-symbol-lists-autoloads.el,0
+
+elpa/math-symbol-lists-1.1/math-symbol-lists.el,304
+(defconst math-symbol-list-basicmath-symbol-list-basic45,1561
+(defconst math-symbol-list-extendedmath-symbol-list-extended568,21543
+(defconst math-symbol-list-latex-commandsmath-symbol-list-latex-commands3005,131405
+(defun msl--read-LUCR-list (file &optional print)msl--read-LUCR-list3067,135333
+
+elpa/math-symbol-lists-1.1/math-symbol-lists-pkg.el,222
+(define-package "math-symbol-lists" "1.1" "Lists of Unicode math symbols and latex commands" 'nil :url "https://github.com/vspinu/math-symbol-lists" :keywords '("unicode" "symbols" "mathematics"))"math-symbol-lists"2,59
+
 elpa/shell-pop-20170304.616/shell-pop-autoloads.el,69
 (defvar shell-pop-universal-key nil "\shell-pop-universal-key9,284
 
@@ -12062,6 +12097,60 @@ elpa/package-utils-20180514.715/package-utils-pkg.el,258
 (define-package "package-utils" "20180514.715" "Extensions for package.el" '((restart-emacs "0.1.1")) :commit "5621b95c56b55499f0463fd8b29501da25d861bd" :keywords '("package" "convenience") :url "https://github.com/Silex/package-utils")"package-utils"2,31
 
 elpa/package-utils-20180514.715/package-utils-autoloads.el,0
+
+elpa/beacon-1.3.3/beacon.el,3241
+(defgroup beacon nilbeacon60,2087
+(defvar beacon--timer nil)beacon--timer65,2182
+(defcustom beacon-push-mark 35beacon-push-mark67,2210
+(defcustom beacon-blink-when-point-moves-vertically nilbeacon-blink-when-point-moves-vertically74,2490
+(defcustom beacon-blink-when-point-moves-horizontally nilbeacon-blink-when-point-moves-horizontally81,2819
+(defcustom beacon-blink-when-buffer-changes tbeacon-blink-when-buffer-changes88,3156
+(defcustom beacon-blink-when-window-scrolls tbeacon-blink-when-window-scrolls92,3271
+(defcustom beacon-blink-when-window-changes tbeacon-blink-when-window-changes96,3389
+(defcustom beacon-blink-when-focused nilbeacon-blink-when-focused100,3507
+(defcustom beacon-blink-duration 0.3beacon-blink-duration107,3759
+(defcustom beacon-blink-delay 0.3beacon-blink-delay111,3864
+(defcustom beacon-size 40beacon-size115,3974
+(defcustom beacon-color 0.5beacon-color119,4056
+(defface beacon-fallback-backgroundbeacon-fallback-background131,4426
+(defvar beacon-dont-blink-predicates nilbeacon-dont-blink-predicates138,4730
+(defun beacon--compilation-mode-p ()beacon--compilation-mode-p150,5178
+(defcustom beacon-dont-blink-major-modes '(t magit-status-mode magit-popup-modebeacon-dont-blink-major-modes158,5495
+(defcustom beacon-dont-blink-commands '(next-line previous-linebeacon-dont-blink-commands168,5965
+(defcustom beacon-before-blink-hook nilbeacon-before-blink-hook176,6303
+(defvar beacon--window-scrolled nil)beacon--window-scrolled182,6437
+(defvar beacon--previous-place nil)beacon--previous-place183,6474
+(defvar beacon--previous-mark-head nil)beacon--previous-mark-head184,6510
+(defvar beacon--previous-window nil)beacon--previous-window185,6550
+(defvar beacon--previous-window-start 0)beacon--previous-window-start186,6587
+(defun beacon--record-vars ()beacon--record-vars188,6629
+(defvar beacon--ovs nil)beacon--ovs197,6921
+(defconst beacon-overlay-priority (/ most-positive-fixnum 2)beacon-overlay-priority199,6947
+(defun beacon--make-overlay (length &rest properties)beacon--make-overlay202,7051
+(defun beacon--colored-overlay (color)beacon--colored-overlay215,7559
+(defun beacon--ov-put-after-string (overlay colors)beacon--ov-put-after-string219,7709
+(defun beacon--after-string-overlay (colors)beacon--after-string-overlay235,8322
+(defun beacon--ov-at-point ()beacon--ov-at-point244,8792
+(defun beacon--vanish (&rest _)beacon--vanish250,9046
+(defun beacon--int-range (a b)beacon--int-range261,9362
+(defun beacon--color-range ()beacon--color-range270,9647
+(defun beacon--shine ()beacon--shine297,10918
+(defun beacon--dec ()beacon--dec309,11266
+(defun beacon-blink ()beacon-blink331,12057
+(defun beacon-blink-automated ()beacon-blink-automated345,12565
+(defun beacon--movement-> (delta-y &optional delta-x)beacon--movement->362,13274
+(defun beacon--maybe-push-mark ()beacon--maybe-push-mark391,14505
+(defun beacon--post-command ()beacon--post-command400,14864
+(defun beacon--window-scroll-function (win start-pos)beacon--window-scroll-function425,15774
+(defun beacon--blink-on-focus ()beacon--blink-on-focus442,16522
+(defcustom beacon-lighterbeacon-lighter449,16690
+(define-minor-mode beacon-modebeacon-mode458,16896
+
+elpa/beacon-1.3.3/beacon-autoloads.el,46
+(defvar beacon-mode nil "\beacon-mode20,567
+
+elpa/beacon-1.3.3/beacon-pkg.el,185
+(define-package "beacon" "1.3.3" "Highlight the cursor whenever the window scrolls" '((seq "2.14")) :url "https://github.com/Malabarba/beacon" :keywords '("convenience"))"beacon"2,31
 
 elpa/magit-popup-20180509.1041/magit-popup.el,6774
 (defgroup magit-popup nilmagit-popup73,2767
@@ -18554,10 +18643,10 @@ init.el,708
 (defvar my-lines-page-mode t)my-lines-page-mode266,8312
 (defvar my-mode-line-format)my-mode-line-format267,8342
 (define-key global-map (kbd "\C-cu") 'pop-tag-mark)global-map517,16517
-(defun web-mode-hook ()web-mode-hook550,17610
-(define-key global-map (kbd "\C-cn") 'flycheck-next-error)global-map738,23423
-(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)global-map739,23482
-(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)global-map740,23545
+(defun web-mode-hook ()web-mode-hook550,17608
+(define-key global-map (kbd "\C-cn") 'flycheck-next-error)global-map745,23594
+(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)global-map746,23653
+(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)global-map747,23716
 
 undohist/!home!tsubasa!4k120p!src!UI!Webgui!config.html,0
 
@@ -18568,15 +18657,17 @@ undohist/!home!tsubasa!4k120p!src!Test!UpdataFW!UpdataFWDec!UpdataFw.hpp,0
 undohist/!home!tsubasa!4k120p!src!Test!UpdataFW!UpdataFWDec!UpdataFw.cpp,0
 
 undohist/!home!tsubasa!.emacs.d!init.el,251
-(define-key global-map (kbd \"\\C-cn\") 'flycheck-next-error)global-map61,14488
-(define-key global-map (kbd \"\\C-cp\") 'flycheck-previous-error)global-map62,14550
-(define-key global-map (kbd \"\\C-cd\") 'flycheck-list-errors)global-map63,14616
+(define-key global-map (kbd \"\\C-cn\") 'flycheck-next-error)global-map79,19994
+(define-key global-map (kbd \"\\C-cp\") 'flycheck-previous-error)global-map80,20056
+(define-key global-map (kbd \"\\C-cd\") 'flycheck-list-errors)global-map81,20122
 
 undohist/!home!tsubasa!WebGui!UI!Webgui!config.html,0
 
 undohist/!home!tsubasa!WebGui!UI!Webgui!network_new.html,0
 
 undohist/!home!tsubasa!4k120p!src!Test!UpdataFW!UpdataFWEnc!UpdataFw.cpp,0
+
+undohist/!home!tsubasa!4k120p!src!Test!UpdataFW!UpdataFWEnc!EncUpdata.hpp,0
 
 undohist/!home!tsubasa!4k120p!src!UI!Webgui!common.js,0
 
