@@ -191,13 +191,13 @@
              ))
 
 (defun my-c-mode-common-conf ()
-  ;; ";"や"{"などをを入力した場合現在の行を自動インデントを有功にする
+  ; ";"や"{"などをを入力した場合現在の行を自動インデントを有功にする
   (c-toggle-electric-state 1)
-  ;; カッコを強調表示する  
+  ; カッコを強調表示する  
   (show-paren-mode t)
-  ;; (自動インデント) 改行をしたら次の行を自動でインデントしてくれる
+  ; (自動インデント) 改行をしたら次の行を自動でインデントしてくれる
   (c-toggle-auto-newline 1)
-  ;; 他のエディタなどがファイルを書き換えたらすぐにそれを反映する
+  ; 他のエディタなどがファイルを書き換えたらすぐにそれを反映する
   (auto-revert-mode)
   )
 
@@ -305,7 +305,7 @@
 ;; タイトルバーにフルパス表示
 ;;----
 (setq frame-title-format "%f")
- 
+
 ;;----
 ;; カラーテーマ
 ;;----
@@ -345,7 +345,12 @@
 (set-face-foreground 'whitespace-newline  "DimGray")
 (set-face-background 'whitespace-newline 'nil)
  
- 
+
+;;; #!/bin/shなどで始まるファイルに自動的に実行権をつける
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+
+
 ;;===========================================
 ;; キーボード操作系
 ;;===========================================
@@ -599,6 +604,8 @@
 (setq beacon-size 400)
 (setq beacon-blink-when-focused t)
 (setq beacon-blink-duration 1)
+
+
 ;;;
 ;;; OS によって設定を切り替える例
 ;;;
@@ -767,6 +774,8 @@
     (global-ace-isearch-mode +1)
     (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
   
+;;; dired-du
+(add-hook 'dired-mode-hook #'dired-du-mode)
   
 );;;ここまでUNIX用
 
@@ -782,9 +791,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
+ '(irony-additional-clang-options (quote ("-std=c++11")))
  '(package-selected-packages
    (quote
-    (beacon company-math flycheck-pos-tip csv-mode shell-pop leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
+    (flylisp dired-du beacon company-math flycheck-pos-tip csv-mode shell-pop leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
  '(yas-trigger-key "TAB"))
 
 (provide 'init)
