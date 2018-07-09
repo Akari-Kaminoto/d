@@ -1,4 +1,4 @@
-2
+
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
 
