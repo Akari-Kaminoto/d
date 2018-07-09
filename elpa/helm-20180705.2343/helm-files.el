@@ -333,6 +333,22 @@ from `helm-find-files'."
                  (function :tag "Delete files asynchronously."
                   helm-delete-marked-files-async)))
 
+(defcustom helm-trash-remote-files nil
+  "Allow trashing remote files when non-nil.
+
+Deleting remote files with tramp doesn't work out of the box, it is
+why it is disabled by default.
+
+Following is NOT documented in tramp AFAIK but tramp is using
+external trash command in its `delete-file' and `delete-directory'
+handlers.
+
+If you want to enable this you will have to install the 'trash' command
+on remote (or locally if you want to trash as root), the package on
+Ubuntu based distribution is 'trash-cli'."
+  :group 'helm-files
+  :type 'boolean)
+
 (defcustom helm-list-directory-function
   (cl-case system-type
     (gnu/linux #'helm-list-dir-external)
@@ -611,7 +627,7 @@ Don't set it directly, use instead `helm-ff-auto-update-initial-value'.")
    "Find alternate file `C-x C-v'" 'find-alternate-file
    "Ediff File `C-c ='" 'helm-find-files-ediff-files
    "Ediff Merge File `M-='" 'helm-find-files-ediff-merge-files
-   (lambda () (format "Delete File(s)%s `M-D' (C-u no trash)"
+   (lambda () (format "Delete File(s)%s `M-D' (C-u reverse trash)"
                       (if (eq helm-ff-delete-files-function
                               'helm-delete-marked-files-async)
                           " async" "")))
@@ -804,7 +820,7 @@ ACTION must be an action supported by `helm-dired-action'."
          (dest-dir-p (file-directory-p dest))
          (dest-dir   (helm-basedir dest)))
     (unless (or dest-dir-p (file-directory-p dest-dir))
-      (when (y-or-n-p (format "Create directory `%s'?" dest-dir))
+      (when (y-or-n-p (format "Create directory `%s'? " dest-dir))
         (make-directory dest-dir t)))
     (helm-dired-action
      dest :files ifiles :action action :follow prefarg)))
@@ -2903,7 +2919,13 @@ Return candidates prefixed with basename of `helm-input' first."
     (when (file-regular-p candidate)
       (setq actions (helm-append-at-nth
                      actions '(("Checksum File" . helm-ff-checksum)) 4)))
-    (cond ((and helm--url-regexp
+    (cond ((and (string-match "Trash/files/?\\'" (helm-basedir candidate))
+                (executable-find "trash"))
+           (helm-append-at-nth
+            actions
+            '(("Restore file from trash" . helm-restore-file-from-trash))
+            1))
+          ((and helm--url-regexp
                 (not (string-match-p helm--url-regexp str-at-point))
                 (not (with-helm-current-buffer (eq major-mode 'dired-mode)))
                 (string-match-p ":\\([0-9]+:?\\)" str-at-point))
@@ -2932,6 +2954,35 @@ Return candidates prefixed with basename of `helm-input' first."
            (helm-append-at-nth
             actions '(("Pdfgrep File(s)" . helm-ff-pdfgrep)) 4))
           (t actions))))
+
+(defun helm-restore-file-from-trash (file)
+  "Restore FILE from a Trash directory.
+
+The Trash directory should be a directory compliant with
+<http://freedesktop.org/wiki/Specifications/trash-spec> and FILE should
+have its '*.trashinfo' correspondent file in Trash/info directory."
+  (let* ((default-directory (file-name-as-directory
+                             helm-ff-default-directory))
+         (trashed-files (with-temp-buffer
+                          (process-file "trash-list" nil t nil)
+                          (split-string (buffer-string) "\n")))
+         (info-file (concat (helm-reduce-file-name file 2)
+                            "info/"
+                            (helm-basename file)
+                            ".trashinfo")))
+    (cl-assert (and (file-exists-p info-file) trashed-files)
+               nil "Unknow file or directory `%s'" info-file)
+    (when (y-or-n-p (format "Really restore `%s' from trash? "
+                            (abbreviate-file-name file)))
+      (rename-file
+       file
+       (replace-regexp-in-string
+        "\\`\\([0-9]\\{2,4\\}[-:][0-9]\\{2\\}[:-][0-9]\\{2\\} \\)\\{2\\}"
+        ""
+        (completing-read (format "Restore `%s' to: "
+                                 (abbreviate-file-name file))
+                         trashed-files)))
+      (delete-file info-file))))
 
 (defun helm-ff-goto-linum (candidate)
   "Find file CANDIDATE and maybe jump to line number found in fname at point.
@@ -3665,17 +3716,31 @@ following files to destination."
         when (and bfn (string= name bfn))
         collect (buffer-name buf)))
 
+(defun helm-ff--delete-by-moving-to-trash (file)
+  "Decide to trash or delete FILE.
+Returns non-nil when FILE needs to be trashed."
+  (let ((remote (file-remote-p file)))
+    (or
+     (and delete-by-moving-to-trash
+          (null helm-current-prefix-arg)
+          (null current-prefix-arg)
+          (or (and remote helm-trash-remote-files)
+              (null remote)))
+     (and (null delete-by-moving-to-trash)
+          (or helm-current-prefix-arg
+              current-prefix-arg)
+          (or (and remote helm-trash-remote-files)
+              (null remote))))))
+
 (defun helm-ff-quick-delete (_candidate)
   "Delete file CANDIDATE without quitting.
 
-When a prefix arg is given, files are deleted and not trashed even if
-\`delete-by-moving-to-trash' is non nil."
+When a prefix arg is given, meaning of `delete-by-moving-to-trash' is
+inversed."
   (with-helm-window
     (let ((marked (helm-marked-candidates)))
       (unwind-protect
-           (cl-loop with trash = (and delete-by-moving-to-trash
-                                      (null current-prefix-arg)
-                                      (null (file-remote-p (car marked))))
+           (cl-loop with trash = (helm-ff--delete-by-moving-to-trash (car marked))
                     for c in marked do
                     (progn (helm-preselect
                             (concat "^" (regexp-quote
@@ -3702,8 +3767,8 @@ When a prefix arg is given, files are deleted and not trashed even if
 (defun helm-delete-file (file &optional error-if-dot-file-p synchro trash)
   "Delete FILE after querying the user.
 
-When a prefix arg is given, files are deleted and not trashed even if
-\`delete-by-moving-to-trash' is non nil.
+When a prefix arg is given, meaning of `delete-by-moving-to-trash' is
+inversed.
 
 Return error when ERROR-IF-DOT-FILE-P is non nil and user tries to
 delete a dotted file i.e. \".\" or \"..\".
@@ -3713,7 +3778,10 @@ unless `helm-ff-allow-recursive-deletes' is non nil.
 When user is asked and reply with \"!\" don't ask for remaining
 directories.
 
-Ask to kill buffers associated with that file, too."
+Ask to kill buffers associated with that file, too.
+
+When TRASH is non nil, trash FILE even if `delete-by-moving-to-trash'
+is nil."
   (require 'dired)
   (cl-block nil
     (when (and error-if-dot-file-p
@@ -3722,11 +3790,8 @@ Ask to kill buffers associated with that file, too."
     (let ((buffers (helm-file-buffers file))
           (helm--reading-passwd-or-string t)
           (file-attrs (file-attributes file))
-          (trash (or trash
-                     (and delete-by-moving-to-trash
-                          (null helm-current-prefix-arg)
-                          (null current-prefix-arg)
-                          (null (file-remote-p file))))))
+          (trash (or trash (helm-ff--delete-by-moving-to-trash file)))
+          (delete-by-moving-to-trash trash))
       (cond ((and (eq (nth 0 file-attrs) t)
                   (directory-files file t dired-re-no-dot))
              ;; Synchro means persistent deletion from HFF.
@@ -3763,13 +3828,13 @@ Ask to kill buffers associated with that file, too."
             (kill-buffer buf)))))))
 
 (defun helm-delete-marked-files (_ignore)
-  "Delete marked files with `helm-delete-file'."
+  "Delete marked files with `helm-delete-file'.
+
+When a prefix arg is given, meaning of `delete-by-moving-to-trash' is
+inversed."
   (let* ((files (helm-marked-candidates :with-wildcard t))
          (len 0)
-         (trash (and delete-by-moving-to-trash
-                     (null helm-current-prefix-arg)
-                     (null current-prefix-arg)
-                     (null (file-remote-p (car files)))))
+         (trash (helm-ff--delete-by-moving-to-trash (car files)))
          (prmt (if trash "Trash" "Delete"))
          (old--allow-recursive-deletes helm-ff-allow-recursive-deletes))
     (with-helm-display-marked-candidates
@@ -3831,17 +3896,14 @@ Ask to kill buffers associated with that file, too."
 (defun helm-delete-marked-files-async (_ignore)
   "Same as `helm-delete-marked-files' but async.
 
-When a prefix arg is given, files are deleted and NOT trashed even if
-\`delete-by-moving-to-trash' is non nil.
+When a prefix arg is given, meaning of `delete-by-moving-to-trash' is
+inversed.
 
 This function is not using `helm-delete-file' and BTW not asking user
 for recursive deletion of directory, be warned that directories are
 always deleted with no warnings."
   (let* ((files (helm-marked-candidates :with-wildcard t))
-         (trash (and delete-by-moving-to-trash
-                     (null helm-current-prefix-arg)
-                     (null current-prefix-arg)
-                     (null (file-remote-p (car files)))))
+         (trash (helm-ff--delete-by-moving-to-trash (car files)))
          (prmt (if trash "Trash" "Delete"))
          (buffers (cl-loop for file in files
                            for buf = (helm-file-buffers file)
@@ -3886,7 +3948,7 @@ always deleted with no warnings."
             ;; `delete-by-moving-to-trash' have to be set globally,
             ;; using the TRASH argument of delete-file or
             ;; delete-directory is not enough.
-            (setq delete-by-moving-to-trash ,delete-by-moving-to-trash)
+            (setq delete-by-moving-to-trash ,trash)
             (let ((result 0))
               (dolist (file ',files result)
                 (condition-case err

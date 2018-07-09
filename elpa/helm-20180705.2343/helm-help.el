@@ -837,9 +837,6 @@ be deleted in background without asking.
 A good compromise is to trash your files
 when using asynchronous method (see [[Trashing files][Trashing files]]).
 
-Note that emacs is always making a backup of your files when
-deleting, medias though are definitely deleted with no backup.
-
 When choosing synchronous delete, you can allow recursive
 deletion of directories with `helm-ff-allow-recursive-deletes'.
 Note that when trashing (synchronous) you are not asked for recursive deletion.
@@ -849,7 +846,8 @@ deleting asynchronously.
 
 First method (persistent delete) is always synchronous.
 
-Note that when a prefix arg is given, trashing is disabled see [[Trashing files][Trashing files]].
+Note that when a prefix arg is given, trashing behavior is inversed.
+See [[Trashing files][Trashing files]].
 
 **** Trashing files
 
@@ -858,24 +856,27 @@ set `delete-by-moving-to-trash' to non nil, like this your files
 will be moved to trash instead of beeing deleted.
 
 Note that all the delete commands called with a prefix arg (C-u)
-disable `delete-by-moving-to-trash' and BTW delete files instead
-of trashing them.
+disable `delete-by-moving-to-trash' if it is enabled or enable it if disabled.
 
-WARNING: Trashing in Emacs have several bugs or misbehavior:
+_WARNING:_
 
-- If you have an ENV var XDG_DATA_HOME in your .profile or .bash_profile
-  and this var is set to something like $HOME/.local/share (like preconized)
-  `move-file-to-trash' may try to create $HOME/.local/share/Trash (literally)
-  and its subdirs in the directory where you are actually trying to trash files.
-  because `move-file-to-trash' is interpreting XDG_DATA_HOME literally instead
-  of evaling its value (with `substitute-in-file-name').
+If you have an ENV var XDG_DATA_HOME in your .profile or .bash_profile
+and this var is set to something like $HOME/.local/share (like preconized)
+`move-file-to-trash' may try to create $HOME/.local/share/Trash (literally)
+and its subdirs in the directory where you are actually trying to trash files.
+because `move-file-to-trash' is interpreting XDG_DATA_HOME literally instead
+of evaling its value (with `substitute-in-file-name').
 
-- You may expect you files goes to $HOME/.local/share... when trashing with /sudo:
-  be aware that they will be deleted, the tramp handler is not supporting trashing.
-  Fortunately the prompt in helm is telling you if you are actually deleting or trashing.
+***** Trashing remote files with tramp
 
-- Sometimes emacs may copy the file to trash but forget to copy the *.info file as well
-  which may prevent restoring file from trash.
+Trashing remote files (or local files with sudo method) is disabled by default
+because tramp is requiring the 'trash' command to be installed, if you want to
+trash your remote files, customize `helm-trash-remote-files'.
+The package on most GNU/Linux based distributions is trash-cli, it is available [[https://github.com/andreafrancia/trash-cli][here]].
+
+NOTE:
+When deleting your files with sudo method, your trashed files will not be listed
+with trash-list until you log in as root.
 
 ** Commands
 \\<helm-find-files-map>

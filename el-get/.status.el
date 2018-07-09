@@ -61,8 +61,6 @@
         (:name fuzzy :website "https://github.com/auto-complete/fuzzy-el" :description "Fuzzy matching utilities for GNU Emacs" :type github :pkgname "auto-complete/fuzzy-el"))
  (linum-ex status "installed" recipe
            (:name linum-ex :description "Display line numbers to the left of buffers" :type emacswiki :features linum-ex))
- (neotree status "installed" recipe
-          (:name neotree :after nil :website "https://github.com/jaypei/emacs-neotree" :description "An Emacs tree plugin like NerdTree for Vim." :type github :branch "master" :pkgname "jaypei/emacs-neotree"))
  (php-mode status "required" recipe
            (:name php-mode :description "A PHP mode for GNU Emacs " :type github :pkgname "ejmr/php-mode" :website "https://github.com/ejmr/php-mode"))
  (popup status "required" recipe
