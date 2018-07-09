@@ -1,0 +1,1 @@
+/home/tsubasa/.emacs.d/straight/repos/beacon/beacon.el

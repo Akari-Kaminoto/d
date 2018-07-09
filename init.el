@@ -1,4 +1,4 @@
-
+2
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
 
@@ -41,6 +41,27 @@
 (add-to-load-path "el-get" "elpa")
 
 ;;; package系を使うための設定
+
+;; 何も考えず公式のREADMEからコピペすればいいコード
+;; straight.el自身のインストールと初期設定を行ってくれる
+(let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el"))
+      (bootstrap-version 3))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;; use-packageをインストールする
+(straight-use-package 'use-package)
+
+;; オプションなしで自動的にuse-packageをstraight.elにフォールバックする
+;; 本来は (use-package hoge :straight t) のように書く必要がある
+(setq straight-use-package-by-default t)
+
 
 ;;; use-package 設定
 ;; use-package を require の代わりに使う
@@ -352,6 +373,34 @@
 
 
 ;;;;; ココらへんからパッケージの話
+
+  ;;;
+  ;;; helm
+  ;;;
+  (use-package helm
+    :init
+    (helm-mode t)
+  
+    ;; C-hで前の文字削除
+    (define-key helm-map (kbd "C-h") 'delete-backward-char)
+    (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+    
+    ;; TABとC-zを入れ替える
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)   ; rebind tab to run persistent action
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)       ; make TAB work in terminal
+    (define-key helm-map (kbd "C-z")  'helm-select-action)            ; list actions using C-z
+    (global-set-key "\C-c\C-r" 'helm-recentf)
+    (define-key global-map (kbd "C-x b")   'helm-buffers-list)
+   ;(define-key global-map (kbd "C-x b") 'helm-for-files)
+    (define-key global-map (kbd "C-x C-f") 'helm-find-files)
+    (define-key global-map (kbd "M-x")     'helm-M-x)
+    (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+    (add-hook 'helm-after-initialize-hook
+              #'(lambda ()
+                  ;; EmacsのデフォルトのC-kの動作に戻す
+                  (define-key helm-map (kbd "C-k") 'kill-line)
+                  )))
+
 
 
 ;;
@@ -724,33 +773,6 @@
     ;; off
     (add-hook 'input-method-inactivate-hook
               (lambda() (set-cursor-color "red"))))
-
-  ;;;
-  ;;; helm なぜかwindowsでは動かないのです。
-  ;;;
-  (use-package helm-config
-    :init
-    (helm-mode t)
-  
-    ;; C-hで前の文字削除
-    (define-key helm-map (kbd "C-h") 'delete-backward-char)
-    (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-    
-    ;; TABとC-zを入れ替える
-    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)   ; rebind tab to run persistent action
-    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)       ; make TAB work in terminal
-    (define-key helm-map (kbd "C-z")  'helm-select-action)            ; list actions using C-z
-    (global-set-key "\C-c\C-r" 'helm-recentf)
-    (define-key global-map (kbd "C-x b")   'helm-buffers-list)
-   ;(define-key global-map (kbd "C-x b") 'helm-for-files)
-    (define-key global-map (kbd "C-x C-f") 'helm-find-files)
-    (define-key global-map (kbd "M-x")     'helm-M-x)
-    (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-    (add-hook 'helm-after-initialize-hook
-              #'(lambda ()
-                  ;; EmacsのデフォルトのC-kの動作に戻す
-                  (define-key helm-map (kbd "C-k") 'kill-line)
-                  )))
 
   ;; FLYCHECK
   (use-package flycheck
