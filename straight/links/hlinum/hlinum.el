@@ -1,1 +1,0 @@
-c:/Users/NEL/Desktop/ando/.emacs.d/straight/repos/hlinum-mode/hlinum.el
