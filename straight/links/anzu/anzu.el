@@ -1,0 +1,1 @@
+c:/Users/NEL/Desktop/ando/.emacs.d/straight/repos/emacs-anzu/anzu.el
