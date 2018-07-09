@@ -42,6 +42,7 @@
 
 ;;; package系を使うための設定
 
+;; straight.el
 ;; 何も考えず公式のREADMEからコピペすればいいコード
 ;; straight.el自身のインストールと初期設定を行ってくれる
 (let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el"))
@@ -61,7 +62,6 @@
 ;; オプションなしで自動的にuse-packageをstraight.elにフォールバックする
 ;; 本来は (use-package hoge :straight t) のように書く必要がある
 (setq straight-use-package-by-default t)
-
 
 ;;; use-package 設定
 ;; use-package を require の代わりに使う
@@ -374,34 +374,32 @@
 
 ;;;;; ココらへんからパッケージの話
 
-  ;;;
-  ;;; helm
-  ;;;
-  (use-package helm
-    :init
-    (helm-mode t)
+;;;
+;;; helm
+;;;
+(use-package helm
+  :init
+  (helm-mode t)
   
-    ;; C-hで前の文字削除
-    (define-key helm-map (kbd "C-h") 'delete-backward-char)
-    (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-    
-    ;; TABとC-zを入れ替える
-    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)   ; rebind tab to run persistent action
-    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)       ; make TAB work in terminal
-    (define-key helm-map (kbd "C-z")  'helm-select-action)            ; list actions using C-z
-    (global-set-key "\C-c\C-r" 'helm-recentf)
-    (define-key global-map (kbd "C-x b")   'helm-buffers-list)
-   ;(define-key global-map (kbd "C-x b") 'helm-for-files)
-    (define-key global-map (kbd "C-x C-f") 'helm-find-files)
-    (define-key global-map (kbd "M-x")     'helm-M-x)
-    (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-    (add-hook 'helm-after-initialize-hook
-              #'(lambda ()
-                  ;; EmacsのデフォルトのC-kの動作に戻す
-                  (define-key helm-map (kbd "C-k") 'kill-line)
-                  )))
-
-
+  ;; C-hで前の文字削除
+  (define-key helm-map (kbd "C-h") 'delete-backward-char)
+  (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+  
+  ;; TABとC-zを入れ替える
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)   ; rebind tab to run persistent action
+  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)       ; make TAB work in terminal
+  (define-key helm-map (kbd "C-z")  'helm-select-action)            ; list actions using C-z
+  (global-set-key "\C-c\C-r" 'helm-recentf)
+  (define-key global-map (kbd "C-x b")   'helm-buffers-list)
+                                        ;(define-key global-map (kbd "C-x b") 'helm-for-files)
+  (define-key global-map (kbd "C-x C-f") 'helm-find-files)
+  (define-key global-map (kbd "M-x")     'helm-M-x)
+  (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+  (add-hook 'helm-after-initialize-hook
+            #'(lambda ()
+                ;; EmacsのデフォルトのC-kの動作に戻す
+                (define-key helm-map (kbd "C-k") 'kill-line)
+                )))
 
 ;;
 ;; rainbow-delimiter
@@ -490,9 +488,21 @@
 ;; (ac-set-trigger-key "TAB")
 ;; (setq ac-use-menu-map t)       ;; 補完メニュー表示時にC-n/C-pで補完候補選択
 ;; (setq ac-use-fuzzy t)          ;; 曖昧マッチ
+;;
+;; ;;; auto-complete-c-headers
+
+;; (defun my:ac-c-headers-init ()
+;;   (require 'auto-complete-c-headers)
+;;   (add-to-list 'ac-sources 'ac-source-c-headers))
+
+;; (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
+;; (add-hook 'c-mode-hook 'my:ac-c-headers-init)
 
 
+;;;
 ;;;company
+;;; ironyと合わせて自動補完を行う。
+;;;
 (when (locate-library "company")
   (global-company-mode 1)
   (global-set-key (kbd "C-M-i") 'company-complete)
@@ -539,8 +549,10 @@
      (add-to-list 'company-backends 'company-irony)
      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
      (add-hook 'c-mode-common-hook 'irony-mode)))
-
+;;;
 ;;; neotree
+;;; 左側にファイルツリーバッファを作る
+;;;
 (use-package neotree
   :init
   ;; C-c tでnetreee-windowが開くようにする
@@ -563,11 +575,13 @@
   (volatile-highlights-mode t))
 
 ;;; smoooth-scroll
+;;; スクロールをスムーズに
 (use-package smooth-scroll
   :config
   (smooth-scroll-mode t))
 
 ;;; hlinum
+;;; 現在の行番号をハイライト表示
 (use-package hlinum
   :config
   (hlinum-activate))
@@ -583,14 +597,14 @@
   :config
   (undohist-initialize))
 
-
 ;;; anzu
+;;; 検索文字が何個あるか表示
 (use-package anzu
   :init
   (global-anzu-mode +1))
 
-
-;; shell-pop
+;;; shell-pop
+;;; ちっちゃいシェルウインドウを開いたり閉じたりする
 (use-package shell-pop
   :init
   ;;(setq shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
@@ -600,16 +614,9 @@
   (global-set-key (kbd "C-c s") 'shell-pop))
   
 
-;; ;;; auto-complete-c-headers
-
-;; (defun my:ac-c-headers-init ()
-;;   (require 'auto-complete-c-headers)
-;;   (add-to-list 'ac-sources 'ac-source-c-headers))
-
-;; (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
-;; (add-hook 'c-mode-hook 'my:ac-c-headers-init)
 
 ;;; web mode
+;;; HTMLモードではhtmlの中のJAVASCRIPTなどが色分けされないので導入
 ;;; http://web-mode.org/
 ;;; http://yanmoo.blogspot.jp/2013/06/html5web-mode.html
 (use-package web-mode
@@ -643,7 +650,9 @@
 ;;     (leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
 ;;  '(yas-trigger-key "TAB"))
 
+
 ;;; beacon
+;;; 現在行のカーソルをバッファ移動のたびにわかるようにする
 (use-package beacon
   :init
   (beacon-mode 1)
