@@ -308,7 +308,11 @@
 ;; カラーテーマ
 ;;----
 ;(load-theme 'deeper-blue t)
- 
+
+
+;; 行間を開ける量、これを調整することでかなり見え方が変わる
+(setq-default line-spacing 2)
+
 
 ;;; #!/bin/shなどで始まるファイルに自動的に実行権をつける
 (add-hook 'after-save-hook
@@ -737,7 +741,9 @@
 ;; プログラミング用フォント Myrica
 ;; https://myrica.estable.jp/
 ;; 固定等幅フォント
- (set-default-font "Myrica M 13")
+(set-face-attribute 'default nil
+                    :family "Myrica M"
+                    :height 140)
  (set-fontset-font (frame-parameter nil 'font)
                    'japanese-jisx0208
                    '("Myrica M" . "unicode-bmp")
