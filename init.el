@@ -721,18 +721,33 @@
 ;;;
 ;;;http://xiuxing.blog.jp/archives/8346924.html
 ;;;
-(set-default-font "MeiryoKe_Console 14")
-(set-fontset-font (frame-parameter nil 'font)
-                  'japanese-jisx0208
-                  '("MeiryoKe_Console" . "unicode-bmp")
-;                  '("Ricty Diminished" . "unicode-bmp")
-                  )
+;; (set-default-font "MeiryoKe_Console 14")
+;; (set-fontset-font (frame-parameter nil 'font)
+;;                   'japanese-jisx0208
+;;                   '("MeiryoKe_Console" . "unicode-bmp")
+;; ;                  '("Ricty Diminished" . "unicode-bmp")
+;;                   )
 
-(set-fontset-font (frame-parameter nil 'font)
-                  'katakana-jisx0201
-                  '("MeiryoKe_Console" . "unicode-bmp")
-;                  '("Ricty Diminished" . "unicode-bmp")
-                  )
+;; (set-fontset-font (frame-parameter nil 'font)
+;;                   'katakana-jisx0201
+;;                   '("MeiryoKe_Console" . "unicode-bmp")
+;; ;                  '("Ricty Diminished" . "unicode-bmp")
+;;                   )
+;;
+;; プログラミング用フォント Myrica
+;; https://myrica.estable.jp/
+;; 固定等幅フォント
+ (set-default-font "Myrica M 13")
+ (set-fontset-font (frame-parameter nil 'font)
+                   'japanese-jisx0208
+                   '("Myrica M" . "unicode-bmp")
+                   )
+
+ (set-fontset-font (frame-parameter nil 'font)
+                   'katakana-jisx0201
+                   '("Myrica M" . "unicode-bmp")
+                   )
+
 
 ;;ctags windows用設定
   (setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
