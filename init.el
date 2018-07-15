@@ -676,7 +676,7 @@
 ;;;saveplace: 前回の修正位置を記憶する.
 (use-package saveplace
   :config
-  (setq-default save-place t)
+  (save-place-mode 1)
   (setq save-place-file (concat "~/.emacs.d/tmp/emacs-places")))
 
 ;;; japanese-holidays 日本語カレンダー
@@ -709,6 +709,16 @@
 ;;; rainbow-mode:#RRGGBB のカラーコードに勝手に色が付く
 
 (use-package rainbow-mode
+  :config
+  (setq rainbow-html-colors t)
+  (setq rainbow-x-colors t)
+  (setq rainbow-latex-colors t)
+  (setq rainbow-ansi-colors t)
+  (add-hook 'css-mode-hook 'rainbow-mode)
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
+  (add-hook 'less-mode-hook 'rainbow-mode)
+  (add-hook 'web-mode-hook 'rainbow-mode)
+  (add-hook 'html-mode-hook 'rainbow-mode)
   :diminish rainbow-mode
   )
 
@@ -905,3 +915,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
