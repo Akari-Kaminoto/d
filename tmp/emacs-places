@@ -1,2 +1,30 @@
 ;;; -*- coding: utf-8 -*-
-(("/home/tsubasa/.emacs.d/init.el" . 26718))
+(("/home/tsubasa/.emacs.d/init.el" . 21387)
+ ("/home/tsubasa/.emacs.d/straight/build/popup-kill-ring/popup-kill-ring-autoloads.el" . 487)
+ ("/home/tsubasa/.emacs.d/straight/build/pos-tip/pos-tip-autoloads.el" . 285)
+ ("/home/tsubasa/.emacs.d/elpa/popup-complete-20141108.1908/popup-complete-autoloads.el" . 652)
+ ("/home/tsubasa/.emacs.d/elpa/popup-kill-ring-20131020.1154/popup-kill-ring-autoloads.el" . 606)
+ ("/home/tsubasa/.emacs.d/elpa/roguel-ike-20160119.1902/roguel-ike-autoloads.el" . 576)
+ ("/home/tsubasa/.emacs.d/elpa/xah-css-mode-20180629.107/xah-css-mode-autoloads.el" . 583)
+ ("/home/tsubasa/.emacs.d/elpa/xah-elisp-mode-20180710.124/xah-elisp-mode-autoloads.el" . 1165)
+ ("/home/tsubasa/.emacs.d/elpa/json-mode-20180718.109/json-mode-autoloads.el" . 1983)
+ ("/home/tsubasa/.emacs.d/straight/build/twittering-mode/twittering-mode-autoloads.el" . 463)
+ ("/home/tsubasa/.emacs.d/elpa/magit-20180717.1801/"
+  (dired-filename . "/home/tsubasa/.emacs.d/elpa/magit-20180717.1801/.."))
+ ("/home/tsubasa/.emacs.d/elpa/"
+  (dired-filename . "/home/tsubasa/.emacs.d/elpa/.."))
+ ("/home/tsubasa/.emacs.d/"
+  (dired-filename . "/home/tsubasa/.emacs.d/.."))
+ ("/home/tsubasa/"
+  (dired-filename . "/home/tsubasa/test"))
+ ("/home/tsubasa/test/"
+  (dired-filename . "/home/tsubasa/test/.."))
+ ("/home/tsubasa/.emacs.d/elpa/font-lock-studio-20170127.1251/font-lock-studio-autoloads.el" . 919)
+ ("/home/tsubasa/.emacs.d/elpa/memoize-20180614.1230/memoize-autoloads.el" . 416)
+ ("/home/tsubasa/.emacs.d/elpa/magit-20180717.1801/magit-autoloads.el" . 82050)
+ ("/home/tsubasa/.emacs.d/elpa/winpoint-20131023.1013/winpoint-autoloads.el" . 1164)
+ ("/home/tsubasa/.emacs.d/elpa/helm-20180716.322/helm-autoloads.el" . 34216)
+ ("/home/tsubasa/.emacs.d/elpa/undo-tree-0.6.5/undo-tree-autoloads.el" . 1842)
+ ("/home/tsubasa/.emacs.d/elpa/sed-mode-1.0/sed-mode-autoloads.el" . 590)
+ ("/home/tsubasa/.emacs.d/elpa/ghub-20180715.1159/ghub-autoloads.el" . 1077)
+ ("/home/tsubasa/.emacs.d/elpa/use-package-20180715.1101/use-package-autoloads.el" . 8097))

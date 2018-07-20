@@ -1,0 +1,1 @@
+("ak" :gnome (:health 7 :stamina 12 :strength 4 :constitution 4 :speed 5 :spirit 12))

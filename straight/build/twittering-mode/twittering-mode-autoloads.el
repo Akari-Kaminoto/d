@@ -1,0 +1,26 @@
+;;; twittering-mode-autoloads.el --- automatically extracted autoloads
+;;
+;;; Code:
+
+
+;;;### (autoloads nil "twittering-mode" "twittering-mode.el" (0 0
+;;;;;;  0 0))
+;;; Generated autoloads from twittering-mode.el
+
+(autoload 'twit "twittering-mode" "\
+Start twittering-mode.
+
+\(fn)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "twittering-mode" '("twittering-" "debug-print" "case-string" "list-push" "assocref")))
+
+;;;***
+
+(provide 'twittering-mode-autoloads)
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; no-update-autoloads: t
+;; coding: utf-8
+;; End:
+;;; twittering-mode-autoloads.el ends here

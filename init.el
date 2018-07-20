@@ -722,6 +722,11 @@
   :diminish rainbow-mode
   )
 
+;;; popup-kill-ring
+(use-package popup-kill-ring
+  :config
+  (global-set-key "\M-y" 'popup-kill-ring))
+
 ;;;
 ;;; OS によって設定を切り替える例
 ;;;
@@ -887,6 +892,7 @@
   (use-package dired-du
     :config
     (add-hook 'dired-mode-hook #'dired-du-mode))
+
   
 );;;ここまでUNIX用
 

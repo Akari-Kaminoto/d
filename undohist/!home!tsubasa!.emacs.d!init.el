@@ -1,5 +1,23 @@
 
-((digest . "33e4bd642312afaf2d529af594f05582") (undo-list nil (26718 . 26719) (t 23370 56792 666013 0) nil ("(setq-default save-place t)" . 19704) nil (nil rear-nonsticky nil 19703 . 19704) (nil fontified nil 19685 . 19704) (19685 . 19704) (t 23370 56726 510013 0) nil ("
+((digest . "5353d9229965b4cd3a01381bc9807e87") (undo-list nil (";;;
+;;; OS によって設定を切り替える例
+;;;
+" . 21387) ((marker . 21387) . -29) ((marker . 21513) . -25) ((marker . 21513) . -25) ((marker . 21387) . -29) ((marker . 21486) . -29) ((marker . 21486) . -29) ((marker . 21516) . -4) ((marker . 21516) . -4) ((marker . 21387) . -29) (nil fontified t 21390 . 21391) (nil fontified t 21398 . 21412) (nil rear-nonsticky t 21415 . 21416) nil (nil rear-nonsticky nil 21415 . 21416) (nil fontified nil 21415 . 21416) (nil fontified nil 21412 . 21415) (nil fontified nil 21398 . 21412) (nil fontified nil 21397 . 21398) (nil fontified nil 21395 . 21397) (nil fontified nil 21394 . 21395) (nil fontified nil 21391 . 21394) (nil fontified nil 21390 . 21391) (nil fontified nil 21387 . 21390) (21387 . 21416) nil ("
+" . 21387) ((marker . 21388) . -1) ((marker* . 21387) . 1) ((marker* . 21387) . 1) ((marker . 21516) . -1) ((marker . 21516) . -1) nil ("  
+" . 21387) ((marker . 21388) . -3) ((marker . 21387) . -3) ((marker . 21388) . -3) ((marker . 21388) . -3) ((marker . 21387) . -3) ((marker . 21387) . -2) ((marker . 21387) . -2) nil ("
+" . 21390) ((marker . 21388) . -1) ((marker . 21387) . -1) (t 23377 31578 736018 0) nil (21385 . 21386) nil (21386 . 21388) (" " . 21385) ((marker . 21387) . -1) (21386 . 21387) nil (nil rear-nonsticky nil 21385 . 21386) (nil fontified nil 21345 . 21386) (21345 . 21386) nil (21342 . 21345) nil (21335 . 21342) nil (21332 . 21335) nil (21322 . 21323) nil ("^" . -21322) ((marker . 21387) . -1) ("-" . -21323) ((marker . 21387) . -1) 21324 nil (21318 . 21324) nil ("p" . -21318) ((marker . 21387) . -1) 21319 nil (21318 . 21319) nil ("p" . -21318) ((marker . 21387) . -1) 21319 nil (21317 . 21319) nil (21311 . 21326) nil (21304 . 21311) nil ("
+" . -21304) ((marker . 21387) . -1) ((marker . 21387) . -1) 21305 nil (21303 . 21305) nil (21300 . 21303) nil ("e" . -21300) ((marker . 21387) . -1) 21301 nil (21293 . 21301) nil ("^" . -21293) ((marker . 21387) . -1) ("-" . -21294) ((marker . 21387) . -1) 21295 nil (21287 . 21295) nil ("p" . -21288) ((marker . 21387) . -1) ("o" . -21289) ((marker . 21387) . -1) ("p" . -21290) ((marker . 21387) . -1) 21291 nil (21288 . 21291) nil (21287 . 21290) nil (21284 . 21287) (t 23375 6790 346807 600000) nil ("
+" . 21284) nil ("use-package twittering-mode)" . 21284) nil ("(" . 21284) nil ("
+" . 21284) nil (";;;" . 21284) nil (21317 . 21329) nil ("
+" . 21317) (21318 . 21319) nil (" " . -21318) (21317 . 21318) nil ("
+
+;;;
+;;; OS" . 21317) nil (21304 . 21317) nil (21300 . 21304) nil (21289 . 21300) ("use-pac" . -21289) 21296 nil (21288 . 21296) nil (21287 . 21288) nil (21284 . 21287) nil (21283 . 21284) nil (25556 . 25558) ("  " . 25555) (25557 . 25558) (t 23374 55597 92435 196000) nil ("
+" . 21284) nil ("
+" . 21284) nil ("(winpoint-mode 1)" . 21284) nil ("
+" . 21284) nil (";;;winpoint" . 21284) nil ("
+" . 21315) nil ("(use-package all-the-icons)" . 21315) nil ("
+" . 21315) nil (";;; dired icons" . 21315) nil (21315 . 21330) nil (21314 . 21315) nil (nil rear-nonsticky nil 21341 . 21342) (nil fontified nil 21315 . 21342) (21315 . 21342) nil (21314 . 21316) nil ("x" . -1591) 1592 nil (1591 . 1592) (t 23373 35423 267375 420000) nil ("a" . -21390) 21391 nil (21390 . 21391) nil (nil rear-nonsticky nil 21312 . 21313) (nil fontified nil 21296 . 21313) (21296 . 21313) nil (21295 . 21296) nil (21284 . 21295) nil (21283 . 21285) (t 23370 56821 518013 0) nil (26718 . 26719) (t 23370 56792 666013 0) nil ("(setq-default save-place t)" . 19704) nil (nil rear-nonsticky nil 19703 . 19704) (nil fontified nil 19685 . 19704) (19685 . 19704) (t 23370 56726 510013 0) nil ("
 " . 21262) nil (nil rear-nonsticky nil 21261 . 21262) (nil fontified nil 20911 . 21262) (20911 . 21262) nil ("  " . 20911) (20911 . 20913) (20911 . 20912) (t 23370 54669 14013 0) nil ("
 " . 20884) ("
 " . 20884) nil (20859 . 20860) nil (" " . -20859) 20860 nil (20859 . 20860) nil ("

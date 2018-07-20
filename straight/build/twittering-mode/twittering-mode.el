@@ -1,0 +1,1 @@
+/home/tsubasa/.emacs.d/straight/repos/twittering-mode/twittering-mode.el
