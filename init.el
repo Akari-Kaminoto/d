@@ -727,6 +727,13 @@
   :config
   (global-set-key "\M-y" 'popup-kill-ring))
 
+;;; popup-switcher
+(use-package popup-switcher
+  :config
+  (global-set-key (kbd "\C-x b") 'psw-switch-buffer)
+  (global-set-key [f3] 'psw-switch-function)
+  (setq psw-popup-menu-max-length 15))
+
 ;;;
 ;;; OS によって設定を切り替える例
 ;;;

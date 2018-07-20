@@ -1,12 +1,47 @@
 
-((digest . "5353d9229965b4cd3a01381bc9807e87") (undo-list nil (";;;
+((digest . "f69d1d27e483f9d416cfbd7528c2f42d") (undo-list nil ("c" . -21471) ((marker . 21471) . -1) ((marker) . -1) 21472 nil (21469 . 21471) nil (21475 . 21476) nil (21463 . 21464) nil (21468 . 21469) nil ("C" . -21468) ((marker . 21471) . -1) 21469 nil ("s" . -21473) ((marker . 21471) . -1) ((marker) . -1) 21474 nil (21472 . 21473) nil ("c" . -21471) ((marker . 21471) . -1) ((marker) . -1) 21472 nil (21470 . 21471) nil ("\"" . 21474) ((marker . 21476) . -1) ("b" . 21474) ("x" . 21474) ("-" . 21474) ("c" . 21474) ("\\" . 21474) ((marker . 21471) . -1) ("\"" . 21474) nil (nil rear-nonsticky nil 21473 . 21474) (nil fontified nil 21472 . 21474) (nil fontified nil 21471 . 21472) (nil fontified nil 21467 . 21471) (nil fontified nil 21466 . 21467) (nil fontified nil 21463 . 21466) (21463 . 21474) nil (21465 . 21466) nil ("C" . -21465) ((marker . 21471) . -1) 21466 nil (21464 . 21465) nil ("[f2]" . -21469) ((marker . 21471) . -4) ((marker) . -4) ((marker*) . 1) ((marker) . -4) ((marker*) . 4) ((marker) . -1) 21473 nil (21463 . 21469) (t 23377 38985 972972 964000) nil (21284 . 21931) (";;; popup-kill-ring
+(use-package popup-kill-ring
+  :config
+  (global-set-key \"\\M-y\" 'popup-kill-ring))
+
+;;; popup-switcher
+(use-package popup-switcher
+  :config
+  (global-set-key [f2] 'psw-switch-buffer)
+  (global-set-key [f3] 'psw-switch-function)
+  (setq psw-popup-menu-max-length 15))
+
+;;;
 ;;; OS によって設定を切り替える例
 ;;;
-" . 21387) ((marker . 21387) . -29) ((marker . 21513) . -25) ((marker . 21513) . -25) ((marker . 21387) . -29) ((marker . 21486) . -29) ((marker . 21486) . -29) ((marker . 21516) . -4) ((marker . 21516) . -4) ((marker . 21387) . -29) (nil fontified t 21390 . 21391) (nil fontified t 21398 . 21412) (nil rear-nonsticky t 21415 . 21416) nil (nil rear-nonsticky nil 21415 . 21416) (nil fontified nil 21415 . 21416) (nil fontified nil 21412 . 21415) (nil fontified nil 21398 . 21412) (nil fontified nil 21397 . 21398) (nil fontified nil 21395 . 21397) (nil fontified nil 21394 . 21395) (nil fontified nil 21391 . 21394) (nil fontified nil 21390 . 21391) (nil fontified nil 21387 . 21390) (21387 . 21416) nil ("
-" . 21387) ((marker . 21388) . -1) ((marker* . 21387) . 1) ((marker* . 21387) . 1) ((marker . 21516) . -1) ((marker . 21516) . -1) nil ("  
-" . 21387) ((marker . 21388) . -3) ((marker . 21387) . -3) ((marker . 21388) . -3) ((marker . 21388) . -3) ((marker . 21387) . -3) ((marker . 21387) . -2) ((marker . 21387) . -2) nil ("
-" . 21390) ((marker . 21388) . -1) ((marker . 21387) . -1) (t 23377 31578 736018 0) nil (21385 . 21386) nil (21386 . 21388) (" " . 21385) ((marker . 21387) . -1) (21386 . 21387) nil (nil rear-nonsticky nil 21385 . 21386) (nil fontified nil 21345 . 21386) (21345 . 21386) nil (21342 . 21345) nil (21335 . 21342) nil (21332 . 21335) nil (21322 . 21323) nil ("^" . -21322) ((marker . 21387) . -1) ("-" . -21323) ((marker . 21387) . -1) 21324 nil (21318 . 21324) nil ("p" . -21318) ((marker . 21387) . -1) 21319 nil (21318 . 21319) nil ("p" . -21318) ((marker . 21387) . -1) 21319 nil (21317 . 21319) nil (21311 . 21326) nil (21304 . 21311) nil ("
-" . -21304) ((marker . 21387) . -1) ((marker . 21387) . -1) 21305 nil (21303 . 21305) nil (21300 . 21303) nil ("e" . -21300) ((marker . 21387) . -1) 21301 nil (21293 . 21301) nil ("^" . -21293) ((marker . 21387) . -1) ("-" . -21294) ((marker . 21387) . -1) 21295 nil (21287 . 21295) nil ("p" . -21288) ((marker . 21387) . -1) ("o" . -21289) ((marker . 21387) . -1) ("p" . -21290) ((marker . 21387) . -1) 21291 nil (21288 . 21291) nil (21287 . 21290) nil (21284 . 21287) (t 23375 6790 346807 600000) nil ("
+                          
+(when (eq system-type 'windows-nt) ; Windows
+
+;;;
+;;; IME関連の設定
+;;;
+
+;; Windows-patchVerでも動くように
+  
+;;;** 標準IMEの設定
+(when (locate-library \"w32-ime\")
+  (progn
+
+    (setq default-input-method \"W32-IME\")
+    
+;;;** IMEの初期化
+    (w32-ime-initialize)
+    
+;;;** IME状態のモードライン表示
+    (setq-default w32-ime-mode-line-state-indicator \"[--]\")
+" . 21284) ((marker . 21471) . -390) ((marker . 21471) . -390) ((marker . 21582) . -440) ((marker . 21582) . -440) ((marker . 21445) . -390) ((marker . 21498) . -391) 21674 nil (21602 . 21628) 21648 (t 23377 38985 972972 964000) nil (")" . -21571) (")" . -21572) (")" . -21573) (")" . -21574) (")" . -21575) (")" . -21576) (")" . -21577) (")" . -21578) 21579 nil (21570 . 21579) nil (nil rear-nonsticky nil 21569 . 21570) (nil fontified nil 21535 . 21570) (21535 . 21570) nil (21532 . 21535) nil (nil rear-nonsticky nil 21531 . 21532) (nil fontified nil 21490 . 21532) (21490 . 21532) nil (21487 . 21490) nil (nil rear-nonsticky nil 21486 . 21487) (nil fontified nil 21447 . 21487) (21447 . 21487) nil (21444 . 21447) nil (21437 . 21444) nil (21434 . 21437) nil (21427 . 21434) nil ("h" . -21427) ("i" . -21428) 21429 nil (21420 . 21429) nil (21419 . 21420) nil (21408 . 21419) ("use-pac" . -21408) 21415 nil (21407 . 21415) nil (21406 . 21407) nil (21405 . 21406) nil ("s" . -21405) 21406 nil (21405 . 21406) nil (21404 . 21405) nil (21399 . 21404) nil ("i" . -21399) ("w" . -21400) 21401 nil (21392 . 21401) nil (21388 . 21392) nil (21387 . 21389) (t 23377 31717 472018 0) nil (";;;
+;;; OS によって設定を切り替える例
+;;;
+" . 21387) (nil fontified t 21390 . 21391) (nil fontified t 21398 . 21412) (nil rear-nonsticky t 21415 . 21416) nil (nil rear-nonsticky nil 21415 . 21416) (nil fontified nil 21415 . 21416) (nil fontified nil 21412 . 21415) (nil fontified nil 21398 . 21412) (nil fontified nil 21397 . 21398) (nil fontified nil 21395 . 21397) (nil fontified nil 21394 . 21395) (nil fontified nil 21391 . 21394) (nil fontified nil 21390 . 21391) (nil fontified nil 21387 . 21390) (21387 . 21416) nil ("
+" . 21387) nil ("  
+" . 21387) nil ("
+" . 21390) (t 23377 31578 736018 0) nil (21385 . 21386) nil (21386 . 21388) (" " . 21385) (21386 . 21387) nil (nil rear-nonsticky nil 21385 . 21386) (nil fontified nil 21345 . 21386) (21345 . 21386) nil (21342 . 21345) nil (21335 . 21342) nil (21332 . 21335) nil (21322 . 21323) nil ("^" . -21322) ("-" . -21323) 21324 nil (21318 . 21324) nil ("p" . -21318) 21319 nil (21318 . 21319) nil ("p" . -21318) 21319 nil (21317 . 21319) nil (21311 . 21326) nil (21304 . 21311) nil ("
+" . -21304) 21305 nil (21303 . 21305) nil (21300 . 21303) nil ("e" . -21300) 21301 nil (21293 . 21301) nil ("^" . -21293) ("-" . -21294) 21295 nil (21287 . 21295) nil ("p" . -21288) ("o" . -21289) ("p" . -21290) 21291 nil (21288 . 21291) nil (21287 . 21290) nil (21284 . 21287) (t 23375 6790 346807 600000) nil ("
 " . 21284) nil ("use-package twittering-mode)" . 21284) nil ("(" . 21284) nil ("
 " . 21284) nil (";;;" . 21284) nil (21317 . 21329) nil ("
 " . 21317) (21318 . 21319) nil (" " . -21318) (21317 . 21318) nil ("

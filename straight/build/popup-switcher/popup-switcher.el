@@ -1,0 +1,1 @@
+/home/tsubasa/.emacs.d/straight/repos/popup-switcher/popup-switcher.el
