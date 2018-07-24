@@ -1,0 +1,1 @@
+/home/tsubasa/.emacs.d/straight/repos/ergoemacs-status/ergoemacs-status.el

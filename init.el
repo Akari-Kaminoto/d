@@ -734,6 +734,18 @@
   (global-set-key [f3] 'psw-switch-function)
   (setq psw-popup-menu-max-length 15))
 
+;;; move-text
+;;; M-↑ M-↓で現在行やリージョンを移動
+(use-package move-text
+  :config
+  (move-text-default-bindings))
+
+;;; darkroom
+;;; 集中してもの書く時用に
+;;; 余計なモード行とかが消えて文字が大きくなる
+;;; M-x darkroom-modeでOn/OFFを切り替える
+(use-package darkroom)
+
 ;;;
 ;;; OS によって設定を切り替える例
 ;;;
