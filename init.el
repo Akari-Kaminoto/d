@@ -579,7 +579,37 @@
 ;;; yank や undoした時のリージョンをハイライト表示
 (use-package volatile-highlights
   :init
-  (volatile-highlights-mode t))
+  (volatile-highlights-mode t)
+  :config
+  ;; ふわっとエフェクトの追加（ペースト時の色 => カーソル色 => 本来色）
+         (defun my:vhl-change-color ()
+           (let
+               ((next 0.2)
+                (reset 0.5)
+                (colors '("#F8D3D7" "#F2DAE1" "#EBE0EB" "#E5E7F5" "#DEEDFF")))
+             (dolist (color colors)
+               (run-at-time next nil
+                            'set-face-attribute
+                            'vhl/default-face
+                            nil :foreground "#FF3333" :background color)
+               (setq next (+ 0.05 next)))
+             (run-at-time reset nil 'vhl/clear-all))
+           (set-face-attribute 'vhl/default-face
+                               nil :foreground "#FF3333"
+                               :background "#FFCDCD"))
+
+         (defun my:yank (&optional ARG)
+           (interactive)
+           (yank ARG)
+           (my:vhl-change-color))
+         (global-set-key (kbd "M-v") 'my:yank)
+         (global-set-key (kbd "C-y") 'my:yank)
+
+         (with-eval-after-load "org"
+           (define-key org-mode-map (kbd "C-y")
+             '(lambda () (interactive)
+                (org-yank)
+                (my:vhl-change-color)))))
 
 ;;; smoooth-scroll
 ;;; スクロールをスムーズに
