@@ -5,7 +5,7 @@ gnu/bsd
 
 "26.1"
 
-#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ("2018-07-09 17:47:46+0900" ("emacs") (:type git :host github :repo "raxod502/straight.el" :files ("straight*.el") :branch "master" :package "straight" :local-repo "straight.el")) "use-package" ("2018-07-09 17:46:25+0900" ("emacs" "bind-key") (:type git :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el")) :host github :repo "jwiegley/use-package" :package "use-package" :local-repo "use-package")) "bind-key" ("2018-07-09 17:46:23+0900" nil (:files ("bind-key.el") :package "bind-key" :local-repo "use-package" :type git :repo "jwiegley/use-package" :host github)) "rainbow-delimiters" ("2018-07-09 17:46:28+0900" nil (:type git :host github :repo "Fanael/rainbow-delimiters" :package "rainbow-delimiters" :local-repo "rainbow-delimiters")) "neotree" ("2018-07-09 17:46:29+0900" ("cl-lib") (:type git :files (:defaults "icons") :host github :repo "jaypei/emacs-neotree" :package "neotree" :local-repo "emacs-neotree")) "cl-lib" ("2018-07-09 17:46:29+0900" nil (:files ("packages/cl-lib/*.el") :local-repo "elpa" :package "cl-lib" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "volatile-highlights" ("2018-07-09 17:46:29+0900" nil (:type git :host github :repo "k-talo/volatile-highlights.el" :package "volatile-highlights" :local-repo "volatile-highlights.el")) "smooth-scroll" ("2018-07-09 17:46:29+0900" nil (:type git :host github :repo "k-talo/smooth-scroll.el" :package "smooth-scroll" :local-repo "smooth-scroll.el")) "hlinum" ("2018-07-09 17:46:29+0900" ("cl-lib") (:type git :host github :repo "tom-tan/hlinum-mode" :package "hlinum" :local-repo "hlinum-mode")) "undohist" ("2018-07-09 17:46:29+0900" ("cl-lib") (:type git :host github :repo "m2ym/undohist-el" :package "undohist" :local-repo "undohist-el")) "anzu" ("2018-07-09 17:46:30+0900" ("emacs") (:type git :host github :repo "syohex/emacs-anzu" :package "anzu" :local-repo "emacs-anzu")) "shell-pop" ("2018-07-09 17:46:30+0900" ("emacs" "cl-lib") (:type git :host github :repo "kyagi/shell-pop-el" :package "shell-pop" :local-repo "shell-pop-el")) "web-mode" ("2018-07-09 17:46:30+0900" ("emacs") (:type git :host github :repo "fxbois/web-mode" :package "web-mode" :local-repo "web-mode")) "beacon" ("2018-07-09 17:46:31+0900" ("seq") (:type git :host github :repo "Malabarba/beacon" :package "beacon" :local-repo "beacon")) "seq" ("2018-07-09 17:46:31+0900" nil (:files ("packages/seq/*.el") :local-repo "elpa" :package "seq" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "mozc" ("2018-07-09 17:46:31+0900" nil (:type git :files ("src/unix/emacs/mozc.el") :host github :repo "google/mozc" :package "mozc" :local-repo "mozc")) "helm" ("2018-07-09 17:48:00+0900" ("emacs" "async" "popup" "helm-core") (:type git :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el")) :host github :repo "emacs-helm/helm" :package "helm" :local-repo "helm")) "async" ("2018-07-09 17:47:51+0900" nil (:type git :host github :repo "jwiegley/emacs-async" :package "async" :local-repo "emacs-async")) "popup" ("2018-07-09 17:47:51+0900" ("cl-lib") (:type git :files ("popup.el") :host github :repo "auto-complete/popup-el" :package "popup" :local-repo "popup-el")) "helm-core" ("2018-07-09 17:47:52+0900" ("emacs" "async") (:files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el") :package "helm-core" :local-repo "helm" :type git :repo "emacs-helm/helm" :host github)) "flycheck" ("2018-07-09 17:48:03+0900" ("dash" "pkg-info" "let-alist" "seq" "emacs") (:type git :host github :repo "flycheck/flycheck" :package "flycheck" :local-repo "flycheck")) "dash" ("2018-07-09 17:48:01+0900" nil (:type git :files ("dash.el") :host github :repo "magnars/dash.el" :package "dash" :local-repo "dash.el")) "pkg-info" ("2018-07-09 17:48:02+0900" ("epl") (:type git :host github :repo "lunaryorn/pkg-info.el" :package "pkg-info" :local-repo "pkg-info.el")) "epl" ("2018-07-09 17:48:02+0900" ("cl-lib") (:type git :host github :repo "cask/epl" :package "epl" :local-repo "epl")) "ace-isearch" ("2018-07-09 17:48:03+0900" ("emacs") (:type git :host github :repo "tam17aki/ace-isearch" :package "ace-isearch" :local-repo "ace-isearch")) "dired-du" ("2018-07-09 17:48:04+0900" ("emacs" "cl-lib") (:files ("packages/dired-du/*.el") :local-repo "elpa" :package "dired-du" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "japanese-holidays" ("2018-07-15 13:57:52+0900" ("cl-lib") (:type git :host github :repo "emacs-jp/japanese-holidays" :package "japanese-holidays" :local-repo "japanese-holidays")) "rainbow-mode" ("2018-07-15 14:00:59+0900" nil (:files ("packages/rainbow-mode/*.el") :local-repo "elpa" :package "rainbow-mode" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "twittering-mode" ("2018-07-18 19:44:38+0900" nil (:type git :host github :repo "hayamiz/twittering-mode" :package "twittering-mode" :local-repo "twittering-mode")) "popup-kill-ring" ("2018-07-20 15:04:28+0900" ("popup" "pos-tip") (:type git :host github :repo "waymondo/popup-kill-ring" :package "popup-kill-ring" :local-repo "popup-kill-ring")) "pos-tip" ("2018-07-20 15:12:41+0900" nil (:type git :host github :repo "pitkali/pos-tip" :package "pos-tip" :local-repo "pos-tip")) "popup-switcher" ("2018-07-20 17:09:16+0900" ("cl-lib" "popup") (:type git :host github :repo "kostafey/popup-switcher" :package "popup-switcher" :local-repo "popup-switcher")) "ergoemacs-status" ("2018-07-24 14:24:49+0900" ("powerline" "mode-icons") (:type git :host github :repo "ergoemacs/ergoemacs-status" :package "ergoemacs-status" :local-repo "ergoemacs-status")) "powerline" ("2018-07-24 14:24:47+0900" ("cl-lib") (:type git :host github :repo "milkypostman/powerline" :package "powerline" :local-repo "powerline")) "mode-icons" ("2018-07-24 14:32:54+0900" ("emacs" "cl-lib") (:type git :files ("*.el" "icons") :host github :repo "ryuslash/mode-icons" :package "mode-icons" :local-repo "mode-icons")) "move-text" ("2018-07-24 15:25:34+0900" nil (:type git :host github :repo "emacsfodder/move-text" :package "move-text" :local-repo "move-text")) "darkroom" ("2018-07-24 15:25:34+0900" ("cl-lib") (:files ("packages/darkroom/*.el") :local-repo "elpa" :package "darkroom" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git"))))
+#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ("2018-07-09 17:47:46+0900" ("emacs") (:type git :host github :repo "raxod502/straight.el" :files ("straight*.el") :branch "master" :package "straight" :local-repo "straight.el")) "use-package" ("2018-07-09 17:46:25+0900" ("emacs" "bind-key") (:type git :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el")) :host github :repo "jwiegley/use-package" :package "use-package" :local-repo "use-package")) "bind-key" ("2018-07-09 17:46:23+0900" nil (:files ("bind-key.el") :package "bind-key" :local-repo "use-package" :type git :repo "jwiegley/use-package" :host github)) "rainbow-delimiters" ("2018-07-09 17:46:28+0900" nil (:type git :host github :repo "Fanael/rainbow-delimiters" :package "rainbow-delimiters" :local-repo "rainbow-delimiters")) "neotree" ("2018-07-09 17:46:29+0900" ("cl-lib") (:type git :files (:defaults "icons") :host github :repo "jaypei/emacs-neotree" :package "neotree" :local-repo "emacs-neotree")) "cl-lib" ("2018-07-09 17:46:29+0900" nil (:files ("packages/cl-lib/*.el") :local-repo "elpa" :package "cl-lib" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "volatile-highlights" ("2018-07-09 17:46:29+0900" nil (:type git :host github :repo "k-talo/volatile-highlights.el" :package "volatile-highlights" :local-repo "volatile-highlights.el")) "smooth-scroll" ("2018-07-09 17:46:29+0900" nil (:type git :host github :repo "k-talo/smooth-scroll.el" :package "smooth-scroll" :local-repo "smooth-scroll.el")) "hlinum" ("2018-07-09 17:46:29+0900" ("cl-lib") (:type git :host github :repo "tom-tan/hlinum-mode" :package "hlinum" :local-repo "hlinum-mode")) "undohist" ("2018-07-09 17:46:29+0900" ("cl-lib") (:type git :host github :repo "m2ym/undohist-el" :package "undohist" :local-repo "undohist-el")) "anzu" ("2018-07-09 17:46:30+0900" ("emacs") (:type git :host github :repo "syohex/emacs-anzu" :package "anzu" :local-repo "emacs-anzu")) "shell-pop" ("2018-07-09 17:46:30+0900" ("emacs" "cl-lib") (:type git :host github :repo "kyagi/shell-pop-el" :package "shell-pop" :local-repo "shell-pop-el")) "web-mode" ("2018-07-09 17:46:30+0900" ("emacs") (:type git :host github :repo "fxbois/web-mode" :package "web-mode" :local-repo "web-mode")) "beacon" ("2018-07-09 17:46:31+0900" ("seq") (:type git :host github :repo "Malabarba/beacon" :package "beacon" :local-repo "beacon")) "seq" ("2018-07-09 17:46:31+0900" nil (:files ("packages/seq/*.el") :local-repo "elpa" :package "seq" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "mozc" ("2018-07-09 17:46:31+0900" nil (:type git :files ("src/unix/emacs/mozc.el") :host github :repo "google/mozc" :package "mozc" :local-repo "mozc")) "helm" ("2018-07-09 17:48:00+0900" ("emacs" "async" "popup" "helm-core") (:type git :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el")) :host github :repo "emacs-helm/helm" :package "helm" :local-repo "helm")) "async" ("2018-07-09 17:47:51+0900" nil (:type git :host github :repo "jwiegley/emacs-async" :package "async" :local-repo "emacs-async")) "popup" ("2018-07-09 17:47:51+0900" ("cl-lib") (:type git :files ("popup.el") :host github :repo "auto-complete/popup-el" :package "popup" :local-repo "popup-el")) "helm-core" ("2018-07-09 17:47:52+0900" ("emacs" "async") (:files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el") :package "helm-core" :local-repo "helm" :type git :repo "emacs-helm/helm" :host github)) "flycheck" ("2018-07-09 17:48:03+0900" ("dash" "pkg-info" "let-alist" "seq" "emacs") (:type git :host github :repo "flycheck/flycheck" :package "flycheck" :local-repo "flycheck")) "dash" ("2018-07-09 17:48:01+0900" nil (:type git :files ("dash.el") :host github :repo "magnars/dash.el" :package "dash" :local-repo "dash.el")) "pkg-info" ("2018-07-09 17:48:02+0900" ("epl") (:type git :host github :repo "lunaryorn/pkg-info.el" :package "pkg-info" :local-repo "pkg-info.el")) "epl" ("2018-07-09 17:48:02+0900" ("cl-lib") (:type git :host github :repo "cask/epl" :package "epl" :local-repo "epl")) "ace-isearch" ("2018-07-09 17:48:03+0900" ("emacs") (:type git :host github :repo "tam17aki/ace-isearch" :package "ace-isearch" :local-repo "ace-isearch")) "dired-du" ("2018-07-09 17:48:04+0900" ("emacs" "cl-lib") (:files ("packages/dired-du/*.el") :local-repo "elpa" :package "dired-du" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "japanese-holidays" ("2018-07-15 13:57:52+0900" ("cl-lib") (:type git :host github :repo "emacs-jp/japanese-holidays" :package "japanese-holidays" :local-repo "japanese-holidays")) "rainbow-mode" ("2018-07-15 14:00:59+0900" nil (:files ("packages/rainbow-mode/*.el") :local-repo "elpa" :package "rainbow-mode" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "twittering-mode" ("2018-07-18 19:44:38+0900" nil (:type git :host github :repo "hayamiz/twittering-mode" :package "twittering-mode" :local-repo "twittering-mode")) "popup-kill-ring" ("2018-07-20 15:04:28+0900" ("popup" "pos-tip") (:type git :host github :repo "waymondo/popup-kill-ring" :package "popup-kill-ring" :local-repo "popup-kill-ring")) "pos-tip" ("2018-07-20 15:12:41+0900" nil (:type git :host github :repo "pitkali/pos-tip" :package "pos-tip" :local-repo "pos-tip")) "popup-switcher" ("2018-07-20 17:09:16+0900" ("cl-lib" "popup") (:type git :host github :repo "kostafey/popup-switcher" :package "popup-switcher" :local-repo "popup-switcher")) "ergoemacs-status" ("2018-07-24 14:24:49+0900" ("powerline" "mode-icons") (:type git :host github :repo "ergoemacs/ergoemacs-status" :package "ergoemacs-status" :local-repo "ergoemacs-status")) "powerline" ("2018-07-24 14:24:47+0900" ("cl-lib") (:type git :host github :repo "milkypostman/powerline" :package "powerline" :local-repo "powerline")) "mode-icons" ("2018-07-24 14:32:54+0900" ("emacs" "cl-lib") (:type git :files ("*.el" "icons") :host github :repo "ryuslash/mode-icons" :package "mode-icons" :local-repo "mode-icons")) "move-text" ("2018-07-24 15:25:34+0900" nil (:type git :host github :repo "emacsfodder/move-text" :package "move-text" :local-repo "move-text")) "darkroom" ("2018-07-24 15:25:34+0900" ("cl-lib") (:files ("packages/darkroom/*.el") :local-repo "elpa" :package "darkroom" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "undo-tree" ("2018-07-24 15:44:37+0900" nil (:files ("packages/undo-tree/*.el") :local-repo "elpa" :package "undo-tree" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "tabbar" ("2018-07-24 16:16:17+0900" nil (:type git :files ("tabbar.el" "*.png") :host github :repo "dholm/tabbar" :package "tabbar" :local-repo "tabbar"))))
 
 #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ((straight straight-compat straight-x straight-autoloads) (autoload (quote straight-get-recipe) "straight" "Interactively select a recipe from one of the recipe repositories.
 All recipe repositories in `straight-recipe-repositories' will
@@ -1724,8 +1724,128 @@ screen. Text size is increased (display engine allowing) by
 
 (fn &optional ARG)" t nil) (autoload (quote darkroom-tentative-mode) "darkroom" "Enters `darkroom-mode' when all other windows are deleted.
 
-(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "darkroom" (quote ("darkroom-")))) (provide (quote darkroom-autoloads)))))
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "darkroom" (quote ("darkroom-")))) (provide (quote darkroom-autoloads))) "undo-tree" ((undo-tree undo-tree-autoloads) (autoload (quote undo-tree-mode) "undo-tree" "Toggle undo-tree mode.
+With no argument, this command toggles the mode.
+A positive prefix argument turns the mode on.
+A negative prefix argument turns it off.
 
-("org-elpa" "melpa" "gnu-elpa" "emacsmirror" "straight" "use-package" "bind-key" "helm" "async" "popup" "cl-lib" "helm-core" "rainbow-delimiters" "neotree" "volatile-highlights" "smooth-scroll" "hlinum" "undohist" "anzu" "shell-pop" "web-mode" "beacon" "seq" "japanese-holidays" "rainbow-mode" "popup-kill-ring" "pos-tip" "popup-switcher" "move-text" "darkroom" "mozc" "flycheck" "dash" "pkg-info" "epl" "ace-isearch" "dired-du")
+Undo-tree-mode replaces Emacs' standard undo feature with a more
+powerful yet easier to use version, that treats the undo history
+as what it is: a tree.
+
+The following keys are available in `undo-tree-mode':
+
+  \\{undo-tree-map}
+
+Within the undo-tree visualizer, the following keys are available:
+
+  \\{undo-tree-visualizer-mode-map}
+
+(fn &optional ARG)" t nil) (defvar global-undo-tree-mode nil "Non-nil if Global Undo-Tree mode is enabled.
+See the `global-undo-tree-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `global-undo-tree-mode'.") (custom-autoload (quote global-undo-tree-mode) "undo-tree" nil) (autoload (quote global-undo-tree-mode) "undo-tree" "Toggle Undo-Tree mode in all buffers.
+With prefix ARG, enable Global Undo-Tree mode if ARG is positive;
+otherwise, disable it.  If called from Lisp, enable the mode if
+ARG is omitted or nil.
+
+Undo-Tree mode is enabled in all buffers where
+`turn-on-undo-tree-mode' would do it.
+See `undo-tree-mode' for more information on Undo-Tree mode.
+
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "undo-tree" (quote ("undo-" "turn-on-undo-tree-mode" "*undo-tree-id-counter*" "buffer-undo-tree")))) (provide (quote undo-tree-autoloads))) "tabbar" ((tabbar-autoloads tabbar) (autoload (quote tabbar-backward) "tabbar" "Select the previous available tab.
+Depend on the setting of the option `tabbar-cycle-scope'.
+
+(fn)" t nil) (autoload (quote tabbar-forward) "tabbar" "Select the next available tab.
+Depend on the setting of the option `tabbar-cycle-scope'.
+
+(fn)" t nil) (autoload (quote tabbar-backward-group) "tabbar" "Go to selected tab in the previous available group.
+
+(fn)" t nil) (autoload (quote tabbar-forward-group) "tabbar" "Go to selected tab in the next available group.
+
+(fn)" t nil) (autoload (quote tabbar-backward-tab) "tabbar" "Select the previous visible tab.
+
+(fn)" t nil) (autoload (quote tabbar-forward-tab) "tabbar" "Select the next visible tab.
+
+(fn)" t nil) (autoload (quote tabbar-press-home) "tabbar" "Press the tab bar home button.
+That is, simulate a mouse click on that button.
+A numeric prefix ARG value of 2, or 3, respectively simulates a
+mouse-2, or mouse-3 click.  The default is a mouse-1 click.
+
+(fn &optional ARG)" t nil) (autoload (quote tabbar-press-scroll-left) "tabbar" "Press the tab bar scroll-left button.
+That is, simulate a mouse click on that button.
+A numeric prefix ARG value of 2, or 3, respectively simulates a
+mouse-2, or mouse-3 click.  The default is a mouse-1 click.
+
+(fn &optional ARG)" t nil) (autoload (quote tabbar-press-scroll-right) "tabbar" "Press the tab bar scroll-right button.
+That is, simulate a mouse click on that button.
+A numeric prefix ARG value of 2, or 3, respectively simulates a
+mouse-2, or mouse-3 click.  The default is a mouse-1 click.
+
+(fn &optional ARG)" t nil) (autoload (quote tabbar-mwheel-backward) "tabbar" "Select the previous available tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-backward'.
+
+(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-forward) "tabbar" "Select the next available tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-forward'.
+
+(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-backward-group) "tabbar" "Go to selected tab in the previous available group.
+If there is only one group, select the previous visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-backward-group'.
+
+(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-forward-group) "tabbar" "Go to selected tab in the next available group.
+If there is only one group, select the next visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-forward-group'.
+
+(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-backward-tab) "tabbar" "Select the previous visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-backward-tab'.
+
+(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-forward-tab) "tabbar" "Select the next visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-forward-tab'.
+
+(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-switch-tab) "tabbar" "Select the next or previous tab according to EVENT.
+
+(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-switch-group) "tabbar" "Select the next or previous group of tabs according to EVENT.
+
+(fn EVENT)" t nil) (autoload (quote tabbar-local-mode) "tabbar" "Toggle local display of the tab bar.
+With prefix argument ARG, turn on if positive, otherwise off.
+Returns non-nil if the new state is enabled.
+When turned on, if a local header line is shown, it is hidden to show
+the tab bar.  The tab bar is locally hidden otherwise.  When turned
+off, if a local header line is hidden or the tab bar is locally
+hidden, it is shown again.  Signal an error if Tabbar mode is off.
+
+(fn &optional ARG)" t nil) (defvar tabbar-mode nil "Non-nil if Tabbar mode is enabled.
+See the `tabbar-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `tabbar-mode'.") (custom-autoload (quote tabbar-mode) "tabbar" nil) (autoload (quote tabbar-mode) "tabbar" "Toggle display of a tab bar in the header line.
+With prefix argument ARG, turn on if positive, otherwise off.
+Returns non-nil if the new state is enabled.
+
+\\{tabbar-mode-map}
+
+(fn &optional ARG)" t nil) (defvar tabbar-mwheel-mode nil "Non-nil if Tabbar-Mwheel mode is enabled.
+See the `tabbar-mwheel-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `tabbar-mwheel-mode'.") (custom-autoload (quote tabbar-mwheel-mode) "tabbar" nil) (autoload (quote tabbar-mwheel-mode) "tabbar" "Toggle use of the mouse wheel to navigate through tabs or groups.
+With prefix argument ARG, turn on if positive, otherwise off.
+Returns non-nil if the new state is enabled.
+
+\\{tabbar-mwheel-mode-map}
+
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "tabbar" (quote ("tabbar-")))) (provide (quote tabbar-autoloads)))))
+
+("org-elpa" "melpa" "gnu-elpa" "emacsmirror" "straight" "use-package" "bind-key" "helm" "async" "popup" "cl-lib" "helm-core" "rainbow-delimiters" "neotree" "volatile-highlights" "smooth-scroll" "hlinum" "undohist" "anzu" "shell-pop" "web-mode" "beacon" "seq" "japanese-holidays" "rainbow-mode" "popup-kill-ring" "pos-tip" "popup-switcher" "move-text" "darkroom" "undo-tree" "mozc" "flycheck" "dash" "pkg-info" "epl" "ace-isearch" "dired-du")
 
 t

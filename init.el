@@ -576,6 +576,7 @@
    ))
 
 ;;; volatile-highlight
+;;; yank や undoした時のリージョンをハイライト表示
 (use-package volatile-highlights
   :init
   (volatile-highlights-mode t))
@@ -622,7 +623,7 @@
 
 
 ;;; web mode
-;;; HTMLモードではhtmlの中のJAVASCRIPTなどが色分けされないので導入
+;;; HTMLモードではhtmlの中のjavascriptなどが色分けされないので導入
 ;;; http://web-mode.org/
 ;;; http://yanmoo.blogspot.jp/2013/06/html5web-mode.html
 (use-package web-mode
@@ -745,6 +746,76 @@
 ;;; 余計なモード行とかが消えて文字が大きくなる
 ;;; M-x darkroom-modeでOn/OFFを切り替える
 (use-package darkroom)
+
+;;
+;; undo-tree
+;;
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode))
+
+;;;
+;;; tabbar
+;;;
+;; (use-package tabbar
+;;   :config
+;;   (tabbar-mode)
+
+;;   (tabbar-mwheel-mode nil)                  ;; マウスホイール無効
+;;   (setq tabbar-buffer-groups-function nil)  ;; グループ無効
+;;   (setq tabbar-use-images nil)              ;; 画像を使わない
+;;   ;;----- キーに割り当てる
+;;   (global-set-key (kbd "<C-tab>") 'tabbar-forward-tab)
+;;   (global-set-key (kbd "<C-S-tab>") 'tabbar-backward-tab)
+  
+  
+;;   ;;----- 左側のボタンを消す
+;;   (dolist (btn '(tabbar-buffer-home-button
+;;                  tabbar-scroll-left-button
+;;                  tabbar-scroll-right-button))
+;;     (set btn (cons (cons "" nil)
+;;                    (cons "" nil))))
+  
+  
+;;   ;;----- タブのセパレーターの長さ
+;;   (setq tabbar-separator '(2.0))
+  
+  
+;;   ;;----- タブの色（CUIの時。GUIの時は後でカラーテーマが適用）
+;;   (set-face-attribute
+;;    'tabbar-default nil
+;;    :background "brightblue"
+;;    :foreground "white"
+;;    )
+;;   (set-face-attribute
+;;    'tabbar-selected nil
+;;    :background "#ff5f00"
+;;  :foreground "brightwhite"
+;;  :box nil
+;;  )
+;;   (set-face-attribute
+;;    'tabbar-modified nil
+;;    :background "brightred"
+;;    :foreground "brightwhite"
+;;    :box nil
+;;    )
+  
+  
+;;   ;;----- 表示するバッファ
+;;   (defun my-tabbar-buffer-list ()
+;;     (delq nil
+;;           (mapcar #'(lambda (b)
+;;                       (cond
+;;                        ;; Always include the current buffer.
+;;                        ((eq (current-buffer) b) b)
+;;                        ((buffer-file-name b) b)
+;;                        ((char-equal ?\  (aref (buffer-name b) 0)) nil)
+;;                        ((equal "*scratch*" (buffer-name b)) b) ; *scratch*バッファは表示する
+;;                        ((char-equal ?* (aref (buffer-name b) 0)) nil) ; それ以外の * で始まるバッファは表示しない
+;;                        ((buffer-live-p b) b)))
+;;                   (buffer-list))))
+;;   (setq tabbar-buffer-list-function 'my-tabbar-buffer-list))
+;;; tabbarは使わない
 
 ;;;
 ;;; OS によって設定を切り替える例
@@ -905,6 +976,10 @@
   (use-package ace-isearch
     :config
     (global-ace-isearch-mode +1)
+    (custom-set-variables
+     '(ace-isearch-function 'avy-goto-char)
+     '(ace-isearch-use-jump 'printing-char))
+
     (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
 
   ;; dired-du

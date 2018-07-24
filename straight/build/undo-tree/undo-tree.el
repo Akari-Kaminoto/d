@@ -1,0 +1,1 @@
+/home/tsubasa/.emacs.d/straight/repos/elpa/packages/undo-tree/undo-tree.el
