@@ -1,0 +1,1 @@
+/home/tsubasa/.emacs.d/straight/repos/emacs-slack/slack-edit-file-comment-buffer.el

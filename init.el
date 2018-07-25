@@ -44,8 +44,10 @@
 
 ;;; package系を使うための設定
 
+;;
 ;; straight.el
-;; 何も考えず公式のREADMEからコピペすればいいコード
+;;
+
 ;; straight.el自身のインストールと初期設定を行ってくれる
 (let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el"))
       (bootstrap-version 3))
@@ -62,7 +64,10 @@
 (straight-use-package 'use-package)
 
 ;; オプションなしで自動的にuse-packageをstraight.elにフォールバックする
-;; 本来は (use-package hoge :straight t) のように書く必要がある
+;; 本来は
+;;(use-package hoge
+;;    :straight t)
+;;のように書く必要がある
 (setq straight-use-package-by-default t)
 
 ;;; use-package 設定
@@ -214,7 +219,7 @@
              ))
 
 (defun my-c-mode-common-conf ()
-  ; ";"や"{"などをを入力した場合現在の行を自動インデントを有功にする
+  ; ";"や"{"などをを入力した場合現在の行を自動インデントを有効にする
   (c-toggle-electric-state 1)
   ; カッコを強調表示する  
   (show-paren-mode t)
@@ -847,6 +852,7 @@
 ;;   (setq tabbar-buffer-list-function 'my-tabbar-buffer-list))
 ;;; tabbarは使わない
 
+
 ;;;
 ;;; OS によって設定を切り替える例
 ;;;
@@ -1025,7 +1031,6 @@
 );;; ここまでMACOS用
 
 ;;;
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -1045,4 +1050,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-

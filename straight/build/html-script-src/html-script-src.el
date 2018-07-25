@@ -1,0 +1,1 @@
+/home/tsubasa/.emacs.d/straight/repos/html-script-src.el/html-script-src.el

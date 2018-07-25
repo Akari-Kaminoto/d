@@ -1,0 +1,1 @@
+/home/tsubasa/.emacs.d/straight/repos/emacs-websocket/websocket.el
