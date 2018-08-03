@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/japanese-holidays/japanese-holidays.el
+/home/ryuichi/.emacs.d/straight/repos/japanese-holidays/japanese-holidays.el

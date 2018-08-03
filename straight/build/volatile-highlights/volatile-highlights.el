@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/volatile-highlights.el/volatile-highlights.el
+/home/ryuichi/.emacs.d/straight/repos/volatile-highlights.el/volatile-highlights.el

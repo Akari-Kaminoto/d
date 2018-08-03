@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/helm/helm-multi-match.el
+/home/ryuichi/.emacs.d/straight/repos/helm/helm-multi-match.el

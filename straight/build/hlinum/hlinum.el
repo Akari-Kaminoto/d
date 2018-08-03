@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/hlinum-mode/hlinum.el
+/home/ryuichi/.emacs.d/straight/repos/hlinum-mode/hlinum.el

@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/rainbow-delimiters/rainbow-delimiters.el
+/home/ryuichi/.emacs.d/straight/repos/rainbow-delimiters/rainbow-delimiters.el

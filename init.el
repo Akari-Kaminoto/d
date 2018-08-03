@@ -10,17 +10,19 @@
 ;;; いらない場合はコメントアウトすること
 
 ;;; Proxy設定
-(setq url-proxy-services
-	'(("http" . "proxy-auth.ntt-el.com:8050")
-	  ("https" . "proxy-auth.ntt-el.com:8050")))
+;; (setq url-proxy-services
+;; 	'(("http" . "proxy-auth.xxxxxx.com:8050")
+;; 	  ("https" . "proxy-auth.xxxxxx.com:8050")))
 
-(setq url-http-proxy-basic-auth-storage
-	'(("proxy-auth.ntt-el.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
+;; (setq url-http-proxy-basic-auth-storage
+;; 	'(("proxy-auth.ntt-el.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
 
 ;; ここまで
 
 ;; 予約語を色分けする
 (global-font-lock-mode t)
+
+;; カーソルカラーを緑に
 (set-cursor-color "green")
 
 
@@ -110,10 +112,13 @@
 (set-terminal-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8-unix)
 (set-buffer-file-coding-system 'utf-8-unix)
-(setq default-buffer-file-coding-system 'utf-8-unix)
+;;(setq default-buffer-file-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
 (setq default-file-name-coding-system 'japanese-shift-jis-dos) ;dired用
+
+;;; hjsonが何故かSJISで開かれてしまうので追加
+(modify-coding-system-alist 'file "\\.*json\\'" 'utf-8) 
 
 ;;; CUI/GUIで分ける設定
 ;;
@@ -951,6 +956,10 @@
 );;; ここまでwindows用
 
 (when (eq system-type 'gnu/linux) ; Unix
+
+  ;; font
+  (set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
+  (add-to-list 'face-font-rescale-alist '(".*Takao P.*" . 0.85)) 
 
   ;;;;;;;;;;;;;;;;;;;;
   ;; Dired 

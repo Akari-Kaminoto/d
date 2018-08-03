@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/helm/helm-mode.el
+/home/ryuichi/.emacs.d/straight/repos/helm/helm-mode.el

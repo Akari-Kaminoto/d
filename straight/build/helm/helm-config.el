@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/helm/helm-config.el
+/home/ryuichi/.emacs.d/straight/repos/helm/helm-config.el

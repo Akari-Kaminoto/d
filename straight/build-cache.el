@@ -5,9 +5,9 @@ gnu/bsd
 
 "26.1"
 
-#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ("2018-07-09 17:47:46+0900" ("emacs") (:type git :host github :repo "raxod502/straight.el" :files ("straight*.el") :branch "master" :package "straight" :local-repo "straight.el")) "use-package" ("2018-07-09 17:46:25+0900" ("emacs" "bind-key") (:type git :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el")) :host github :repo "jwiegley/use-package" :package "use-package" :local-repo "use-package")) "bind-key" ("2018-07-09 17:46:23+0900" nil (:files ("bind-key.el") :package "bind-key" :local-repo "use-package" :type git :repo "jwiegley/use-package" :host github)) "rainbow-delimiters" ("2018-07-09 17:46:28+0900" nil (:type git :host github :repo "Fanael/rainbow-delimiters" :package "rainbow-delimiters" :local-repo "rainbow-delimiters")) "neotree" ("2018-07-09 17:46:29+0900" ("cl-lib") (:type git :files (:defaults "icons") :host github :repo "jaypei/emacs-neotree" :package "neotree" :local-repo "emacs-neotree")) "cl-lib" ("2018-07-09 17:46:29+0900" nil (:files ("packages/cl-lib/*.el") :local-repo "elpa" :package "cl-lib" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "volatile-highlights" ("2018-07-09 17:46:29+0900" nil (:type git :host github :repo "k-talo/volatile-highlights.el" :package "volatile-highlights" :local-repo "volatile-highlights.el")) "smooth-scroll" ("2018-07-09 17:46:29+0900" nil (:type git :host github :repo "k-talo/smooth-scroll.el" :package "smooth-scroll" :local-repo "smooth-scroll.el")) "hlinum" ("2018-07-09 17:46:29+0900" ("cl-lib") (:type git :host github :repo "tom-tan/hlinum-mode" :package "hlinum" :local-repo "hlinum-mode")) "undohist" ("2018-07-09 17:46:29+0900" ("cl-lib") (:type git :host github :repo "m2ym/undohist-el" :package "undohist" :local-repo "undohist-el")) "anzu" ("2018-07-09 17:46:30+0900" ("emacs") (:type git :host github :repo "syohex/emacs-anzu" :package "anzu" :local-repo "emacs-anzu")) "shell-pop" ("2018-07-09 17:46:30+0900" ("emacs" "cl-lib") (:type git :host github :repo "kyagi/shell-pop-el" :package "shell-pop" :local-repo "shell-pop-el")) "web-mode" ("2018-07-09 17:46:30+0900" ("emacs") (:type git :host github :repo "fxbois/web-mode" :package "web-mode" :local-repo "web-mode")) "beacon" ("2018-07-09 17:46:31+0900" ("seq") (:type git :host github :repo "Malabarba/beacon" :package "beacon" :local-repo "beacon")) "seq" ("2018-07-09 17:46:31+0900" nil (:files ("packages/seq/*.el") :local-repo "elpa" :package "seq" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "mozc" ("2018-07-09 17:46:31+0900" nil (:type git :files ("src/unix/emacs/mozc.el") :host github :repo "google/mozc" :package "mozc" :local-repo "mozc")) "helm" ("2018-07-09 17:48:00+0900" ("emacs" "async" "popup" "helm-core") (:type git :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el")) :host github :repo "emacs-helm/helm" :package "helm" :local-repo "helm")) "async" ("2018-07-09 17:47:51+0900" nil (:type git :host github :repo "jwiegley/emacs-async" :package "async" :local-repo "emacs-async")) "popup" ("2018-07-09 17:47:51+0900" ("cl-lib") (:type git :files ("popup.el") :host github :repo "auto-complete/popup-el" :package "popup" :local-repo "popup-el")) "helm-core" ("2018-07-09 17:47:52+0900" ("emacs" "async") (:files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el") :package "helm-core" :local-repo "helm" :type git :repo "emacs-helm/helm" :host github)) "flycheck" ("2018-07-09 17:48:03+0900" ("dash" "pkg-info" "let-alist" "seq" "emacs") (:type git :host github :repo "flycheck/flycheck" :package "flycheck" :local-repo "flycheck")) "dash" ("2018-07-09 17:48:01+0900" nil (:type git :files ("dash.el") :host github :repo "magnars/dash.el" :package "dash" :local-repo "dash.el")) "pkg-info" ("2018-07-09 17:48:02+0900" ("epl") (:type git :host github :repo "lunaryorn/pkg-info.el" :package "pkg-info" :local-repo "pkg-info.el")) "epl" ("2018-07-09 17:48:02+0900" ("cl-lib") (:type git :host github :repo "cask/epl" :package "epl" :local-repo "epl")) "ace-isearch" ("2018-07-09 17:48:03+0900" ("emacs") (:type git :host github :repo "tam17aki/ace-isearch" :package "ace-isearch" :local-repo "ace-isearch")) "dired-du" ("2018-07-09 17:48:04+0900" ("emacs" "cl-lib") (:files ("packages/dired-du/*.el") :local-repo "elpa" :package "dired-du" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "japanese-holidays" ("2018-07-15 13:57:52+0900" ("cl-lib") (:type git :host github :repo "emacs-jp/japanese-holidays" :package "japanese-holidays" :local-repo "japanese-holidays")) "rainbow-mode" ("2018-07-15 14:00:59+0900" nil (:files ("packages/rainbow-mode/*.el") :local-repo "elpa" :package "rainbow-mode" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "twittering-mode" ("2018-07-18 19:44:38+0900" nil (:type git :host github :repo "hayamiz/twittering-mode" :package "twittering-mode" :local-repo "twittering-mode")) "popup-kill-ring" ("2018-07-20 15:04:28+0900" ("popup" "pos-tip") (:type git :host github :repo "waymondo/popup-kill-ring" :package "popup-kill-ring" :local-repo "popup-kill-ring")) "pos-tip" ("2018-07-20 15:12:41+0900" nil (:type git :host github :repo "pitkali/pos-tip" :package "pos-tip" :local-repo "pos-tip")) "popup-switcher" ("2018-07-20 17:09:16+0900" ("cl-lib" "popup") (:type git :host github :repo "kostafey/popup-switcher" :package "popup-switcher" :local-repo "popup-switcher")) "ergoemacs-status" ("2018-07-24 14:24:49+0900" ("powerline" "mode-icons") (:type git :host github :repo "ergoemacs/ergoemacs-status" :package "ergoemacs-status" :local-repo "ergoemacs-status")) "powerline" ("2018-07-24 14:24:47+0900" ("cl-lib") (:type git :host github :repo "milkypostman/powerline" :package "powerline" :local-repo "powerline")) "mode-icons" ("2018-07-24 14:32:54+0900" ("emacs" "cl-lib") (:type git :files ("*.el" "icons") :host github :repo "ryuslash/mode-icons" :package "mode-icons" :local-repo "mode-icons")) "move-text" ("2018-07-24 15:25:34+0900" nil (:type git :host github :repo "emacsfodder/move-text" :package "move-text" :local-repo "move-text")) "darkroom" ("2018-07-24 15:25:34+0900" ("cl-lib") (:files ("packages/darkroom/*.el") :local-repo "elpa" :package "darkroom" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "undo-tree" ("2018-07-24 15:44:37+0900" nil (:files ("packages/undo-tree/*.el") :local-repo "elpa" :package "undo-tree" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "tabbar" ("2018-07-24 16:16:17+0900" nil (:type git :files ("tabbar.el" "*.png") :host github :repo "dholm/tabbar" :package "tabbar" :local-repo "tabbar")) "html-script-src" ("2018-07-25 15:57:57+0900" nil (:type git :host github :repo "rejeep/html-script-src.el" :package "html-script-src" :local-repo "html-script-src.el")) "slack" (nil ("websocket" "request" "oauth2" "circe" "alert" "emojify")) "websocket" ("2018-07-25 16:32:54+0900" ("cl-lib") (:type git :host github :repo "ahyatt/emacs-websocket" :package "websocket" :local-repo "emacs-websocket"))))
+#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ("2018-08-02 10:00:34+0900" ("emacs") (:type git :host github :repo "raxod502/straight.el" :files ("straight*.el") :branch "master" :package "straight" :local-repo "straight.el")) "use-package" ("2018-08-02 10:08:27+0900" ("emacs" "bind-key") (:type git :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el")) :host github :repo "jwiegley/use-package" :package "use-package" :local-repo "use-package")) "bind-key" ("2018-08-02 10:08:27+0900" nil (:files ("bind-key.el") :package "bind-key" :local-repo "use-package" :type git :repo "jwiegley/use-package" :host github)) "helm" ("2018-08-02 10:01:37+0900" ("emacs" "async" "popup" "helm-core") (:type git :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el")) :host github :repo "emacs-helm/helm" :package "helm" :local-repo "helm")) "async" ("2018-08-02 10:08:28+0900" nil (:type git :host github :repo "jwiegley/emacs-async" :package "async" :local-repo "emacs-async")) "popup" ("2018-08-02 10:01:34+0900" ("cl-lib") (:type git :files ("popup.el") :host github :repo "auto-complete/popup-el" :package "popup" :local-repo "popup-el")) "cl-lib" ("2018-08-02 10:08:28+0900" nil (:files ("packages/cl-lib/*.el") :local-repo "elpa" :package "cl-lib" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "helm-core" ("2018-08-02 10:01:34+0900" ("emacs" "async") (:files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el") :package "helm-core" :local-repo "helm" :type git :repo "emacs-helm/helm" :host github)) "rainbow-delimiters" ("2018-08-02 10:08:29+0900" nil (:type git :host github :repo "Fanael/rainbow-delimiters" :package "rainbow-delimiters" :local-repo "rainbow-delimiters")) "neotree" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :files (:defaults "icons") :host github :repo "jaypei/emacs-neotree" :package "neotree" :local-repo "emacs-neotree")) "volatile-highlights" ("2018-08-02 10:02:23+0900" nil (:type git :host github :repo "k-talo/volatile-highlights.el" :package "volatile-highlights" :local-repo "volatile-highlights.el")) "smooth-scroll" ("2018-08-02 10:08:29+0900" nil (:type git :host github :repo "k-talo/smooth-scroll.el" :package "smooth-scroll" :local-repo "smooth-scroll.el")) "hlinum" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :host github :repo "tom-tan/hlinum-mode" :package "hlinum" :local-repo "hlinum-mode")) "undohist" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :host github :repo "m2ym/undohist-el" :package "undohist" :local-repo "undohist-el")) "anzu" ("2018-08-02 10:08:29+0900" ("emacs") (:type git :host github :repo "syohex/emacs-anzu" :package "anzu" :local-repo "emacs-anzu")) "shell-pop" ("2018-08-02 10:08:30+0900" ("emacs" "cl-lib") (:type git :host github :repo "kyagi/shell-pop-el" :package "shell-pop" :local-repo "shell-pop-el")) "web-mode" ("2018-08-02 10:02:37+0900" ("emacs") (:type git :host github :repo "fxbois/web-mode" :package "web-mode" :local-repo "web-mode")) "beacon" ("2018-08-02 10:02:42+0900" ("seq") (:type git :host github :repo "Malabarba/beacon" :package "beacon" :local-repo "beacon")) "seq" ("2018-08-02 10:02:41+0900" nil (:files ("packages/seq/*.el") :local-repo "elpa" :package "seq" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "japanese-holidays" ("2018-08-02 10:08:30+0900" ("cl-lib") (:type git :host github :repo "emacs-jp/japanese-holidays" :package "japanese-holidays" :local-repo "japanese-holidays")) "rainbow-mode" ("2018-08-02 10:02:43+0900" nil (:files ("packages/rainbow-mode/*.el") :local-repo "elpa" :package "rainbow-mode" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "popup-kill-ring" ("2018-08-02 10:02:46+0900" ("popup" "pos-tip") (:type git :host github :repo "waymondo/popup-kill-ring" :package "popup-kill-ring" :local-repo "popup-kill-ring")) "pos-tip" ("2018-08-02 10:08:30+0900" nil (:type git :host github :repo "pitkali/pos-tip" :package "pos-tip" :local-repo "pos-tip")) "popup-switcher" ("2018-08-02 10:02:48+0900" ("cl-lib" "popup") (:type git :host github :repo "kostafey/popup-switcher" :package "popup-switcher" :local-repo "popup-switcher")) "move-text" ("2018-08-02 10:08:30+0900" nil (:type git :host github :repo "emacsfodder/move-text" :package "move-text" :local-repo "move-text")) "darkroom" ("2018-08-02 10:02:50+0900" ("cl-lib") (:files ("packages/darkroom/*.el") :local-repo "elpa" :package "darkroom" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "undo-tree" ("2018-08-02 10:02:51+0900" nil (:files ("packages/undo-tree/*.el") :local-repo "elpa" :package "undo-tree" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "mozc" ("2018-08-02 10:08:31+0900" nil (:type git :files ("src/unix/emacs/mozc.el") :host github :repo "google/mozc" :package "mozc" :local-repo "mozc")) "flycheck" ("2018-08-02 10:06:09+0900" ("dash" "pkg-info" "let-alist" "seq" "emacs") (:type git :host github :repo "flycheck/flycheck" :package "flycheck" :local-repo "flycheck")) "dash" ("2018-08-02 10:08:31+0900" nil (:type git :files ("dash.el") :host github :repo "magnars/dash.el" :package "dash" :local-repo "dash.el")) "pkg-info" ("2018-08-02 10:06:07+0900" ("epl") (:type git :host github :repo "lunaryorn/pkg-info.el" :package "pkg-info" :local-repo "pkg-info.el")) "epl" ("2018-08-02 10:08:31+0900" ("cl-lib") (:type git :host github :repo "cask/epl" :package "epl" :local-repo "epl")) "ace-isearch" ("2018-08-02 10:08:31+0900" ("emacs") (:type git :host github :repo "tam17aki/ace-isearch" :package "ace-isearch" :local-repo "ace-isearch")) "dired-du" ("2018-08-02 10:06:11+0900" ("emacs" "cl-lib") (:files ("packages/dired-du/*.el") :local-repo "elpa" :package "dired-du" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git"))))
 
-#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ((straight straight-compat straight-x straight-autoloads) (autoload (quote straight-get-recipe) "straight" "Interactively select a recipe from one of the recipe repositories.
+#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ((straight-compat straight-autoloads straight straight-x) (autoload (quote straight-get-recipe) "straight" "Interactively select a recipe from one of the recipe repositories.
 All recipe repositories in `straight-recipe-repositories' will
 first be cloned. After the recipe is selected, it will be copied
 to the kill ring. With a prefix argument, first prompt for a
@@ -225,7 +225,7 @@ according to the value of `straight-profiles'.
 
 (fn &optional FORCE)" t nil) (autoload (quote straight-thaw-versions) "straight" "Read version lockfiles and restore package versions to those listed.
 
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "straight" (quote ("straight-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "straight-x" (quote ("straight-x-")))) (provide (quote straight-autoloads))) "bind-key" ((bind-key-autoloads bind-key) (autoload (quote bind-key) "bind-key" "Bind KEY-NAME to COMMAND in KEYMAP (`global-map' if not passed).
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "straight" (quote ("straight-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "straight-x" (quote ("straight-x-")))) (provide (quote straight-autoloads))) "bind-key" ((bind-key bind-key-autoloads) (autoload (quote bind-key) "bind-key" "Bind KEY-NAME to COMMAND in KEYMAP (`global-map' if not passed).
 
 KEY-NAME may be a vector, in which case it is passed straight to
 `define-key'. Or it may be a string to be interpreted as
@@ -269,7 +269,7 @@ function symbol (unquoted).
 
 (fn &rest ARGS)" nil t) (autoload (quote describe-personal-keybindings) "bind-key" "Display all the personal keybindings defined by `bind-key'.
 
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "bind-key" (quote ("compare-keybindings" "get-binding-description" "bind-key" "personal-keybindings" "override-global-m")))) (provide (quote bind-key-autoloads))) "use-package" ((use-package-lint use-package-delight use-package-autoloads use-package use-package-diminish use-package-core use-package-bind-key use-package-jump use-package-ensure) (autoload (quote use-package-autoload-keymap) "use-package-bind-key" "Loads PACKAGE and then binds the key sequence used to invoke
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "bind-key" (quote ("compare-keybindings" "get-binding-description" "bind-key" "personal-keybindings" "override-global-m")))) (provide (quote bind-key-autoloads))) "use-package" ((use-package-diminish use-package-lint use-package-autoloads use-package-jump use-package-core use-package-delight use-package-bind-key use-package use-package-ensure) (autoload (quote use-package-autoload-keymap) "use-package-bind-key" "Loads PACKAGE and then binds the key sequence used to invoke
 this function to KEYMAP-SYMBOL. It then simulates pressing the
 same key sequence a again, so that the next key pressed is routed
 to the newly loaded keymap.
@@ -364,169 +364,7 @@ instead.
 For example, if the module's `:if' condition is met, but even
 with the specified `:load-path' the module cannot be found.
 
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "use-package-lint" (quote ("use-package-lint-declaration")))) (provide (quote use-package-autoloads))) "rainbow-delimiters" ((rainbow-delimiters rainbow-delimiters-autoloads) (autoload (quote rainbow-delimiters-mode) "rainbow-delimiters" "Highlight nested parentheses, brackets, and braces according to their depth.
-
-(fn &optional ARG)" t nil) (autoload (quote rainbow-delimiters-mode-enable) "rainbow-delimiters" "Enable `rainbow-delimiters-mode'.
-
-(fn)" nil nil) (autoload (quote rainbow-delimiters-mode-disable) "rainbow-delimiters" "Disable `rainbow-delimiters-mode'.
-
-(fn)" nil nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "rainbow-delimiters" (quote ("rainbow-delimiters-")))) (provide (quote rainbow-delimiters-autoloads))) "cl-lib" ((cl-lib-autoloads cl-lib) (let ((d (file-name-directory "/home/tsubasa/.emacs.d/straight/build/cl-lib/cl-lib-autoloads.el"))) (when (member d load-path) (setq load-path (append (remove d load-path) (list d))))) (provide (quote cl-lib-autoloads))) "neotree" ((neotree neotree-autoloads) (autoload (quote neotree-find) "neotree" "Quick select node which specified PATH in NeoTree.
-If path is nil and no buffer file name, then use DEFAULT-PATH,
-
-(fn &optional PATH DEFAULT-PATH)" t nil) (autoload (quote neotree-projectile-action) "neotree" "Integration with `Projectile'.
-
-Usage:
-    (setq projectile-switch-project-action 'neotree-projectile-action).
-
-When running `projectile-switch-project' (C-c p p), `neotree' will change root
-automatically.
-
-(fn)" t nil) (autoload (quote neotree-toggle) "neotree" "Toggle show the NeoTree window.
-
-(fn)" t nil) (autoload (quote neotree-show) "neotree" "Show the NeoTree window.
-
-(fn)" t nil) (autoload (quote neotree-hide) "neotree" "Close the NeoTree window.
-
-(fn)" t nil) (autoload (quote neotree-dir) "neotree" "Show the NeoTree window, and change root to PATH.
-
-(fn PATH)" t nil) (defalias (quote neotree) (quote neotree-show) "Show the NeoTree window.") (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "neotree" (quote ("neo" "off-p")))) (provide (quote neotree-autoloads))) "volatile-highlights" ((volatile-highlights-autoloads volatile-highlights) (defvar volatile-highlights-mode nil "Non-nil if Volatile-Highlights mode is enabled.
-See the `volatile-highlights-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `volatile-highlights-mode'.") (custom-autoload (quote volatile-highlights-mode) "volatile-highlights" nil) (autoload (quote volatile-highlights-mode) "volatile-highlights" "Minor mode for visual feedback on some operations.
-
-(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "volatile-highlights" (quote ("vhl/" "Vhl/highlight-zero-width-ranges")))) (provide (quote volatile-highlights-autoloads))) "smooth-scroll" ((smooth-scroll-autoloads smooth-scroll) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "smooth-scroll" (quote ("scroll-" "smooth-scroll/")))) (provide (quote smooth-scroll-autoloads))) "hlinum" ((hlinum-autoloads hlinum) (autoload (quote hlinum-activate) "hlinum" "Enable highlighting current line number.
-
-(fn)" t nil) (autoload (quote hlinum-deactivate) "hlinum" "Disable highlighting current line number.
-
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "hlinum" (quote ("hlinum-" "linum-highlight-in-all-buffersp")))) (provide (quote hlinum-autoloads))) "undohist" ((undohist-autoloads undohist) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "undohist" (quote ("undohist-" "make-undohist-file-name")))) (provide (quote undohist-autoloads))) "anzu" ((anzu-autoloads anzu) (autoload (quote anzu-mode) "anzu" "minor-mode which display search information in mode-line.
-
-(fn &optional ARG)" t nil) (defvar global-anzu-mode nil "Non-nil if Global Anzu mode is enabled.
-See the `global-anzu-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `global-anzu-mode'.") (custom-autoload (quote global-anzu-mode) "anzu" nil) (autoload (quote global-anzu-mode) "anzu" "Toggle Anzu mode in all buffers.
-With prefix ARG, enable Global Anzu mode if ARG is positive;
-otherwise, disable it.  If called from Lisp, enable the mode if
-ARG is omitted or nil.
-
-Anzu mode is enabled in all buffers where
-`anzu--turn-on' would do it.
-See `anzu-mode' for more information on Anzu mode.
-
-(fn &optional ARG)" t nil) (autoload (quote anzu-query-replace-at-cursor) "anzu" "Replace symbol at cursor with to-string.
-
-(fn)" t nil) (autoload (quote anzu-query-replace-at-cursor-thing) "anzu" "Replace symbol at cursor within `anzu-replace-at-cursor-thing' area.
-
-(fn)" t nil) (autoload (quote anzu-query-replace) "anzu" "anzu version of `query-replace'.
-
-(fn ARG)" t nil) (autoload (quote anzu-query-replace-regexp) "anzu" "anzu version of `query-replace-regexp'.
-
-(fn ARG)" t nil) (autoload (quote anzu-replace-at-cursor-thing) "anzu" "anzu-query-replace-at-cursor-thing without query.
-
-(fn)" t nil) (autoload (quote anzu-isearch-query-replace) "anzu" "anzu version of `isearch-query-replace'.
-
-(fn ARG)" t nil) (autoload (quote anzu-isearch-query-replace-regexp) "anzu" "anzu version of `isearch-query-replace-regexp'.
-
-(fn ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "anzu" (quote ("anzu-")))) (provide (quote anzu-autoloads))) "shell-pop" ((shell-pop shell-pop-autoloads) (defvar shell-pop-universal-key nil "Key binding used to pop in and out of the shell.
-
-The input format is the same as that of `kbd'.") (custom-autoload (quote shell-pop-universal-key) "shell-pop" nil) (autoload (quote shell-pop) "shell-pop" "
-
-(fn ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "shell-pop" (quote ("shell-pop-")))) (provide (quote shell-pop-autoloads))) "web-mode" ((web-mode web-mode-autoloads) (autoload (quote web-mode) "web-mode" "Major mode for editing web templates.
-
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "web-mode" (quote ("web-mode-")))) (provide (quote web-mode-autoloads))) "seq" ((seq seq-24 seq-25 seq-autoloads) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "seq-24" (quote ("seq")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "seq-25" (quote ("seq--when-emacs-25-p")))) (provide (quote seq-autoloads))) "beacon" ((beacon-autoloads beacon) (autoload (quote beacon-blink) "beacon" "Blink the beacon at the position of the cursor.
-Unlike `beacon-blink-automated', the beacon will blink
-unconditionally (even if `beacon-mode' is disabled), and this can
-be invoked as a user command or called from lisp code.
-
-(fn)" t nil) (defvar beacon-mode nil "Non-nil if Beacon mode is enabled.
-See the `beacon-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `beacon-mode'.") (custom-autoload (quote beacon-mode) "beacon" nil) (autoload (quote beacon-mode) "beacon" "Toggle Beacon mode on or off.
-With a prefix argument ARG, enable Beacon mode if ARG is
-positive, and disable it otherwise.  If called from Lisp, enable
-the mode if ARG is omitted or nil, and toggle it if ARG is `toggle'.
-\\{beacon-mode-map}
-
-(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "beacon" (quote ("beacon-")))) (provide (quote beacon-autoloads))) "mozc" ((mozc mozc-autoloads) (defvar mozc-mode-map (let ((map (make-sparse-keymap))) (prog1 map (mapc (lambda (command) (mapc (lambda (key-sequence) (and (= (length key-sequence) 1) (integerp (aref key-sequence 0)) (define-key map key-sequence command))) (where-is-internal command global-map))) (quote (execute-extended-command toggle-input-method))) (mapc (lambda (event) (define-key map (vector event) nil)) (quote (delete-frame iconify-frame make-frame-visible select-window switch-frame))) (define-key map [t] (function mozc-handle-event)))) "Keymap for function `mozc-mode'.") (defvar mozc-mode nil "Mode variable of function `mozc-mode'.
-Non-nil means function `mozc-mode' is enabled.") (autoload (quote mozc-mode) "mozc" "Minor mode to input Japanese text with Mozc.
-Toggle the mode if ARG is not given, or enable/disable the mode
-according to ARG.
-
-Hooks in `mozc-mode-hook' are run when the mode gets enabled.
-
-Return non-nil when enabled, otherwise nil.
-
-
-Tips for customizations
-
-By the design policy, Mozc maintains most of user settings on
-the server side.  Clients, including mozc.el, of Mozc do not
-have many user settings on their side.
-
-You can change a variety of user settings through a GUI command
-line tool 'mozc_tool' which must be shipped with the mozc server.
-The command line tool may be installed to /usr/lib/mozc or /usr/lib
-directory.
-You need a command line option '--mode=config_dialog' as the
-following.
-
-  $ /usr/lib/mozc/mozc_tool --mode=config_dialog
-
-Then, it shows a GUI dialog to edit your user settings.
-
-Note these settings are effective for all the clients of Mozc,
-not limited to mozc.el.
-
-Only the customizable item on mozc.el side is the key map for kana
-input.  When you've chosen kana input rather than roman input,
-a kana key map is effective, and you can customize it.
-
-There are two built-in kana key maps, one for 106 JP keyboards and
-one for 101 US keyboards.  You can choose one of them by setting
-`mozc-keymap-kana' variable.
-
-  ;; for 106 JP keyboards
-  (setq mozc-keymap-kana mozc-keymap-kana-106jp)
-
-  ;; for 101 US keyboards
-  (setq mozc-keymap-kana mozc-keymap-kana-101us)
-
-For advanced users, there are APIs for more detailed customization
-or even creating your own key map.
-See `mozc-keymap-get-entry', `mozc-keymap-put-entry',
-`mozc-keymap-remove-entry', and `mozc-keymap-make-keymap' and
-`mozc-keymap-make-keymap-from-flat-list'.
-
-(fn &optional ARG)" t nil) (autoload (quote mozc-keymap-make-keymap) "mozc" "Create a new empty keymap and return it.
-
-(fn)" nil nil) (autoload (quote mozc-keymap-make-keymap-from-flat-list) "mozc" "Create a new keymap and fill it with entries in LIST.
-LIST must be a flat list which contains keys and mapped strings alternately.
-
-(fn LIST)" nil nil) (autoload (quote mozc-keymap-fill-entries-from-flat-list) "mozc" "Fill KEYMAP with entries in LIST and return KEYMAP.
-KEYMAP must be a key table from keycodes to mapped strings.
-LIST must be a flat list which contains keys and mapped strings alternately.
-
-(fn KEYMAP LIST)" nil nil) (autoload (quote mozc-keymap-get-entry) "mozc" "Return a mapped string if the entry for the keycode exists.
-Otherwise, the default value, which must be a string.
-KEYMAP must be a key table from keycodes to mapped strings.
-KEYCODE must be an integer representing a key code to look up.
-DEFAULT is returned if it's a string and no entry for KEYCODE is found.
-
-(fn KEYMAP KEYCODE &optional DEFAULT)" nil nil) (autoload (quote mozc-keymap-put-entry) "mozc" "Add a new key mapping to a keymap.
-KEYMAP must be a key table from keycodes to mapped strings.
-KEYCODE must be an integer representing a key code.
-MAPPED-STRING must be a string representing a preedit string to be inserted.
-
-(fn KEYMAP KEYCODE MAPPED-STRING)" nil nil) (autoload (quote mozc-keymap-remove-entry) "mozc" "Remove an entry from a keymap.  If no entry for keycode exists, do nothing.
-KEYMAP must be a key table from keycodes to mapped strings.
-KEYCODE must be an integer representing a key code to remove.
-
-(fn KEYMAP KEYCODE)" nil nil) (defvar mozc-keymap-kana-106jp (mozc-keymap-make-keymap-from-flat-list (quote (49 "\343\201\254" 50 "\343\201\265" 51 "\343\201\202" 52 "\343\201\206" 53 "\343\201\210" 54 "\343\201\212" 55 "\343\202\204" 56 "\343\202\206" 57 "\343\202\210" 48 "\343\202\217" 45 "\343\201\273" 94 "\343\201\270" 124 "\343\203\274" 113 "\343\201\237" 119 "\343\201\246" 101 "\343\201\204" 114 "\343\201\231" 116 "\343\201\213" 121 "\343\202\223" 117 "\343\201\252" 105 "\343\201\253" 111 "\343\202\211" 112 "\343\201\233" 64 "\343\202\233" 91 "\343\202\234" 97 "\343\201\241" 115 "\343\201\250" 100 "\343\201\227" 102 "\343\201\257" 103 "\343\201\215" 104 "\343\201\217" 106 "\343\201\276" 107 "\343\201\256" 108 "\343\202\212" 59 "\343\202\214" 58 "\343\201\221" 93 "\343\202\200" 122 "\343\201\244" 120 "\343\201\225" 99 "\343\201\235" 118 "\343\201\262" 98 "\343\201\223" 110 "\343\201\277" 109 "\343\202\202" 44 "\343\201\255" 46 "\343\202\213" 47 "\343\202\201" 92 "\343\202\215" 35 "\343\201\201" 69 "\343\201\203" 36 "\343\201\205" 37 "\343\201\207" 38 "\343\201\211" 39 "\343\202\203" 40 "\343\202\205" 41 "\343\202\207" 126 "\343\202\222" 90 "\343\201\243" 60 "\343\200\201" 62 "\343\200\202" 63 "\343\203\273" 123 "\343\200\214" 125 "\343\200\215" 80 "\343\200\216" 43 "\343\200\217" 95 "\343\202\215" 70 "\343\202\216" 84 "\343\203\265" 42 "\343\203\266"))) "Key mapping from key codes to Kana strings based on 106-JP keyboard.") (defvar mozc-keymap-kana-101us (mozc-keymap-make-keymap-from-flat-list (quote (49 "\343\201\254" 50 "\343\201\265" 51 "\343\201\202" 52 "\343\201\206" 53 "\343\201\210" 54 "\343\201\212" 55 "\343\202\204" 56 "\343\202\206" 57 "\343\202\210" 48 "\343\202\217" 45 "\343\201\273" 61 "\343\201\270" 96 "\343\202\215" 113 "\343\201\237" 119 "\343\201\246" 101 "\343\201\204" 114 "\343\201\231" 116 "\343\201\213" 121 "\343\202\223" 117 "\343\201\252" 105 "\343\201\253" 111 "\343\202\211" 112 "\343\201\233" 91 "\343\202\233" 93 "\343\202\234" 92 "\343\202\200" 97 "\343\201\241" 115 "\343\201\250" 100 "\343\201\227" 102 "\343\201\257" 103 "\343\201\215" 104 "\343\201\217" 106 "\343\201\276" 107 "\343\201\256" 108 "\343\202\212" 59 "\343\202\214" 39 "\343\201\221" 122 "\343\201\244" 120 "\343\201\225" 99 "\343\201\235" 118 "\343\201\262" 98 "\343\201\223" 110 "\343\201\277" 109 "\343\202\202" 44 "\343\201\255" 46 "\343\202\213" 47 "\343\202\201" 35 "\343\201\201" 69 "\343\201\203" 36 "\343\201\205" 37 "\343\201\207" 94 "\343\201\211" 38 "\343\202\203" 42 "\343\202\205" 40 "\343\202\207" 41 "\343\202\222" 90 "\343\201\243" 60 "\343\200\201" 62 "\343\200\202" 63 "\343\203\273" 123 "\343\200\214" 125 "\343\200\215" 80 "\343\200\216" 58 "\343\200\217" 95 "\343\203\274" 124 "\343\203\274" 70 "\343\202\216" 86 "\343\202\220" 43 "\343\202\221" 84 "\343\203\265" 34 "\343\203\266"))) "Key mapping from key codes to Kana strings based on 101-US keyboard.") (defvar mozc-keymap-kana mozc-keymap-kana-106jp "The default key mapping for Kana input method.") (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "mozc" (quote ("mozc-")))) (provide (quote mozc-autoloads))) "async" ((smtpmail-async async-bytecomp async-autoloads async-pkg dired-async async) (autoload (quote async-start-process) "async" "Start the executable PROGRAM asynchronously.  See `async-start'.
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "use-package-lint" (quote ("use-package-lint-declaration")))) (provide (quote use-package-autoloads))) "async" ((async-pkg async dired-async async-autoloads async-bytecomp smtpmail-async) (autoload (quote async-start-process) "async" "Start the executable PROGRAM asynchronously.  See `async-start'.
 PROGRAM is passed PROGRAM-ARGS, calling FINISH-FUNC with the
 process object when done.  If FINISH-FUNC is nil, the future
 object will return the process object when the program is
@@ -611,7 +449,7 @@ or call the function `dired-async-mode'.") (custom-autoload (quote dired-async-m
 
 (fn &optional ARG)" t nil) (autoload (quote dired-async-do-rename) "dired-async" "Run \342\200\230dired-do-rename\342\200\231 asynchronously.
 
-(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "dired-async" (quote ("dired-async-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "smtpmail-async" (quote ("async-smtpmail-")))) (provide (quote async-autoloads))) "popup" ((popup popup-autoloads) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "popup" (quote ("popup-")))) (provide (quote popup-autoloads))) "helm-core" ((helm-core-autoloads helm-core-pkg helm-multi-match helm-lib helm helm-source) (autoload (quote helm-define-multi-key) "helm" "In KEYMAP, define key sequence KEY for function list FUNCTIONS.
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "dired-async" (quote ("dired-async-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "smtpmail-async" (quote ("async-smtpmail-")))) (provide (quote async-autoloads))) "cl-lib" ((cl-lib cl-lib-autoloads) (let ((d (file-name-directory "/home/ryuichi/.emacs.d/straight/build/cl-lib/cl-lib-autoloads.el"))) (when (member d load-path) (setq load-path (append (remove d load-path) (list d))))) (provide (quote cl-lib-autoloads))) "popup" ((popup-autoloads popup) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "popup" (quote ("popup-")))) (provide (quote popup-autoloads))) "helm-core" ((helm-source helm-multi-match helm-core-autoloads helm-core-pkg helm helm-lib) (autoload (quote helm-define-multi-key) "helm" "In KEYMAP, define key sequence KEY for function list FUNCTIONS.
 Each function runs sequentially for each KEY press.
 If DELAY is specified, switch back to initial function of FUNCTIONS list
 after DELAY seconds.
@@ -799,7 +637,7 @@ However, the use of non-keyword args is deprecated.
 (fn)" t nil) (autoload (quote helm-other-buffer) "helm" "Simplified `helm' interface with other `helm-buffer'.
 Call `helm' only with ANY-SOURCES and ANY-BUFFER as args.
 
-(fn ANY-SOURCES ANY-BUFFER)" nil nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm" (quote ("helm-" "cua-delete-region--advice" "copy-region-as-kill--advice" "with-helm-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm-lib" (quote ("helm-" "with-helm-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm-multi-match" (quote ("helm-m")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm-source" (quote ("helm-")))) (provide (quote helm-core-autoloads))) "helm" ((helm-help helm-id-utils helm-net helm-info helm-find helm-mode helm-dabbrev helm-color helm-external helm-semantic helm-for-files helm-bookmark helm-org helm-man helm-eval helm-tags helm-utils helm-elisp-package helm-sys helm-easymenu helm-elisp helm-buffers helm-adaptive helm-locate helm-grep helm-ring helm-imenu helm-files helm-autoloads helm-config helm-eshell helm-types helm-misc helm-pkg helm-x-files helm-regexp helm-font helm-command) (defvar helm-adaptive-mode nil "Non-nil if Helm-Adaptive mode is enabled.
+(fn ANY-SOURCES ANY-BUFFER)" nil nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm" (quote ("helm-" "cua-delete-region--advice" "copy-region-as-kill--advice" "with-helm-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm-lib" (quote ("helm-" "with-helm-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm-multi-match" (quote ("helm-m")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm-source" (quote ("helm-")))) (provide (quote helm-core-autoloads))) "helm" ((helm-external helm-eshell helm-bookmark helm-types helm-dabbrev helm-net helm-misc helm-autoloads helm-help helm-sys helm-locate helm-id-utils helm-adaptive helm-info helm-command helm-utils helm-pkg helm-grep helm-mode helm-ring helm-for-files helm-color helm-elisp helm-elisp-package helm-man helm-imenu helm-config helm-font helm-regexp helm-eval helm-tags helm-find helm-files helm-semantic helm-buffers helm-x-files helm-easymenu helm-org) (defvar helm-adaptive-mode nil "Non-nil if Helm-Adaptive mode is enabled.
 See the `helm-adaptive-mode' command
 for a description of this minor mode.
 Setting this variable directly does not take effect;
@@ -1324,7 +1162,250 @@ Setting this variable directly does not take effect;
 either customize it (see the info node `Easy Customization')
 or call the function `helm-popup-tip-mode'.") (custom-autoload (quote helm-popup-tip-mode) "helm-utils" nil) (autoload (quote helm-popup-tip-mode) "helm-utils" "Show help-echo informations in a popup tip at end of line.
 
-(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm-utils" (quote ("helm-" "with-helm-display-marked-candidates")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm-x-files" (quote ("helm-")))) (provide (quote helm-autoloads))) "dash" ((dash-autoloads dash) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "dash" (quote ("dash-" "-keep" "-butlast" "-non" "-only-some" "-zip" "-e" "->" "-a" "-gr" "-when-let" "-d" "-l" "-s" "-p" "-r" "-m" "-i" "-f" "-u" "-value-to-list" "-t" "--" "-c" "!cons" "!cdr")))) (provide (quote dash-autoloads))) "epl" ((epl-autoloads epl) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "epl" (quote ("epl-")))) (provide (quote epl-autoloads))) "pkg-info" ((pkg-info pkg-info-autoloads) (autoload (quote pkg-info-library-original-version) "pkg-info" "Get the original version in the header of LIBRARY.
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm-utils" (quote ("helm-" "with-helm-display-marked-candidates")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm-x-files" (quote ("helm-")))) (provide (quote helm-autoloads))) "rainbow-delimiters" ((rainbow-delimiters rainbow-delimiters-autoloads) (autoload (quote rainbow-delimiters-mode) "rainbow-delimiters" "Highlight nested parentheses, brackets, and braces according to their depth.
+
+(fn &optional ARG)" t nil) (autoload (quote rainbow-delimiters-mode-enable) "rainbow-delimiters" "Enable `rainbow-delimiters-mode'.
+
+(fn)" nil nil) (autoload (quote rainbow-delimiters-mode-disable) "rainbow-delimiters" "Disable `rainbow-delimiters-mode'.
+
+(fn)" nil nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "rainbow-delimiters" (quote ("rainbow-delimiters-")))) (provide (quote rainbow-delimiters-autoloads))) "neotree" ((neotree-autoloads neotree) (autoload (quote neotree-find) "neotree" "Quick select node which specified PATH in NeoTree.
+If path is nil and no buffer file name, then use DEFAULT-PATH,
+
+(fn &optional PATH DEFAULT-PATH)" t nil) (autoload (quote neotree-projectile-action) "neotree" "Integration with `Projectile'.
+
+Usage:
+    (setq projectile-switch-project-action 'neotree-projectile-action).
+
+When running `projectile-switch-project' (C-c p p), `neotree' will change root
+automatically.
+
+(fn)" t nil) (autoload (quote neotree-toggle) "neotree" "Toggle show the NeoTree window.
+
+(fn)" t nil) (autoload (quote neotree-show) "neotree" "Show the NeoTree window.
+
+(fn)" t nil) (autoload (quote neotree-hide) "neotree" "Close the NeoTree window.
+
+(fn)" t nil) (autoload (quote neotree-dir) "neotree" "Show the NeoTree window, and change root to PATH.
+
+(fn PATH)" t nil) (defalias (quote neotree) (quote neotree-show) "Show the NeoTree window.") (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "neotree" (quote ("neo" "off-p")))) (provide (quote neotree-autoloads))) "volatile-highlights" ((volatile-highlights volatile-highlights-autoloads) (defvar volatile-highlights-mode nil "Non-nil if Volatile-Highlights mode is enabled.
+See the `volatile-highlights-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `volatile-highlights-mode'.") (custom-autoload (quote volatile-highlights-mode) "volatile-highlights" nil) (autoload (quote volatile-highlights-mode) "volatile-highlights" "Minor mode for visual feedback on some operations.
+
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "volatile-highlights" (quote ("vhl/" "Vhl/highlight-zero-width-ranges")))) (provide (quote volatile-highlights-autoloads))) "smooth-scroll" ((smooth-scroll-autoloads smooth-scroll) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "smooth-scroll" (quote ("scroll-" "smooth-scroll/")))) (provide (quote smooth-scroll-autoloads))) "hlinum" ((hlinum-autoloads hlinum) (autoload (quote hlinum-activate) "hlinum" "Enable highlighting current line number.
+
+(fn)" t nil) (autoload (quote hlinum-deactivate) "hlinum" "Disable highlighting current line number.
+
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "hlinum" (quote ("hlinum-" "linum-highlight-in-all-buffersp")))) (provide (quote hlinum-autoloads))) "undohist" ((undohist undohist-autoloads) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "undohist" (quote ("undohist-" "make-undohist-file-name")))) (provide (quote undohist-autoloads))) "anzu" ((anzu-autoloads anzu) (autoload (quote anzu-mode) "anzu" "minor-mode which display search information in mode-line.
+
+(fn &optional ARG)" t nil) (defvar global-anzu-mode nil "Non-nil if Global Anzu mode is enabled.
+See the `global-anzu-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `global-anzu-mode'.") (custom-autoload (quote global-anzu-mode) "anzu" nil) (autoload (quote global-anzu-mode) "anzu" "Toggle Anzu mode in all buffers.
+With prefix ARG, enable Global Anzu mode if ARG is positive;
+otherwise, disable it.  If called from Lisp, enable the mode if
+ARG is omitted or nil.
+
+Anzu mode is enabled in all buffers where
+`anzu--turn-on' would do it.
+See `anzu-mode' for more information on Anzu mode.
+
+(fn &optional ARG)" t nil) (autoload (quote anzu-query-replace-at-cursor) "anzu" "Replace symbol at cursor with to-string.
+
+(fn)" t nil) (autoload (quote anzu-query-replace-at-cursor-thing) "anzu" "Replace symbol at cursor within `anzu-replace-at-cursor-thing' area.
+
+(fn)" t nil) (autoload (quote anzu-query-replace) "anzu" "anzu version of `query-replace'.
+
+(fn ARG)" t nil) (autoload (quote anzu-query-replace-regexp) "anzu" "anzu version of `query-replace-regexp'.
+
+(fn ARG)" t nil) (autoload (quote anzu-replace-at-cursor-thing) "anzu" "anzu-query-replace-at-cursor-thing without query.
+
+(fn)" t nil) (autoload (quote anzu-isearch-query-replace) "anzu" "anzu version of `isearch-query-replace'.
+
+(fn ARG)" t nil) (autoload (quote anzu-isearch-query-replace-regexp) "anzu" "anzu version of `isearch-query-replace-regexp'.
+
+(fn ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "anzu" (quote ("anzu-")))) (provide (quote anzu-autoloads))) "shell-pop" ((shell-pop shell-pop-autoloads) (defvar shell-pop-universal-key nil "Key binding used to pop in and out of the shell.
+
+The input format is the same as that of `kbd'.") (custom-autoload (quote shell-pop-universal-key) "shell-pop" nil) (autoload (quote shell-pop) "shell-pop" "
+
+(fn ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "shell-pop" (quote ("shell-pop-")))) (provide (quote shell-pop-autoloads))) "web-mode" ((web-mode web-mode-autoloads) (autoload (quote web-mode) "web-mode" "Major mode for editing web templates.
+
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "web-mode" (quote ("web-mode-")))) (provide (quote web-mode-autoloads))) "seq" ((seq seq-25 seq-autoloads seq-24) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "seq-24" (quote ("seq")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "seq-25" (quote ("seq--when-emacs-25-p")))) (provide (quote seq-autoloads))) "beacon" ((beacon beacon-autoloads) (autoload (quote beacon-blink) "beacon" "Blink the beacon at the position of the cursor.
+Unlike `beacon-blink-automated', the beacon will blink
+unconditionally (even if `beacon-mode' is disabled), and this can
+be invoked as a user command or called from lisp code.
+
+(fn)" t nil) (defvar beacon-mode nil "Non-nil if Beacon mode is enabled.
+See the `beacon-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `beacon-mode'.") (custom-autoload (quote beacon-mode) "beacon" nil) (autoload (quote beacon-mode) "beacon" "Toggle Beacon mode on or off.
+With a prefix argument ARG, enable Beacon mode if ARG is
+positive, and disable it otherwise.  If called from Lisp, enable
+the mode if ARG is omitted or nil, and toggle it if ARG is `toggle'.
+\\{beacon-mode-map}
+
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "beacon" (quote ("beacon-")))) (provide (quote beacon-autoloads))) "japanese-holidays" ((japanese-holidays-autoloads japanese-holidays) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "japanese-holidays" (quote ("japanese-holiday")))) (provide (quote japanese-holidays-autoloads))) "rainbow-mode" ((rainbow-mode rainbow-mode-autoloads) (autoload (quote rainbow-mode) "rainbow-mode" "Colorize strings that represent colors.
+This will fontify with colors the string like \"#aabbcc\" or \"blue\".
+
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "rainbow-mode" (quote ("rainbow-")))) (provide (quote rainbow-mode-autoloads))) "pos-tip" ((pos-tip pos-tip-autoloads) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "pos-tip" (quote ("pos-tip-")))) (provide (quote pos-tip-autoloads))) "popup-kill-ring" ((popup-kill-ring-autoloads popup-kill-ring) (autoload (quote popup-kill-ring) "popup-kill-ring" "Interactively insert selected item from `key-ring' by `popup.el'
+and `pos-tip.el'
+
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "popup-kill-ring" (quote ("popup-kill-ring-")))) (provide (quote popup-kill-ring-autoloads))) "popup-switcher" ((popup-switcher popup-switcher-autoloads) (autoload (quote psw-switch-buffer) "popup-switcher" "
+
+(fn)" t nil) (autoload (quote psw-switch-recentf) "popup-switcher" "
+
+(fn)" t nil) (autoload (quote psw-switch-projectile-files) "popup-switcher" "
+
+(fn)" t nil) (autoload (quote psw-navigate-files) "popup-switcher" "
+
+(fn &optional START-PATH)" t nil) (autoload (quote psw-switch-function) "popup-switcher" "
+
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "popup-switcher" (quote ("psw-")))) (provide (quote popup-switcher-autoloads))) "move-text" ((move-text move-text-autoloads) (autoload (quote move-text--total-lines) "move-text" "Convenience function to get the total lines in the buffer / or narrowed buffer.
+
+(fn)" nil nil) (autoload (quote move-text--at-first-line-p) "move-text" "Predicate, is the point at the first line?
+
+(fn)" nil nil) (autoload (quote move-text--at-penultimate-line-p) "move-text" "Predicate, is the point at the penultimate line?
+
+(fn)" nil nil) (autoload (quote move-text--last-line-is-just-newline) "move-text" "Predicate, is last line just a newline?
+
+(fn)" nil nil) (autoload (quote move-text--at-last-line-p) "move-text" "Predicate, is the point at the last line?
+
+(fn)" nil nil) (autoload (quote move-text-line-up) "move-text" "Move the current line up.
+
+(fn)" t nil) (autoload (quote move-text-line-down) "move-text" "Move the current line down.
+
+(fn)" t nil) (autoload (quote move-text-region) "move-text" "Move the current region (START END) up or down by N lines.
+
+(fn START END N)" t nil) (autoload (quote move-text-region-up) "move-text" "Move the current region (START END) up by N lines.
+
+(fn START END N)" t nil) (autoload (quote move-text-region-down) "move-text" "Move the current region (START END) down by N lines.
+
+(fn START END N)" t nil) (autoload (quote move-text-up) "move-text" "Move the line or region (START END) up by N lines.
+
+(fn &optional START END N)" t nil) (autoload (quote move-text-down) "move-text" "Move the line or region (START END) down by N lines.
+
+(fn &optional START END N)" t nil) (autoload (quote move-text-default-bindings) "move-text" "Use default bindings for move-text-up and move-text-down (M-up / M-down).
+
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "move-text" (quote ("move-text-get-region-and-prefix")))) (provide (quote move-text-autoloads))) "darkroom" ((darkroom-autoloads darkroom) (autoload (quote darkroom-mode) "darkroom" "Remove visual distractions and focus on writing. When this
+mode is active, everything but the buffer's text is elided from
+view. The buffer margins are set so that text is centered on
+screen. Text size is increased (display engine allowing) by
+`darkroom-text-scale-increase'.
+
+(fn &optional ARG)" t nil) (autoload (quote darkroom-tentative-mode) "darkroom" "Enters `darkroom-mode' when all other windows are deleted.
+
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "darkroom" (quote ("darkroom-")))) (provide (quote darkroom-autoloads))) "undo-tree" ((undo-tree-autoloads undo-tree) (autoload (quote undo-tree-mode) "undo-tree" "Toggle undo-tree mode.
+With no argument, this command toggles the mode.
+A positive prefix argument turns the mode on.
+A negative prefix argument turns it off.
+
+Undo-tree-mode replaces Emacs' standard undo feature with a more
+powerful yet easier to use version, that treats the undo history
+as what it is: a tree.
+
+The following keys are available in `undo-tree-mode':
+
+  \\{undo-tree-map}
+
+Within the undo-tree visualizer, the following keys are available:
+
+  \\{undo-tree-visualizer-mode-map}
+
+(fn &optional ARG)" t nil) (defvar global-undo-tree-mode nil "Non-nil if Global Undo-Tree mode is enabled.
+See the `global-undo-tree-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `global-undo-tree-mode'.") (custom-autoload (quote global-undo-tree-mode) "undo-tree" nil) (autoload (quote global-undo-tree-mode) "undo-tree" "Toggle Undo-Tree mode in all buffers.
+With prefix ARG, enable Global Undo-Tree mode if ARG is positive;
+otherwise, disable it.  If called from Lisp, enable the mode if
+ARG is omitted or nil.
+
+Undo-Tree mode is enabled in all buffers where
+`turn-on-undo-tree-mode' would do it.
+See `undo-tree-mode' for more information on Undo-Tree mode.
+
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "undo-tree" (quote ("undo-" "turn-on-undo-tree-mode" "*undo-tree-id-counter*" "buffer-undo-tree")))) (provide (quote undo-tree-autoloads))) "mozc" ((mozc mozc-autoloads) (defvar mozc-mode-map (let ((map (make-sparse-keymap))) (prog1 map (mapc (lambda (command) (mapc (lambda (key-sequence) (and (= (length key-sequence) 1) (integerp (aref key-sequence 0)) (define-key map key-sequence command))) (where-is-internal command global-map))) (quote (execute-extended-command toggle-input-method))) (mapc (lambda (event) (define-key map (vector event) nil)) (quote (delete-frame iconify-frame make-frame-visible select-window switch-frame))) (define-key map [t] (function mozc-handle-event)))) "Keymap for function `mozc-mode'.") (defvar mozc-mode nil "Mode variable of function `mozc-mode'.
+Non-nil means function `mozc-mode' is enabled.") (autoload (quote mozc-mode) "mozc" "Minor mode to input Japanese text with Mozc.
+Toggle the mode if ARG is not given, or enable/disable the mode
+according to ARG.
+
+Hooks in `mozc-mode-hook' are run when the mode gets enabled.
+
+Return non-nil when enabled, otherwise nil.
+
+
+Tips for customizations
+
+By the design policy, Mozc maintains most of user settings on
+the server side.  Clients, including mozc.el, of Mozc do not
+have many user settings on their side.
+
+You can change a variety of user settings through a GUI command
+line tool 'mozc_tool' which must be shipped with the mozc server.
+The command line tool may be installed to /usr/lib/mozc or /usr/lib
+directory.
+You need a command line option '--mode=config_dialog' as the
+following.
+
+  $ /usr/lib/mozc/mozc_tool --mode=config_dialog
+
+Then, it shows a GUI dialog to edit your user settings.
+
+Note these settings are effective for all the clients of Mozc,
+not limited to mozc.el.
+
+Only the customizable item on mozc.el side is the key map for kana
+input.  When you've chosen kana input rather than roman input,
+a kana key map is effective, and you can customize it.
+
+There are two built-in kana key maps, one for 106 JP keyboards and
+one for 101 US keyboards.  You can choose one of them by setting
+`mozc-keymap-kana' variable.
+
+  ;; for 106 JP keyboards
+  (setq mozc-keymap-kana mozc-keymap-kana-106jp)
+
+  ;; for 101 US keyboards
+  (setq mozc-keymap-kana mozc-keymap-kana-101us)
+
+For advanced users, there are APIs for more detailed customization
+or even creating your own key map.
+See `mozc-keymap-get-entry', `mozc-keymap-put-entry',
+`mozc-keymap-remove-entry', and `mozc-keymap-make-keymap' and
+`mozc-keymap-make-keymap-from-flat-list'.
+
+(fn &optional ARG)" t nil) (autoload (quote mozc-keymap-make-keymap) "mozc" "Create a new empty keymap and return it.
+
+(fn)" nil nil) (autoload (quote mozc-keymap-make-keymap-from-flat-list) "mozc" "Create a new keymap and fill it with entries in LIST.
+LIST must be a flat list which contains keys and mapped strings alternately.
+
+(fn LIST)" nil nil) (autoload (quote mozc-keymap-fill-entries-from-flat-list) "mozc" "Fill KEYMAP with entries in LIST and return KEYMAP.
+KEYMAP must be a key table from keycodes to mapped strings.
+LIST must be a flat list which contains keys and mapped strings alternately.
+
+(fn KEYMAP LIST)" nil nil) (autoload (quote mozc-keymap-get-entry) "mozc" "Return a mapped string if the entry for the keycode exists.
+Otherwise, the default value, which must be a string.
+KEYMAP must be a key table from keycodes to mapped strings.
+KEYCODE must be an integer representing a key code to look up.
+DEFAULT is returned if it's a string and no entry for KEYCODE is found.
+
+(fn KEYMAP KEYCODE &optional DEFAULT)" nil nil) (autoload (quote mozc-keymap-put-entry) "mozc" "Add a new key mapping to a keymap.
+KEYMAP must be a key table from keycodes to mapped strings.
+KEYCODE must be an integer representing a key code.
+MAPPED-STRING must be a string representing a preedit string to be inserted.
+
+(fn KEYMAP KEYCODE MAPPED-STRING)" nil nil) (autoload (quote mozc-keymap-remove-entry) "mozc" "Remove an entry from a keymap.  If no entry for keycode exists, do nothing.
+KEYMAP must be a key table from keycodes to mapped strings.
+KEYCODE must be an integer representing a key code to remove.
+
+(fn KEYMAP KEYCODE)" nil nil) (defvar mozc-keymap-kana-106jp (mozc-keymap-make-keymap-from-flat-list (quote (49 "\343\201\254" 50 "\343\201\265" 51 "\343\201\202" 52 "\343\201\206" 53 "\343\201\210" 54 "\343\201\212" 55 "\343\202\204" 56 "\343\202\206" 57 "\343\202\210" 48 "\343\202\217" 45 "\343\201\273" 94 "\343\201\270" 124 "\343\203\274" 113 "\343\201\237" 119 "\343\201\246" 101 "\343\201\204" 114 "\343\201\231" 116 "\343\201\213" 121 "\343\202\223" 117 "\343\201\252" 105 "\343\201\253" 111 "\343\202\211" 112 "\343\201\233" 64 "\343\202\233" 91 "\343\202\234" 97 "\343\201\241" 115 "\343\201\250" 100 "\343\201\227" 102 "\343\201\257" 103 "\343\201\215" 104 "\343\201\217" 106 "\343\201\276" 107 "\343\201\256" 108 "\343\202\212" 59 "\343\202\214" 58 "\343\201\221" 93 "\343\202\200" 122 "\343\201\244" 120 "\343\201\225" 99 "\343\201\235" 118 "\343\201\262" 98 "\343\201\223" 110 "\343\201\277" 109 "\343\202\202" 44 "\343\201\255" 46 "\343\202\213" 47 "\343\202\201" 92 "\343\202\215" 35 "\343\201\201" 69 "\343\201\203" 36 "\343\201\205" 37 "\343\201\207" 38 "\343\201\211" 39 "\343\202\203" 40 "\343\202\205" 41 "\343\202\207" 126 "\343\202\222" 90 "\343\201\243" 60 "\343\200\201" 62 "\343\200\202" 63 "\343\203\273" 123 "\343\200\214" 125 "\343\200\215" 80 "\343\200\216" 43 "\343\200\217" 95 "\343\202\215" 70 "\343\202\216" 84 "\343\203\265" 42 "\343\203\266"))) "Key mapping from key codes to Kana strings based on 106-JP keyboard.") (defvar mozc-keymap-kana-101us (mozc-keymap-make-keymap-from-flat-list (quote (49 "\343\201\254" 50 "\343\201\265" 51 "\343\201\202" 52 "\343\201\206" 53 "\343\201\210" 54 "\343\201\212" 55 "\343\202\204" 56 "\343\202\206" 57 "\343\202\210" 48 "\343\202\217" 45 "\343\201\273" 61 "\343\201\270" 96 "\343\202\215" 113 "\343\201\237" 119 "\343\201\246" 101 "\343\201\204" 114 "\343\201\231" 116 "\343\201\213" 121 "\343\202\223" 117 "\343\201\252" 105 "\343\201\253" 111 "\343\202\211" 112 "\343\201\233" 91 "\343\202\233" 93 "\343\202\234" 92 "\343\202\200" 97 "\343\201\241" 115 "\343\201\250" 100 "\343\201\227" 102 "\343\201\257" 103 "\343\201\215" 104 "\343\201\217" 106 "\343\201\276" 107 "\343\201\256" 108 "\343\202\212" 59 "\343\202\214" 39 "\343\201\221" 122 "\343\201\244" 120 "\343\201\225" 99 "\343\201\235" 118 "\343\201\262" 98 "\343\201\223" 110 "\343\201\277" 109 "\343\202\202" 44 "\343\201\255" 46 "\343\202\213" 47 "\343\202\201" 35 "\343\201\201" 69 "\343\201\203" 36 "\343\201\205" 37 "\343\201\207" 94 "\343\201\211" 38 "\343\202\203" 42 "\343\202\205" 40 "\343\202\207" 41 "\343\202\222" 90 "\343\201\243" 60 "\343\200\201" 62 "\343\200\202" 63 "\343\203\273" 123 "\343\200\214" 125 "\343\200\215" 80 "\343\200\216" 58 "\343\200\217" 95 "\343\203\274" 124 "\343\203\274" 70 "\343\202\216" 86 "\343\202\220" 43 "\343\202\221" 84 "\343\203\265" 34 "\343\203\266"))) "Key mapping from key codes to Kana strings based on 101-US keyboard.") (defvar mozc-keymap-kana mozc-keymap-kana-106jp "The default key mapping for Kana input method.") (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "mozc" (quote ("mozc-")))) (provide (quote mozc-autoloads))) "dash" ((dash dash-autoloads) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "dash" (quote ("dash-" "-keep" "-butlast" "-non" "-only-some" "-zip" "-e" "->" "-a" "-gr" "-when-let" "-d" "-l" "-s" "-p" "-r" "-m" "-i" "-f" "-u" "-value-to-list" "-t" "--" "-c" "!cons" "!cdr")))) (provide (quote dash-autoloads))) "epl" ((epl epl-autoloads) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "epl" (quote ("epl-")))) (provide (quote epl-autoloads))) "pkg-info" ((pkg-info-autoloads pkg-info) (autoload (quote pkg-info-library-original-version) "pkg-info" "Get the original version in the header of LIBRARY.
 
 The original version is stored in the X-Original-Version header.
 This header is added by the MELPA package archive to preserve
@@ -1411,7 +1492,7 @@ part of.  If PACKAGE is not installed, or if the PACKAGE version
 is the same as the LIBRARY version, do not include a package
 version.
 
-(fn LIBRARY &optional PACKAGE SHOW)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "pkg-info" (quote ("pkg-info-")))) (provide (quote pkg-info-autoloads))) "flycheck" ((flycheck-autoloads flycheck-buttercup flycheck-ert flycheck) (autoload (quote flycheck-manual) "flycheck" "Open the Flycheck manual.
+(fn LIBRARY &optional PACKAGE SHOW)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "pkg-info" (quote ("pkg-info-")))) (provide (quote pkg-info-autoloads))) "flycheck" ((flycheck flycheck-buttercup flycheck-ert flycheck-autoloads) (autoload (quote flycheck-manual) "flycheck" "Open the Flycheck manual.
 
 (fn)" t nil) (autoload (quote flycheck-mode) "flycheck" "Minor mode for on-the-fly syntax checking.
 
@@ -1591,7 +1672,7 @@ Use this together with the `option', `option-list' and
 `option-flag' forms in the `:command' argument to
 `flycheck-define-checker'.
 
-(fn SYMBOL INIT-VALUE CHECKERS DOCSTRING &rest CUSTOM-ARGS)" nil t) (function-put (quote flycheck-def-option-var) (quote lisp-indent-function) (quote 3)) (function-put (quote flycheck-def-option-var) (quote doc-string-elt) (quote 4)) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "flycheck" (quote ("flycheck-" "list-flycheck-errors" "locate-rebar3-project-root" "contains-rebar-config" "help-flycheck-checker-d" "read-flycheck-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "flycheck-buttercup" (quote ("flycheck-buttercup-format-error-list")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "flycheck-ert" (quote ("flycheck-er")))) (provide (quote flycheck-autoloads))) "ace-isearch" ((ace-isearch ace-isearch-autoloads) (autoload (quote ace-isearch-jump-during-isearch) "ace-isearch" "Jump to the one of the current isearch candidates.
+(fn SYMBOL INIT-VALUE CHECKERS DOCSTRING &rest CUSTOM-ARGS)" nil t) (function-put (quote flycheck-def-option-var) (quote lisp-indent-function) (quote 3)) (function-put (quote flycheck-def-option-var) (quote doc-string-elt) (quote 4)) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "flycheck" (quote ("flycheck-" "list-flycheck-errors" "locate-rebar3-project-root" "contains-rebar-config" "help-flycheck-checker-d" "read-flycheck-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "flycheck-buttercup" (quote ("flycheck-buttercup-format-error-list")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "flycheck-ert" (quote ("flycheck-er")))) (provide (quote flycheck-autoloads))) "ace-isearch" ((ace-isearch-autoloads ace-isearch) (autoload (quote ace-isearch-jump-during-isearch) "ace-isearch" "Jump to the one of the current isearch candidates.
 
 (fn)" t nil) (autoload (quote ace-isearch-mode) "ace-isearch" "Minor-mode which combines isearch, ace-jump-mode, avy, helm-swoop and swiper seamlessly.
 
@@ -1609,7 +1690,7 @@ Ace-Isearch mode is enabled in all buffers where
 `ace-isearch--turn-on' would do it.
 See `ace-isearch-mode' for more information on Ace-Isearch mode.
 
-(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "ace-isearch" (quote ("ace-isearch-")))) (provide (quote ace-isearch-autoloads))) "dired-du" ((dired-du-autoloads dired-du dired-du-tests) (autoload (quote dired-du-mode) "dired-du" "Toggle dired-du mode.
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "ace-isearch" (quote ("ace-isearch-")))) (provide (quote ace-isearch-autoloads))) "dired-du" ((dired-du-tests dired-du dired-du-autoloads) (autoload (quote dired-du-mode) "dired-du" "Toggle dired-du mode.
 Interactively with no argument, this command toggles the mode.
 A positive prefix argument enables the mode, any other prefix
 argument disables it.  From Lisp, argument omitted or nil enables
@@ -1645,209 +1726,7 @@ their recursive size.
 
 (fn MARK &optional ALL-MARKS INCLUDE-DIRS)" t nil) (autoload (quote dired-du-insert-marked-dirs) "dired-du" "Insert all marked subdirectories.
 
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "dired-du" (quote ("dired-du-")))) (provide (quote dired-du-autoloads))) "japanese-holidays" ((japanese-holidays japanese-holidays-autoloads) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "japanese-holidays" (quote ("japanese-holiday")))) (provide (quote japanese-holidays-autoloads))) "rainbow-mode" ((rainbow-mode-autoloads rainbow-mode) (autoload (quote rainbow-mode) "rainbow-mode" "Colorize strings that represent colors.
-This will fontify with colors the string like \"#aabbcc\" or \"blue\".
-
-(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "rainbow-mode" (quote ("rainbow-")))) (provide (quote rainbow-mode-autoloads))) "twittering-mode" ((twittering-mode-autoloads twittering-mode) (autoload (quote twit) "twittering-mode" "Start twittering-mode.
-
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "twittering-mode" (quote ("twittering-" "debug-print" "case-string" "list-push" "assocref")))) (provide (quote twittering-mode-autoloads))) "pos-tip" ((pos-tip-autoloads pos-tip) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "pos-tip" (quote ("pos-tip-")))) (provide (quote pos-tip-autoloads))) "popup-kill-ring" ((popup-kill-ring-autoloads popup-kill-ring) (autoload (quote popup-kill-ring) "popup-kill-ring" "Interactively insert selected item from `key-ring' by `popup.el'
-and `pos-tip.el'
-
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "popup-kill-ring" (quote ("popup-kill-ring-")))) (provide (quote popup-kill-ring-autoloads))) "popup-switcher" ((popup-switcher popup-switcher-autoloads) (autoload (quote psw-switch-buffer) "popup-switcher" "
-
-(fn)" t nil) (autoload (quote psw-switch-recentf) "popup-switcher" "
-
-(fn)" t nil) (autoload (quote psw-switch-projectile-files) "popup-switcher" "
-
-(fn)" t nil) (autoload (quote psw-navigate-files) "popup-switcher" "
-
-(fn &optional START-PATH)" t nil) (autoload (quote psw-switch-function) "popup-switcher" "
-
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "popup-switcher" (quote ("psw-")))) (provide (quote popup-switcher-autoloads))) "powerline" ((powerline-themes powerline powerline-autoloads powerline-separators) (autoload (quote powerline-hud) "powerline" "Return an XPM of relative buffer location using FACE1 and FACE2 of optional WIDTH.
-
-(fn FACE1 FACE2 &optional WIDTH)" nil nil) (autoload (quote powerline-mouse) "powerline" "Return mouse handler for CLICK-GROUP given CLICK-TYPE and STRING.
-
-(fn CLICK-GROUP CLICK-TYPE STRING)" nil nil) (autoload (quote powerline-concat) "powerline" "Concatonate STRINGS and pad sides by spaces.
-
-(fn &rest STRINGS)" nil nil) (autoload (quote defpowerline) "powerline" "Create function NAME by wrapping BODY with powerline padding an propetization.
-
-(fn NAME BODY)" nil t) (autoload (quote powerline-raw) "powerline" "Render STR as mode-line data using FACE and optionally PAD import on left (l) or right (r).
-
-(fn STR &optional FACE PAD)" nil nil) (autoload (quote powerline-fill) "powerline" "Return empty space using FACE and leaving RESERVE space on the right.
-
-(fn FACE RESERVE)" nil nil) (autoload (quote powerline-major-mode) "powerline") (autoload (quote powerline-minor-modes) "powerline") (autoload (quote powerline-narrow) "powerline") (autoload (quote powerline-vc) "powerline") (autoload (quote powerline-encoding) "powerline") (autoload (quote powerline-buffer-size) "powerline") (autoload (quote powerline-buffer-id) "powerline") (autoload (quote powerline-process) "powerline") (autoload (quote powerline-selected-window-active) "powerline") (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "powerline" (quote ("pl/" "powerline-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "powerline-separators" (quote ("pl/")))) (autoload (quote powerline-default-theme) "powerline-themes" "Setup the default mode-line.
-
-(fn)" t nil) (autoload (quote powerline-center-theme) "powerline-themes" "Setup a mode-line with major and minor modes centered.
-
-(fn)" t nil) (autoload (quote powerline-vim-theme) "powerline-themes" "Setup a Vim-like mode-line.
-
-(fn)" t nil) (autoload (quote powerline-nano-theme) "powerline-themes" "Setup a nano-like mode-line.
-
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "powerline-themes" (quote ("powerline-")))) (provide (quote powerline-autoloads))) "mode-icons" ((mode-icons mode-icons-autoloads) (defvar mode-icons-mode nil "Non-nil if Mode-Icons mode is enabled.
-See the `mode-icons-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `mode-icons-mode'.") (custom-autoload (quote mode-icons-mode) "mode-icons" nil) (autoload (quote mode-icons-mode) "mode-icons" "Replace the name of the current major mode with an icon.
-
-(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "mode-icons" (quote ("mode-icons")))) (provide (quote mode-icons-autoloads))) "ergoemacs-status" ((ergoemacs-status ergoemacs-status-autoloads) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "ergoemacs-status" (quote ("ergoemacs-")))) (provide (quote ergoemacs-status-autoloads))) "move-text" ((move-text-autoloads move-text) (autoload (quote move-text--total-lines) "move-text" "Convenience function to get the total lines in the buffer / or narrowed buffer.
-
-(fn)" nil nil) (autoload (quote move-text--at-first-line-p) "move-text" "Predicate, is the point at the first line?
-
-(fn)" nil nil) (autoload (quote move-text--at-penultimate-line-p) "move-text" "Predicate, is the point at the penultimate line?
-
-(fn)" nil nil) (autoload (quote move-text--last-line-is-just-newline) "move-text" "Predicate, is last line just a newline?
-
-(fn)" nil nil) (autoload (quote move-text--at-last-line-p) "move-text" "Predicate, is the point at the last line?
-
-(fn)" nil nil) (autoload (quote move-text-line-up) "move-text" "Move the current line up.
-
-(fn)" t nil) (autoload (quote move-text-line-down) "move-text" "Move the current line down.
-
-(fn)" t nil) (autoload (quote move-text-region) "move-text" "Move the current region (START END) up or down by N lines.
-
-(fn START END N)" t nil) (autoload (quote move-text-region-up) "move-text" "Move the current region (START END) up by N lines.
-
-(fn START END N)" t nil) (autoload (quote move-text-region-down) "move-text" "Move the current region (START END) down by N lines.
-
-(fn START END N)" t nil) (autoload (quote move-text-up) "move-text" "Move the line or region (START END) up by N lines.
-
-(fn &optional START END N)" t nil) (autoload (quote move-text-down) "move-text" "Move the line or region (START END) down by N lines.
-
-(fn &optional START END N)" t nil) (autoload (quote move-text-default-bindings) "move-text" "Use default bindings for move-text-up and move-text-down (M-up / M-down).
-
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "move-text" (quote ("move-text-get-region-and-prefix")))) (provide (quote move-text-autoloads))) "darkroom" ((darkroom darkroom-autoloads) (autoload (quote darkroom-mode) "darkroom" "Remove visual distractions and focus on writing. When this
-mode is active, everything but the buffer's text is elided from
-view. The buffer margins are set so that text is centered on
-screen. Text size is increased (display engine allowing) by
-`darkroom-text-scale-increase'.
-
-(fn &optional ARG)" t nil) (autoload (quote darkroom-tentative-mode) "darkroom" "Enters `darkroom-mode' when all other windows are deleted.
-
-(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "darkroom" (quote ("darkroom-")))) (provide (quote darkroom-autoloads))) "undo-tree" ((undo-tree undo-tree-autoloads) (autoload (quote undo-tree-mode) "undo-tree" "Toggle undo-tree mode.
-With no argument, this command toggles the mode.
-A positive prefix argument turns the mode on.
-A negative prefix argument turns it off.
-
-Undo-tree-mode replaces Emacs' standard undo feature with a more
-powerful yet easier to use version, that treats the undo history
-as what it is: a tree.
-
-The following keys are available in `undo-tree-mode':
-
-  \\{undo-tree-map}
-
-Within the undo-tree visualizer, the following keys are available:
-
-  \\{undo-tree-visualizer-mode-map}
-
-(fn &optional ARG)" t nil) (defvar global-undo-tree-mode nil "Non-nil if Global Undo-Tree mode is enabled.
-See the `global-undo-tree-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `global-undo-tree-mode'.") (custom-autoload (quote global-undo-tree-mode) "undo-tree" nil) (autoload (quote global-undo-tree-mode) "undo-tree" "Toggle Undo-Tree mode in all buffers.
-With prefix ARG, enable Global Undo-Tree mode if ARG is positive;
-otherwise, disable it.  If called from Lisp, enable the mode if
-ARG is omitted or nil.
-
-Undo-Tree mode is enabled in all buffers where
-`turn-on-undo-tree-mode' would do it.
-See `undo-tree-mode' for more information on Undo-Tree mode.
-
-(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "undo-tree" (quote ("undo-" "turn-on-undo-tree-mode" "*undo-tree-id-counter*" "buffer-undo-tree")))) (provide (quote undo-tree-autoloads))) "tabbar" ((tabbar-autoloads tabbar) (autoload (quote tabbar-backward) "tabbar" "Select the previous available tab.
-Depend on the setting of the option `tabbar-cycle-scope'.
-
-(fn)" t nil) (autoload (quote tabbar-forward) "tabbar" "Select the next available tab.
-Depend on the setting of the option `tabbar-cycle-scope'.
-
-(fn)" t nil) (autoload (quote tabbar-backward-group) "tabbar" "Go to selected tab in the previous available group.
-
-(fn)" t nil) (autoload (quote tabbar-forward-group) "tabbar" "Go to selected tab in the next available group.
-
-(fn)" t nil) (autoload (quote tabbar-backward-tab) "tabbar" "Select the previous visible tab.
-
-(fn)" t nil) (autoload (quote tabbar-forward-tab) "tabbar" "Select the next visible tab.
-
-(fn)" t nil) (autoload (quote tabbar-press-home) "tabbar" "Press the tab bar home button.
-That is, simulate a mouse click on that button.
-A numeric prefix ARG value of 2, or 3, respectively simulates a
-mouse-2, or mouse-3 click.  The default is a mouse-1 click.
-
-(fn &optional ARG)" t nil) (autoload (quote tabbar-press-scroll-left) "tabbar" "Press the tab bar scroll-left button.
-That is, simulate a mouse click on that button.
-A numeric prefix ARG value of 2, or 3, respectively simulates a
-mouse-2, or mouse-3 click.  The default is a mouse-1 click.
-
-(fn &optional ARG)" t nil) (autoload (quote tabbar-press-scroll-right) "tabbar" "Press the tab bar scroll-right button.
-That is, simulate a mouse click on that button.
-A numeric prefix ARG value of 2, or 3, respectively simulates a
-mouse-2, or mouse-3 click.  The default is a mouse-1 click.
-
-(fn &optional ARG)" t nil) (autoload (quote tabbar-mwheel-backward) "tabbar" "Select the previous available tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-backward'.
-
-(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-forward) "tabbar" "Select the next available tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-forward'.
-
-(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-backward-group) "tabbar" "Go to selected tab in the previous available group.
-If there is only one group, select the previous visible tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-backward-group'.
-
-(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-forward-group) "tabbar" "Go to selected tab in the next available group.
-If there is only one group, select the next visible tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-forward-group'.
-
-(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-backward-tab) "tabbar" "Select the previous visible tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-backward-tab'.
-
-(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-forward-tab) "tabbar" "Select the next visible tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-forward-tab'.
-
-(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-switch-tab) "tabbar" "Select the next or previous tab according to EVENT.
-
-(fn EVENT)" t nil) (autoload (quote tabbar-mwheel-switch-group) "tabbar" "Select the next or previous group of tabs according to EVENT.
-
-(fn EVENT)" t nil) (autoload (quote tabbar-local-mode) "tabbar" "Toggle local display of the tab bar.
-With prefix argument ARG, turn on if positive, otherwise off.
-Returns non-nil if the new state is enabled.
-When turned on, if a local header line is shown, it is hidden to show
-the tab bar.  The tab bar is locally hidden otherwise.  When turned
-off, if a local header line is hidden or the tab bar is locally
-hidden, it is shown again.  Signal an error if Tabbar mode is off.
-
-(fn &optional ARG)" t nil) (defvar tabbar-mode nil "Non-nil if Tabbar mode is enabled.
-See the `tabbar-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `tabbar-mode'.") (custom-autoload (quote tabbar-mode) "tabbar" nil) (autoload (quote tabbar-mode) "tabbar" "Toggle display of a tab bar in the header line.
-With prefix argument ARG, turn on if positive, otherwise off.
-Returns non-nil if the new state is enabled.
-
-\\{tabbar-mode-map}
-
-(fn &optional ARG)" t nil) (defvar tabbar-mwheel-mode nil "Non-nil if Tabbar-Mwheel mode is enabled.
-See the `tabbar-mwheel-mode' command
-for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `tabbar-mwheel-mode'.") (custom-autoload (quote tabbar-mwheel-mode) "tabbar" nil) (autoload (quote tabbar-mwheel-mode) "tabbar" "Toggle use of the mouse wheel to navigate through tabs or groups.
-With prefix argument ARG, turn on if positive, otherwise off.
-Returns non-nil if the new state is enabled.
-
-\\{tabbar-mwheel-mode-map}
-
-(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "tabbar" (quote ("tabbar-")))) (provide (quote tabbar-autoloads))) "html-script-src" ((html-script-src-autoloads html-script-src) (autoload (quote html-script-src) "html-script-src" "Insert a script tag for a JavaScript library. With prefix argument,
-cache is omitted.
-
-(fn ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "html-script-src" (quote ("html-script-src-")))) (provide (quote html-script-src-autoloads))) "websocket" ((websocket-autoloads websocket) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "websocket" (quote ("websocket-")))) (provide (quote websocket-autoloads)))))
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "dired-du" (quote ("dired-du-")))) (provide (quote dired-du-autoloads)))))
 
 ("org-elpa" "melpa" "gnu-elpa" "emacsmirror" "straight" "use-package" "bind-key" "helm" "async" "popup" "cl-lib" "helm-core" "rainbow-delimiters" "neotree" "volatile-highlights" "smooth-scroll" "hlinum" "undohist" "anzu" "shell-pop" "web-mode" "beacon" "seq" "japanese-holidays" "rainbow-mode" "popup-kill-ring" "pos-tip" "popup-switcher" "move-text" "darkroom" "undo-tree" "mozc" "flycheck" "dash" "pkg-info" "epl" "ace-isearch" "dired-du")
 

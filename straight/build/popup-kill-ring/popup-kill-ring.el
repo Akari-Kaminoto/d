@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/popup-kill-ring/popup-kill-ring.el
+/home/ryuichi/.emacs.d/straight/repos/popup-kill-ring/popup-kill-ring.el

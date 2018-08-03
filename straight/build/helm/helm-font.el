@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/helm/helm-font.el
+/home/ryuichi/.emacs.d/straight/repos/helm/helm-font.el

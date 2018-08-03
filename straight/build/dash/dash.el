@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/dash.el/dash.el
+/home/ryuichi/.emacs.d/straight/repos/dash.el/dash.el

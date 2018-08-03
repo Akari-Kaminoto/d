@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/pkg-info.el/pkg-info.el
+/home/ryuichi/.emacs.d/straight/repos/pkg-info.el/pkg-info.el

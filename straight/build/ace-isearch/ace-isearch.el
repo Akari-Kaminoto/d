@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/ace-isearch/ace-isearch.el
+/home/ryuichi/.emacs.d/straight/repos/ace-isearch/ace-isearch.el

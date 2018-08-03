@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/elpa/packages/rainbow-mode/rainbow-mode.el
+/home/ryuichi/.emacs.d/straight/repos/elpa/packages/rainbow-mode/rainbow-mode.el

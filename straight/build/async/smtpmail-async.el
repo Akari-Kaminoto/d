@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/emacs-async/smtpmail-async.el
+/home/ryuichi/.emacs.d/straight/repos/emacs-async/smtpmail-async.el

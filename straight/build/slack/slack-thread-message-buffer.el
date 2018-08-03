@@ -1,1 +1,0 @@
-/home/tsubasa/.emacs.d/straight/repos/emacs-slack/slack-thread-message-buffer.el

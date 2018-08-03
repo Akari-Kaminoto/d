@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/elpa/packages/cl-lib/cl-lib.el
+/home/ryuichi/.emacs.d/straight/repos/elpa/packages/cl-lib/cl-lib.el

@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/elpa/packages/darkroom/darkroom.el
+/home/ryuichi/.emacs.d/straight/repos/elpa/packages/darkroom/darkroom.el

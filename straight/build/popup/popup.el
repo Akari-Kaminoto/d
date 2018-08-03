@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/popup-el/popup.el
+/home/ryuichi/.emacs.d/straight/repos/popup-el/popup.el

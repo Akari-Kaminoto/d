@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/use-package/use-package-ensure.el
+/home/ryuichi/.emacs.d/straight/repos/use-package/use-package-ensure.el

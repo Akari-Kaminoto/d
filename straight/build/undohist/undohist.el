@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/undohist-el/undohist.el
+/home/ryuichi/.emacs.d/straight/repos/undohist-el/undohist.el

@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/emacs-anzu/anzu.el
+/home/ryuichi/.emacs.d/straight/repos/emacs-anzu/anzu.el

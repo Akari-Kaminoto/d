@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/web-mode/web-mode.el
+/home/ryuichi/.emacs.d/straight/repos/web-mode/web-mode.el

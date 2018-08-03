@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/flycheck/flycheck-ert.el
+/home/ryuichi/.emacs.d/straight/repos/flycheck/flycheck-ert.el

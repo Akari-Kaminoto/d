@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/elpa/packages/seq/seq-24.el
+/home/ryuichi/.emacs.d/straight/repos/elpa/packages/seq/seq-24.el

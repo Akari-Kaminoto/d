@@ -1,1 +1,0 @@
-c:/Users/NEL/Desktop/ando/.emacs.d/straight/repos/elpa/packages/seq/seq-24.el

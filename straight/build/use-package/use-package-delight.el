@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/use-package/use-package-delight.el
+/home/ryuichi/.emacs.d/straight/repos/use-package/use-package-delight.el

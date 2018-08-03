@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/straight.el/straight-compat.el
+/home/ryuichi/.emacs.d/straight/repos/straight.el/straight-compat.el

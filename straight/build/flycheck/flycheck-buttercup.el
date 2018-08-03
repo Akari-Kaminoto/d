@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/flycheck/flycheck-buttercup.el
+/home/ryuichi/.emacs.d/straight/repos/flycheck/flycheck-buttercup.el

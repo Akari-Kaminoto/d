@@ -1,1 +1,1 @@
-/home/tsubasa/.emacs.d/straight/repos/pos-tip/pos-tip.el
+/home/ryuichi/.emacs.d/straight/repos/pos-tip/pos-tip.el
