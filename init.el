@@ -1,4 +1,4 @@
-;Last Updated:<2018/08/07 17:44:03 from ryuichi-VirtualBox by ryuichi>
+;Last Updated:<2018/08/07 18:56:41 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -304,7 +304,6 @@
         '(:eval (format my-mode-line-format
                         (count-lines (point-max) (point-min))))))
 
- 
 ;;----
 ;; TABの表示幅
 ;;----
@@ -1089,6 +1088,34 @@
 (when (equal system-type 'darwin)
 ;;;なし
 );;; ここまでMACOS用
+
+;;;
+;;; モードラインに表示しない
+;;;
+
+(setq my/hidden-minor-modes
+      '(undo-tree-mode
+        anzu-mode
+        flycheck-mode
+        vhdl-mode
+        rainbow-mode
+        scroll-all-mode
+        ace-isearch-mode
+        whitespace-mode
+        ctags-auto-update-mode
+        company-mode
+        eldoc-mode
+        auto-complete-mode
+        magit-auto-revert-mode
+        abbrev-mode
+        helm-mode))
+
+(mapc (lambda (mode)
+          (setq minor-mode-alist
+                (cons (list mode "") (assq-delete-all mode minor-mode-alist))))
+        my/hidden-minor-modes)
+
+
 
 ;;;
 (custom-set-variables
