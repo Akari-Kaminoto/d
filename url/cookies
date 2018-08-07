@@ -2,9 +2,13 @@
 ;; Automatically generated file!!! DO NOT EDIT!!!
 
 (setq url-cookie-storage
- '((".google.com"
+ '((".qiita.com"
+  [url-cookie "_qiita_login_session" "YzIxQUZXaDFsOUJodUJjb1ltOWUrV1pzM0FmZmtrRm8zWEptVnFGWU5JakZxbFdqMkJNZWI4RW5xVENTZ0xpeGNGNEprRHpJQWVVYXJzMnR6R0x6U3QzeUlmaHFHMGxWWkNMSzZ4MXJBN0h3K2NqSzRnSm1UMEJpNXdRUjFIS2xlcVl3TnJWVndrbmJ2SUdNYkNNZndyVUNzNmFHNUd4ejY5QkpKRlBwa3ZrWUxaVTE5ZDYrR1RzVEczcGdkUmJOLS1VZkprRjVhcjFDV1FYUk1vZ2xjbm1nPT0%3D--a535a1bc9582b8b7e29ed4063adf16811e4ff808" "Tue, 06 Aug 2019 07:54:10 -0000" "/" ".qiita.com" nil])
+ (".google.com"
+  [url-cookie "1P_JAR" "2018-08-06-07" "Wed, 05-Sep-2018 07:53:59 GMT" "/" ".google.com" nil]
   [url-cookie "NID" "133=VOXPFgnuY0N6zYboln8uKnJeMH1pSmc0-RaBuL8xuhccFlEcRh0ZaaotJszOP7lNIRMXsZU-njMkomCZ9y-LZI7D_kMdnR0Ui2FYicptqrgvxxseSE2Zgp95qUXQX9u3" "Wed, 26-Dec-2018 06:33:52 GMT" "/" ".google.com" nil]
-  [url-cookie "1P_JAR" "2018-06-26-06" "Thu, 26-Jul-2018 06:33:52 GMT" "/" ".google.com" nil]))
+  [url-cookie "CGIC" "IgMqLyo" "Mon, 04-Feb-2019 22:48:35 GMT" "/complete/search" ".google.com" nil]
+  [url-cookie "CGIC" "IgMqLyo" "Mon, 04-Feb-2019 22:48:35 GMT" "/search" ".google.com" nil]))
 )
 (setq url-cookie-secure-storage
  'nil)

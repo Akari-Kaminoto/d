@@ -119,8 +119,20 @@
 
 ;;; hjsonが何故かSJISで開かれてしまうので追加
 (modify-coding-system-alist 'file "\\.*json\\'" 'utf-8) 
+(add-to-list 'auto-mode-alist '("\\.*json\\'" . json-mode))
 
+;;; Makefileが何故かSJISで開かれてしまうので追加
+(modify-coding-system-alist 'file "\\Makefile.*\\'" 'utf-8) 
+(add-to-list 'auto-mode-alist '("\\Makefile*\\'" . makefile-mode))
+
+;;; README.mdが何故かSJISで開かれてしまうので追加
+(modify-coding-system-alist 'file "\\README.md\\'" 'utf-8)
+(add-to-list 'auto-mode-alist '("\\ReadME.md\\'" . markdown-mode))
+
+;;;
 ;;; CUI/GUIで分ける設定
+;;;
+
 ;;
 ;; CUI時の設定
 ;;
@@ -151,8 +163,8 @@
 
 ;;; インデント設定
 
-(setq-default c-basic-offset 4     ;;基本インデント量4
-              tab-width 4          ;;タブ幅4
+(setq-default c-basic-offset 2     ;;基本インデント量
+              tab-width 2          ;;タブ幅
               indent-tabs-mode nil)  ;;インデントをタブでするかスペースでするか
 
 ;;; C,C++の設定
@@ -161,8 +173,8 @@
 (add-hook 'c++-mode-hook
           '(lambda ()
              ;;(setq tab-width 32)
-             (setq tab-width 4)
-             (setq c-basic-offset 4)
+             (setq tab-width 2)
+             (setq c-basic-offset 2)
              ;; 以下 *:*1 -:*-1 ++:*2 --:*-2 *:*0.5 /:*-0.5
              (setq c++-auto-newline nil)
              (setq c++-tab-always-indent t)
@@ -298,8 +310,9 @@
 
 ;; タブをスペースで扱う
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
- 
+;;(setq-default tab-width 4)
+(setq-default tab-width 2)
+
 ;;----
 ;; ファイルサイズ表示
 ;;----
@@ -424,6 +437,7 @@
 (use-package rainbow-delimiters
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
 
   ;; 括弧の色を強調する設定
   (require 'cl-lib)
@@ -857,6 +871,20 @@
 ;;   (setq tabbar-buffer-list-function 'my-tabbar-buffer-list))
 ;;; tabbarは使わない
 
+;;;markdown-mode
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
+;;;
+;;; markdown-preview-mode
+;;;
+
+(use-package markdown-preview-mode)
 
 ;;;
 ;;; OS によって設定を切り替える例
@@ -935,20 +963,23 @@
 (set-face-attribute 'default nil
                     :family "Myrica M"
                     :height 140)
- (set-fontset-font (frame-parameter nil 'font)
-                   'japanese-jisx0208
-                   '("Myrica M" . "unicode-bmp")
-                   )
+(set-fontset-font (frame-parameter nil 'font)
+                  'japanese-jisx0208
+                  '("Myrica M" . "unicode-bmp")
+                  )
 
- (set-fontset-font (frame-parameter nil 'font)
-                   'katakana-jisx0201
-                   '("Myrica M" . "unicode-bmp")
-                   )
+(set-fontset-font (frame-parameter nil 'font)
+                  'katakana-jisx0201
+                  '("Myrica M" . "unicode-bmp")
+                  )
 
 
 ;;ctags windows用設定
   (setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
 
+;;; Windows markdownビューワの指定
+(setq markdown-open-command "~/.emacs.d/etc/markcat.bat")
+  
 ;;
 ;; 環境変数でgitのPATHを通しておくのを忘れずに
 ;;

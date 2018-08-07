@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "use-package-el-get" "20180131.505" "el-get support for use package" '((use-package "1.0")) :commit "cba87c4e9a3a66b7c10962e3aefdf11c83d737bc" :keywords '("dotemacs" "startup" "speed" "config" "package" "tools") :authors '(("Edward Knyshov" . "edvorg@gmail.com")) :maintainer '("Edward Knyshov" . "edvorg@gmail.com") :url "https://github.com/edvorg/use-package-el-get")
