@@ -1,3 +1,4 @@
+;Last Updated:<2018/08/07 17:44:03 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -403,6 +404,15 @@
 
 ;;;;; ココらへんからパッケージの話
 
+;; 最終更新日の自動挿入
+(use-package time-stamp)
+(add-hook 'before-save-hook 'time-stamp)
+(setq time-stamp-active t)
+(setq time-stamp-start "[lL]ast[ -][uU]pdated[ \t]*:[ \t]*<")
+(setq time-stamp-format "%:y/%02m/%02d %02H:%02M:%02S from %s by %u")
+(setq time-stamp-end ">")
+(setq time-stamp-line-limit 20)
+
 ;;;
 ;;; helm
 ;;;
@@ -674,17 +684,17 @@
   ;; (setq shell-pop-shell-type '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell))))
   (global-set-key (kbd "C-c s") 'shell-pop))
   
-
-
 ;;; web mode
 ;;; HTMLモードではhtmlの中のjavascriptなどが色分けされないので導入
 ;;; http://web-mode.org/
 ;;; http://yanmoo.blogspot.jp/2013/06/html5web-mode.html
 (use-package web-mode
+  :mode
+  (("\\.html?\\'" . web-mode)
+   ("\\.jsp\\'"   . web-mode)
+   ("\\.ctp\\'"   . web-mode)
+   ("\\.gsp\\'"   . web-mode))
   :config
-  (add-to-list 'auto-mode-alist '("\\.ctp\\'"   . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  
   (defun web-mode-hook ()
     (setq web-mode-markup-indent-offset 2)
     (setq web-mode-css-indent-offset 2)
@@ -884,7 +894,17 @@
 ;;; markdown-preview-mode
 ;;;
 
-(use-package markdown-preview-mode)
+;autoload扱い
+(use-package markdown-preview-mode
+  :commands (markdown-preview-mode))
+;;;
+;;; markdown-preview-eww
+;;;
+
+;autoload扱い
+(use-package markdown-preview-eww
+  :commands (markdown-preview-eww))
+
 
 ;;;
 ;;; OS によって設定を切り替える例
