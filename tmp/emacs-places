@@ -1,11 +1,21 @@
 ;;; -*- coding: utf-8 -*-
-(("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/Cache.cpp" . 10877)
- ("/home/ryuichi/.emacs.d/init.el" . 31617)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/RECCache.c" . 10176)
- ("/home/ryuichi/.emacs.d/"
+(("/home/ryuichi/.emacs.d/"
   (dired-filename . "/home/ryuichi/.emacs.d/init.el"))
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/Cache.cpp" . 1160)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/RECCache.module.hjson" . 677)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCache.cpp" . 757)
+ ("/home/ryuichi/.emacs.d/init.el" . 29476)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/"
+  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCacheReadTimestampRange.cpp"))
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCacheReadTimestampRange.cpp" . 7579)
+ ("/home/ryuichi/.emacs.d/elpa/magit-20180807.1856/magit-autoloads.el" . 82848)
+ ("/home/ryuichi/.emacs.d/recentf" . 327)
+ ("/home/ryuichi/.emacs.d/straight/build/page-break-lines/page-break-lines-autoloads.el" . 2700)
+ ("/home/ryuichi/.emacs.d/straight/build/dashboard/dashboard-autoloads.el" . 491)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/RECCache.c" . 9916)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/"
   (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/Cache.cpp"))
+ ("/home/ryuichi/.emacs.d/elpa/page-break-lines-20171210.831/page-break-lines-autoloads.el" . 2819)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/"
   (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/Storage.cpp"))
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/Storage.cpp" . 301)
@@ -25,7 +35,6 @@
  ("/home/ryuichi/.emacs.d/straight/build/markdown-preview-mode/markdown-preview-mode-autoloads.el" . 725)
  ("/home/ryuichi/.emacs.d/straight/build/markdown-mode/markdown-mode-autoloads.el" . 1052)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/test/img_test.cpp" . 1337)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCache.cpp" . 4807)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/Cache.h" . 12)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/CacheData.h" . 2360)
  ("/home/ryuichi/.emacs.d/straight/build/straight/straight-autoloads.el" . 12247)
@@ -80,7 +89,6 @@
  ("/home/ryuichi/.emacs.d/elpa/json-snatcher-20150512.347/json-snatcher-autoloads.el" . 571)
  ("/home/ryuichi/.emacs.d/elpa/leuven-theme-20170919.952/leuven-theme-autoloads.el" . 1117)
  ("/home/ryuichi/.emacs.d/elpa/log4e-20170401.1304/log4e-autoloads.el" . 676)
- ("/home/ryuichi/.emacs.d/elpa/magit-20180806.2120/magit-autoloads.el" . 82848)
  ("/home/ryuichi/.emacs.d/elpa/magit-popup-20180726.2037/magit-popup-autoloads.el" . 492)
  ("/home/ryuichi/.emacs.d/elpa/math-symbol-lists-20170221.1353/math-symbol-lists-autoloads.el" . 829)
  ("/home/ryuichi/.emacs.d/elpa/melpa-upstream-visit-20130720.1033/melpa-upstream-visit-autoloads.el" . 609)
@@ -112,8 +120,6 @@
  ("/home/ryuichi/.emacs.d/elpa/with-editor-20180726.2044/with-editor-autoloads.el" . 3403)
  ("/home/ryuichi/.emacs.d/elpa/xah-css-mode-20180629.807/xah-css-mode-autoloads.el" . 583)
  ("/home/ryuichi/.emacs.d/elpa/xah-elisp-mode-20180724.2313/xah-elisp-mode-autoloads.el" . 1165)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/"
-  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCacheAPI.cpp"))
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCacheAPI.cpp" . 7443)
  ("/home/ryuichi/.emacs.d/url/cookies" . 1191)
  ("/home/ryuichi/.emacs.d/straight/repos/straight.el/bootstrap.el" . 5656)
@@ -166,7 +172,6 @@
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/DummySender/Sender/SetIncmImageRgbU8.cpp" . 754)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/DummySender/Sender/SetImage__Byte__.cpp" . 1030)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/DummySender/Sender/SetIncmImageData.cpp" . 742)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/RECCache.module.hjson" . 606)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/test/"
   (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/test/img_test.cpp"))
  ("/home/ryuichi/work/rec/REC/test_REC.sh" . 94)
@@ -199,7 +204,6 @@
  ("/home/ryuichi/work/rec/RecCasheTest/markdown.txt" . 932)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/CacheAPI.h" . 172)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECEventTrigger/RECEventTrigger.module.hjson" . 2)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCacheReadTimestampRange.cpp" . 4176)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestReadTimestampCommon.h" . 202)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCacheAPIReadTimestampRange.cpp" . 3546)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/Makefile" . 213)

@@ -1,4 +1,4 @@
-;Last Updated:<2018/08/07 18:56:41 from ryuichi-VirtualBox by ryuichi>
+;Last Updated:<2018/08/08 13:29:35 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -904,6 +904,19 @@
 (use-package markdown-preview-eww
   :commands (markdown-preview-eww))
 
+;;;
+;;; dashboard
+;;;
+;;; 何故かフォント設定が吹っ飛ぶので動かすの中止
+;;
+;; (use-package dashboard
+;;   :ensure t
+;;   :config
+;;   ; Set the title
+;;   (setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
+;;   ;; Set the banner
+;;   (setq dashboard-startup-banner "~/.emacs.d/genm.png")
+;;   (dashboard-setup-startup-hook))
 
 ;;;
 ;;; OS によって設定を切り替える例
@@ -1008,9 +1021,16 @@
 (when (eq system-type 'gnu/linux) ; Unix
 
   ;; font
-  (set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
-  (add-to-list 'face-font-rescale-alist '(".*Takao P.*" . 0.85)) 
+  ;(set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
+  ;(add-to-list 'face-font-rescale-alist '(".*Takao P.*" . 0.85)) 
 
+  ;;rictyfont
+  ;; $ cp  ~/.emacs.d/RictyFont/ ~/.fonts/
+  ;; $ sudo fc-cache -vfでインストール
+  (set-frame-font "ricty-12")
+  (add-to-list 'default-frame-alist '(font . "ricty-13.5"))
+  
+  
   ;;;;;;;;;;;;;;;;;;;;
   ;; Dired 
   ;;;;;;;;;;;;;;;;;;;;
