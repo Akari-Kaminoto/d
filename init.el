@@ -1,4 +1,4 @@
-;Last Updated:<2018/08/08 13:29:35 from ryuichi-VirtualBox by ryuichi>
+;Last Updated:<2018/08/29 17:27:40 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -260,7 +260,29 @@
 ;; 行番号表示
 ;;----
 (global-linum-mode t)
-(setq linum-format "%5d ")
+
+;; whitespace-modeで半角SPCを表示している時に行番号表示欄では表示しない
+
+;; Custom face/function to pad the line number in a way that does not conflict with whitespace-mode
+(defface linum-padding
+  `((t :inherit 'linum
+       :foreground ,(face-attribute 'linum :background nil t)))
+  "Face for displaying leading zeroes for line numbers in display margin."
+  :group 'linum)
+
+(defun linum-format-func (line)
+  (let ((w (length
+            (number-to-string (count-lines (point-min) (point-max))))))
+    (concat
+     (propertize " " 'face 'linum-padding)
+     (propertize (make-string (- w (length (number-to-string line))) ?0)
+                 'face 'linum-padding)
+     (propertize (number-to-string line) 'face 'linum)
+     (propertize " " 'face 'linum-padding)
+     )))
+
+(setq linum-format 'linum-format-func)
+;;(setq linum-format "%5d ")
 
 ;;----
 ;; カラム番号
@@ -464,20 +486,18 @@
 ;; 全角空白とタブを可視化
 ;; 参考：http://d.hatena.ne.jp/t_ume_tky/20120906/1346943019
 ;;----
-;; タブや全角空白などを強調表示
-(global-whitespace-mode 1)
 ;; whitespace-mode の 色設定
 ;;http://ergoemacs.org/emacs/whitespace-mode.html
 (use-package whitespace
-  :init
+  :config
   (setq whitespace-style 
-        '(face tabs tab-mark spaces space-mark newline newline-mark))
+        '(face tabs tab-mark spaces space-mark newline newline-mark trailng))
   (setq whitespace-display-mappings
         '(
-          (tab-mark   ?\t     [?\xBB ?\t])  ; タブ
+          (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t]);タブ
           (space-mark ?\u3000 [?□])        ; 全角スペース
-          ;;        (space-mark ?\u0020 [?\xB7])      ; 半角スペース
-          ;;        (newline-mark ?\n   [?$ ?\n])     ; 改行記号
+          (space-mark ?\u0020 [?\.])  ; 半角スペース
+          (newline-mark ?\n   [?$ ?\n])     ; 改行記号
           ) )
   (setq whitespace-space-regexp "\\([\x0020\x3000]+\\)" )
   ;;正規表現に関する文書。 Emacs Lispには、正規表現リテラルがないことへの言及
@@ -485,16 +505,24 @@
   ;;
   ;;なぜか、全体をグループ化 \(\) しておかないと、うまくマッチしなかった罠
   ;;
-  (set-face-foreground 'whitespace-space "DimGray")
+  (set-face-foreground 'whitespace-space "#CEDDEF")
   (set-face-background 'whitespace-space 'nil)
-  ;;(set-face-bold-p 'whitespace-space t)
+;;  (set-face-bold-p 'whitespace-space t)
   
-  (set-face-foreground 'whitespace-tab "DimGray")
-  (set-face-background 'whitespace-tab "nil")
+  (set-face-foreground 'whitespace-tab "LightSkyBlue")
+  (set-face-background 'whitespace-tab 'nil)
   
-  (set-face-foreground 'whitespace-newline  "DimGray")
+  (set-face-foreground 'whitespace-newline  "#CEEDFF")
   (set-face-background 'whitespace-newline 'nil)
- )
+
+  ;; タブや全角空白などを強調表示
+  ;;(global-whitespace-mode 1)
+  
+  ;;C-cwで切り替え
+  (define-key global-map (kbd "\C-cw") 'whitespace-mode)
+  ;; 保存前に自動でクリーンアップ
+  (setq whitespace-action '(auto-cleanup))
+)
 
 ;;;yasnippet
 ;;
@@ -650,14 +678,13 @@
   :config
   (smooth-scroll-mode t))
 
-;;; hlinum
-;;; 現在の行番号をハイライト表示
+;;;hlinum
 (use-package hlinum
   :config
   (hlinum-activate))
 
 ;;ctags 共用設定
-  (ctags-global-auto-update-mode)  
+ (ctags-global-auto-update-mode nil)
   ;; M-.で移動してM-*で戻るはずが戻れないのでC-c u に再定義
   ;; C-x 4 . C-x 5 .も使えるがなんかいまいち
   (define-key global-map (kbd "\C-cu") 'pop-tag-mark)
@@ -918,6 +945,11 @@
 ;;   (setq dashboard-startup-banner "~/.emacs.d/genm.png")
 ;;   (dashboard-setup-startup-hook))
 
+;;; easy-kill
+(use-package easy-kill
+  :config
+  (global-set-key [remap kill-ring-save] 'easy-kill))
+
 ;;;
 ;;; OS によって設定を切り替える例
 ;;;
@@ -1121,9 +1153,12 @@
         rainbow-mode
         scroll-all-mode
         ace-isearch-mode
-        whitespace-mode
-        ctags-auto-update-mode
+        global-whitespace-mode
+        volatile-highlights-mode
+        smooth-scroll-mode
+        beacon-mode
         company-mode
+        auto-revert-mode
         eldoc-mode
         auto-complete-mode
         magit-auto-revert-mode
