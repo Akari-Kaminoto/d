@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "init-open-recentf" "20161206.1445" "Open recentf immediately after Emacs is started" '((emacs "24.4")) :commit "7d8fb124806291f7f6ef2ec3a664ea25899b6d68" :keywords '("files" "recentf" "after-init-hook") :authors '(("USAMI Kenta" . "tadsan@zonu.me")) :maintainer '("USAMI Kenta" . "tadsan@zonu.me") :url "https://github.com/zonuexe/init-open-recentf.el")

@@ -1,26 +1,58 @@
 ;;; -*- coding: utf-8 -*-
-(("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCache.cpp" . 565)
- ("/home/ryuichi/.emacs.d/init.el" . 14836)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/TriggerInfo.cpp" . 1546)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/CacheData.h" . 2755)
+(("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCache2.cpp" . 7817)
+ ("/home/ryuichi/.emacs.d/init.el" . 8932)
+ ("/home/ryuichi/.emacs.d/recentf" . 1034)
+ ("/home/ryuichi/.emacs.d/straight/build/ht/ht-autoloads.el" . 251)
+ ("/home/ryuichi/.emacs.d/straight/build/emojify/emojify-autoloads.el" . 2594)
+ ("/home/ryuichi/.emacs.d/elpa/emojify-20180611.1538/emojify-autoloads.el" . 2779)
+ ("/home/ryuichi/.emacs.d/elpa/emoji-fontset-20160726.1924/emoji-fontset-autoloads.el" . 660)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/Cache.cpp" . 4286)
+ ("/home/ryuichi/.emacs.d/elpa/pdf-tools-20180428.1527/pdf-tools-autoloads.el" . 13121)
+ ("/home/ryuichi/.emacs.d/elpa/tablist-20170220.335/tablist-autoloads.el" . 1109)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/Makefile" . 2550)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestRingBuffer.cpp" . 5693)
+ ("/home/ryuichi/.emacs.d/straight/build/pandoc/pandoc-autoloads.el" . 965)
+ ("/home/ryuichi/.emacs.d/elpa/pandoc-20161128.1157/pandoc-autoloads.el" . 1084)
+ ("/home/ryuichi/.emacs.d/straight/build/init-open-recentf/init-open-recentf-autoloads.el" . 446)
+ ("/home/ryuichi/.emacs.d/elpa/init-open-recentf-20161206.1445/init-open-recentf-autoloads.el" . 565)
+ ("/home/ryuichi/.emacs.d/straight/build/clang-format/clang-format-autoloads.el" . 1150)
+ ("/home/ryuichi/work/rec/REC/"
+  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec"))
+ ("/home/ryuichi/work/rec/REC/adx_rec/"
+  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src"))
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/"
+  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps"))
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/"
+  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC"))
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/"
+  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache"))
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/"
+  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCache2.cpp"))
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/RECCache.cpp" . 4806)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/SetStorePattern.cpp" . 1356)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/"
-  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/Cache.cpp"))
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/Cache.h" . 744)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/Cache.cpp" . 12966)
- ("/home/ryuichi/.emacs.d/elpa/magit-20180828.1955/magit-autoloads.el" . 82975)
- ("/home/ryuichi/.emacs.d/straight/build/easy-kill/easy-kill-autoloads.el" . 1108)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/TriggerInfo.h" . 456)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/RECCache.cpp" . 3826)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/CacheData.c" . 5439)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCacheNoTimestamp.cpp" . 371)
+  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/TriggerInfo.cpp"))
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/Storage.cpp" . 138)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/"
+  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/RECDataStorage.cpp"))
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/RECDataStorage.cpp" . 342)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCacheNoTimestamp.cpp" . 16691)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestReadTimestampCommon.h" . 495)
+ ("/home/ryuichi/.emacs.d/elpa/clang-format-20180406.1514/clang-format-autoloads.el" . 1269)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/TriggerInfo.cpp" . 1517)
+ ("/home/ryuichi/.emacs.d/elpa/magit-20180830.1006/magit-autoloads.el" . 82975)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/TriggerInfo.h" . 893)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/test/TestCache.cpp" . 26)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/Cache.h" . 1800)
+ ("/home/ryuichi/.emacs.d/elpa/smartparens-20180826.1053/smartparens-autoloads.el" . 10623)
+ ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECCache/CacheData.h" . 1656)
+ ("/home/ryuichi/.emacs.d/straight/build/easy-kill/easy-kill-autoloads.el" . 1108)
  ("/home/ryuichi/.emacs.d/elpa/alert-20180827.422/alert-autoloads.el" . 3920)
  ("/home/ryuichi/.emacs.d/elpa/helm-20180824.1636/helm-autoloads.el" . 34418)
  ("/home/ryuichi/.emacs.d/elpa/helm-core-20180826.515/helm-core-autoloads.el" . 6794)
  ("/home/ryuichi/.emacs.d/elpa/xah-elisp-mode-20180825.804/xah-elisp-mode-autoloads.el" . 1165)
  ("/home/ryuichi/.emacs.d/elpa/easy-kill-20151031.529/easy-kill-autoloads.el" . 1227)
  ("/home/ryuichi/.emacs.d/elpa/ztree-20180512.1850/ztree-autoloads.el" . 2137)
- ("/home/ryuichi/work/rec/TestRingBuffer_old.cpp" . 596)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/DummySender/Sender/Sender.cpp" . 8889)
  ("/home/ryuichi/work/rec/REC/adx_rec/build/PC/debug/generated_code/REC/RECRequestReceiver/RECRequestReceiverMain.c" . 7456)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECRequestReceiver/RECRequestReceiver.cpp" . 4436)
@@ -32,8 +64,6 @@
   (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/DummySender/Sender/.."))
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/DummySender/"
   (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/DummySender/.."))
- ("/home/ryuichi/work/rec/REC/adx_rec/"
-  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/build"))
  ("/home/ryuichi/work/rec/REC/adx_rec/build/"
   (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/build/PC"))
  ("/home/ryuichi/work/rec/REC/adx_rec/build/PC/"
@@ -48,12 +78,6 @@
   (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/build/PC/debug/generated_code/DummySender/Sender"))
  ("/home/ryuichi/work/rec/REC/adx_rec/build/PC/debug/generated_code/DummySender/Sender/"
   (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/build/PC/debug/generated_code/DummySender/Sender/SenderMain.c"))
- ("/home/ryuichi/work/rec/REC/adx_rec/src/"
-  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps"))
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/"
-  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC"))
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/"
-  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECRequestReceiver"))
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECRequestReceiver/"
   (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECRequestReceiver/RECRequestReceiver.cpp"))
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/DummySender/Sender/Sender.module.hjson" . 3893)
@@ -61,15 +85,9 @@
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/DummySender/Sender/SetRecStorageRequest.h" . 216)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/RECDataStorage.module.hjson" . 447)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECConnection/UploadInstruction.cpp" . 778)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/"
-  (dired-filename . "/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/RECDataStorage.cpp"))
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/RECDataStorage.cpp" . 688)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECEventTrigger/RETEventAcceleration.cpp" . 973)
- ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/Storage.cpp" . 581)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECEventTrigger/RECEventTrigger.cpp" . 2300)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/REC/RECDataStorage/Storage.h" . 546)
  ("/home/ryuichi/work/rec/REC/test_SendData.sh" . 555)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/apps/DummySender/Sender/SetRecStorageRequest.cpp" . 547)
- ("/home/ryuichi/work/rec/REC/adx_rec/adx.sh" . 365)
- ("/home/ryuichi/work/rec/REC/"
-  (dired-filename . "/home/ryuichi/work/rec/REC/test_SendData.sh")))
+ ("/home/ryuichi/work/rec/REC/adx_rec/adx.sh" . 365))

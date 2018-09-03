@@ -1,0 +1,1 @@
+/home/ryuichi/.emacs.d/straight/repos/clang-format/clang-format.el

@@ -1,3 +1,71 @@
 
-((digest . "e8b8673af6be3ad6ec0326b1b655e9a8") (undo-list nil (14833 . 14836) nil (16 . 70) ("2018/08/29 17:25:42 from ryuichi-VirtualBox by ryuichi" . 16) 14807 nil (14805 . 14807) nil (16 . 70) ("2018/08/29 17:20:44 from ryuichi-VirtualBox by ryuichi" . 16) 14901 nil ("k" . 14901) ("r" . 14901) ("a" . 14901) ("m" . 14901) ("-" . 14901) ("g" . 14901) ("a" . 14901) nil ("t" . 14901) ("-" . 14901) ("p" . 14901) ("o" . 14901) ("p" . 14901) nil (14886 . 14901) nil (14838 . 14845) nil ("C" . -14838) ((marker . 14836) . -1) 14839 nil (14836 . 14839) nil ("u" . 14873) nil (14872 . 14873) nil (14834 . 14836) nil (14831 . 14834) nil ("  " . -14834) 14887 nil (nil rear-nonsticky nil 14886 . 14887) (nil fontified nil 14886 . 14887) (nil fontified nil 14873 . 14886) (nil fontified nil 14872 . 14873) (nil fontified nil 14871 . 14872) (nil fontified nil 14864 . 14871) (nil fontified nil 14863 . 14864) (nil fontified nil 14860 . 14863) (nil fontified nil 14859 . 14860) (nil fontified nil 14858 . 14859) (nil fontified nil 14848 . 14858) (nil fontified nil 14847 . 14848) (nil fontified nil 14837 . 14847) (nil fontified nil 14836 . 14837) (nil fontified nil 14834 . 14836) (14834 . 14887) nil (14832 . 14834) nil ("(" . 14832) ((marker . 14851) . -1) ((marker*) . 1) ((marker) . -1) (" " . 14832) (" " . 14832) nil (nil rear-nonsticky nil 20220 . 20221) (nil fontified nil 20220 . 20221) (nil fontified nil 20207 . 20220) (nil fontified nil 20206 . 20207) (nil fontified nil 20205 . 20206) (nil fontified nil 20198 . 20205) (nil fontified nil 20197 . 20198) (nil fontified nil 20194 . 20197) (nil fontified nil 20193 . 20194) (nil fontified nil 20192 . 20193) (nil fontified nil 20182 . 20192) (nil fontified nil 20181 . 20182) (nil fontified nil 20171 . 20181) (nil fontified nil 20170 . 20171) (nil fontified nil 20168 . 20170) (20168 . 20221) nil ("  (define-key global-map (kbd \"\\C-cu\") 'pop-tag-mark)" . 20168) nil (")" . -14835) ((marker . 14836) . -1) ((marker*) . 1) ((marker) . -1) 14836 nil (14834 . 14836) nil ("d" . -14834) ((marker . 14836) . -1) ("e" . -14835) ((marker . 14836) . -1) ("f" . -14836) ((marker . 14836) . -1) 14837 nil (14834 . 14837) nil (14832 . 14834) nil ("w" . -19751) ((marker . 14836) . -1) ("h" . -19752) ((marker . 14836) . -1) ("i" . -19753) ((marker . 14836) . -1) ("t" . -19754) ((marker . 14836) . -1) ("e" . -19755) ((marker . 14836) . -1) 19756 nil (19751 . 19756) (t 23430 22364 776873 979000) nil (16 . 70) ("2018/08/29 17:20:13 from ryuichi-VirtualBox by ryuichi" . 16) 20092 nil (" " . 20092) (" " . 20092) nil (16 . 70) ("2018/08/29 17:19:37 from ryuichi-VirtualBox by ryuichi" . 16) 20010 nil ("t" . 20010) ("i" . 20010) ("l" . 20010) ("i" . 20010) nil (20005 . 20010) nil ("t" . 19990) ("i" . 19990) ("l" . 19990) ("i" . 19990) nil (19985 . 19990) nil (16 . 70) ("2018/08/29 17:17:39 from ryuichi-VirtualBox by ryuichi" . 16) 20039 nil (20038 . 20039) nil (nil rear-nonsticky nil 20037 . 20038) (nil fontified nil 20021 . 20038) (20021 . 20038) nil (" " . 19978) (" " . 19978) ("
-" . 19978) ((marker . 14837) . -1) nil (20021 . 20024) nil (20018 . 20021) nil (20014 . 20018) nil (20011 . 20014) nil (20001 . 20011) nil ("a" . -20001) ((marker . 20293) . -1) ((marker . 20293) . -1) ("g" . -20002) ((marker . 20293) . -1) ((marker . 20293) . -1) ("e" . -20003) ((marker . 20293) . -1) ((marker . 20293) . -1) (" " . -20004) ((marker . 20293) . -1) ((marker . 20293) . -1) 20005 nil (19999 . 20005) nil ("o" . -19999) ((marker . 20293) . -1) ("a" . -20000) ((marker . 20293) . -1) 20001 nil (19993 . 20001) nil (19992 . 19993) nil (19987 . 19992) nil (19984 . 19987) nil (19983 . 19985) (t 23430 22179 348873 979000)))
+((digest . "df13bcfbfee470694fa2eccc0fc9a7d2") (undo-list nil (";" . 8785) nil (";" . 8831) nil (8546 . 9381) (";;----
+(column-number-mode t)
+ 
+;;----
+;; ビープ音を消す
+;;----
+(setq ring-bell-function 'ignore)
+  
+;;----
+;; 対応する括弧を強調表示
+;;----
+(show-paren-mode t)
+ 
+;;----
+;; 時計表示             
+;;----
+;; 不採用    (display-time)
+;(setq display-time-day-and-date t)  ;; 曜日・月・日
+;(setq display-time-24hr-format t)   ;; 24時表示
+;(display-time-mode t)
+
+;; モードラインの割合表示を総行数表示
+(defvar my-lines-page-mode t)
+(defvar my-mode-line-format)
+
+(when my-lines-page-mode
+  (setq my-mode-line-format \"%d\")
+  (if size-indication-mode
+      (setq my-mode-line-format (concat my-mode-line-format \" of %%I\")))
+  (cond ((and (eq line-number-mode t) (eq column-number-mode t))
+         (setq my-mode-line-format (concat my-mode-line-format \" (%%l,%%c)\")))
+        ((eq line-number-mode t)
+         (setq my-mode-line-format (concat my-mode-line-format \" L%%l\")))
+        ((eq column-number-mode t)
+" . 8546) ((marker . 8853) . -145) ((marker . 8853) . -145) ((marker . 8933) . -116) ((marker . 8933) . -116) ((marker . 8852) . -152) ((marker . 8852) . -152) ((marker . 9093) . -50) ((marker . 9093) . -50) ((marker . 8738) . -180) ((marker . 8738) . -180) ((marker . 9237) . -32) ((marker . 9237) . -32) ((marker . 8934) . -101) ((marker . 8934) . -101) ((marker . 8993) . -91) ((marker . 8993) . -91) ((marker . 8959) . -94) ((marker . 8959) . -94) ((marker . 8904) . -123) ((marker . 8904) . -123) ((marker . 9158) . -39) ((marker . 9158) . -39) ((marker . 8830) . -173) ((marker . 8830) . -173) ((marker . 8874) . -143) ((marker . 8874) . -143) ((marker . 9020) . -57) ((marker . 9020) . -57) ((marker . 8785) . -205) ((marker . 8830) . -252) ((marker . 9270) . -30) ((marker . 9270) . -30) ((marker . 8553) . -813) ((marker . 8553) . -813) ((marker . 8713) . -252) ((marker . 8713) . -252) ((marker . 8706) . -298) ((marker . 8706) . -298) ((marker . 8698) . -321) ((marker . 8698) . -321) ((marker . 8691) . -322) ((marker . 8691) . -322) ((marker . 8689) . -343) ((marker . 8689) . -343) ((marker . 8669) . -373) ((marker . 8669) . -373) ((marker . 8662) . -402) ((marker . 8662) . -402) ((marker . 9344) . -7) ((marker . 9344) . -7) ((marker . 8785) . -205) ((marker . 8785) . -205) ((marker . 8647) . -403) ((marker . 8647) . -403) ((marker . 8640) . -428) ((marker . 8640) . -428) ((marker . 8637) . -462) ((marker . 8637) . -462) ((marker . 8603) . -489) ((marker . 8603) . -489) ((marker . 8596) . -562) ((marker . 8596) . -562) ((marker . 8585) . -627) ((marker . 8585) . -627) ((marker . 8578) . -706) ((marker . 8578) . -706) ((marker . 8576) . -739) ((marker . 8576) . -739) ((marker) . -205) (8705 . 8718) 8738 nil ("s" . -8738) ((marker) . -1) ("c" . -8739) ((marker) . -1) 8740 nil (8738 . 8740) (t 23436 47294 55222 999000) nil (8546 . 9381) (";;----
+(column-number-mode t)
+ 
+;;----
+;; ビープ音を消す
+;;----
+(setq ring-bell-function 'ignore)
+  
+;;----
+;; 対応する括弧を強調表示
+;;----
+(show-paren-mode t)
+ 
+;;----
+;; 時計表示             
+;;----
+;; 不採用    (display-time)
+;(setq display-time-day-and-date t)  ;; 曜日・月・日
+;(setq display-time-24hr-format t)   ;; 24時表示
+;(display-time-mode t)
+
+;; モードラインの割合表示を総行数表示
+(defvar my-lines-page-mode t)
+(defvar my-mode-line-format)
+
+(when my-lines-page-mode
+  (setq my-mode-line-format \"%d\")
+  (if size-indication-mode
+      (setq my-mode-line-format (concat my-mode-line-format \" of %%I\")))
+  (cond ((and (eq line-number-mode t) (eq column-number-mode t))
+         (setq my-mode-line-format (concat my-mode-line-format \" (%%l,%%c)\")))
+        ((eq line-number-mode t)
+         (setq my-mode-line-format (concat my-mode-line-format \" L%%l\")))
+        ((eq column-number-mode t)
+" . 8546) ((marker . 8546) . -205) ((marker . 8785) . -205) ((marker . 8546) . -180) ((marker . 8738) . -848) ((marker . 8738) . -848) ((marker . 8546) . -238) ((marker . 8785) . -205) ((marker . 8830) . -252) ((marker . 8546) . -205) ((marker . 8553) . -813) ((marker . 8553) . -813) ((marker . 8713) . -739) ((marker . 8713) . -739) ((marker . 8706) . -706) ((marker . 8706) . -706) ((marker . 8698) . -627) ((marker . 8698) . -627) ((marker . 8691) . -562) ((marker . 8691) . -562) ((marker . 8689) . -489) ((marker . 8689) . -489) ((marker . 8669) . -462) ((marker . 8669) . -462) ((marker . 8662) . -428) ((marker . 8662) . -428) ((marker . 8785) . -205) ((marker . 8785) . -205) ((marker . 8647) . -403) ((marker . 8647) . -403) ((marker . 8640) . -402) ((marker . 8640) . -402) ((marker . 8637) . -373) ((marker . 8637) . -373) ((marker . 8603) . -343) ((marker . 8603) . -343) ((marker . 8596) . -322) ((marker . 8596) . -322) ((marker . 8585) . -321) ((marker . 8585) . -321) ((marker . 8578) . -298) ((marker . 8578) . -298) ((marker . 8576) . -252) ((marker . 8576) . -252) ((marker) . -205) ((marker) . -205) ((marker . 8546) . -205) ((marker . 8546) . -205) (8705 . 8718) 8738 (t 23436 47294 55222 999000) nil (18 . 72) ("2018/09/03 13:28:24 from ryuichi-VirtualBox by ryuichi" . 18) 8738 nil ("
+" . 8738) ((marker . 8830) . -1) ((marker . 8546) . -1) ((marker . 9270) . -1) ((marker . 9270) . -1) nil ("(display-time)" . 8738) ((marker . 8546) . -14) ((marker . 8785) . -14) ((marker) . -14) ((marker . 8546) . -14) ((marker . 8546) . -14) ((marker* . 8785) . 14) ((marker . 8786) . -1) ((marker* . 8817) . 1) ((marker . 8818) . -14) nil (" " . 8751) nil ("l" . 8752) ("i" . 8752) ("n" . 8752) nil (18 . 72) ("2018/09/03 13:26:16 from ryuichi-VirtualBox by ryuichi" . 18) 8756 nil (8738 . 8756) nil (" " . 8739) ((marker . 8546) . -1) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) ((marker . 8546) . -1) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) nil (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) (" " . 8739) nil undo-tree-canary))

@@ -1,4 +1,4 @@
-;Last Updated:<2018/08/29 17:27:40 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/09/03 13:30:52 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -41,7 +41,7 @@
             (normal-top-level-add-subdirs-to-load-path))))))
 
 ;; 引数のディレクトリ以下をload-pathに追加
-(add-to-load-path "el-get" "elpa")
+(add-to-load-path "el-get" "elpa" "sky-color-clock" )
 
 
 
@@ -303,7 +303,7 @@
 ;; 時計表示
 ;;----
 ;; 不採用    (display-time)
-(setq display-time-day-and-date t)  ;; 曜日・月・日
+;(setq display-time-day-and-date t)  ;; 曜日・月・日
 (setq display-time-24hr-format t)   ;; 24時表示
 (display-time-mode t)
 
@@ -421,18 +421,35 @@
 ;;; t にすると mini buffer に値が表示される
 (setq gud-tooltip-echo-area nil)
 
+;;; init.elを開く
+(defun my-find-file-init-el ()
+  "init.elを開く"
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+(global-set-key (kbd "C-c e") 'my-find-file-init-el)
 
 
-;;;;; ココらへんからパッケージの話
+;;; recent
+(setq recentf-max-saved-items 2000) ;; 2000ファイルまで履歴保存する
+(setq recentf-auto-cleanup 'never)  ;; 存在しないファイルは消さない
+(setq recentf-exclude '("/recentf" "COMMIT_EDITMSG" "/.?TAGS" "^/sudo:" "/\\.emacs\\.d/games/*-scores" "/\\.emacs\\.d/\\.cask/"))
+(setq recentf-auto-save-timer (run-with-idle-timer 30 t 'recentf-save-list))
+
+(recentf-mode 1)
+(bind-key "C-c r" 'helm-recentf)
+
+
+;;;;; ココらへんからパッケージの話 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; 最終更新日の自動挿入
-(use-package time-stamp)
-(add-hook 'before-save-hook 'time-stamp)
-(setq time-stamp-active t)
-(setq time-stamp-start "[lL]ast[ -][uU]pdated[ \t]*:[ \t]*<")
-(setq time-stamp-format "%:y/%02m/%02d %02H:%02M:%02S from %s by %u")
-(setq time-stamp-end ">")
-(setq time-stamp-line-limit 20)
+(use-package time-stamp
+  :config
+  (add-hook 'before-save-hook 'time-stamp)
+  (setq time-stamp-active t)
+  (setq time-stamp-start "[lL]ast[ -][uU]pdated[ \t]*:[ \t]*<")
+  (setq time-stamp-format "%:y/%02m/%02d %02H:%02M:%02S from %s by %u")
+  (setq time-stamp-end ">")
+  (setq time-stamp-line-limit 20))
 
 ;;;
 ;;; helm
@@ -496,7 +513,7 @@
         '(
           (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t]);タブ
           (space-mark ?\u3000 [?□])        ; 全角スペース
-          (space-mark ?\u0020 [?\.])  ; 半角スペース
+          (space-mark ?\u0020 [?.])  ; 半角スペース
           (newline-mark ?\n   [?$ ?\n])     ; 改行記号
           ) )
   (setq whitespace-space-regexp "\\([\x0020\x3000]+\\)" )
@@ -844,6 +861,8 @@
   :config
   (global-undo-tree-mode))
 
+
+
 ;;;
 ;;; tabbar
 ;;;
@@ -950,8 +969,37 @@
   :config
   (global-set-key [remap kill-ring-save] 'easy-kill))
 
+;;; clang-format
+(use-package clang-format
+  :commands
+  (clang-format))
+
+;;; emojify
+(use-package emojify
+  :config
+  (global-emojify-mode))
+
+;;; Sky-color-clock
+;;; GitHub: https://github.com/zk-phi/sky-color-clock
 ;;;
-;;; OS によって設定を切り替える例
+
+(require 'sky-color-clock)      ; パッケージをロード
+(sky-color-clock-initialize 35) ; 東京（例）の緯度で初期化
+
+(sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 5384214) ; 東京の City ID
+
+;; デフォルトの mode-line-format の先頭に sky-color-clock を追加
+(push '(:eval (sky-color-clock)) (default-value 'mode-line-format))
+(setq sky-color-clock-format "%m/%d %H:%M")
+(setq sky-color-clock-enable-emoji-icon t)
+
+(sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 1850144) ;天気取得
+(setq sky-color-clock-enable-temperature-indicator t)
+
+;;;---------パッケージ毎の設定終わり
+
+;;;
+;;; OS によって設定を切り替える部分
 ;;;
 
 (when (eq system-type 'windows-nt) ; Windows
@@ -1041,6 +1089,9 @@
 ;;ctags windows用設定
   (setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
 
+;;sky-color-clockで絵文字を出さない
+(setq sky-color-clock-enable-emoji-icon nil)
+ 
 ;;; Windows markdownビューワの指定
 (setq markdown-open-command "~/.emacs.d/etc/markcat.bat")
   
@@ -1133,18 +1184,17 @@
   (use-package dired-du
     :config
     (add-hook 'dired-mode-hook #'dired-du-mode))
-
   
 );;;ここまでUNIX用
 
 (when (equal system-type 'darwin)
 ;;;なし
+
 );;; ここまでMACOS用
 
 ;;;
 ;;; モードラインに表示しない
 ;;;
-
 (setq my/hidden-minor-modes
       '(undo-tree-mode
         anzu-mode
@@ -1186,6 +1236,7 @@
  '(yas-trigger-key "TAB"))
 
 (provide 'init)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
