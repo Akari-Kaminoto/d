@@ -1,0 +1,172 @@
+
+((digest . "40a47ac4b5a407acf7c3c3aad3cd2662") (undo-list nil ("X" . -2897) ((marker . 2897) . -1) ((marker . 2897) . -1) ((marker . 2897) . -1) ((marker . 2897) . -1) ((marker . 2897) . -1) ("S" . -2898) ((marker . 2897) . -1) ((marker . 2897) . -1) ((marker . 2897) . -1) 2899 nil (2897 . 2899) nil ("ryuichi@ryuichi-VirtualBox:/adx/adx_rec/src/apps/REC/RECCache" . -1) ((marker . 2897) . -61) ((marker) . -61) 62 nil (nil rear-nonsticky nil 54126 . 54127) (nil fontified nil 1 . 54127) (1 . 54127) nil ("ryuichi@ryuichi-VirtualBox:/adx/adx_rec/build/PC/gtest/REC/RECCache$ ./test.exe --gtest_filter=TestRingBuffer*:TestReadCache2*:*TestTrigger*
+Running main() from gtest_main.cc
+Note: Google Test filter = TestRingBuffer*:TestReadCache2*:*TestTrigger*
+[==========] Running 69 tests from 8 test cases.
+[----------] Global test environment set-up.
+[----------] 13 tests from TestRingBuffer/0, where TypeParam = int
+[ RUN      ] TestRingBuffer/0.Initlize1
+[       OK ] TestRingBuffer/0.Initlize1 (0 ms)
+[ RUN      ] TestRingBuffer/0.ReadWrite1
+[       OK ] TestRingBuffer/0.ReadWrite1 (0 ms)
+[ RUN      ] TestRingBuffer/0.ReadWrite3
+[       OK ] TestRingBuffer/0.ReadWrite3 (0 ms)
+[ RUN      ] TestRingBuffer/0.Size1
+[       OK ] TestRingBuffer/0.Size1 (0 ms)
+[ RUN      ] TestRingBuffer/0.Size2
+[       OK ] TestRingBuffer/0.Size2 (0 ms)
+[ RUN      ] TestRingBuffer/0.Size3
+[       OK ] TestRingBuffer/0.Size3 (0 ms)
+[ RUN      ] TestRingBuffer/0.Empty1
+[       OK ] TestRingBuffer/0.Empty1 (0 ms)
+[ RUN      ] TestRingBuffer/0.Empty2
+[       OK ] TestRingBuffer/0.Empty2 (0 ms)
+[ RUN      ] TestRingBuffer/0.IsFull1
+[       OK ] TestRingBuffer/0.IsFull1 (0 ms)
+[ RUN      ] TestRingBuffer/0.IsFull2
+[       OK ] TestRingBuffer/0.IsFull2 (0 ms)
+[ RUN      ] TestRingBuffer/0.Pop1
+[       OK ] TestRingBuffer/0.Pop1 (0 ms)
+[ RUN      ] TestRingBuffer/0.Pop2
+[       OK ] TestRingBuffer/0.Pop2 (0 ms)
+[ RUN      ] TestRingBuffer/0.Finalize
+[       OK ] TestRingBuffer/0.Finalize (0 ms)
+[----------] 13 tests from TestRingBuffer/0 (0 ms total)
+
+[----------] 13 tests from TestRingBuffer/1, where TypeParam = double
+[ RUN      ] TestRingBuffer/1.Initlize1
+[       OK ] TestRingBuffer/1.Initlize1 (0 ms)
+[ RUN      ] TestRingBuffer/1.ReadWrite1
+[       OK ] TestRingBuffer/1.ReadWrite1 (0 ms)
+[ RUN      ] TestRingBuffer/1.ReadWrite3
+[       OK ] TestRingBuffer/1.ReadWrite3 (0 ms)
+[ RUN      ] TestRingBuffer/1.Size1
+[       OK ] TestRingBuffer/1.Size1 (0 ms)
+[ RUN      ] TestRingBuffer/1.Size2
+[       OK ] TestRingBuffer/1.Size2 (0 ms)
+[ RUN      ] TestRingBuffer/1.Size3
+[       OK ] TestRingBuffer/1.Size3 (0 ms)
+[ RUN      ] TestRingBuffer/1.Empty1
+[       OK ] TestRingBuffer/1.Empty1 (0 ms)
+[ RUN      ] TestRingBuffer/1.Empty2
+[       OK ] TestRingBuffer/1.Empty2 (0 ms)
+[ RUN      ] TestRingBuffer/1.IsFull1
+[       OK ] TestRingBuffer/1.IsFull1 (0 ms)
+[ RUN      ] TestRingBuffer/1.IsFull2
+[       OK ] TestRingBuffer/1.IsFull2 (0 ms)
+[ RUN      ] TestRingBuffer/1.Pop1
+[       OK ] TestRingBuffer/1.Pop1 (0 ms)
+[ RUN      ] TestRingBuffer/1.Pop2
+[       OK ] TestRingBuffer/1.Pop2 (0 ms)
+[ RUN      ] TestRingBuffer/1.Finalize
+[       OK ] TestRingBuffer/1.Finalize (0 ms)
+[----------] 13 tests from TestRingBuffer/1 (0 ms total)
+
+[----------] 18 tests from TestReadCache2
+[ RUN      ] TestReadCache2.CacheDataReadWrite
+[       OK ] TestReadCache2.CacheDataReadWrite (45 ms)
+[ RUN      ] TestReadCache2.CacheDataIsEmpty1
+[       OK ] TestReadCache2.CacheDataIsEmpty1 (0 ms)
+[ RUN      ] TestReadCache2.CacheDataIsEmpty2
+[       OK ] TestReadCache2.CacheDataIsEmpty2 (10 ms)
+[ RUN      ] TestReadCache2.CacheDataIsEmpty3
+[       OK ] TestReadCache2.CacheDataIsEmpty3 (0 ms)
+[ RUN      ] TestReadCache2.CacheDataIsFull1
+[       OK ] TestReadCache2.CacheDataIsFull1 (1327 ms)
+[ RUN      ] TestReadCache2.CacheDataIsFull2
+[       OK ] TestReadCache2.CacheDataIsFull2 (340 ms)
+[ RUN      ] TestReadCache2.CacheDataPop1
+[       OK ] TestReadCache2.CacheDataPop1 (37 ms)
+[ RUN      ] TestReadCache2.CacheDataPop2
+[       OK ] TestReadCache2.CacheDataPop2 (37 ms)
+[ RUN      ] TestReadCache2.CacheDataPop3
+[       OK ] TestReadCache2.CacheDataPop3 (15 ms)
+[ RUN      ] TestReadCache2.TriggerInfoReadWrite
+[       OK ] TestReadCache2.TriggerInfoReadWrite (1 ms)
+[ RUN      ] TestReadCache2.TriggerInfoIsEmpty1
+[       OK ] TestReadCache2.TriggerInfoIsEmpty1 (0 ms)
+[ RUN      ] TestReadCache2.TriggerInfoIsEmpty2
+[       OK ] TestReadCache2.TriggerInfoIsEmpty2 (0 ms)
+[ RUN      ] TestReadCache2.TriggerInfoIsEmpty3
+[       OK ] TestReadCache2.TriggerInfoIsEmpty3 (10 ms)
+[ RUN      ] TestReadCache2.TriggerInfoIsFull1
+[       OK ] TestReadCache2.TriggerInfoIsFull1 (0 ms)
+[ RUN      ] TestReadCache2.TriggerInfoIsFull2
+[       OK ] TestReadCache2.TriggerInfoIsFull2 (0 ms)
+[ RUN      ] TestReadCache2.TriggerInfoPop1
+[       OK ] TestReadCache2.TriggerInfoPop1 (0 ms)
+[ RUN      ] TestReadCache2.TriggerInfoPop2
+[       OK ] TestReadCache2.TriggerInfoPop2 (0 ms)
+[ RUN      ] TestReadCache2.TriggerInfoPop3
+[       OK ] TestReadCache2.TriggerInfoPop3 (0 ms)
+[----------] 18 tests from TestReadCache2 (1822 ms total)
+
+[----------] 12 tests from TestREC/TestTriggerInfo
+[ RUN      ] TestREC/TestTriggerInfo.add_event_id/0
+[       OK ] TestREC/TestTriggerInfo.add_event_id/0 (0 ms)
+[ RUN      ] TestREC/TestTriggerInfo.add_event_id/1
+[       OK ] TestREC/TestTriggerInfo.add_event_id/1 (0 ms)
+[ RUN      ] TestREC/TestTriggerInfo.add_event_id/2
+[       OK ] TestREC/TestTriggerInfo.add_event_id/2 (0 ms)
+[ RUN      ] TestREC/TestTriggerInfo.add_event_id/3
+[       OK ] TestREC/TestTriggerInfo.add_event_id/3 (0 ms)
+[ RUN      ] TestREC/TestTriggerInfo.get_num_event_ids/0
+[       OK ] TestREC/TestTriggerInfo.get_num_event_ids/0 (0 ms)
+[ RUN      ] TestREC/TestTriggerInfo.get_num_event_ids/1
+[       OK ] TestREC/TestTriggerInfo.get_num_event_ids/1 (0 ms)
+[ RUN      ] TestREC/TestTriggerInfo.get_num_event_ids/2
+[       OK ] TestREC/TestTriggerInfo.get_num_event_ids/2 (1 ms)
+[ RUN      ] TestREC/TestTriggerInfo.get_num_event_ids/3
+[       OK ] TestREC/TestTriggerInfo.get_num_event_ids/3 (0 ms)
+[ RUN      ] TestREC/TestTriggerInfo.get_event_id/0
+[       OK ] TestREC/TestTriggerInfo.get_event_id/0 (0 ms)
+[ RUN      ] TestREC/TestTriggerInfo.get_event_id/1
+[       OK ] TestREC/TestTriggerInfo.get_event_id/1 (0 ms)
+[ RUN      ] TestREC/TestTriggerInfo.get_event_id/2
+[       OK ] TestREC/TestTriggerInfo.get_event_id/2 (0 ms)
+[ RUN      ] TestREC/TestTriggerInfo.get_event_id/3
+[       OK ] TestREC/TestTriggerInfo.get_event_id/3 (0 ms)
+[----------] 12 tests from TestREC/TestTriggerInfo (1 ms total)
+
+[----------] 2 tests from TestREC/TestTriggerTimestamp
+[ RUN      ] TestREC/TestTriggerTimestamp.set_get_timestamp/0
+[       OK ] TestREC/TestTriggerTimestamp.set_get_timestamp/0 (0 ms)
+[ RUN      ] TestREC/TestTriggerTimestamp.set_get_timestamp/1
+[       OK ] TestREC/TestTriggerTimestamp.set_get_timestamp/1 (0 ms)
+[----------] 2 tests from TestREC/TestTriggerTimestamp (0 ms total)
+
+[----------] 5 tests from TestREC/TestTriggerIsTarget
+[ RUN      ] TestREC/TestTriggerIsTarget.is_target/0
+[       OK ] TestREC/TestTriggerIsTarget.is_target/0 (0 ms)
+[ RUN      ] TestREC/TestTriggerIsTarget.is_target/1
+[       OK ] TestREC/TestTriggerIsTarget.is_target/1 (0 ms)
+[ RUN      ] TestREC/TestTriggerIsTarget.is_target/2
+[       OK ] TestREC/TestTriggerIsTarget.is_target/2 (0 ms)
+[ RUN      ] TestREC/TestTriggerIsTarget.is_target/3
+[       OK ] TestREC/TestTriggerIsTarget.is_target/3 (0 ms)
+[ RUN      ] TestREC/TestTriggerIsTarget.is_target/4
+[       OK ] TestREC/TestTriggerIsTarget.is_target/4 (0 ms)
+[----------] 5 tests from TestREC/TestTriggerIsTarget (0 ms total)
+
+[----------] 5 tests from TestREC/TestTriggerIsRangeOver
+[ RUN      ] TestREC/TestTriggerIsRangeOver.is_range_over/0
+[       OK ] TestREC/TestTriggerIsRangeOver.is_range_over/0 (0 ms)
+[ RUN      ] TestREC/TestTriggerIsRangeOver.is_range_over/1
+[       OK ] TestREC/TestTriggerIsRangeOver.is_range_over/1 (0 ms)
+[ RUN      ] TestREC/TestTriggerIsRangeOver.is_range_over/2
+[       OK ] TestREC/TestTriggerIsRangeOver.is_range_over/2 (0 ms)
+[ RUN      ] TestREC/TestTriggerIsRangeOver.is_range_over/3
+[       OK ] TestREC/TestTriggerIsRangeOver.is_range_over/3 (0 ms)
+[ RUN      ] TestREC/TestTriggerIsRangeOver.is_range_over/4
+[       OK ] TestREC/TestTriggerIsRangeOver.is_range_over/4 (0 ms)
+[----------] 5 tests from TestREC/TestTriggerIsRangeOver (0 ms total)
+
+[----------] 1 test from TestREC/TestTriggerIsValid
+[ RUN      ] TestREC/TestTriggerIsValid.is_valid/0
+[       OK ] TestREC/TestTriggerIsValid.is_valid/0 (0 ms)
+[----------] 1 test from TestREC/TestTriggerIsValid (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 69 tests from 8 test cases ran. (1824 ms total)
+[  PASSED  ] 69 tests.
+" . -1) ((marker . 1) . -8293) ((marker . 1) . -7356) ((marker . 1) . -8293) ((marker . 2897) . -8293) ((marker . 2897) . -8293) ((marker . 2163) . -7289) ((marker . 2897) . -8293) ((marker . 2950) . -8293) ((marker) . -8293) 8294 (t 23448 48958 418979 400000) nil (8293 . 8294) nil (nil rear-nonsticky nil 8292 . 8293) (nil fontified nil 1 . 8293) (1 . 8293) (t . -1)))

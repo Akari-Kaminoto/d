@@ -1,0 +1,1 @@
+/home/ryuichi/.emacs.d/straight/repos/focus-autosave-mode.el/focus-autosave-mode.el

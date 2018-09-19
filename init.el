@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/09/03 13:30:52 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/09/19 16:40:01 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -41,7 +41,7 @@
             (normal-top-level-add-subdirs-to-load-path))))))
 
 ;; 引数のディレクトリ以下をload-pathに追加
-(add-to-load-path "el-get" "elpa" "sky-color-clock" )
+(add-to-load-path "el-get" "elpa" "etc-el" "etc-el/polymode-master" )
 
 
 
@@ -104,6 +104,11 @@
 ;; el-getでダウンロードしたパッケージは ~/.emacs.d/ に入るようにする
 ;(setq el-get-dir (locate-user-emacs-file ""))
 
+;;; paradox
+(use-package paradox
+  :config
+  (paradox-enable))
+
 ;;; package系終わり
 
 
@@ -113,7 +118,7 @@
 (set-terminal-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8-unix)
 (set-buffer-file-coding-system 'utf-8-unix)
-;;(setq default-buffer-file-coding-system 'utf-8-unix)
+(setq default-buffer-file-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
 (setq default-file-name-coding-system 'japanese-shift-jis-dos) ;dired用
@@ -169,6 +174,10 @@
               indent-tabs-mode nil)  ;;インデントをタブでするかスペースでするか
 
 ;;; C,C++の設定
+; ヘッダファイル(.h)をc++モードで開く
+(setq auto-mode-alist
+      (append '(("\\.h$" . c++-mode))
+              auto-mode-alist))
 
 ;; 自分の書き方にあわせて調整
 (add-hook 'c++-mode-hook
@@ -587,21 +596,22 @@
 ;;;company
 ;;; ironyと合わせて自動補完を行う。
 ;;;
-(when (locate-library "company")
-  (global-company-mode 1)
-  (global-set-key (kbd "C-M-i") 'company-complete)
-  ;; (setq company-idle-delay nil) ; 自動補完をしない
-  (setq company-idle-delay 0)
+(use-package company
+  :init
+  (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こう とすると一番上に
   (setq company-minimum-prefix-length 2) ; デフォルトは4
-  (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に
-
-  (define-key company-active-map (kbd "M-n") nil)
-  (define-key company-active-map (kbd "M-p") nil)
-
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous)
-  (define-key company-active-map (kbd "C-h") nil)
-  ;;(define-key company-active-map (kbd "<tab>") 'company-complete-selection))
+  ;; (setq company-idle-delay nil) ; 自動補完をしない
+  :bind
+  (:map company-active-map
+        ;; ("C-M-i" . company-complete)
+        ;; ("<tab>" . company-complete-selection)
+        ("M-n" . nil)
+        ("M-p" . nil)
+        ("C-n" . company-select-next)
+        ("C-p" . company-select-previous)
+        ("C-h" . nil))  
+  :config
+  (global-company-mode 1)
 
   (defun company--insert-candidate2 (candidate)
     (when (> (length candidate) 0)
@@ -623,8 +633,8 @@
         (company--insert-candidate2 company-common))))
   
   (define-key company-active-map [tab] 'company-complete-common2)
-  (define-key company-active-map [backtab] 'company-select-previous)
-)
+  (define-key company-active-map [backtab] 'company-select-previous))
+
 ;;;irony
   
 (eval-after-load "irony"
@@ -836,11 +846,11 @@
   (global-set-key "\M-y" 'popup-kill-ring))
 
 ;;; popup-switcher
-(use-package popup-switcher
-  :config
-  (global-set-key (kbd "\C-x b") 'psw-switch-buffer)
-  (global-set-key [f3] 'psw-switch-function)
-  (setq psw-popup-menu-max-length 15))
+;;(use-package popup-switcher
+;;  :config
+;;  (global-set-key (kbd "\C-x b") 'psw-switch-buffer)
+;;  (global-set-key [f3] 'psw-switch-function)
+;;  (setq psw-popup-menu-max-length 15))
 
 ;;; move-text
 ;;; M-↑ M-↓で現在行やリージョンを移動
@@ -935,6 +945,12 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+;;; poly-markdown-mode
+(use-package polymode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode)))
+
 ;;;
 ;;; markdown-preview-mode
 ;;;
@@ -995,6 +1011,25 @@
 
 (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 1850144) ;天気取得
 (setq sky-color-clock-enable-temperature-indicator t)
+
+;;; focus-autosave-mode
+(use-package focus-autosave-mode
+  :config
+  (focus-autosave-mode))
+
+;;; pop-win for helm
+(setq helm-display-function #'display-buffer)
+(use-package popwin
+  :config
+  (setq display-buffer-function 'popwin:display-buffer)
+  (setq popwin:special-display-config
+        '(("*complitation*" :noselect t)
+          ("helm" :regexp t :height 0.4))))
+;; helmをbuffer名に含んでたら良いので、これだけでhelm-M-x,helm-find-files等に対応できます
+
+;;; buffer-menu-color
+
+(require 'buffer-menu-color)
 
 ;;;---------パッケージ毎の設定終わり
 
@@ -1134,24 +1169,24 @@
   ;;;
   ;;; mozc
   ;;;
-  (use-package mozc
-    :init
-    (set-language-environment "Japanese")
-    (setq default-input-method "japanese-mozc")
+  (require 'mozc)
+  ;;(set-language-environment "Japanese")
+  (setq default-input-method "japanese-mozc")
     
-    ;; GUIの候補選択ウィンドウをカーソルの直下にぶら下げる（デフォルト）
-    (setq mozc-candidate-style 'overlay)
+  ;; GUIの候補選択ウィンドウをカーソルの直下にぶら下げる（デフォルト）
+  (setq mozc-candidate-style 'overlay)
+
+  (set-cursor-color "red")  
+  ;; mozcのon/offでカーソルの色を変える(うまく動いていない）
+  ;; on
+  (add-hook 'input-method-activate-hook
+            (lambda() (set-cursor-color "green")))
+  ;; off
+  (add-hook 'input-method-inactivate-hook
+            (lambda() (set-cursor-color "red")))
 
 
-    (set-cursor-color "red")  
-    ;; mozcのon/offでカーソルの色を変える(うまく動いていない）
-    ;; on
-    (add-hook 'input-method-activate-hook
-              (lambda() (set-cursor-color "green")))
-    ;; off
-    (add-hook 'input-method-inactivate-hook
-              (lambda() (set-cursor-color "red"))))
-
+  
   ;; FLYCHECK
   (use-package flycheck
     :config
@@ -1184,6 +1219,10 @@
   (use-package dired-du
     :config
     (add-hook 'dired-mode-hook #'dired-du-mode))
+
+  ;; git-complete
+  (require 'git-complete)
+  (global-set-key (kbd "C-c C-g") 'git-complete)
   
 );;;ここまでUNIX用
 
@@ -1228,11 +1267,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ace-isearch-function (quote avy-goto-char))
+ '(ace-isearch-use-jump (quote printing-char))
  '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
  '(irony-additional-clang-options (quote ("-std=c++11")))
  '(package-selected-packages
    (quote
     (neotree flylisp dired-du beacon company-math flycheck-pos-tip csv-mode shell-pop leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
+ '(paradox-github-token t)
  '(yas-trigger-key "TAB"))
 
 (provide 'init)

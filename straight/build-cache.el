@@ -5,7 +5,7 @@ gnu/bsd
 
 "26.1"
 
-#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ("2018-08-07 10:10:46+0900" ("emacs") (:type git :host github :repo "raxod502/straight.el" :files ("straight*.el") :branch "master" :package "straight" :local-repo "straight.el")) "use-package" ("2018-08-02 10:08:27+0900" ("emacs" "bind-key") (:type git :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el")) :host github :repo "jwiegley/use-package" :package "use-package" :local-repo "use-package")) "bind-key" ("2018-08-02 10:08:27+0900" nil (:files ("bind-key.el") :package "bind-key" :local-repo "use-package" :type git :repo "jwiegley/use-package" :host github)) "helm" ("2018-08-02 10:01:37+0900" ("emacs" "async" "popup" "helm-core") (:type git :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el")) :host github :repo "emacs-helm/helm" :package "helm" :local-repo "helm")) "async" ("2018-08-02 10:08:28+0900" nil (:type git :host github :repo "jwiegley/emacs-async" :package "async" :local-repo "emacs-async")) "popup" ("2018-08-02 10:01:34+0900" ("cl-lib") (:type git :files ("popup.el") :host github :repo "auto-complete/popup-el" :package "popup" :local-repo "popup-el")) "cl-lib" ("2018-08-02 10:08:28+0900" nil (:files ("packages/cl-lib/*.el") :local-repo "elpa" :package "cl-lib" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "helm-core" ("2018-08-02 10:01:34+0900" ("emacs" "async") (:files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el") :package "helm-core" :local-repo "helm" :type git :repo "emacs-helm/helm" :host github)) "rainbow-delimiters" ("2018-08-02 10:08:29+0900" nil (:type git :host github :repo "Fanael/rainbow-delimiters" :package "rainbow-delimiters" :local-repo "rainbow-delimiters")) "neotree" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :files (:defaults "icons") :host github :repo "jaypei/emacs-neotree" :package "neotree" :local-repo "emacs-neotree")) "volatile-highlights" ("2018-08-02 10:02:23+0900" nil (:type git :host github :repo "k-talo/volatile-highlights.el" :package "volatile-highlights" :local-repo "volatile-highlights.el")) "smooth-scroll" ("2018-08-02 10:08:29+0900" nil (:type git :host github :repo "k-talo/smooth-scroll.el" :package "smooth-scroll" :local-repo "smooth-scroll.el")) "hlinum" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :host github :repo "tom-tan/hlinum-mode" :package "hlinum" :local-repo "hlinum-mode")) "undohist" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :host github :repo "m2ym/undohist-el" :package "undohist" :local-repo "undohist-el")) "anzu" ("2018-08-02 10:08:29+0900" ("emacs") (:type git :host github :repo "syohex/emacs-anzu" :package "anzu" :local-repo "emacs-anzu")) "shell-pop" ("2018-08-02 10:08:30+0900" ("emacs" "cl-lib") (:type git :host github :repo "kyagi/shell-pop-el" :package "shell-pop" :local-repo "shell-pop-el")) "web-mode" ("2018-08-02 10:02:37+0900" ("emacs") (:type git :host github :repo "fxbois/web-mode" :package "web-mode" :local-repo "web-mode")) "beacon" ("2018-08-02 10:02:42+0900" ("seq") (:type git :host github :repo "Malabarba/beacon" :package "beacon" :local-repo "beacon")) "seq" ("2018-08-02 10:02:41+0900" nil (:files ("packages/seq/*.el") :local-repo "elpa" :package "seq" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "japanese-holidays" ("2018-08-02 10:08:30+0900" ("cl-lib") (:type git :host github :repo "emacs-jp/japanese-holidays" :package "japanese-holidays" :local-repo "japanese-holidays")) "rainbow-mode" ("2018-08-02 10:02:43+0900" nil (:files ("packages/rainbow-mode/*.el") :local-repo "elpa" :package "rainbow-mode" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "popup-kill-ring" ("2018-08-02 10:02:46+0900" ("popup" "pos-tip") (:type git :host github :repo "waymondo/popup-kill-ring" :package "popup-kill-ring" :local-repo "popup-kill-ring")) "pos-tip" ("2018-08-02 10:08:30+0900" nil (:type git :host github :repo "pitkali/pos-tip" :package "pos-tip" :local-repo "pos-tip")) "popup-switcher" ("2018-08-02 10:02:48+0900" ("cl-lib" "popup") (:type git :host github :repo "kostafey/popup-switcher" :package "popup-switcher" :local-repo "popup-switcher")) "move-text" ("2018-08-02 10:08:30+0900" nil (:type git :host github :repo "emacsfodder/move-text" :package "move-text" :local-repo "move-text")) "darkroom" ("2018-08-02 10:02:50+0900" ("cl-lib") (:files ("packages/darkroom/*.el") :local-repo "elpa" :package "darkroom" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "undo-tree" ("2018-08-02 10:02:51+0900" nil (:files ("packages/undo-tree/*.el") :local-repo "elpa" :package "undo-tree" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "mozc" ("2018-08-02 10:08:31+0900" nil (:type git :files ("src/unix/emacs/mozc.el") :host github :repo "google/mozc" :package "mozc" :local-repo "mozc")) "flycheck" ("2018-08-02 10:06:09+0900" ("dash" "pkg-info" "let-alist" "seq" "emacs") (:type git :host github :repo "flycheck/flycheck" :package "flycheck" :local-repo "flycheck")) "dash" ("2018-08-02 10:08:31+0900" nil (:type git :files ("dash.el") :host github :repo "magnars/dash.el" :package "dash" :local-repo "dash.el")) "pkg-info" ("2018-08-02 10:06:07+0900" ("epl") (:type git :host github :repo "lunaryorn/pkg-info.el" :package "pkg-info" :local-repo "pkg-info.el")) "epl" ("2018-08-02 10:08:31+0900" ("cl-lib") (:type git :host github :repo "cask/epl" :package "epl" :local-repo "epl")) "ace-isearch" ("2018-08-02 10:08:31+0900" ("emacs") (:type git :host github :repo "tam17aki/ace-isearch" :package "ace-isearch" :local-repo "ace-isearch")) "dired-du" ("2018-08-02 10:06:11+0900" ("emacs" "cl-lib") (:files ("packages/dired-du/*.el") :local-repo "elpa" :package "dired-du" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "markdown-mode" ("2018-08-07 10:22:05+0900" ("emacs" "cl-lib") (:type git :host github :repo "jrblevin/markdown-mode" :package "markdown-mode" :local-repo "markdown-mode")) "markdown-preview-mode" ("2018-08-07 11:27:43+0900" ("emacs" "websocket" "markdown-mode" "cl-lib" "web-server" "uuidgen") (:type git :files (:defaults "preview.html" "favicon.ico") :host github :repo "ancane/markdown-preview-mode" :package "markdown-preview-mode" :local-repo "markdown-preview-mode")) "websocket" ("2018-08-07 11:43:56+0900" ("cl-lib") (:type git :host github :repo "ahyatt/emacs-websocket" :package "websocket" :local-repo "emacs-websocket")) "web-server" ("2018-08-07 11:43:56+0900" ("emacs") (:type git :host github :repo "eschulte/emacs-web-server" :package "web-server" :local-repo "emacs-web-server")) "uuidgen" ("2018-08-07 11:43:56+0900" nil (:type git :host github :repo "kanru/uuidgen-el" :package "uuidgen" :local-repo "uuidgen-el")) "markdown-preview-eww" ("2018-08-07 17:43:15+0900" ("emacs") (:type git :host github :repo "niku/markdown-preview-eww" :package "markdown-preview-eww" :local-repo "markdown-preview-eww")) "dashboard" ("2018-08-08 10:03:03+0900" ("emacs" "page-break-lines") (:type git :files (:defaults "banners") :host github :repo "rakanalh/emacs-dashboard" :package "dashboard" :local-repo "emacs-dashboard")) "page-break-lines" ("2018-08-08 10:09:38+0900" ("emacs") (:type git :host github :repo "purcell/page-break-lines" :package "page-break-lines" :local-repo "page-break-lines")) "easy-kill" ("2018-08-28 18:51:28+0900" ("emacs" "cl-lib") (:type git :host github :repo "leoliu/easy-kill" :package "easy-kill" :local-repo "easy-kill")) "clang-format" ("2018-08-31 17:14:48+0900" ("cl-lib") (:type git :host github :repo "emacsorphanage/clang-format" :package "clang-format" :local-repo "clang-format")) "init-open-recentf" ("2018-08-31 17:27:49+0900" ("emacs") (:type git :host github :repo "zonuexe/init-open-recentf.el" :package "init-open-recentf" :local-repo "init-open-recentf.el")) "pandoc" ("2018-08-31 17:43:48+0900" ("emacs") (:type git :host github :repo "zonuexe/pandoc.el" :package "pandoc" :local-repo "pandoc.el")) "emojify" ("2018-09-03 13:07:08+0900" ("seq" "ht" "emacs") (:type git :files (:defaults "data" "images") :host github :repo "iqbalansari/emacs-emojify" :package "emojify" :local-repo "emacs-emojify")) "ht" ("2018-09-03 13:07:36+0900" ("dash") (:type git :files ("ht.el") :host github :repo "Wilfred/ht.el" :package "ht" :local-repo "ht.el"))))
+#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ("2018-08-07 10:10:46+0900" ("emacs") (:type git :host github :repo "raxod502/straight.el" :files ("straight*.el") :branch "master" :package "straight" :local-repo "straight.el")) "use-package" ("2018-08-02 10:08:27+0900" ("emacs" "bind-key") (:type git :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el")) :host github :repo "jwiegley/use-package" :package "use-package" :local-repo "use-package")) "bind-key" ("2018-08-02 10:08:27+0900" nil (:files ("bind-key.el") :package "bind-key" :local-repo "use-package" :type git :repo "jwiegley/use-package" :host github)) "helm" ("2018-08-02 10:01:37+0900" ("emacs" "async" "popup" "helm-core") (:type git :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el")) :host github :repo "emacs-helm/helm" :package "helm" :local-repo "helm")) "async" ("2018-08-02 10:08:28+0900" nil (:type git :host github :repo "jwiegley/emacs-async" :package "async" :local-repo "emacs-async")) "popup" ("2018-08-02 10:01:34+0900" ("cl-lib") (:type git :files ("popup.el") :host github :repo "auto-complete/popup-el" :package "popup" :local-repo "popup-el")) "cl-lib" ("2018-08-02 10:08:28+0900" nil (:files ("packages/cl-lib/*.el") :local-repo "elpa" :package "cl-lib" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "helm-core" ("2018-08-02 10:01:34+0900" ("emacs" "async") (:files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el") :package "helm-core" :local-repo "helm" :type git :repo "emacs-helm/helm" :host github)) "rainbow-delimiters" ("2018-08-02 10:08:29+0900" nil (:type git :host github :repo "Fanael/rainbow-delimiters" :package "rainbow-delimiters" :local-repo "rainbow-delimiters")) "neotree" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :files (:defaults "icons") :host github :repo "jaypei/emacs-neotree" :package "neotree" :local-repo "emacs-neotree")) "volatile-highlights" ("2018-08-02 10:02:23+0900" nil (:type git :host github :repo "k-talo/volatile-highlights.el" :package "volatile-highlights" :local-repo "volatile-highlights.el")) "smooth-scroll" ("2018-08-02 10:08:29+0900" nil (:type git :host github :repo "k-talo/smooth-scroll.el" :package "smooth-scroll" :local-repo "smooth-scroll.el")) "hlinum" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :host github :repo "tom-tan/hlinum-mode" :package "hlinum" :local-repo "hlinum-mode")) "undohist" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :host github :repo "m2ym/undohist-el" :package "undohist" :local-repo "undohist-el")) "anzu" ("2018-08-02 10:08:29+0900" ("emacs") (:type git :host github :repo "syohex/emacs-anzu" :package "anzu" :local-repo "emacs-anzu")) "shell-pop" ("2018-08-02 10:08:30+0900" ("emacs" "cl-lib") (:type git :host github :repo "kyagi/shell-pop-el" :package "shell-pop" :local-repo "shell-pop-el")) "web-mode" ("2018-08-02 10:02:37+0900" ("emacs") (:type git :host github :repo "fxbois/web-mode" :package "web-mode" :local-repo "web-mode")) "beacon" ("2018-08-02 10:02:42+0900" ("seq") (:type git :host github :repo "Malabarba/beacon" :package "beacon" :local-repo "beacon")) "seq" ("2018-08-02 10:02:41+0900" nil (:files ("packages/seq/*.el") :local-repo "elpa" :package "seq" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "japanese-holidays" ("2018-08-02 10:08:30+0900" ("cl-lib") (:type git :host github :repo "emacs-jp/japanese-holidays" :package "japanese-holidays" :local-repo "japanese-holidays")) "rainbow-mode" ("2018-08-02 10:02:43+0900" nil (:files ("packages/rainbow-mode/*.el") :local-repo "elpa" :package "rainbow-mode" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "popup-kill-ring" ("2018-08-02 10:02:46+0900" ("popup" "pos-tip") (:type git :host github :repo "waymondo/popup-kill-ring" :package "popup-kill-ring" :local-repo "popup-kill-ring")) "pos-tip" ("2018-08-02 10:08:30+0900" nil (:type git :host github :repo "pitkali/pos-tip" :package "pos-tip" :local-repo "pos-tip")) "popup-switcher" ("2018-08-02 10:02:48+0900" ("cl-lib" "popup") (:type git :host github :repo "kostafey/popup-switcher" :package "popup-switcher" :local-repo "popup-switcher")) "move-text" ("2018-08-02 10:08:30+0900" nil (:type git :host github :repo "emacsfodder/move-text" :package "move-text" :local-repo "move-text")) "darkroom" ("2018-08-02 10:02:50+0900" ("cl-lib") (:files ("packages/darkroom/*.el") :local-repo "elpa" :package "darkroom" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "undo-tree" ("2018-08-02 10:02:51+0900" nil (:files ("packages/undo-tree/*.el") :local-repo "elpa" :package "undo-tree" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "mozc" ("2018-08-02 10:08:31+0900" nil (:type git :files ("src/unix/emacs/mozc.el") :host github :repo "google/mozc" :package "mozc" :local-repo "mozc")) "flycheck" ("2018-08-02 10:06:09+0900" ("dash" "pkg-info" "let-alist" "seq" "emacs") (:type git :host github :repo "flycheck/flycheck" :package "flycheck" :local-repo "flycheck")) "dash" ("2018-08-02 10:08:31+0900" nil (:type git :files ("dash.el") :host github :repo "magnars/dash.el" :package "dash" :local-repo "dash.el")) "pkg-info" ("2018-08-02 10:06:07+0900" ("epl") (:type git :host github :repo "lunaryorn/pkg-info.el" :package "pkg-info" :local-repo "pkg-info.el")) "epl" ("2018-08-02 10:08:31+0900" ("cl-lib") (:type git :host github :repo "cask/epl" :package "epl" :local-repo "epl")) "ace-isearch" ("2018-08-02 10:08:31+0900" ("emacs") (:type git :host github :repo "tam17aki/ace-isearch" :package "ace-isearch" :local-repo "ace-isearch")) "dired-du" ("2018-08-02 10:06:11+0900" ("emacs" "cl-lib") (:files ("packages/dired-du/*.el") :local-repo "elpa" :package "dired-du" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "markdown-mode" ("2018-08-07 10:22:05+0900" ("emacs" "cl-lib") (:type git :host github :repo "jrblevin/markdown-mode" :package "markdown-mode" :local-repo "markdown-mode")) "markdown-preview-mode" ("2018-08-07 11:27:43+0900" ("emacs" "websocket" "markdown-mode" "cl-lib" "web-server" "uuidgen") (:type git :files (:defaults "preview.html" "favicon.ico") :host github :repo "ancane/markdown-preview-mode" :package "markdown-preview-mode" :local-repo "markdown-preview-mode")) "websocket" ("2018-08-07 11:43:56+0900" ("cl-lib") (:type git :host github :repo "ahyatt/emacs-websocket" :package "websocket" :local-repo "emacs-websocket")) "web-server" ("2018-08-07 11:43:56+0900" ("emacs") (:type git :host github :repo "eschulte/emacs-web-server" :package "web-server" :local-repo "emacs-web-server")) "uuidgen" ("2018-08-07 11:43:56+0900" nil (:type git :host github :repo "kanru/uuidgen-el" :package "uuidgen" :local-repo "uuidgen-el")) "markdown-preview-eww" ("2018-08-07 17:43:15+0900" ("emacs") (:type git :host github :repo "niku/markdown-preview-eww" :package "markdown-preview-eww" :local-repo "markdown-preview-eww")) "dashboard" ("2018-08-08 10:03:03+0900" ("emacs" "page-break-lines") (:type git :files (:defaults "banners") :host github :repo "rakanalh/emacs-dashboard" :package "dashboard" :local-repo "emacs-dashboard")) "page-break-lines" ("2018-08-08 10:09:38+0900" ("emacs") (:type git :host github :repo "purcell/page-break-lines" :package "page-break-lines" :local-repo "page-break-lines")) "easy-kill" ("2018-08-28 18:51:28+0900" ("emacs" "cl-lib") (:type git :host github :repo "leoliu/easy-kill" :package "easy-kill" :local-repo "easy-kill")) "clang-format" ("2018-08-31 17:14:48+0900" ("cl-lib") (:type git :host github :repo "emacsorphanage/clang-format" :package "clang-format" :local-repo "clang-format")) "init-open-recentf" ("2018-08-31 17:27:49+0900" ("emacs") (:type git :host github :repo "zonuexe/init-open-recentf.el" :package "init-open-recentf" :local-repo "init-open-recentf.el")) "pandoc" ("2018-08-31 17:43:48+0900" ("emacs") (:type git :host github :repo "zonuexe/pandoc.el" :package "pandoc" :local-repo "pandoc.el")) "emojify" ("2018-09-03 13:07:08+0900" ("seq" "ht" "emacs") (:type git :files (:defaults "data" "images") :host github :repo "iqbalansari/emacs-emojify" :package "emojify" :local-repo "emacs-emojify")) "ht" ("2018-09-03 13:07:36+0900" ("dash") (:type git :files ("ht.el") :host github :repo "Wilfred/ht.el" :package "ht" :local-repo "ht.el")) "focus-autosave-mode" ("2018-09-18 10:41:49+0900" ("emacs") (:type git :host github :repo "Vifon/focus-autosave-mode.el" :package "focus-autosave-mode" :local-repo "focus-autosave-mode.el")) "polymode" ("2018-09-18 10:53:27+0900" ("emacs") (:type git :files ("*.el" "modes/*.el") :host github :repo "vspinu/polymode" :package "polymode" :local-repo "polymode")) "company" ("2018-09-18 15:40:56+0900" ("emacs") (:type git :host github :repo "company-mode/company-mode" :package "company" :local-repo "company-mode")) "popwin" ("2018-09-19 10:39:41+0900" nil (:type git :host github :repo "m2ym/popwin-el" :package "popwin" :local-repo "popwin-el")) "paradox" ("2018-09-19 16:35:48+0900" ("emacs" "seq" "let-alist" "spinner" "hydra") (:type git :host github :repo "Malabarba/paradox" :package "paradox" :local-repo "paradox")) "spinner" ("2018-09-19 16:35:44+0900" nil (:files ("packages/spinner/*.el") :local-repo "elpa" :package "spinner" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "hydra" ("2018-09-19 16:37:16+0900" ("cl-lib") (:type git :host github :repo "abo-abo/hydra" :package "hydra" :local-repo "hydra"))))
 
 #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ((straight-compat straight-autoloads straight straight-x) (autoload (quote straight-get-recipe) "straight" "Interactively select a recipe from one of the recipe repositories.
 All recipe repositories in `straight-recipe-repositories' will
@@ -1898,8 +1898,396 @@ See `emojify-mode-line-mode' for more information on Emojify-Mode-Line mode.
 
 This respects the `emojify-emoji-styles' variable.
 
-(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "emojify" (quote ("emojify-")))) (provide (quote emojify-autoloads)))))
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "emojify" (quote ("emojify-")))) (provide (quote emojify-autoloads))) "focus-autosave-mode" ((focus-autosave-mode focus-autosave-mode-autoloads) (defvar focus-autosave-mode nil "Non-nil if Focus-Autosave mode is enabled.
+See the `focus-autosave-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `focus-autosave-mode'.") (custom-autoload (quote focus-autosave-mode) "focus-autosave-mode" nil) (autoload (quote focus-autosave-mode) "focus-autosave-mode" "Automatically save all the modified files when the frame loses its focus.
 
-("org-elpa" "melpa" "gnu-elpa" "emacsmirror" "straight" "use-package" "bind-key" "helm" "async" "popup" "cl-lib" "helm-core" "rainbow-delimiters" "neotree" "volatile-highlights" "smooth-scroll" "hlinum" "undohist" "anzu" "shell-pop" "web-mode" "beacon" "seq" "japanese-holidays" "rainbow-mode" "popup-kill-ring" "pos-tip" "popup-switcher" "move-text" "darkroom" "undo-tree" "markdown-mode" "markdown-preview-mode" "websocket" "web-server" "uuidgen" "markdown-preview-eww" "easy-kill" "clang-format" "emojify" "ht" "dash" "mozc" "flycheck" "pkg-info" "epl" "ace-isearch" "dired-du")
+(fn &optional ARG)" t nil) (autoload (quote focus-autosave-local-mode) "focus-autosave-mode" "Automatically save this buffer when the frame loses its focus.
+
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "focus-autosave-mode" (quote ("focus-autosave-")))) (provide (quote focus-autosave-mode-autoloads))) "polymode" ((poly-lock polymode-export polymode-autoloads polymode-debug polymode-compat \.dir-locals polymode polymode-classes polymode-core polymode-weave polymode-tangle polymode-methods polymode-test-utils polymode-base) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "poly-lock" (quote ("poly-lock-")))) (autoload (quote define-polymode) "polymode" "Define a new polymode MODE.
+This macro defines command MODE and an indicator variable MODE
+which becomes t when MODE is active and nil otherwise.
+
+MODE command can be used as both major and minor mode. Using
+polymodes as minor modes makes sense when :hostmode (see below)
+is not specified, in which case polymode installs only inner
+modes and doesn't touch current major mode.
+
+Standard hook MODE-hook is run at the end of the initialization
+of each polymode buffer (both indirect and base buffers).
+
+This macro also defines the MODE-map keymap from the :keymap
+argument and PARENT-map (see below) and pm-poly/[MODE-NAME]
+custom variable which holds a `pm-polymode' configuration object
+for this polymode.
+
+PARENT is either the polymode configuration object or a polymode
+mode (there is 1-to-1 correspondence between config
+objects (`pm-polymode') and mode functions). The new polymode
+MODE inherits alll the behavior from PARENT except for the
+overwrites specified by the keywords (see below). The new MODE
+runs all the hooks from the PARENT-mode and inherits its MODE-map
+from PARENT-map.
+
+DOC is an optional documentation string. If present PARENT must
+be provided, but can be nil.
+
+BODY is executed after the complete initialization of the
+polymode but before MODE-hook. It is executed once for each
+polymode buffer - host buffer on initialization and every inner
+buffer subsequently created.
+
+Before the BODY code keyword arguments (i.e. alternating keywords
+and values) are allowed. The following special keywords
+controlling the behavior of the new MODE are supported:
+
+:lighter Optional LIGHTER is displayed in the mode line when the
+   mode is on. If omitted, it defaults to the :lighter slot of
+   CONFIG object.
+
+:keymap If nil, a new MODE-map keymap is created what directly
+  inherits from the PARENT's keymap. The last keymap in the
+  inheritance chain is always `polymode-minor-mode-map'. If a
+  keymap it is used directly as it is. If a list of binding of
+  the form (KEY . BINDING) it is merged the bindings are added to
+  the newly create keymap.
+
+:after-hook A single form which is evaluated after the mode hooks
+  have been run. It should not be quoted.
+
+Other keywords are added to the `pm-polymode' configuration
+object and should be valid slots in PARENT config object or the
+root config `pm-polymode' object if PARENT is nil. By far the
+most frequently used slots are:
+
+:hostmode Symbol pointing to a `pm-host-chunkmode' object
+  specifying the behavior of the hostmode. If missing or nil,
+  MODE will behave as a minor-mode in the sense that it will
+  reuse the currently installed major mode and will install only
+  the inner modes.
+
+:innermodes List of symbols pointing to `pm-inner-chunkmode'
+  objects which specify the behavior of inner modes (or submodes).
+
+(fn MODE &optional PARENT DOC &rest BODY)" nil t) (function-put (quote define-polymode) (quote doc-string-elt) (quote 3)) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "polymode" (quote ("pm-" "poly")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "polymode-base" (quote ("pm-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "polymode-classes" (quote ("pm-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "polymode-compat" (quote ("pm-" "polymode-switch-buffer-keep-evil-state-maybe" "*span*")))) (defvar-local polymode-default-inner-mode nil "Inner mode for chunks with unspecified modes.
+Intended to be used as local variable in polymode buffers.") (put (quote polymode-default-inner-mode) (quote safe-local-variable) (quote symbolp)) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "polymode-core" (quote ("polymode-" "*span*")))) (autoload (quote pm-debug-minor-mode) "polymode-debug" "Turns on/off useful facilities for debugging polymode.
+
+Key bindings:
+\\{pm-debug-minor-mode-map}
+
+(fn &optional ARG)" t nil) (autoload (quote pm-debug-minor-mode-on) "polymode-debug" "
+
+(fn)" nil nil) (defvar pm-debug-mode nil "Non-nil if Pm-Debug mode is enabled.
+See the `pm-debug-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `pm-debug-mode'.") (custom-autoload (quote pm-debug-mode) "polymode-debug" nil) (autoload (quote pm-debug-mode) "polymode-debug" "Toggle Pm-Debug minor mode in all buffers.
+With prefix ARG, enable Pm-Debug mode if ARG is positive;
+otherwise, disable it.  If called from Lisp, enable the mode if
+ARG is omitted or nil.
+
+Pm-Debug minor mode is enabled in all buffers where
+`pm-debug-minor-mode-on' would do it.
+See `pm-debug-minor-mode' for more information on Pm-Debug minor mode.
+
+(fn &optional ARG)" t nil) (autoload (quote pm-toggle-tracing) "polymode-debug" "Toggle polymode tracing.
+With numeric prefix toggle tracing for that LEVEL. Currently
+universal argument toggles maximum level of tracing (4). Default
+level is 3.
+
+(fn LEVEL)" t nil) (autoload (quote pm-trace) "polymode-debug" "Trace function FN.
+Use `untrace-function' to untrace or `untrace-all' to untrace all
+currently traced functions.
+
+(fn FN)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "polymode-debug" (quote ("pm-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "polymode-export" (quote ("polymode-" "pm-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "polymode-methods" (quote ("pm-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "polymode-test-utils" (quote ("pm-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "polymode-weave" (quote ("pm-" "polymode-")))) (provide (quote polymode-autoloads))) "company" ((company-css company-ispell company-tng company-semantic company-bbdb company-nxml company-eclim company-oddmuse company-gtags company-xcode company-abbrev company-yasnippet company-template company-cmake company-files company-autoloads company-clang company-tempo company-dabbrev company-capf company-elisp company-etags company-dabbrev-code company company-keywords) (autoload (quote company-mode) "company" "\"complete anything\"; is an in-buffer completion framework.
+Completion starts automatically, depending on the values
+`company-idle-delay' and `company-minimum-prefix-length'.
+
+Completion can be controlled with the commands:
+`company-complete-common', `company-complete-selection', `company-complete',
+`company-select-next', `company-select-previous'.  If these commands are
+called before `company-idle-delay', completion will also start.
+
+Completions can be searched with `company-search-candidates' or
+`company-filter-candidates'.  These can be used while completion is
+inactive, as well.
+
+The completion data is retrieved using `company-backends' and displayed
+using `company-frontends'.  If you want to start a specific backend, call
+it interactively or use `company-begin-backend'.
+
+By default, the completions list is sorted alphabetically, unless the
+backend chooses otherwise, or `company-transformers' changes it later.
+
+regular keymap (`company-mode-map'):
+
+\\{company-mode-map}
+keymap during active completions (`company-active-map'):
+
+\\{company-active-map}
+
+(fn &optional ARG)" t nil) (defvar global-company-mode nil "Non-nil if Global Company mode is enabled.
+See the `global-company-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `global-company-mode'.") (custom-autoload (quote global-company-mode) "company" nil) (autoload (quote global-company-mode) "company" "Toggle Company mode in all buffers.
+With prefix ARG, enable Global Company mode if ARG is positive;
+otherwise, disable it.  If called from Lisp, enable the mode if
+ARG is omitted or nil.
+
+Company mode is enabled in all buffers where
+`company-mode-on' would do it.
+See `company-mode' for more information on Company mode.
+
+(fn &optional ARG)" t nil) (autoload (quote company-manual-begin) "company" "
+
+(fn)" t nil) (autoload (quote company-complete) "company" "Insert the common part of all candidates or the current selection.
+The first time this is called, the common part is inserted, the second
+time, or when the selection has been changed, the selected candidate is
+inserted.
+
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company" (quote ("company-")))) (autoload (quote company-abbrev) "company-abbrev" "`company-mode' completion backend for abbrev.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-abbrev" (quote ("company-abbrev-insert")))) (autoload (quote company-bbdb) "company-bbdb" "`company-mode' completion backend for BBDB.
+
+(fn COMMAND &optional ARG &rest IGNORE)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-bbdb" (quote ("company-bbdb-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-capf" (quote ("company-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-clang" (quote ("company-clang")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-cmake" (quote ("company-cmake")))) (autoload (quote company-css) "company-css" "`company-mode' completion backend for `css-mode'.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-css" (quote ("company-css-")))) (autoload (quote company-dabbrev) "company-dabbrev" "dabbrev-like `company-mode' completion backend.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-dabbrev" (quote ("company-dabbrev-")))) (autoload (quote company-dabbrev-code) "company-dabbrev-code" "dabbrev-like `company-mode' backend for code.
+The backend looks for all symbols in the current buffer that aren't in
+comments or strings.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-dabbrev-code" (quote ("company-dabbrev-code-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-eclim" (quote ("company-eclim")))) (autoload (quote company-elisp) "company-elisp" "`company-mode' completion backend for Emacs Lisp.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-elisp" (quote ("company-elisp-")))) (autoload (quote company-etags) "company-etags" "`company-mode' completion backend for etags.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-etags" (quote ("company-etags-")))) (autoload (quote company-files) "company-files" "`company-mode' completion backend existing file names.
+Completions works for proper absolute and relative files paths.
+File paths with spaces are only supported inside strings.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-files" (quote ("company-file")))) (autoload (quote company-gtags) "company-gtags" "`company-mode' completion backend for GNU Global.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-gtags" (quote ("company-gtags-")))) (autoload (quote company-ispell) "company-ispell" "`company-mode' completion backend using Ispell.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-ispell" (quote ("company-ispell-")))) (autoload (quote company-keywords) "company-keywords" "`company-mode' backend for programming language keywords.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-keywords" (quote ("company-keywords-")))) (autoload (quote company-nxml) "company-nxml" "`company-mode' completion backend for `nxml-mode'.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-nxml" (quote ("company-nxml-")))) (autoload (quote company-oddmuse) "company-oddmuse" "`company-mode' completion backend for `oddmuse-mode'.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-oddmuse" (quote ("company-oddmuse-")))) (autoload (quote company-semantic) "company-semantic" "`company-mode' completion backend using CEDET Semantic.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-semantic" (quote ("company-semantic-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-template" (quote ("company-template-")))) (autoload (quote company-tempo) "company-tempo" "`company-mode' completion backend for tempo.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-tempo" (quote ("company-tempo-")))) (autoload (quote company-tng-frontend) "company-tng" "When the user changes the selection at least once, this
+frontend will display the candidate in the buffer as if it's
+already there and any key outside of `company-active-map' will
+confirm the selection and finish the completion.
+
+(fn COMMAND)" nil nil) (autoload (quote company-tng-configure-default) "company-tng" "Applies the default configuration to enable company-tng.
+
+(fn)" nil nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-tng" (quote ("company-tng--")))) (autoload (quote company-xcode) "company-xcode" "`company-mode' completion backend for Xcode projects.
+
+(fn COMMAND &optional ARG &rest IGNORED)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-xcode" (quote ("company-xcode-")))) (autoload (quote company-yasnippet) "company-yasnippet" "`company-mode' backend for `yasnippet'.
+
+This backend should be used with care, because as long as there are
+snippets defined for the current major mode, this backend will always
+shadow backends that come after it.  Recommended usages:
+
+* In a buffer-local value of `company-backends', grouped with a backend or
+  several that provide actual text completions.
+
+  (add-hook 'js-mode-hook
+            (lambda ()
+              (set (make-local-variable 'company-backends)
+                   '((company-dabbrev-code company-yasnippet)))))
+
+* After keyword `:with', grouped with other backends.
+
+  (push '(company-semantic :with company-yasnippet) company-backends)
+
+* Not in `company-backends', just bound to a key.
+
+  (global-set-key (kbd \"C-c y\") 'company-yasnippet)
+
+(fn COMMAND &optional ARG &rest IGNORE)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "company-yasnippet" (quote ("company-yasnippet--")))) (provide (quote company-autoloads))) "popwin" ((popwin-autoloads popwin) (autoload (quote popwin:popup-buffer) "popwin" "Show BUFFER in a popup window and return the popup window. If
+NOSELECT is non-nil, the popup window will not be selected. If
+STICK is non-nil, the popup window will be stuck. If TAIL is
+non-nil, the popup window will show the last contents. Calling
+`popwin:popup-buffer' during `popwin:popup-buffer' is allowed. In
+that case, the buffer of the popup window will be replaced with
+BUFFER.
+
+(fn BUFFER &key (width popwin:popup-window-width) (height popwin:popup-window-height) (position popwin:popup-window-position) NOSELECT DEDICATED STICK TAIL)" t nil) (autoload (quote popwin:display-buffer) "popwin" "Display BUFFER-OR-NAME, if possible, in a popup window, or as
+usual. This function can be used as a value of
+`display-buffer-function'.
+
+(fn BUFFER-OR-NAME &optional NOT-THIS-WINDOW)" t nil) (autoload (quote popwin:pop-to-buffer) "popwin" "Same as `pop-to-buffer' except that this function will use
+`popwin:display-buffer-1' instead of `display-buffer'.
+
+(fn BUFFER &optional OTHER-WINDOW NORECORD)" t nil) (autoload (quote popwin:universal-display) "popwin" "Call the following command interactively with letting
+`popwin:special-display-config' be
+`popwin:universal-display-config'. This will be useful when
+displaying buffers in popup windows temporarily.
+
+(fn)" t nil) (autoload (quote popwin:one-window) "popwin" "Delete other window than the popup window. C-g restores the
+original window configuration.
+
+(fn)" t nil) (autoload (quote popwin:popup-buffer-tail) "popwin" "Same as `popwin:popup-buffer' except that the buffer will be
+`recenter'ed at the bottom.
+
+(fn &rest SAME-AS-POPWIN:POPUP-BUFFER)" t nil) (autoload (quote popwin:find-file) "popwin" "Edit file FILENAME with popup window by `popwin:popup-buffer'.
+
+(fn FILENAME &optional WILDCARDS)" t nil) (autoload (quote popwin:find-file-tail) "popwin" "Edit file FILENAME with popup window by
+`popwin:popup-buffer-tail'.
+
+(fn FILE &optional WILDCARD)" t nil) (autoload (quote popwin:messages) "popwin" "Display *Messages* buffer in a popup window.
+
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "popwin" (quote ("popwin")))) (provide (quote popwin-autoloads))) "spinner" ((spinner-autoloads spinner) (autoload (quote spinner-create) "spinner" "Create a spinner of the given TYPE.
+The possible TYPEs are described in `spinner--type-to-frames'.
+
+FPS, if given, is the number of desired frames per second.
+Default is `spinner-frames-per-second'.
+
+If BUFFER-LOCAL is non-nil, the spinner will be automatically
+deactivated if the buffer is killed.  If BUFFER-LOCAL is a
+buffer, use that instead of current buffer.
+
+When started, in order to function properly, the spinner runs a
+timer which periodically calls `force-mode-line-update' in the
+curent buffer.  If BUFFER-LOCAL was set at creation time, then
+`force-mode-line-update' is called in that buffer instead.  When
+the spinner is stopped, the timer is deactivated.
+
+DELAY, if given, is the number of seconds to wait after starting
+the spinner before actually displaying it. It is safe to cancel
+the spinner before this time, in which case it won't display at
+all.
+
+(fn &optional TYPE BUFFER-LOCAL FPS DELAY)" nil nil) (autoload (quote spinner-start) "spinner" "Start a mode-line spinner of given TYPE-OR-OBJECT.
+If TYPE-OR-OBJECT is an object created with `make-spinner',
+simply activate it.  This method is designed for minor modes, so
+they can use the spinner as part of their lighter by doing:
+    \\='(:eval (spinner-print THE-SPINNER))
+To stop this spinner, call `spinner-stop' on it.
+
+If TYPE-OR-OBJECT is anything else, a buffer-local spinner is
+created with this type, and it is displayed in the
+`mode-line-process' of the buffer it was created it.  Both
+TYPE-OR-OBJECT and FPS are passed to `make-spinner' (which see).
+To stop this spinner, call `spinner-stop' in the same buffer.
+
+Either way, the return value is a function which can be called
+anywhere to stop this spinner.  You can also call `spinner-stop'
+in the same buffer where the spinner was created.
+
+FPS, if given, is the number of desired frames per second.
+Default is `spinner-frames-per-second'.
+
+DELAY, if given, is the number of seconds to wait until actually
+displaying the spinner. It is safe to cancel the spinner before
+this time, in which case it won't display at all.
+
+(fn &optional TYPE-OR-OBJECT FPS DELAY)" nil nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "spinner" (quote ("spinner")))) (provide (quote spinner-autoloads))) "hydra" ((hydra-examples lv hydra-ox hydra-autoloads hydra) (autoload (quote defhydra) "hydra" "Create a Hydra - a family of functions with prefix NAME.
+
+NAME should be a symbol, it will be the prefix of all functions
+defined here.
+
+BODY has the format:
+
+    (BODY-MAP BODY-KEY &rest BODY-PLIST)
+
+DOCSTRING will be displayed in the echo area to identify the
+Hydra.  When DOCSTRING starts with a newline, special Ruby-style
+substitution will be performed by `hydra--format'.
+
+Functions are created on basis of HEADS, each of which has the
+format:
+
+    (KEY CMD &optional HINT &rest PLIST)
+
+BODY-MAP is a keymap; `global-map' is used quite often.  Each
+function generated from HEADS will be bound in BODY-MAP to
+BODY-KEY + KEY (both are strings passed to `kbd'), and will set
+the transient map so that all following heads can be called
+though KEY only.  BODY-KEY can be an empty string.
+
+CMD is a callable expression: either an interactive function
+name, or an interactive lambda, or a single sexp (it will be
+wrapped in an interactive lambda).
+
+HINT is a short string that identifies its head.  It will be
+printed beside KEY in the echo erea if `hydra-is-helpful' is not
+nil.  If you don't even want the KEY to be printed, set HINT
+explicitly to nil.
+
+The heads inherit their PLIST from BODY-PLIST and are allowed to
+override some keys.  The keys recognized are :exit and :bind.
+:exit can be:
+
+- nil (default): this head will continue the Hydra state.
+- t: this head will stop the Hydra state.
+
+:bind can be:
+- nil: this head will not be bound in BODY-MAP.
+- a lambda taking KEY and CMD used to bind a head.
+
+It is possible to omit both BODY-MAP and BODY-KEY if you don't
+want to bind anything.  In that case, typically you will bind the
+generated NAME/body command.  This command is also the return
+result of `defhydra'.
+
+(fn NAME BODY &optional DOCSTRING &rest HEADS)" nil t) (function-put (quote defhydra) (quote lisp-indent-function) (quote defun)) (function-put (quote defhydra) (quote doc-string-elt) (quote 3)) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "hydra" (quote ("hydra-" "defhydradio")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "hydra-examples" (quote ("hydra-" "org-agenda-cts" "whitespace-mode")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "hydra-ox" (quote ("hydra-ox")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "lv" (quote ("lv-")))) (provide (quote hydra-autoloads))) "paradox" ((paradox-commit-list paradox-menu paradox-github paradox-core paradox-execute paradox paradox-autoloads) (autoload (quote paradox-list-packages) "paradox" "Improved version of `package-list-packages'.  The heart of Paradox.
+Function is equivalent to `package-list-packages' (including the
+prefix NO-FETCH), but the resulting Package Menu is improved in
+several ways.
+
+Among them:
+
+1. Uses `paradox-menu-mode', which has more functionality and
+keybinds than `package-menu-mode'.
+
+2. Uses some font-locking to improve readability.
+
+3. Optionally shows the number GitHub stars and Melpa downloads
+for packages.
+
+4. Adds useful information in the mode-line.
+
+(fn NO-FETCH)" t nil) (autoload (quote paradox-upgrade-packages) "paradox" "Upgrade all packages.  No questions asked.
+This function is equivalent to `list-packages', followed by a
+`package-menu-mark-upgrades' and a `package-menu-execute'.  Except
+the user isn't asked to confirm deletion of packages.
+
+If `paradox-execute-asynchronously' is non-nil, part of this
+operation may be performed in the background.
+
+The NO-FETCH prefix argument is passed to `list-packages'.  It
+prevents re-download of information about new versions.  It does
+not prevent downloading the actual packages (obviously).
+
+(fn &optional NO-FETCH)" t nil) (autoload (quote paradox-require) "paradox" "Like `require', but also install FEATURE if it is absent.
+FILENAME is passed to `require'.
+If NOERROR is non-nil, don't complain if the feature couldn't be
+installed, just return nil.
+
+- If FEATURE is present, `require' it and return t.
+
+- If FEATURE is not present, install PACKAGE with `package-install'.
+If PACKAGE is nil, assume FEATURE is the package name.
+After installation, `require' FEATURE.
+
+By default, the current package database is only updated if it is
+empty.  Passing a non-nil REFRESH argument forces this update.
+
+(fn FEATURE &optional FILENAME NOERROR PACKAGE REFRESH)" nil nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-commit-list" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-core" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-execute" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-github" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-menu" (quote ("paradox-")))) (provide (quote paradox-autoloads)))))
+
+("org-elpa" "melpa" "gnu-elpa" "emacsmirror" "straight" "use-package" "bind-key" "paradox" "seq" "spinner" "hydra" "cl-lib" "helm" "async" "popup" "helm-core" "rainbow-delimiters" "company" "neotree" "volatile-highlights" "smooth-scroll" "hlinum" "undohist" "anzu" "shell-pop" "web-mode" "beacon" "japanese-holidays" "rainbow-mode" "popup-kill-ring" "pos-tip" "move-text" "darkroom" "undo-tree" "markdown-mode" "polymode" "markdown-preview-mode" "websocket" "web-server" "uuidgen" "markdown-preview-eww" "easy-kill" "clang-format" "emojify" "ht" "dash" "focus-autosave-mode" "popwin" "flycheck" "pkg-info" "epl" "ace-isearch" "dired-du")
 
 t

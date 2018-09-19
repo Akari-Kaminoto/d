@@ -1,0 +1,1 @@
+/home/ryuichi/.emacs.d/straight/repos/paradox/paradox-commit-list.el
