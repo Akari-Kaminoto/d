@@ -5,7 +5,7 @@ gnu/bsd
 
 "26.1"
 
-#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ("2018-08-07 10:10:46+0900" ("emacs") (:type git :host github :repo "raxod502/straight.el" :files ("straight*.el") :branch "master" :package "straight" :local-repo "straight.el")) "use-package" ("2018-08-02 10:08:27+0900" ("emacs" "bind-key") (:type git :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el")) :host github :repo "jwiegley/use-package" :package "use-package" :local-repo "use-package")) "bind-key" ("2018-08-02 10:08:27+0900" nil (:files ("bind-key.el") :package "bind-key" :local-repo "use-package" :type git :repo "jwiegley/use-package" :host github)) "helm" ("2018-08-02 10:01:37+0900" ("emacs" "async" "popup" "helm-core") (:type git :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el")) :host github :repo "emacs-helm/helm" :package "helm" :local-repo "helm")) "async" ("2018-08-02 10:08:28+0900" nil (:type git :host github :repo "jwiegley/emacs-async" :package "async" :local-repo "emacs-async")) "popup" ("2018-08-02 10:01:34+0900" ("cl-lib") (:type git :files ("popup.el") :host github :repo "auto-complete/popup-el" :package "popup" :local-repo "popup-el")) "cl-lib" ("2018-08-02 10:08:28+0900" nil (:files ("packages/cl-lib/*.el") :local-repo "elpa" :package "cl-lib" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "helm-core" ("2018-08-02 10:01:34+0900" ("emacs" "async") (:files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el") :package "helm-core" :local-repo "helm" :type git :repo "emacs-helm/helm" :host github)) "rainbow-delimiters" ("2018-08-02 10:08:29+0900" nil (:type git :host github :repo "Fanael/rainbow-delimiters" :package "rainbow-delimiters" :local-repo "rainbow-delimiters")) "neotree" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :files (:defaults "icons") :host github :repo "jaypei/emacs-neotree" :package "neotree" :local-repo "emacs-neotree")) "volatile-highlights" ("2018-08-02 10:02:23+0900" nil (:type git :host github :repo "k-talo/volatile-highlights.el" :package "volatile-highlights" :local-repo "volatile-highlights.el")) "smooth-scroll" ("2018-08-02 10:08:29+0900" nil (:type git :host github :repo "k-talo/smooth-scroll.el" :package "smooth-scroll" :local-repo "smooth-scroll.el")) "hlinum" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :host github :repo "tom-tan/hlinum-mode" :package "hlinum" :local-repo "hlinum-mode")) "undohist" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :host github :repo "m2ym/undohist-el" :package "undohist" :local-repo "undohist-el")) "anzu" ("2018-08-02 10:08:29+0900" ("emacs") (:type git :host github :repo "syohex/emacs-anzu" :package "anzu" :local-repo "emacs-anzu")) "shell-pop" ("2018-08-02 10:08:30+0900" ("emacs" "cl-lib") (:type git :host github :repo "kyagi/shell-pop-el" :package "shell-pop" :local-repo "shell-pop-el")) "web-mode" ("2018-08-02 10:02:37+0900" ("emacs") (:type git :host github :repo "fxbois/web-mode" :package "web-mode" :local-repo "web-mode")) "beacon" ("2018-08-02 10:02:42+0900" ("seq") (:type git :host github :repo "Malabarba/beacon" :package "beacon" :local-repo "beacon")) "seq" ("2018-08-02 10:02:41+0900" nil (:files ("packages/seq/*.el") :local-repo "elpa" :package "seq" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "japanese-holidays" ("2018-08-02 10:08:30+0900" ("cl-lib") (:type git :host github :repo "emacs-jp/japanese-holidays" :package "japanese-holidays" :local-repo "japanese-holidays")) "rainbow-mode" ("2018-08-02 10:02:43+0900" nil (:files ("packages/rainbow-mode/*.el") :local-repo "elpa" :package "rainbow-mode" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "popup-kill-ring" ("2018-08-02 10:02:46+0900" ("popup" "pos-tip") (:type git :host github :repo "waymondo/popup-kill-ring" :package "popup-kill-ring" :local-repo "popup-kill-ring")) "pos-tip" ("2018-08-02 10:08:30+0900" nil (:type git :host github :repo "pitkali/pos-tip" :package "pos-tip" :local-repo "pos-tip")) "popup-switcher" ("2018-08-02 10:02:48+0900" ("cl-lib" "popup") (:type git :host github :repo "kostafey/popup-switcher" :package "popup-switcher" :local-repo "popup-switcher")) "move-text" ("2018-08-02 10:08:30+0900" nil (:type git :host github :repo "emacsfodder/move-text" :package "move-text" :local-repo "move-text")) "darkroom" ("2018-08-02 10:02:50+0900" ("cl-lib") (:files ("packages/darkroom/*.el") :local-repo "elpa" :package "darkroom" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "undo-tree" ("2018-08-02 10:02:51+0900" nil (:files ("packages/undo-tree/*.el") :local-repo "elpa" :package "undo-tree" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "mozc" ("2018-08-02 10:08:31+0900" nil (:type git :files ("src/unix/emacs/mozc.el") :host github :repo "google/mozc" :package "mozc" :local-repo "mozc")) "flycheck" ("2018-08-02 10:06:09+0900" ("dash" "pkg-info" "let-alist" "seq" "emacs") (:type git :host github :repo "flycheck/flycheck" :package "flycheck" :local-repo "flycheck")) "dash" ("2018-08-02 10:08:31+0900" nil (:type git :files ("dash.el") :host github :repo "magnars/dash.el" :package "dash" :local-repo "dash.el")) "pkg-info" ("2018-08-02 10:06:07+0900" ("epl") (:type git :host github :repo "lunaryorn/pkg-info.el" :package "pkg-info" :local-repo "pkg-info.el")) "epl" ("2018-08-02 10:08:31+0900" ("cl-lib") (:type git :host github :repo "cask/epl" :package "epl" :local-repo "epl")) "ace-isearch" ("2018-08-02 10:08:31+0900" ("emacs") (:type git :host github :repo "tam17aki/ace-isearch" :package "ace-isearch" :local-repo "ace-isearch")) "dired-du" ("2018-08-02 10:06:11+0900" ("emacs" "cl-lib") (:files ("packages/dired-du/*.el") :local-repo "elpa" :package "dired-du" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "markdown-mode" ("2018-08-07 10:22:05+0900" ("emacs" "cl-lib") (:type git :host github :repo "jrblevin/markdown-mode" :package "markdown-mode" :local-repo "markdown-mode")) "markdown-preview-mode" ("2018-08-07 11:27:43+0900" ("emacs" "websocket" "markdown-mode" "cl-lib" "web-server" "uuidgen") (:type git :files (:defaults "preview.html" "favicon.ico") :host github :repo "ancane/markdown-preview-mode" :package "markdown-preview-mode" :local-repo "markdown-preview-mode")) "websocket" ("2018-08-07 11:43:56+0900" ("cl-lib") (:type git :host github :repo "ahyatt/emacs-websocket" :package "websocket" :local-repo "emacs-websocket")) "web-server" ("2018-08-07 11:43:56+0900" ("emacs") (:type git :host github :repo "eschulte/emacs-web-server" :package "web-server" :local-repo "emacs-web-server")) "uuidgen" ("2018-08-07 11:43:56+0900" nil (:type git :host github :repo "kanru/uuidgen-el" :package "uuidgen" :local-repo "uuidgen-el")) "markdown-preview-eww" ("2018-08-07 17:43:15+0900" ("emacs") (:type git :host github :repo "niku/markdown-preview-eww" :package "markdown-preview-eww" :local-repo "markdown-preview-eww")) "dashboard" ("2018-08-08 10:03:03+0900" ("emacs" "page-break-lines") (:type git :files (:defaults "banners") :host github :repo "rakanalh/emacs-dashboard" :package "dashboard" :local-repo "emacs-dashboard")) "page-break-lines" ("2018-08-08 10:09:38+0900" ("emacs") (:type git :host github :repo "purcell/page-break-lines" :package "page-break-lines" :local-repo "page-break-lines")) "easy-kill" ("2018-08-28 18:51:28+0900" ("emacs" "cl-lib") (:type git :host github :repo "leoliu/easy-kill" :package "easy-kill" :local-repo "easy-kill")) "clang-format" ("2018-08-31 17:14:48+0900" ("cl-lib") (:type git :host github :repo "emacsorphanage/clang-format" :package "clang-format" :local-repo "clang-format")) "init-open-recentf" ("2018-08-31 17:27:49+0900" ("emacs") (:type git :host github :repo "zonuexe/init-open-recentf.el" :package "init-open-recentf" :local-repo "init-open-recentf.el")) "pandoc" ("2018-08-31 17:43:48+0900" ("emacs") (:type git :host github :repo "zonuexe/pandoc.el" :package "pandoc" :local-repo "pandoc.el")) "emojify" ("2018-09-03 13:07:08+0900" ("seq" "ht" "emacs") (:type git :files (:defaults "data" "images") :host github :repo "iqbalansari/emacs-emojify" :package "emojify" :local-repo "emacs-emojify")) "ht" ("2018-09-03 13:07:36+0900" ("dash") (:type git :files ("ht.el") :host github :repo "Wilfred/ht.el" :package "ht" :local-repo "ht.el")) "focus-autosave-mode" ("2018-09-18 10:41:49+0900" ("emacs") (:type git :host github :repo "Vifon/focus-autosave-mode.el" :package "focus-autosave-mode" :local-repo "focus-autosave-mode.el")) "polymode" ("2018-09-18 10:53:27+0900" ("emacs") (:type git :files ("*.el" "modes/*.el") :host github :repo "vspinu/polymode" :package "polymode" :local-repo "polymode")) "company" ("2018-09-18 15:40:56+0900" ("emacs") (:type git :host github :repo "company-mode/company-mode" :package "company" :local-repo "company-mode")) "popwin" ("2018-09-19 10:39:41+0900" nil (:type git :host github :repo "m2ym/popwin-el" :package "popwin" :local-repo "popwin-el")) "paradox" ("2018-09-19 16:35:48+0900" ("emacs" "seq" "let-alist" "spinner" "hydra") (:type git :host github :repo "Malabarba/paradox" :package "paradox" :local-repo "paradox")) "spinner" ("2018-09-19 16:35:44+0900" nil (:files ("packages/spinner/*.el") :local-repo "elpa" :package "spinner" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "hydra" ("2018-09-19 16:37:16+0900" ("cl-lib") (:type git :host github :repo "abo-abo/hydra" :package "hydra" :local-repo "hydra"))))
+#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ("2018-08-07 10:10:46+0900" ("emacs") (:type git :host github :repo "raxod502/straight.el" :files ("straight*.el") :branch "master" :package "straight" :local-repo "straight.el")) "use-package" ("2018-08-02 10:08:27+0900" ("emacs" "bind-key") (:type git :files (:defaults (:exclude "bind-key.el" "bind-chord.el" "use-package-chords.el" "use-package-ensure-system-package.el")) :host github :repo "jwiegley/use-package" :package "use-package" :local-repo "use-package")) "bind-key" ("2018-08-02 10:08:27+0900" nil (:files ("bind-key.el") :package "bind-key" :local-repo "use-package" :type git :repo "jwiegley/use-package" :host github)) "helm" ("2018-08-02 10:01:37+0900" ("emacs" "async" "popup" "helm-core") (:type git :files ("*.el" "emacs-helm.sh" (:exclude "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el" "helm-core-pkg.el")) :host github :repo "emacs-helm/helm" :package "helm" :local-repo "helm")) "async" ("2018-08-02 10:08:28+0900" nil (:type git :host github :repo "jwiegley/emacs-async" :package "async" :local-repo "emacs-async")) "popup" ("2018-08-02 10:01:34+0900" ("cl-lib") (:type git :files ("popup.el") :host github :repo "auto-complete/popup-el" :package "popup" :local-repo "popup-el")) "cl-lib" ("2018-08-02 10:08:28+0900" nil (:files ("packages/cl-lib/*.el") :local-repo "elpa" :package "cl-lib" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "helm-core" ("2018-08-02 10:01:34+0900" ("emacs" "async") (:files ("helm-core-pkg.el" "helm.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el") :package "helm-core" :local-repo "helm" :type git :repo "emacs-helm/helm" :host github)) "rainbow-delimiters" ("2018-08-02 10:08:29+0900" nil (:type git :host github :repo "Fanael/rainbow-delimiters" :package "rainbow-delimiters" :local-repo "rainbow-delimiters")) "neotree" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :files (:defaults "icons") :host github :repo "jaypei/emacs-neotree" :package "neotree" :local-repo "emacs-neotree")) "volatile-highlights" ("2018-08-02 10:02:23+0900" nil (:type git :host github :repo "k-talo/volatile-highlights.el" :package "volatile-highlights" :local-repo "volatile-highlights.el")) "smooth-scroll" ("2018-08-02 10:08:29+0900" nil (:type git :host github :repo "k-talo/smooth-scroll.el" :package "smooth-scroll" :local-repo "smooth-scroll.el")) "hlinum" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :host github :repo "tom-tan/hlinum-mode" :package "hlinum" :local-repo "hlinum-mode")) "undohist" ("2018-08-02 10:08:29+0900" ("cl-lib") (:type git :host github :repo "m2ym/undohist-el" :package "undohist" :local-repo "undohist-el")) "anzu" ("2018-08-02 10:08:29+0900" ("emacs") (:type git :host github :repo "syohex/emacs-anzu" :package "anzu" :local-repo "emacs-anzu")) "shell-pop" ("2018-08-02 10:08:30+0900" ("emacs" "cl-lib") (:type git :host github :repo "kyagi/shell-pop-el" :package "shell-pop" :local-repo "shell-pop-el")) "web-mode" ("2018-08-02 10:02:37+0900" ("emacs") (:type git :host github :repo "fxbois/web-mode" :package "web-mode" :local-repo "web-mode")) "beacon" ("2018-08-02 10:02:42+0900" ("seq") (:type git :host github :repo "Malabarba/beacon" :package "beacon" :local-repo "beacon")) "seq" ("2018-08-02 10:02:41+0900" nil (:files ("packages/seq/*.el") :local-repo "elpa" :package "seq" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "japanese-holidays" ("2018-08-02 10:08:30+0900" ("cl-lib") (:type git :host github :repo "emacs-jp/japanese-holidays" :package "japanese-holidays" :local-repo "japanese-holidays")) "rainbow-mode" ("2018-08-02 10:02:43+0900" nil (:files ("packages/rainbow-mode/*.el") :local-repo "elpa" :package "rainbow-mode" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "popup-kill-ring" ("2018-08-02 10:02:46+0900" ("popup" "pos-tip") (:type git :host github :repo "waymondo/popup-kill-ring" :package "popup-kill-ring" :local-repo "popup-kill-ring")) "pos-tip" ("2018-08-02 10:08:30+0900" nil (:type git :host github :repo "pitkali/pos-tip" :package "pos-tip" :local-repo "pos-tip")) "popup-switcher" ("2018-08-02 10:02:48+0900" ("cl-lib" "popup") (:type git :host github :repo "kostafey/popup-switcher" :package "popup-switcher" :local-repo "popup-switcher")) "move-text" ("2018-08-02 10:08:30+0900" nil (:type git :host github :repo "emacsfodder/move-text" :package "move-text" :local-repo "move-text")) "darkroom" ("2018-08-02 10:02:50+0900" ("cl-lib") (:files ("packages/darkroom/*.el") :local-repo "elpa" :package "darkroom" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "undo-tree" ("2018-08-02 10:02:51+0900" nil (:files ("packages/undo-tree/*.el") :local-repo "elpa" :package "undo-tree" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "mozc" ("2018-08-02 10:08:31+0900" nil (:type git :files ("src/unix/emacs/mozc.el") :host github :repo "google/mozc" :package "mozc" :local-repo "mozc")) "flycheck" ("2018-08-02 10:06:09+0900" ("dash" "pkg-info" "let-alist" "seq" "emacs") (:type git :host github :repo "flycheck/flycheck" :package "flycheck" :local-repo "flycheck")) "dash" ("2018-08-02 10:08:31+0900" nil (:type git :files ("dash.el") :host github :repo "magnars/dash.el" :package "dash" :local-repo "dash.el")) "pkg-info" ("2018-08-02 10:06:07+0900" ("epl") (:type git :host github :repo "lunaryorn/pkg-info.el" :package "pkg-info" :local-repo "pkg-info.el")) "epl" ("2018-08-02 10:08:31+0900" ("cl-lib") (:type git :host github :repo "cask/epl" :package "epl" :local-repo "epl")) "ace-isearch" ("2018-08-02 10:08:31+0900" ("emacs") (:type git :host github :repo "tam17aki/ace-isearch" :package "ace-isearch" :local-repo "ace-isearch")) "dired-du" ("2018-08-02 10:06:11+0900" ("emacs" "cl-lib") (:files ("packages/dired-du/*.el") :local-repo "elpa" :package "dired-du" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "markdown-mode" ("2018-08-07 10:22:05+0900" ("emacs" "cl-lib") (:type git :host github :repo "jrblevin/markdown-mode" :package "markdown-mode" :local-repo "markdown-mode")) "markdown-preview-mode" ("2018-08-07 11:27:43+0900" ("emacs" "websocket" "markdown-mode" "cl-lib" "web-server" "uuidgen") (:type git :files (:defaults "preview.html" "favicon.ico") :host github :repo "ancane/markdown-preview-mode" :package "markdown-preview-mode" :local-repo "markdown-preview-mode")) "websocket" ("2018-08-07 11:43:56+0900" ("cl-lib") (:type git :host github :repo "ahyatt/emacs-websocket" :package "websocket" :local-repo "emacs-websocket")) "web-server" ("2018-08-07 11:43:56+0900" ("emacs") (:type git :host github :repo "eschulte/emacs-web-server" :package "web-server" :local-repo "emacs-web-server")) "uuidgen" ("2018-08-07 11:43:56+0900" nil (:type git :host github :repo "kanru/uuidgen-el" :package "uuidgen" :local-repo "uuidgen-el")) "markdown-preview-eww" ("2018-08-07 17:43:15+0900" ("emacs") (:type git :host github :repo "niku/markdown-preview-eww" :package "markdown-preview-eww" :local-repo "markdown-preview-eww")) "dashboard" ("2018-08-08 10:03:03+0900" ("emacs" "page-break-lines") (:type git :files (:defaults "banners") :host github :repo "rakanalh/emacs-dashboard" :package "dashboard" :local-repo "emacs-dashboard")) "page-break-lines" ("2018-08-08 10:09:38+0900" ("emacs") (:type git :host github :repo "purcell/page-break-lines" :package "page-break-lines" :local-repo "page-break-lines")) "easy-kill" ("2018-08-28 18:51:28+0900" ("emacs" "cl-lib") (:type git :host github :repo "leoliu/easy-kill" :package "easy-kill" :local-repo "easy-kill")) "clang-format" ("2018-08-31 17:14:48+0900" ("cl-lib") (:type git :host github :repo "emacsorphanage/clang-format" :package "clang-format" :local-repo "clang-format")) "init-open-recentf" ("2018-08-31 17:27:49+0900" ("emacs") (:type git :host github :repo "zonuexe/init-open-recentf.el" :package "init-open-recentf" :local-repo "init-open-recentf.el")) "pandoc" ("2018-08-31 17:43:48+0900" ("emacs") (:type git :host github :repo "zonuexe/pandoc.el" :package "pandoc" :local-repo "pandoc.el")) "emojify" ("2018-09-03 13:07:08+0900" ("seq" "ht" "emacs") (:type git :files (:defaults "data" "images") :host github :repo "iqbalansari/emacs-emojify" :package "emojify" :local-repo "emacs-emojify")) "ht" ("2018-09-03 13:07:36+0900" ("dash") (:type git :files ("ht.el") :host github :repo "Wilfred/ht.el" :package "ht" :local-repo "ht.el")) "focus-autosave-mode" ("2018-09-18 10:41:49+0900" ("emacs") (:type git :host github :repo "Vifon/focus-autosave-mode.el" :package "focus-autosave-mode" :local-repo "focus-autosave-mode.el")) "polymode" ("2018-09-18 10:53:27+0900" ("emacs") (:type git :files ("*.el" "modes/*.el") :host github :repo "vspinu/polymode" :package "polymode" :local-repo "polymode")) "company" ("2018-09-18 15:40:56+0900" ("emacs") (:type git :host github :repo "company-mode/company-mode" :package "company" :local-repo "company-mode")) "popwin" ("2018-09-19 10:39:41+0900" nil (:type git :host github :repo "m2ym/popwin-el" :package "popwin" :local-repo "popwin-el")) "paradox" ("2018-09-19 16:35:48+0900" ("emacs" "seq" "let-alist" "spinner" "hydra") (:type git :host github :repo "Malabarba/paradox" :package "paradox" :local-repo "paradox")) "spinner" ("2018-09-19 16:35:44+0900" nil (:files ("packages/spinner/*.el") :local-repo "elpa" :package "spinner" :type git :repo "https://git.savannah.gnu.org/git/emacs/elpa.git")) "hydra" ("2018-09-19 16:37:16+0900" ("cl-lib") (:type git :host github :repo "abo-abo/hydra" :package "hydra" :local-repo "hydra")) "helm-gtags" ("2018-09-19 17:58:18+0900" ("emacs" "helm") (:type git :host github :repo "syohex/emacs-helm-gtags" :package "helm-gtags" :local-repo "emacs-helm-gtags")) "gtags" ("2018-09-19 18:52:09+0900" nil (:type git :host github :repo "emacsmirror/gtags" :package "gtags" :local-repo "gtags")) "yasnippet" ("2018-09-20 10:38:18+0900" ("cl-lib") (:type git :files ("yasnippet.el" "snippets") :host github :repo "joaotavora/yasnippet" :package "yasnippet" :local-repo "yasnippet")) "open-junk-file" ("2018-09-20 10:42:57+0900" nil (:type git :host github :repo "rubikitch/open-junk-file" :package "open-junk-file" :local-repo "open-junk-file")) "hiwin" ("2018-09-20 11:58:55+0900" nil (:type git :host github :repo "yoshida-mediba/hiwin-mode" :package "hiwin" :local-repo "hiwin-mode")) "tempbuf" ("2018-09-25 11:29:36+0900" nil (:type git :host github :repo "emacsattic/tempbuf" :package "tempbuf" :local-repo "tempbuf")) "google-translate" ("2018-09-25 17:25:42+0900" nil (:type git :host github :repo "atykhonov/google-translate" :package "google-translate" :local-repo "google-translate"))))
 
 #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("straight" ((straight-compat straight-autoloads straight straight-x) (autoload (quote straight-get-recipe) "straight" "Interactively select a recipe from one of the recipe repositories.
 All recipe repositories in `straight-recipe-repositories' will
@@ -2286,8 +2286,216 @@ After installation, `require' FEATURE.
 By default, the current package database is only updated if it is
 empty.  Passing a non-nil REFRESH argument forces this update.
 
-(fn FEATURE &optional FILENAME NOERROR PACKAGE REFRESH)" nil nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-commit-list" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-core" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-execute" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-github" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-menu" (quote ("paradox-")))) (provide (quote paradox-autoloads)))))
+(fn FEATURE &optional FILENAME NOERROR PACKAGE REFRESH)" nil nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-commit-list" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-core" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-execute" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-github" (quote ("paradox-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "paradox-menu" (quote ("paradox-")))) (provide (quote paradox-autoloads))) "helm-gtags" ((helm-gtags-autoloads helm-gtags) (autoload (quote helm-gtags-clear-all-cache) "helm-gtags" "
 
-("org-elpa" "melpa" "gnu-elpa" "emacsmirror" "straight" "use-package" "bind-key" "paradox" "seq" "spinner" "hydra" "cl-lib" "helm" "async" "popup" "helm-core" "rainbow-delimiters" "company" "neotree" "volatile-highlights" "smooth-scroll" "hlinum" "undohist" "anzu" "shell-pop" "web-mode" "beacon" "japanese-holidays" "rainbow-mode" "popup-kill-ring" "pos-tip" "move-text" "darkroom" "undo-tree" "markdown-mode" "polymode" "markdown-preview-mode" "websocket" "web-server" "uuidgen" "markdown-preview-eww" "easy-kill" "clang-format" "emojify" "ht" "dash" "focus-autosave-mode" "popwin" "flycheck" "pkg-info" "epl" "ace-isearch" "dired-du")
+(fn)" t nil) (autoload (quote helm-gtags-clear-cache) "helm-gtags" "
+
+(fn)" t nil) (autoload (quote helm-gtags-next-history) "helm-gtags" "Jump to next position on context stack
+
+(fn)" t nil) (autoload (quote helm-gtags-previous-history) "helm-gtags" "Jump to previous position on context stack
+
+(fn)" t nil) (autoload (quote helm-gtags-select) "helm-gtags" "
+
+(fn)" t nil) (autoload (quote helm-gtags-select-path) "helm-gtags" "
+
+(fn)" t nil) (autoload (quote helm-gtags-tags-in-this-function) "helm-gtags" "Show tagnames which are referenced in this function and jump to it.
+
+(fn)" t nil) (autoload (quote helm-gtags-create-tags) "helm-gtags" "
+
+(fn DIR LABEL)" t nil) (autoload (quote helm-gtags-delete-tags) "helm-gtags" "Delete file GTAGS, GRTAGS, GPATH, ID etc. generated by gtags.
+
+(fn)" t nil) (autoload (quote helm-gtags-find-tag) "helm-gtags" "Jump to definition
+
+(fn TAG)" t nil) (autoload (quote helm-gtags-find-tag-other-window) "helm-gtags" "Jump to definition in other window.
+
+(fn TAG)" t nil) (autoload (quote helm-gtags-find-rtag) "helm-gtags" "Jump to referenced point
+
+(fn TAG)" t nil) (autoload (quote helm-gtags-find-symbol) "helm-gtags" "Jump to the symbol location
+
+(fn TAG)" t nil) (autoload (quote helm-gtags-find-pattern) "helm-gtags" "Grep and jump by gtags tag files.
+
+(fn PATTERN)" t nil) (autoload (quote helm-gtags-find-files) "helm-gtags" "Find file from tagged with gnu global.
+
+(fn FILE)" t nil) (autoload (quote helm-gtags-find-tag-from-here) "helm-gtags" "Jump point by current point information.
+Jump to definition point if cursor is on its reference.
+Jump to reference point if curosr is on its definition
+
+(fn)" t nil) (autoload (quote helm-gtags-dwim) "helm-gtags" "Find by context. Here is
+- on include statement then jump to included file
+- on symbol definition then jump to its references
+- on reference point then jump to its definition.
+
+(fn)" t nil) (autoload (quote helm-gtags-parse-file) "helm-gtags" "Parse current file with gnu global. This is similar to `imenu'.
+You can jump definitions of functions, symbols in this file.
+
+(fn)" t nil) (autoload (quote helm-gtags-pop-stack) "helm-gtags" "Jump to previous point on the context stack and pop it from stack.
+
+(fn)" t nil) (autoload (quote helm-gtags-show-stack) "helm-gtags" "Show current context stack.
+
+(fn)" t nil) (autoload (quote helm-gtags-clear-stack) "helm-gtags" "Clear current context stack.
+
+(fn)" t nil) (autoload (quote helm-gtags-clear-all-stacks) "helm-gtags" "Clear all context stacks.
+
+(fn)" t nil) (autoload (quote helm-gtags-update-tags) "helm-gtags" "Update TAG file. Update All files with `C-u' prefix.
+Generate new TAG file in selected directory with `C-u C-u'
+
+(fn)" t nil) (autoload (quote helm-gtags-resume) "helm-gtags" "Resurrect previously invoked `helm-gtags` command.
+
+(fn)" t nil) (autoload (quote helm-gtags-mode) "helm-gtags" "Toggle Helm-Gtags mode on or off.
+With a prefix argument ARG, enable Helm-Gtags mode if ARG is
+positive, and disable it otherwise.  If called from Lisp, enable
+the mode if ARG is omitted or nil, and toggle it if ARG is `toggle'.
+\\{helm-gtags-mode-map}
+
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "helm-gtags" (quote ("helm-")))) (provide (quote helm-gtags-autoloads))) "gtags" ((gtags gtags-autoloads) (autoload (quote gtags-mode) "gtags" "Toggle Gtags mode, a minor mode for browsing source code using GLOBAL.
+
+Specify the root directory of project.
+	\\[gtags-visit-rootdir]
+Input tag name and move to the definition.
+	\\[gtags-find-tag]
+Input tag name and move to the definition in other window.
+        \\[gtags-find-tag-other-window]
+Input tag name and move to the referenced point.
+	\\[gtags-find-rtag]
+Input symbol and move to the locations.
+	\\[gtags-find-symbol]
+Input pattern, search with grep(1) and move to the locations.
+	\\[gtags-find-with-grep]
+Input pattern, search with idutils(1) and move to the locations.
+	\\[gtags-find-with-idutils]
+Input pattern and move to the top of the file.
+	\\[gtags-find-file]
+Input pattern and show the list of definitions of the file.
+	\\[gtags-parse-file]
+Get the expression as a tagname around here and move there.
+	\\[gtags-find-tag-from-here]
+Display current screen on hypertext browser.
+	\\[gtags-display-browser]
+Get the expression as a tagname around here and move there.
+	\\[gtags-find-tag-by-event]
+Move to previous point on the stack.
+	\\[gtags-pop-stack]
+
+Key definitions:
+\\{gtags-mode-map}
+Turning on Gtags mode calls the value of the variable `gtags-mode-hook'
+with no args, if that value is non-nil.
+
+(fn &optional ARG)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "gtags" (quote ("gtags-")))) (provide (quote gtags-autoloads))) "yasnippet" ((yasnippet-autoloads yasnippet) (autoload (quote yas-minor-mode) "yasnippet" "Toggle YASnippet mode.
+
+When YASnippet mode is enabled, `yas-expand', normally bound to
+the TAB key, expands snippets of code depending on the major
+mode.
+
+With no argument, this command toggles the mode.
+positive prefix argument turns on the mode.
+Negative prefix argument turns off the mode.
+
+Key bindings:
+\\{yas-minor-mode-map}
+
+(fn &optional ARG)" t nil) (defvar yas-global-mode nil "Non-nil if Yas-Global mode is enabled.
+See the `yas-global-mode' command
+for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `yas-global-mode'.") (custom-autoload (quote yas-global-mode) "yasnippet" nil) (autoload (quote yas-global-mode) "yasnippet" "Toggle Yas minor mode in all buffers.
+With prefix ARG, enable Yas-Global mode if ARG is positive;
+otherwise, disable it.  If called from Lisp, enable the mode if
+ARG is omitted or nil.
+
+Yas minor mode is enabled in all buffers where
+`yas-minor-mode-on' would do it.
+See `yas-minor-mode' for more information on Yas minor mode.
+
+(fn &optional ARG)" t nil) (autoload (quote snippet-mode) "yasnippet" "A mode for editing yasnippets" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "yasnippet" (quote ("yas" "help-snippet-def" "snippet-mode-map")))) (provide (quote yasnippet-autoloads))) "open-junk-file" ((open-junk-file-autoloads open-junk-file) (autoload (quote find-file-hook--open-junk-file) "open-junk-file" "Run `open-junk-file-hook' when the file is a JUNK file.
+
+(fn)" nil nil) (add-hook (quote find-file-hook) (quote find-file-hook--open-junk-file)) (autoload (quote open-junk-file) "open-junk-file" "Open a new file whose filename is derived from current time.
+You can write short program in it.  It helps to try-and-error programs.
+
+For example, in Emacs Lisp programming, use M-x `open-junk-file'
+instead of *scratch* buffer.  The junk code is SEARCHABLE.
+
+FORMAT and FIND-FILE-FN are optional.
+Default value of them are `open-junk-file-format' and
+`open-junk-file-find-file-function'.
+
+(fn &optional FORMAT FIND-FILE-FN)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "open-junk-file" (quote ("open-junk-file-")))) (provide (quote open-junk-file-autoloads))) "hiwin" ((hiwin-autoloads hiwin) (autoload (quote hiwin-activate) "hiwin" "
+
+(fn)" t nil) (autoload (quote hiwin-deactivate) "hiwin" "
+
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "hiwin" (quote ("hiwin-")))) (provide (quote hiwin-autoloads))) "tempbuf" ((tempbuf-autoloads tempbuf) (autoload (quote tempbuf-mode) "tempbuf" "Toggle tempbuf mode.
+
+With prefix ARG, turn the mode on if ARG is positive.
+After mode activation, `tempbuf-mode-hook' is run.
+
+(fn &optional ARG)" t nil) (autoload (quote turn-on-tempbuf-mode) "tempbuf" "Turn on tempbuf mode.
+
+See also function `tempbuf-mode'.
+
+(fn)" nil nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "tempbuf" (quote ("tempbuf-" "turn-off-tempbuf-mode")))) (provide (quote tempbuf-autoloads))) "google-translate" ((\.bump-version google-translate-autoloads google-translate-pkg google-translate-default-ui google-translate google-translate-core-ui google-translate-smooth-ui google-translate-core google-translate-tk) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "google-translate-core" (quote ("google-translate-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "google-translate-core-ui" (quote ("gtos" "google-translate-")))) (autoload (quote google-translate-query-translate) "google-translate-default-ui" "Interactively translate text with Google Translate.
+
+Query a text (a word or a phrase), and pop up a buffer named *Google
+Translate* displaying available translations of the text.
+
+If no defaults for the source and target languages are specified (by
+setting the variables `google-translate-default-source-language' and
+`google-translate-default-target-language'), interactively query the
+missing parts.  For example, a reasonable option may be to specify a
+default for the target language and always be queried for the source
+language.
+
+With a `C-u' prefix argument, query the source and target languages,
+even if any defaults are specified.  For example, you may frequently
+need to translate from English to Russian, and you may choose to set
+the default source and target languages to \"en\" and  \"ru\", resp.
+However, occasionally you may also need to translate from Russian to
+English.  With a `C-u' prefix argument you can override the defaults
+and specify the source and target languages explicitly.
+
+The languages are queried with completion, and the null input at the
+source language prompt is considered as an instruction for Google
+Translate to detect the source language.
+
+(fn &optional OVERRIDE-P)" t nil) (autoload (quote google-translate-query-translate-reverse) "google-translate-default-ui" "Like `google-translate-query-translate', but performs translation
+in the reverse direction.
+
+The value of the variable `google-translate-default-source-language'
+(if set) becomes the target language, and the value of the variable
+`google-translate-default-target-language' (if also set) becomes the
+source language.
+
+In particular, when both variables are set, translation is performed
+in the reverse direction.
+
+(fn &optional OVERRIDE-P)" t nil) (autoload (quote google-translate-at-point) "google-translate-default-ui" "Translate the word at point or the words in the active region.
+
+For the meaning of OVERRIDE-P, see `google-translate-query-translate'.
+
+(fn &optional OVERRIDE-P)" t nil) (autoload (quote google-translate-at-point-reverse) "google-translate-default-ui" "Like `google-translate-at-point', but performs translation in the
+reverse direction.
+
+(fn &optional OVERRIDE-P)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "google-translate-default-ui" (quote ("%google-translate-" "google-translate-")))) (autoload (quote google-translate-smooth-translate) "google-translate-smooth-ui" "Translate a text using translation directions.
+
+Make a prompt in minibuffer for a text to translate. Default text
+is word at point.
+
+In case of `google-translate-translation-directions-alist' is
+empty list then after inputed translating text prompts for source
+language and then for target languages.
+
+In case of `google-translate-translation-directions-alist' is not
+empty list takes current translation direction and makes
+appropriate translation. Current translation direction indicates
+in the minibuffers' prompt.
+
+A current translation direction could be changed directly in the
+minibuffer by means of key bindings such as C-n and C-p for
+changing to the next translation direction and to the previous
+one respectively.
+
+(fn)" t nil) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "google-translate-smooth-ui" (quote ("google-translate-")))) (if (fboundp (quote register-definition-prefixes)) (register-definition-prefixes "google-translate-tk" (quote ("google-translate--")))) (provide (quote google-translate-autoloads)))))
+
+("org-elpa" "melpa" "gnu-elpa" "emacsmirror" "straight" "use-package" "bind-key" "paradox" "seq" "spinner" "hydra" "cl-lib" "helm" "async" "popup" "helm-core" "helm-gtags" "rainbow-delimiters" "yasnippet" "company" "neotree" "volatile-highlights" "smooth-scroll" "hlinum" "undohist" "anzu" "shell-pop" "web-mode" "beacon" "tempbuf" "japanese-holidays" "rainbow-mode" "popup-kill-ring" "pos-tip" "move-text" "darkroom" "undo-tree" "markdown-mode" "polymode" "markdown-preview-mode" "websocket" "web-server" "uuidgen" "markdown-preview-eww" "easy-kill" "clang-format" "emojify" "ht" "dash" "focus-autosave-mode" "open-junk-file" "hiwin" "google-translate" "popwin" "flycheck" "pkg-info" "epl" "ace-isearch" "dired-du")
 
 t

@@ -1,0 +1,1 @@
+/home/ryuichi/.emacs.d/straight/repos/hiwin-mode/hiwin.el

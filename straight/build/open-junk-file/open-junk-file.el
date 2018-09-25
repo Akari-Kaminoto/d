@@ -1,0 +1,1 @@
+/home/ryuichi/.emacs.d/straight/repos/open-junk-file/open-junk-file.el

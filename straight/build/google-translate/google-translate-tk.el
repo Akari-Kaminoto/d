@@ -1,0 +1,1 @@
+/home/ryuichi/.emacs.d/straight/repos/google-translate/google-translate-tk.el

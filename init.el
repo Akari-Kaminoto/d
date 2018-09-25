@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/09/19 16:40:01 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/09/25 17:33:07 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -25,7 +25,6 @@
 
 ;; カーソルカラーを緑に
 (set-cursor-color "green")
-
 
 ;;;seq.el emacs v25 over
 (require 'seq)
@@ -111,8 +110,9 @@
 
 ;;; package系終わり
 
-
-;; FILE CODE設定
+;;;
+;;; FILE CODE設定
+;;;
 (when (equal emacs-major-version 21) (require 'un-define))
 ;(set-language-environment "Japanese") ;; コメントアウトしないとdired化ける
 (set-terminal-coding-system 'utf-8-unix)
@@ -164,8 +164,13 @@
   (setq default-frame-alist
           '((width . 80) (height . 40)))
 
+  ;;; gui時のみ speedbar
+  (global-set-key (kbd "C-c m") 'speedbar)
+
 ))
+;;;
 ;;; CUI/GUIで分ける設定ここまで
+;;;
 
 ;;; インデント設定
 
@@ -260,10 +265,39 @@
 (add-hook 'c-mode-common-hook 'my-c-mode-common-conf)
 
 ;; バックアップファイルを作成させない
-(setq make-backup-files nil)
+;;;(setq make-backup-files nil)
 
-;; 終了時にオートセーブファイルを削除する
+;;; デフォルトで勝手に作られるbackupファイルの保存先を任意箇所にする
+(setq backup-directory-alist
+  (cons (cons ".*" (expand-file-name "~/.emacs.d/backup-file"))
+        backup-directory-alist))
+
+;;; 編集中の異常終了の際などに作られるauto-saveファイルの保存先を
+;;; 任意箇所にする
+(setq auto-save-file-name-transforms
+  `((".*", (expand-file-name "~/.emacs.d/auto-save-file") t)))
+
+;; 終了時にauto-saveファイルを削除する
 (setq delete-auto-save-files t)
+
+;;;
+;;; face
+;;;
+;; EmacsにFocusが外れている際のFace
+(defun my-out-focused-mode-line()
+  (set-face-background 'mode-line
+                       "red"))
+
+;; EmacsにFocusが当たっている際のFace
+(defun my-in-focused-mode-line()
+  (set-face-background 'mode-line
+                       "#0022bb")) 
+
+
+;; ForcusでFaceが変わるようにHookする
+(add-hook 'focus-out-hook 'my-out-focused-mode-line)
+(add-hook 'focus-in-hook 'my-in-focused-mode-line)
+
 
 ;;----
 ;; 行番号表示
@@ -271,7 +305,8 @@
 (global-linum-mode t)
 
 ;; whitespace-modeで半角SPCを表示している時に行番号表示欄では表示しない
-
+;; 何故か現在行表示がおかしくなるが仕方ない
+ 
 ;; Custom face/function to pad the line number in a way that does not conflict with whitespace-mode
 (defface linum-padding
   `((t :inherit 'linum
@@ -448,6 +483,38 @@
 (bind-key "C-c r" 'helm-recentf)
 
 
+;;-------------;;
+;; org-mode    ;;
+;;-------------;;
+;; 画像をインラインで表示
+(setq org-startup-with-inline-images t)
+
+;; 見出しの余分な*を消す
+(setq org-hide-leading-stars t)
+
+;; LOGBOOK drawerに時間を格納する
+(setq org-clock-into-drawer t)
+
+;; .orgファイルは自動的にorg-mode
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
+;; org-directory内のファイルすべてからagendaを作成する
+(setq my-org-agenda-dir "~/org/")
+(setq org-agenda-files (list my-org-agenda-dir))
+
+;; TODO状態
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "WAIT(w)" "NOTE(n)"  "|" "DONE(d)" "SOMEDAY(s)" "CANCEL(c)")))
+
+;; DONEの時刻を記録
+(setq org-log-done 'time)
+
+;; ショートカットキー
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
 ;;;;; ココらへんからパッケージの話 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; 最終更新日の自動挿入
@@ -486,6 +553,30 @@
                 ;; EmacsのデフォルトのC-kの動作に戻す
                 (define-key helm-map (kbd "C-k") 'kill-line)
                 )))
+
+;;;  helm-gtags
+(use-package helm-gtags
+  :config
+  (helm-gtags-mode t)
+  (setq helm-gtags-mode-hook
+        '(lambda ()
+                                        ; 文脈から判断してジャンプ
+           ;;;(define-key global-map (kbd "C-c C-t") 'helm-gtags-dwim)
+                                        ; 定義元へ
+           (define-key global-map (kbd "C-c C-t") 'helm-gtags-find-tag)
+                                        ; 参照元へ
+           (define-key global-map (kbd "C-c C-r") 'helm-gtags-find-rtag)
+                                        ; 変数の定義元/参照先へ
+           (define-key global-map (kbd "C-c C-s") 'helm-gtags-find-symbol)
+                                        ; 前のバッファへ
+           (define-key global-map (kbd "C-c C-p") 'helm-gtags-previous-history)
+                                        ; 次のバッファへ
+           (define-key global-map (kbd "C-c C-n") 'helm-gtags-next-history)
+                                        ; ファイルへ
+           (define-key global-map (kbd "C-c C-f") 'helm-gtags-find-file)
+           ))
+  (add-hook 'c-mode-hook 'helm-gtags-mode)
+  (add-hook 'c++-mode-hook 'helm-gtags-mode))
 
 ;;
 ;; rainbow-delimiter
@@ -551,46 +642,11 @@
 )
 
 ;;;yasnippet
-;;
-;; (use-package yasnippet)
-;; ;; 自分用・追加用テンプレート
-;; ;; -> mysnippetに作成したテンプレートが格納される
-;; (setq yas-snippet-dirs
-;;       '("~/.emacs.d/mysnippets"
-;;         "~/.emacs.d/yasnippets"
-;;         ))
 
-;; ;; 既存スニペットを挿入する
-;; (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
-;; ;; 新規スニペットを作成するバッファを用意する
-;; (define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
-;; ;; 既存スニペットを閲覧・編集する
-;; (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
-
-;; (yas-global-mode 1)
-;; (custom-set-variables '(yas-trigger-key "TAB"))
-
-
-;; 自動補完
-;; (use-package auto-complete-config)
-;; (ac-config-default)
-;; (add-to-list 'ac-modes 'text-mode)         ;; text-modeでも自動的に有効にする
-;; (add-to-list 'ac-modes 'fundamental-mode)  ;; fundamental-mode
-;; (add-to-list 'ac-modes 'org-mode)
-;; (add-to-list 'ac-modes 'yatex-mode)
-;; (ac-set-trigger-key "TAB")
-;; (setq ac-use-menu-map t)       ;; 補完メニュー表示時にC-n/C-pで補完候補選択
-;; (setq ac-use-fuzzy t)          ;; 曖昧マッチ
-;;
-;; ;;; auto-complete-c-headers
-
-;; (defun my:ac-c-headers-init ()
-;;   (require 'auto-complete-c-headers)
-;;   (add-to-list 'ac-sources 'ac-source-c-headers))
-
-;; (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
-;; (add-hook 'c-mode-hook 'my:ac-c-headers-init)
-
+(use-package yasnippet
+  :config
+  (define-key yas-keymap (kbd "<tab>") nil)
+     (yas-global-mode 1))
 
 ;;;
 ;;;company
@@ -710,11 +766,11 @@
   :config
   (hlinum-activate))
 
-;;ctags 共用設定
- (ctags-global-auto-update-mode nil)
-  ;; M-.で移動してM-*で戻るはずが戻れないのでC-c u に再定義
-  ;; C-x 4 . C-x 5 .も使えるがなんかいまいち
-  (define-key global-map (kbd "\C-cu") 'pop-tag-mark)
+;;;ctags 共用設定
+;;; (ctags-global-auto-update-mode nil)
+;;;  ;; M-.で移動してM-*で戻るはずが戻れないのでC-c u に再定義
+;;;  ;; C-x 4 . C-x 5 .も使えるがなんかいまいち
+;;;  (define-key global-map (kbd "\C-cu") 'pop-tag-mark)
 
 ;;; undohist
 (use-package undohist
@@ -787,9 +843,15 @@
   (setq beacon-blink-duration 1))
 
 ;;; midnight: 一定期間使用しなかった buffer を自動削除
-(use-package midnight
-  :config
-  (setq clean-buffer-list-delay-general 1))
+;;;(use-package midnight
+;;;  :config
+;;;  (setq clean-buffer-list-delay-general 1))
+
+;;; tempbuf 不要なバッファーを自動的にkillする
+(use-package tempbuf)
+(add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
+(add-hook 'magit-mode-hook 'turn-on-tempbuf-mode)
+
 
 ;;;saveplace: 前回の修正位置を記憶する.
 (use-package saveplace
@@ -805,7 +867,7 @@
   (add-hook 'calendar-today-visible-hook   'japanese-holiday-mark-weekend)
   (add-hook 'calendar-today-invisible-hook 'japanese-holiday-mark-weekend)
   (add-hook 'calendar-today-visible-hook   'calendar-mark-today)
-  :config
+  :config 
   (setq calendar-holidays               ; とりあえず日本のみを表示
         (append japanese-holidays holiday-local-holidays)
         mark-holidays-in-calendar t     ; 祝日をカレンダーに表示
@@ -864,79 +926,14 @@
 ;;; M-x darkroom-modeでOn/OFFを切り替える
 (use-package darkroom)
 
-;;
-;; undo-tree
-;;
+
+;;; undo-tree
+
 (use-package undo-tree
   :config
   (global-undo-tree-mode))
 
-
-
-;;;
-;;; tabbar
-;;;
-;; (use-package tabbar
-;;   :config
-;;   (tabbar-mode)
-
-;;   (tabbar-mwheel-mode nil)                  ;; マウスホイール無効
-;;   (setq tabbar-buffer-groups-function nil)  ;; グループ無効
-;;   (setq tabbar-use-images nil)              ;; 画像を使わない
-;;   ;;----- キーに割り当てる
-;;   (global-set-key (kbd "<C-tab>") 'tabbar-forward-tab)
-;;   (global-set-key (kbd "<C-S-tab>") 'tabbar-backward-tab)
-  
-  
-;;   ;;----- 左側のボタンを消す
-;;   (dolist (btn '(tabbar-buffer-home-button
-;;                  tabbar-scroll-left-button
-;;                  tabbar-scroll-right-button))
-;;     (set btn (cons (cons "" nil)
-;;                    (cons "" nil))))
-  
-  
-;;   ;;----- タブのセパレーターの長さ
-;;   (setq tabbar-separator '(2.0))
-  
-  
-;;   ;;----- タブの色（CUIの時。GUIの時は後でカラーテーマが適用）
-;;   (set-face-attribute
-;;    'tabbar-default nil
-;;    :background "brightblue"
-;;    :foreground "white"
-;;    )
-;;   (set-face-attribute
-;;    'tabbar-selected nil
-;;    :background "#ff5f00"
-;;  :foreground "brightwhite"
-;;  :box nil
-;;  )
-;;   (set-face-attribute
-;;    'tabbar-modified nil
-;;    :background "brightred"
-;;    :foreground "brightwhite"
-;;    :box nil
-;;    )
-  
-  
-;;   ;;----- 表示するバッファ
-;;   (defun my-tabbar-buffer-list ()
-;;     (delq nil
-;;           (mapcar #'(lambda (b)
-;;                       (cond
-;;                        ;; Always include the current buffer.
-;;                        ((eq (current-buffer) b) b)
-;;                        ((buffer-file-name b) b)
-;;                        ((char-equal ?\  (aref (buffer-name b) 0)) nil)
-;;                        ((equal "*scratch*" (buffer-name b)) b) ; *scratch*バッファは表示する
-;;                        ((char-equal ?* (aref (buffer-name b) 0)) nil) ; それ以外の * で始まるバッファは表示しない
-;;                        ((buffer-live-p b) b)))
-;;                   (buffer-list))))
-;;   (setq tabbar-buffer-list-function 'my-tabbar-buffer-list))
-;;; tabbarは使わない
-
-;;;markdown-mode
+;;; markdown-mode
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -951,34 +948,16 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode)))
 
-;;;
 ;;; markdown-preview-mode
-;;;
-
-;autoload扱い
+;;;autoload扱い
 (use-package markdown-preview-mode
   :commands (markdown-preview-mode))
-;;;
-;;; markdown-preview-eww
-;;;
 
-;autoload扱い
+;;; markdown-preview-eww
+;;;autoload扱い
 (use-package markdown-preview-eww
   :commands (markdown-preview-eww))
 
-;;;
-;;; dashboard
-;;;
-;;; 何故かフォント設定が吹っ飛ぶので動かすの中止
-;;
-;; (use-package dashboard
-;;   :ensure t
-;;   :config
-;;   ; Set the title
-;;   (setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
-;;   ;; Set the banner
-;;   (setq dashboard-startup-banner "~/.emacs.d/genm.png")
-;;   (dashboard-setup-startup-hook))
 
 ;;; easy-kill
 (use-package easy-kill
@@ -997,13 +976,10 @@
 
 ;;; Sky-color-clock
 ;;; GitHub: https://github.com/zk-phi/sky-color-clock
-;;;
-
 (require 'sky-color-clock)      ; パッケージをロード
 (sky-color-clock-initialize 35) ; 東京（例）の緯度で初期化
 
 (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 5384214) ; 東京の City ID
-
 ;; デフォルトの mode-line-format の先頭に sky-color-clock を追加
 (push '(:eval (sky-color-clock)) (default-value 'mode-line-format))
 (setq sky-color-clock-format "%m/%d %H:%M")
@@ -1012,24 +988,53 @@
 (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 1850144) ;天気取得
 (setq sky-color-clock-enable-temperature-indicator t)
 
+
 ;;; focus-autosave-mode
 (use-package focus-autosave-mode
   :config
   (focus-autosave-mode))
 
-;;; pop-win for helm
-(setq helm-display-function #'display-buffer)
+;;; buffer-menu-color
+(require 'buffer-menu-color)
+
+;; open-junk-file
+(use-package open-junk-file
+  :config
+  (setq open-junk-file-format "~/Documents/junk/%Y-%m%d-%H%M%S.")
+  (global-set-key "\C-xj" 'open-junk-file))
+
+
+;;; 非アクティブウインドウの背景色を変更
+(use-package hiwin
+  :config
+  (hiwin-activate)
+  (set-face-background 'hiwin-face "#eeeef0"))
+
+;;; google翻訳
+
+(use-package google-translate
+  :config
+  ;; キーバインドの設定（お好みで）
+  (global-set-key (kbd "C-c C-t") 'google-translate-at-point)
+
+  ;; 翻訳のデフォルト値を設定（en -> ja）
+  (custom-set-variables
+   '(google-translate-default-source-language "en")
+   '(google-translate-default-target-language "ja"))
+  ;; Fix error of "Failed to search TKK"
+  (defun google-translate--get-b-d1 ()
+    ;; TKK='427110.1469889687'
+    (list 427110 1469889687)))
+
+;; popwin.el
 (use-package popwin
   :config
+  ;; おまじない（よく分かってない、、）
   (setq display-buffer-function 'popwin:display-buffer)
-  (setq popwin:special-display-config
-        '(("*complitation*" :noselect t)
-          ("helm" :regexp t :height 0.4))))
-;; helmをbuffer名に含んでたら良いので、これだけでhelm-M-x,helm-find-files等に対応できます
-
-;;; buffer-menu-color
-
-(require 'buffer-menu-color)
+  ;; ポップアップを画面下に表示
+  (setq popwin:popup-window-position 'bottom)
+    ;; google-translate.elの翻訳バッファをポップアップで表示させる
+  (push '("*Google Translate*") popwin:special-display-config))
 
 ;;;---------パッケージ毎の設定終わり
 
@@ -1121,8 +1126,9 @@
                   )
 
 
-;;ctags windows用設定
-  (setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
+;;;ctags windows用設定
+;;;  (setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
+(setq gtags-update-command "~/.emacs.d/bin/gtags.exe")
 
 ;;sky-color-clockで絵文字を出さない
 (setq sky-color-clock-enable-emoji-icon nil)
@@ -1164,7 +1170,7 @@
 
   ;;; 注意！exuberant-ctagsを指定する必要がある
   ;;; Emacs標準のctagsでは動作しない！！
-  (setq ctags-update-command "/usr/bin/ctags")
+  ;;;  (setq ctags-update-command "/usr/bin/ctags")
 
   ;;;
   ;;; mozc
