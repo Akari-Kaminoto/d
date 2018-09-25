@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/09/25 17:33:07 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/09/25 18:10:26 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -706,7 +706,7 @@
 (use-package neotree
   :init
   ;; C-c tでnetreee-windowが開くようにする
-  (global-set-key "\C-ct" 'neotree-toggle)
+  (global-set-key (kbd "C-c t") 'neotree-toggle)
   ;; neotreeでファイルを新規作成した場合のそのファイルを開く
   (setq neo-create-file-auto-open t)
   ;; delete-other-window で neotree ウィンドウを消さない
@@ -1026,15 +1026,44 @@
     ;; TKK='427110.1469889687'
     (list 427110 1469889687)))
 
-;; popwin.el
-(use-package popwin
+
+;;;shackle
+
+(use-package shackle
   :config
-  ;; おまじない（よく分かってない、、）
-  (setq display-buffer-function 'popwin:display-buffer)
-  ;; ポップアップを画面下に表示
-  (setq popwin:popup-window-position 'bottom)
-    ;; google-translate.elの翻訳バッファをポップアップで表示させる
-  (push '("*Google Translate*") popwin:special-display-config))
+  (setq shackle-rules
+        '(;; *compilation*は下部に2割の大きさで表示
+          (compilation-mode :align below :ratio 0.2)
+          ;; ヘルプバッファは右側に表示
+          ("*Help*" :align right)
+          ;; 補完バッファは下部に3割の大きさで表示
+          ("*Completions*" :align below :ratio 0.3)
+          ;; google翻訳バッファは下部に3割の大きさで表示
+          ("*Google Translate*" :align below :ratio 0.3)
+          ;; M-x helm-miniは下部に7割の大きさで表示
+          ("*helm mini*" :align below :ratio 0.7)
+          ;; 他のhelmコマンドは右側に表示 (バッファ名の正規表現マッチ)
+          ("\*helm" :regexp t :align right)
+          ;; 上部に表示
+          ("foo" :align above)
+          ;; 別フレームで表示
+          ("neotree" :frame t)
+          ;; 別フレームで表示
+          ;; ("bar" :frame t)
+          ;; 同じウィンドウで表示
+          ;; ("baz" :same t)
+          ;; ポップアップで表示
+          ;;  ("hoge" :popup t)
+          ;; 選択する
+          ;;  ("abc" :select t)
+          ))
+  (shackle-mode 1)
+  (setq shackle-lighter "")
+  
+;;; C-zで直前のウィンドウ構成に戻す
+  (winner-mode 1)
+  (global-set-key (kbd "C-c z") 'winner-undo))
+
 
 ;;;---------パッケージ毎の設定終わり
 

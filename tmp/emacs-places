@@ -1,6 +1,8 @@
 ;;; -*- coding: utf-8 -*-
-(("/home/ryuichi/.emacs.d/init.el" . 29362)
- ("/home/ryuichi/.emacs.d/recentf" . 10544)
+(("/home/ryuichi/.emacs.d/init.el" . 30748)
+ ("/home/ryuichi/.emacs.d/recentf" . 10625)
+ ("/home/ryuichi/.emacs.d/straight/build/shackle/shackle-autoloads.el" . 787)
+ ("/home/ryuichi/.emacs.d/elpa/shackle-20171209.2201/shackle-autoloads.el" . 906)
  ("/home/ryuichi/.emacs.d/straight/build/google-translate/google-translate-autoloads.el" . 4762)
  ("/home/ryuichi/.emacs.d/elpa/google-translate-20170713.819/google-translate-autoloads.el" . 4881)
  ("/home/ryuichi/work/rec/gmock/test/test.cpp" . 325)
@@ -45,7 +47,6 @@
  ("/home/ryuichi/.emacs.d/straight/build/popwin/popwin-autoloads.el" . 2325)
  ("/home/ryuichi/.emacs.d/"
   (dired-filename . "/home/ryuichi/.emacs.d/.git"))
- ("/home/ryuichi/.emacs.d/elpa/popwin-20150315.1300/popwin-autoloads.el" . 2444)
  ("/home/ryuichi/testcase.lst" . 8843)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/appfw/controller/appfw_limits.h" . 281)
  ("/home/ryuichi/work/rec/REC/adx_rec/src/appfw/controller/"
