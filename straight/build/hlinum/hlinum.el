@@ -1,1 +1,0 @@
-/home/ryuichi/.emacs.d/straight/repos/hlinum-mode/hlinum.el

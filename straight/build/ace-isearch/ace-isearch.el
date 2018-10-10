@@ -1,1 +1,0 @@
-/home/ryuichi/.emacs.d/straight/repos/ace-isearch/ace-isearch.el

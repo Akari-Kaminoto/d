@@ -1,0 +1,13 @@
+
+((digest . "71bb59f1c0394a3488fcc5437f77591b") (undo-list nil ("コピー" . 1688) ((marker . 1688) . -3) nil ("コピー" . 1640) nil ("コピー" . 1304) nil ("コピー" . 1198) nil ("これは作られる？一応コピー" . 755) nil ("
+" . 354) ((marker* . 354) . 1) ((marker* . 354) . 1) ((marker* . 354) . 1) ((marker* . 354) . 1) ((marker . 1688) . -1) nil ("コピー完了" . 354) ((marker* . 354) . 5) ((marker* . 354) . 5) ((marker* . 354) . 5) ((marker* . 354) . 5) (t 23479 8519 538865 0) nil (nil rear-nonsticky nil 353 . 354) (nil fontified nil 1 . 354) (1 . 354) (t 23478 55051 474865 0) nil ("work/20tm/ads/data/integdata のみに存在: ch1.mf4
+work/20tm/ads/data/integdata のみに存在: ch2.mf4
+work/20tm/ads/data/integdata のみに存在: ch3.mf4
+work/20tm/ads/data/integdata のみに存在: ch4.mf4
+work/20tm/ads/data/integdata のみに存在: ch5.mf4
+work/20tm/ads/data/integdata のみに存在: ch6.mf4
+work/20tm/ads/data/integdata のみに存在: ch7.mf4
+work/20tm/ads/data/integdata のみに存在: eth1.mf4
+2" . -1) 355 nil (354 . 355) (t 23478 54045 642865 0) nil (1716 . 1719) nil ("
+" . 1694) nil ("work/20tm のみに存在: git.logs" . 1694) (t 23478 52648 506865 0) nil (1665 . 1668) nil (1665 . 1666) nil (1665 . 1666) nil ("
+" . 1330) nil (1329 . 1330) nil (1326 . 1329) nil (1326 . 1327) nil (1220 . 1221) nil (1217 . 1220) nil ("k" . -1217) ("o" . -1218) ("p" . -1219) ("i" . -1220) 1221 nil (1217 . 1221) (t 23478 52267 142865 0) nil (1322 . 1323) (t 23478 51522 466865 0) nil (1216 . 1217) (t 23478 51255 862865 0) nil (769 . 774) (t 23478 51122 810865 0) nil (761 . 769) nil (761 . 762) nil (761 . 762) nil (354 . 359) nil ("k" . -354) ("o" . -355) ("p" . -356) ("i" . -357) 358 nil (354 . 358) nil (354 . 355) (t 23478 51063 338865 0) nil (354 . 355) (t 23478 50103 182865 0) nil undo-tree-canary))

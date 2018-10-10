@@ -1,0 +1,2 @@
+
+((digest . "5def9fa23f68fc5da7875fba15f1f8d8") (undo-list nil (nil rear-nonsticky nil 867 . 868) (nil fontified nil 692 . 868) (nil fontified nil 685 . 692) (nil fontified nil 684 . 685) (nil fontified nil 659 . 684) (nil fontified nil 509 . 659) (nil fontified nil 502 . 509) (nil fontified nil 17 . 502) (nil fontified nil 16 . 17) (nil fontified nil 15 . 16) (nil fontified nil 12 . 15) (nil fontified nil 10 . 12) (nil fontified nil 9 . 10) (nil fontified nil 1 . 9) (1 . 868) (t . -1)))

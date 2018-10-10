@@ -1,1 +1,0 @@
-/home/ryuichi/.emacs.d/straight/repos/init-open-recentf.el/init-open-recentf.el

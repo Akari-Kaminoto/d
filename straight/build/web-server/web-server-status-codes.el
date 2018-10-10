@@ -1,1 +1,0 @@
-/home/ryuichi/.emacs.d/straight/repos/emacs-web-server/web-server-status-codes.el

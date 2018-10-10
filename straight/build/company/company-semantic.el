@@ -1,1 +1,0 @@
-/home/ryuichi/.emacs.d/straight/repos/company-mode/company-semantic.el

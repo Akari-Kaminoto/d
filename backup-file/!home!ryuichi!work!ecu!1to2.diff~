@@ -1,0 +1,49 @@
+コピー完了
+
+work/20tm/ads/src/_obj のみに存在: app
+work/20tm/ads/src/_obj のみに存在: bsw
+work/20tm/ads/src/_obj のみに存在: com
+work/20tm/ads/src/_obj のみに存在: common
+work/20tm/ads/src/_obj のみに存在: ecu
+work/20tm/ads/src/_obj のみに存在: mcucom
+work/20tm/ads/src/_obj のみに存在: mingw_sim
+work/20tm/ads/src/_obj のみに存在: pf
+work/20tm/ads/src/_obj のみに存在: sils_in
+work/20tm/ads/src/_obj のみに存在: sils_out
+work/20tm/ads/src/_obj のみに存在: time_sync
+これは作られる？一応コピー
+
+work/20tm/ads/src のみに存在: app
+work/20tm/ads/src のみに存在: bsw
+work/20tm/ads/src のみに存在: com
+work/20tm/ads/src のみに存在: common
+work/20tm/ads/src のみに存在: dif
+work/20tm/ads/src のみに存在: makefile
+work/20tm/ads/src のみに存在: mcucom
+work/20tm/ads/src のみに存在: mng
+work/20tm/ads/src のみに存在: pf
+work/20tm/ads/src のみに存在: sils_in
+work/20tm/ads/src のみに存在: sils_out
+work/20tm/ads/src のみに存在: sils_sim
+work/20tm/ads/src のみに存在: sils_src
+work/20tm/ads/src のみに存在: time_sync
+コピー
+
+work/20tm/ads/tool のみに存在: ADS_DIFツールv0.22.xlsm
+work/20tm/ads/tool のみに存在: eASR2_ADS_アプリ構造設計書v0.58_3.xlsm
+コピー
+
+work/20tm/common_tool のみに存在: .gitkeep
+work/20tm/common_tool のみに存在: CMakeLists.txt
+work/20tm/common_tool のみに存在: README.md
+work/20tm/common_tool のみに存在: conf
+work/20tm/common_tool のみに存在: doc
+work/20tm/common_tool のみに存在: shell
+work/20tm/common_tool のみに存在: sils_viewer.sh
+work/20tm/common_tool のみに存在: src
+work/20tm/common_tool のみに存在: test
+コピー
+
+work/20tm のみに存在: docker
+work/20tm のみに存在: test
+コピー

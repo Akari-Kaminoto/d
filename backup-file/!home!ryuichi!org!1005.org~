@@ -1,0 +1,7 @@
+* <2018-10-05 金>
+
+ - 続いてIssue #324(feature/appfw/ioapp_dnpf2ブランチの作成)
+   吉田さんがfeauture/appfw/ioipp_dnpf2をsils003_rapidprotoの先頭から作ってくれたので
+   それを持ってきて作業用にmake_dnpf2を作成。
+   20tm/work/20tmをfeauture/appfw/ioipp_dnpfのイメージとして差分取得調査を行う。
+

@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/09/25 18:10:26 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/10/10 15:53:55 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -167,6 +167,18 @@
   ;;; gui時のみ speedbar
   (global-set-key (kbd "C-c m") 'speedbar)
 
+  ;;; gui時のみマウススクロールでページアップダウン
+  (require 'mouse)
+    (xterm-mouse-mode t)
+    (global-set-key [mouse-4] (lambda ()
+                                (interactive)
+                                (scroll-down 10)))
+    (global-set-key [mouse-5] (lambda ()
+                                (interactive)
+                                (scroll-up 10)))
+    (defun track-mouse (e))
+    (setq mouse-sel-mode t)
+  
 ))
 ;;;
 ;;; CUI/GUIで分ける設定ここまで
@@ -180,8 +192,9 @@
 
 ;;; C,C++の設定
 ; ヘッダファイル(.h)をc++モードで開く
+; cファイルもC++モードで開く
 (setq auto-mode-alist
-      (append '(("\\.h$" . c++-mode))
+      (append '(("\\.[ch]$" . c++-mode))
               auto-mode-alist))
 
 ;; 自分の書き方にあわせて調整
@@ -283,6 +296,13 @@
 ;;;
 ;;; face
 ;;;
+
+;;; ツールバーを非表示
+(tool-bar-mode -1)
+
+;;; メニューバーを非表示
+(menu-bar-mode -1)
+
 ;; EmacsにFocusが外れている際のFace
 (defun my-out-focused-mode-line()
   (set-face-background 'mode-line
@@ -383,29 +403,21 @@
 ;; ファイルサイズ表示
 ;;----
 (size-indication-mode t)
- 
-;;----
-;; ツールバーを非表示
-;; M-x tool-bar-mode で表示非表示を切り替えられる
-;;----
-(tool-bar-mode -1)
- 
+  
 ;;----
 ;; タイトルバーにフルパス表示
 ;;----
 (setq frame-title-format "%f")
 
 ;;----
-;; カラーテーマ
+;; カラーテーマ(未使用）
 ;;----
 ;(load-theme 'deeper-blue t)
-
 
 ;; 行間を開ける量、これを調整することでかなり見え方が変わる
 (setq-default line-spacing 2)
 
-
-;;; #!/bin/shなどで始まるファイルに自動的に実行権をつける
+;;; #!/bin/shなどで始まるファイルに自動的に実行属性をつける
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
@@ -454,6 +466,7 @@
 ;(setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))
 ;; スクロールの加速をやめる
 ;setq mouse-wheel-progressive-speed nil)
+
 
 ;;; GDB 関連
 ;;; 有用なバッファを開くモード
@@ -848,7 +861,7 @@
 ;;;  (setq clean-buffer-list-delay-general 1))
 
 ;;; tempbuf 不要なバッファーを自動的にkillする
-(use-package tempbuf)
+(require 'tempbuf)
 (add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'magit-mode-hook 'turn-on-tempbuf-mode)
 
@@ -1287,6 +1300,9 @@
         auto-complete-mode
         magit-auto-revert-mode
         abbrev-mode
+        focus-autosave-mode
+        yas-minor-mode
+        helm-gtags-mode
         helm-mode))
 
 (mapc (lambda (mode)

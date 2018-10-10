@@ -1,1 +1,0 @@
-/home/ryuichi/.emacs.d/straight/repos/mozc/src/unix/emacs/mozc.el

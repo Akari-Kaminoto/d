@@ -1,1 +1,0 @@
-/home/ryuichi/.emacs.d/straight/repos/pandoc.el/pandoc.el

@@ -1,1 +1,0 @@
-/home/ryuichi/.emacs.d/straight/repos/volatile-highlights.el/volatile-highlights.el
