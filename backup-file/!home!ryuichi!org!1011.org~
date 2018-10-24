@@ -1,0 +1,219 @@
+#+TITLE: 日報
+#+AUTHOR: R.Ando
+#+CATEGORY: tmp
+#+OPTIONS: ~:{}
+
+* <2018-10-11 木>
+
+** [[https://gl.fixstars.com/nxtmc-adas/ECU-FW-group/ECU-FW/issues/324#note_216997][issue #324]]
+
+   - 下記コミット分を追加
+
+      - 20tm@2b884015
+
+        ＝ 20tm@bed3b31f に相当（済）
+  
+      - 20tm@4f1fb02c
+      - 20tm@8e5dea06
+      - 20tm@39b07a33
+      - 20tm@524c304d
+      - 20tm@0f460f50
+      - 20tm@3147e870
+
+   - 上記コミットにて追加修正されたファイルをfeature/appfw/ioapp_dnpf2に適用します
+ 
+   - .oファイルや.logファイルなどビルドで生成されるファイルやDockerfileは追加不要
+
+   - 以下のモジュールコードを移動
+
+    - 20tm/ads/src/app/appfw_data -> 20tm/ads/adx_connect/appfw_data
+
+    - 20tm/ads/src/app/appfw_send -> 20tm/ads/adx_connect/appfw_send
+
+    - 20tm/ads/src/app/appfw_recv -> 20tm/ads/adx_connect/appfw_recv
+
+    - test/appfw_test             -> 20tm/ads/adx_connect/appfw_test
+
+  - 合わせてMakefileや.mkファイルを調整してビルドが通るようにする必要があります
+
+#+BEGIN_SRC sh
+
+$git log 
+
+commit f9d5739b4d889dff87e5d02a342fe0435a2c7186↲
+Merge: 2b88401 6d917bb↲
+Author: Masato Yoshida <yoshida@fixstars.com>↲
+Date:   Tue Aug 28 15:04:27 2018 +0900↲
+↲
+    Merge branch 'dnpf_ioapp_244' into 'feature/appfw/dnpf_ioapp'↲
+----↲
+    ECU-FW#244 Dnpf ioapp 244↲
+----↲
+    See merge request nxtmc-adas/ECU-FW-group/20tm!2↲
+↲
+commit 6d917bb935daf84b3df9d2b92a6d01444412e509↲
+Author: yoshida.masato <yoshida@fixstars.com>↲
+Date:   Tue Aug 28 14:47:23 2018 +0900↲
+↲
+    Dockerfile追加↲ 
+    * gl.fixstars.com:5005/nxtmc-adas/ecu-fw-group/20tm/dnpf:latest↲
+↲
+commit 3147e870239c867f184b491f841776a65d6a9bc8↲
+Author: yoshida.masato <yoshida@fixstars.com>↲
+Date:   Tue Aug 28 11:10:47 2018 +0900↲
+↲
+    select を pollに書き換え↲ 
+    * タイムアウト値も調整↲ 
+    * その他↲ 
+↲
+commit 0f460f500b8cfa48eca717162dd49f6c4e05156d↲
+Author: yoshida.masato <yoshida@fixstars.com>↲
+Date:   Mon Aug 27 18:17:51 2018 +0900↲
+↲
+    結合テスト用チェックスクリプトを追加↲ 
+↲
+commit 524c304d8dcbcffbba87d056d714b7fba5a3e26d↲
+Author: yoshida.masato <yoshida@fixstars.com>↲
+Date:   Mon Aug 27 13:05:12 2018 +0900↲
+↲
+    送信モジュールのテストデータ生成タイミングを変更↲ 
+↲
+commit 39b07a33f78a7c06fb69e28eeaae847a38a8caf0↲
+Author: yoshida.masato <yoshida@fixstars.com>↲
+Date:   Mon Aug 27 12:43:09 2018 +0900↲
+↲
+    受信モジュールプロトタイプ追加↲ 
+↲
+commit 8e5dea0693f5199469400a41c6e37de78bfe4a82↲
+Author: yoshida.masato <yoshida@fixstars.com>↲
+Date:   Sat Aug 25 14:07:53 2018 +0900↲
+↲
+commit 4f1fb02cea66619681db7e735ffe2288f266d65e↲
+Author: yoshida.masato <yoshida@fixstars.com>↲
+Date:   Fri Aug 24 09:45:02 2018 +0900↲
+↲
+    appfw_send/recvの空タスク追加↲
+↲
+commit 2b884015829e2274c679f2c23d74d46888e1220e↲
+Author: yoshida.masato <yoshida@fixstars.com>↲
+Date:   Fri Aug 24 17:50:46 2018 +0900↲
+↲
+    不要なバイナリを削除↲
+
+#+END_SRC
+
+ これを全部おこなったあとファイル移動→Makeできるようにすればよい？
+
+* 実際の作業
+
+ - $ git checkout -b make3_ioipp_dnpf2_324 origin/make2_ioipp_dnpf2_324
+
+   make2のブランチに変更
+
+ - $ git reset --hard HEAD^
+
+   最後のコミット取り消しに戻す(20tm@bed3b31f)
+   [[https://gl.fixstars.com/nxtmc-adas/ECU-FW-group/20tm/commit/bed3b31f7c2772620e9c25bb391338820a47bf3b]]]
+
+ - $ git cherry-pick 4f1fb02c 
+
+   .oなどはないのでそのまま 要add &commit
+
+ - $ git cherry-pick 8e5dea06
+
+ - $ git cherry-pick 39b07a33
+
+ - $ git cherry-pick 524c304d
+
+ - $ git cherry-pick 0f460f50
+
+ - $ git cherry-pick 3147e870
+
+ ここまでの作業で.oや.logがないことを確認。
+
+ そしてモジュールコード移動
+
+#+BEGIN_SRC sh
+
+ryuichi@ryuichi-VirtualBox:~/work/ecu/20tm/ads/adx_connect$ ls
+appfw_data  appfw_recv  appfw_send  appfw_test
+
+ryuichi@ryuichi-VirtualBox:~/work/ecu/20tm/ads/src/app$ ls
+ryuichi@ryuichi-VirtualBox:~/work/ecu/20tm/ads/src/app$ 
+
+
+ryuichi@ryuichi-VirtualBox:~/work/ecu/20tm/test$ ls
+ryuichi@ryuichi-VirtualBox:~/work/ecu/20tm/test$ 
+
+#+END_SRC
+
+移動し、移動元から削除されていることを確認。
+
+コンパイルできるように変更
+→出来ない。20tm/src/makefile以下等のファイルがない
+→済となっているが、2b884015もcherry-pickが必要
+
+→cherry-pickは不可？
+
+#+BEGIN_SRC sh
+ryuichi@ryuichi-VirtualBox:~/work/ecu/20tm/ads/src$ git cherry-pick 2b884015
+ブランチ make3_ioipp_dnpf2_324
+Your branch and 'origin/make2_ioipp_dnpf2_324' have diverged,
+and have 1 and 1 different commit each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+You are currently cherry-picking commit 2b88401.
+
+nothing to commit, working directory clean
+The previous cherry-pick is now empty, possibly due to conflict resolution.
+If you wish to commit it anyway, use:
+
+    git commit --allow-empty
+
+Otherwise, please use 'git reset'
+
+#+END_SRC
+
+** どうするの？
+
+** 結論
+   sils003.ではディレクトリ構成が変わっていて配置が分かれています。
+    ・ makefileの位置が変わっている
+        ・20tm/ads/src/sils/makefile/pbuild.sh
+    ・ 20tm/ads/src/ 以下の各モジュールはSoC1,2, MCU1,2あたりに分散されている
+        ・ これらのファイルは移動されているだけなので、001から持ってくる必要はない
+    ・ common_toolもサブフォルダが作られただけで同様の内容になっているので、001から持ってくる必要はない
+
+   この配置とソースでビルド出来れば良い
+   とのこと。
+
+** そういうわけでもう一度やりなおし。
+    とりあえずcherry-pick とモジュール移動はできた。
+
+    これでコンパイルを通せば良い、と
+
+    *** 20tm/adx/src/sils/makefile/
+
+    まずpbuild.sh & pclean.shをみると。
+
+    make_app.mkを見てる。 
+
+    /20tm/ads/src/sils/mng/comp_list.txtが違う？
+
+    修正してみた。
+
+    ->pclean.shでcomのcleanに失敗する
+      -> makefile/make_comp.mk 
+        -> /20tm/ads/src/sils/dif/com/_make_list_com.mkがない
+         => make_app.mk エラー
+
+    やっぱりcomp_list.txtではない？？
+
+** 新旧でコンパイルログをチェック。
+    古い方は/20tm/ads/src/ 以下の /dif/acc00 などコンパイルしている
+
+    新しい方は/20tm/ads/src/sils/ 以下を同様にコンパイルしているが
+    途中から/20tm/ads/src/sils/../を対象としている。
+
+    どういうコンパイル対象指定をしているのか確認が必要。
+
+    

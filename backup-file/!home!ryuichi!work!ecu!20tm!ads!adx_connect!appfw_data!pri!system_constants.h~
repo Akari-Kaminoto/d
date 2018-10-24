@@ -1,0 +1,19 @@
+#ifndef CONST_DEFINITION_SYSTEM_CONSTANTS_H
+#define CONST_DEFINITION_SYSTEM_CONSTANTS_H
+
+#include "type_sils.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define OBJECT_OUT_NUM ((uint16_t)256) /* 物標出力数 */
+#define OBJECT_LANE_NUM ((uint16_t)5)  /* 物標レーン情報数 */
+#define OVERRUN_BUFFER_SIZE                                                    \
+  ((uint8_t)128) /* バッファオーバーフロー検出領域のメモリサイズ(Byte) */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // CONST_DEFINITION_SYSTEM_CONSTANTS_H

@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/10/10 15:53:55 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/10/24 18:04:19 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -526,7 +526,7 @@
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
+
 
 ;;;;; ココらへんからパッケージの話 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -561,6 +561,8 @@
   (define-key global-map (kbd "C-x C-f") 'helm-find-files)
   (define-key global-map (kbd "M-x")     'helm-M-x)
   (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+  ;;fine-fileのみTAB補完
+  (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
   (add-hook 'helm-after-initialize-hook
             #'(lambda ()
                 ;; EmacsのデフォルトのC-kの動作に戻す
@@ -971,7 +973,6 @@
 (use-package markdown-preview-eww
   :commands (markdown-preview-eww))
 
-
 ;;; easy-kill
 (use-package easy-kill
   :config
@@ -1077,6 +1078,25 @@
   (winner-mode 1)
   (global-set-key (kbd "C-c z") 'winner-undo))
 
+;;; org-bullets
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+;;; org-preview-html-mode
+(use-package org-preview-html
+  :commands (org-preview-html-mode))
+
+;;; helm-git-grep
+(use-package helm-git-grep
+  :config
+  (global-set-key (kbd "C-c g") 'helm-git-grep)
+  ;; Invoke `helm-git-grep' from isearch.
+  (define-key isearch-mode-map (kbd "C-c g") 'helm-git-grep-from-isearch)
+  ;; Invoke `helm-git-grep' from other helm.
+  (eval-after-load 'helm
+    '(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm)))
 
 ;;;---------パッケージ毎の設定終わり
 

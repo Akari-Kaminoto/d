@@ -1,0 +1,107 @@
+#+TITLE: 日報
+#+AUTHOR: R.Ando
+#+CATEGORY: tmp
+#+OPTIONS: ~:{}
+
+*<2018-10-15 月>
+** [[https://gl.fixstars.com/nxtmc-adas/ECU-FW-group/ECU-FW/issues/324#note_216997][issue #324
+
+  - make環境続き。
+    make_app.mk終了。
+
+    mngでのlistファイルの記述で、ディレクトリを上にひたすら登っていくよう
+    変更。
+    includeファイルが中途半端なベタ打ちだったので、<> -> ""に変更
+
+    common/type.hをそれぞれのモジュール内に移動
+
+    appfw_testは作業なし
+
+   - コンパイル結果
+
+  ┌─────────────────────────────────────
+  │Compile of /adx_connect/appfw_data/../../../../adx_connect/appfw_data component is started.
+  │
+  │     /20tm/ads/src/sils/adx_connect/appfw_data/../../../../adx_connect/appfw_data//pri/ADXDigsmStatus.c
+  │     /20tm/ads/src/sils/adx_connect/appfw_data/../../../../adx_connect/appfw_data//pri/CarState.c
+  │     ----------------------------------------------------------
+  │     /20tm/ads/src/sils/_obj/adx_connect/appfw_data/../../../../adx_connect/appfw_data/archive_appfw_data.a
+  /usr/bin//ar: `u' modifier ignored since `D' is the default (see `U')
+  /usr/bin//ar: /20tm/ads/src/sils/_obj/adx_connect/appfw_data/../../../../adx_connect/appfw_data/archive_appfw_data.a を作成しています
+  │     ----------------------------------------------------------
+  │
+  │Compile of /adx_connect/appfw_data/../../../../adx_connect/appfw_data component was completed.
+  └─────────────────────────────────────
+  ┌─────────────────────────────────────
+  │Compile of /adx_connect/appfw_recv/../../../../adx_connect/appfw_recv component is started.
+  │
+  │     /20tm/ads/src/sils/adx_connect/appfw_recv/../../../../adx_connect/appfw_recv//pri/appfw_recv_func.c
+  │     /20tm/ads/src/sils/adx_connect/appfw_recv/../../../../adx_connect/appfw_recv//pri/appfw_recv_crc32.c
+  │     ----------------------------------------------------------
+  │     /20tm/ads/src/sils/_obj/adx_connect/appfw_recv/../../../../adx_connect/appfw_recv/archive_appfw_recv.a
+  /usr/bin//ar: `u' modifier ignored since `D' is the default (see `U')
+  /usr/bin//ar: /20tm/ads/src/sils/_obj/adx_connect/appfw_recv/../../../../adx_connect/appfw_recv/archive_appfw_recv.a を作成しています
+  │     ----------------------------------------------------------
+  │
+  │Compile of /adx_connect/appfw_recv/../../../../adx_connect/appfw_recv component was completed.
+  └─────────────────────────────────────
+  ┌─────────────────────────────────────
+  │Compile of /adx_connect/appfw_send/../../../../adx_connect/appfw_send component is started.
+  │
+  │     /20tm/ads/src/sils/adx_connect/appfw_send/../../../../adx_connect/appfw_send//pri/appfw_send_func.c
+  │     /20tm/ads/src/sils/adx_connect/appfw_send/../../../../adx_connect/appfw_send//pri/appfw_send_crc32.c
+  │     ----------------------------------------------------------
+  │     /20tm/ads/src/sils/_obj/adx_connect/appfw_send/../../../../adx_connect/appfw_send/archive_appfw_send.a
+  /usr/bin//ar: `u' modifier ignored since `D' is the default (see `U')
+  /usr/bin//ar: /20tm/ads/src/sils/_obj/adx_connect/appfw_send/../../../../adx_connect/appfw_send/archive_appfw_send.a を作成しています
+  │     ----------------------------------------------------------
+  │
+  │Compile of /adx_connect/appfw_send/../../../../adx_connect/appfw_send component was completed.
+  └─────────────────────────────────────
+  ┌┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬
+  ├┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴
+  │Link of all the components is started.
+  │
+  ┌─────────────────────────────────────
+  │Link of /as_mingw/ads_sils is started.
+  │
+  │     ----------------------------------------------------------
+  │     /20tm/ads/src/sils/_obj/as_mingw/ads_sils
+  │     ----------------------------------------------------------
+  │
+  │Link of /as_mingw/ads_sils.o1 was completed.
+  └─────────────────────────────────────
+  │
+  │Link of all the components was completed.
+  
+  
+  出来たファイル
+  
+  ryuichi@ryuichi-VirtualBox:~/work/ecu/20tm/ads/src/adx_connect$ find . -type f ./appfw_recv/pri/appfw_recv_crc32.o1
+  ./appfw_recv/pri/appfw_recv_crc32.o1.errlog
+  ./appfw_recv/pri/appfw_recv_func.o1.errlog
+  ./appfw_recv/pri/appfw_recv_func.o1
+  ./appfw_recv/archive_appfw_recv.a.errlog
+  ./appfw_recv/archive_appfw_recv.a
+  ./appfw_recv/appfw_recv_error.log
+  ./appfw_data/pri/CarState.o1.errlog
+  ./appfw_data/pri/ADXDigsmStatus.o1
+  ./appfw_data/pri/CarState.o1
+  ./appfw_data/pri/ADXDigsmStatus.o1.errlog
+  ./appfw_data/appfw_data_error.log
+  ./appfw_data/archive_appfw_data.a
+  ./appfw_data/archive_appfw_data.a.errlog
+  ./appfw_send/archive_appfw_send.a.errlog
+  ./appfw_send/pri/appfw_send_func.o1
+  ./appfw_send/pri/appfw_send_crc32.o1
+  ./appfw_send/pri/appfw_send_crc32.o1.errlog
+  ./appfw_send/pri/appfw_send_func.o1.errlog
+  ./appfw_send/appfw_send_error.log
+  ./appfw_send/archive_appfw_send.a
+  
+  モジュールは/20tm/ads/src/sils/_obj/as_mingwに
+  -rwxrwxr-x  1 ryuichi ryuichi 43915144 10月 15 07:26 ads_sils
+  という形で作成される
+
+** pclean.shで
+   /20tm/ads/src/adx_connect以下のファイルが全て削除されていることを確認。

@@ -1,0 +1,15 @@
+#ifndef APPFW_APPFW_H
+#define APPFW_APPFW_H
+//dummy header
+
+//ビルドを通すための暫定共通定義
+#include <stdint.h>
+#include <stdbool.h>
+#include "type_sils.h"
+#include "IoDataLabel.h"
+
+#define Slog_Info(...)   printf(__VA_ARGS__);
+#define Slog_Warn(...)   printf(__VA_ARGS__);
+#define Slog_Error(...)  printf(__VA_ARGS__);
+
+#endif // APPFW_APPFW_H

@@ -1,0 +1,92 @@
+#+TITLE: 日報
+#+AUTHOR: R.Ando
+#+CATEGORY: tmp
+#+OPTIONS: ~:{}
+
+* <2018-10-12 金>
+** [[https://gl.fixstars.com/nxtmc-adas/ECU-FW-group/ECU-FW/issues/324#note_216997][issue #324]]
+
+   - make環境の作成続き
+     古い方は/20tm/ads/src/ 以下の /dif/acc00 などコンパイルしている
+
+     新しい方は/20tm/ads/src/sils/ 以下を同様にコンパイルしているが
+     途中から/20tm/ads/src/sils/../を対象としている。
+     
+     どういうコンパイル対象指定をしているのか確認
+
+     makedef.mkに追加分の環境変数追加→make_app.mkにビルド追加
+
+     *足りないモジュール
+     ・/app/app_lib/ncv
+       これはなくても平気になった？ 確認が必要
+
+     ・/app/appfw_data
+     ・/app/appfw_send
+     ・/app/appfw_recv
+       /20tm/adx/adx_connectの下へ
+
+     ・/test/appfw_test
+       上記と同様
+
+   - ではまずmakedef.mkから記述追加
+     make_app.mkも
+     link.mkも必要そうだがまだいじれない
+
+なぜか./pbuild.shでSyntax errorがでる。
+
+#+BEGIN_SRC sh
+
+ryuichi@ryuichi-VirtualBox:/20tm/ads/src/sils/makefile$ bash -x ./pbuild.sh 
++ RETVAL_OPT=
++ export PROCESSOR_NUM=
++ PROCESSOR_NUM=
++ export TARGET_CMD=C
++ TARGET_CMD=C
++ '[' '' '!=' -ci ']'
++ make -r -R -f make_app.mk sdisp
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+OS Directory = /home/
+#+END_SRC
+
+通常ではこの形
+      
+#+BEGIN_SRC sh
+
+Error log is summarized (MCU/MCU2/app/axis)
+Error log is summarized (MCU/MCU2/app/heat)
+Error log is summarized (MCU/MCU2/app/iffd)
+Error log is summarized (All Components)
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+/bin/sh: 1: Syntax error: end of file unexpected
+ryuichi@ryuichi-VirtualBox:/20tm/ads/src/sils/makefile$ 
+
+#+END_SRC
+
+念の為、makedef.mkを元に戻してみたが、状況は変わらない。
+make_app.mkがなにかおかしい。
+
+** 原因判明
+   makedef.mkのadx_connect以下のモジュール用 Component List Fileが
+   記述していたものの、ファイルが存在しなかったためエラーとなっていた。
+   $ touchでファイルを作成してエラー出力は消えた。
