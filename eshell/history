@@ -1,2 +1,15 @@
 ls
 dir
+ls -la
+pwd
+cd work
+cd ecu/
+ls
+cd 20tm/
+ls
+use-theme
+cd 20tm/
+cd work/ecu/20tm
+use-theme
+cd work/ecu/20tm
+use-theme

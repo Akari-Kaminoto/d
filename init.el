@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/10/24 18:04:19 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/11/07 10:37:37 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -842,7 +842,7 @@
 ;;  ;; If there is more than one, they won't work right.
 ;;  '(package-selected-packages
 ;;    (quote
-;;     (leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
+;;     (leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-packagsel-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck ccompany auto-read-only auto-complete anti-zenburn-theme)))
 ;;  '(yas-trigger-key "TAB"))
 
 
@@ -1091,12 +1091,52 @@
 ;;; helm-git-grep
 (use-package helm-git-grep
   :config
-  (global-set-key (kbd "C-c g") 'helm-git-grep)
+  (global-set-key (kbd "C-c C-g") 'helm-git-grep)
   ;; Invoke `helm-git-grep' from isearch.
-  (define-key isearch-mode-map (kbd "C-c g") 'helm-git-grep-from-isearch)
+  (define-key isearch-mode-map (kbd "C-c C-g") 'helm-git-grep-from-isearch)
   ;; Invoke `helm-git-grep' from other helm.
   (eval-after-load 'helm
-    '(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm)))
+    '(define-key helm-map (kbd "C-c C-g") 'helm-git-grep-from-helm)))
+
+;;; context-coloring( not C langeage;;)
+(use-package context-coloring
+  :config
+  ;; JavaScript:
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  (add-hook 'js2-mode-hook #'context-coloring-mode)
+
+  ;; Emacs Lisp:
+  (add-hook 'emacs-lisp-mode-hook #'context-coloring-mode)
+
+  ;; eval-expression:
+  (add-hook 'eval-expression-minibuffer-setup-hook #'context-coloring-mode) ; 24.4+
+  ;;;(add-hook 'minibuffer-setup-hook #'context-coloring-mode)                 ; 24.3
+
+  (custom-theme-set-faces
+   'leuven
+   '(context-coloring-level-0-face  ((t :foreground "#839496")))
+   '(context-coloring-level-1-face  ((t :foreground "#268bd2")))
+   '(context-coloring-level-2-face  ((t :foreground "#2aa198")))
+   '(context-coloring-level-3-face  ((t :foreground "#859900")))
+   '(context-coloring-level-4-face  ((t :foreground "#b58900")))
+   '(context-coloring-level-5-face  ((t :foreground "#cb4b16")))
+   '(context-coloring-level-6-face  ((t :foreground "#dc322f")))
+   '(context-coloring-level-7-face  ((t :foreground "#d33682")))
+   '(context-coloring-level-8-face  ((t :foreground "#6c71c4")))
+   '(context-coloring-level-9-face  ((t :foreground "#69b7f0")))
+   '(context-coloring-level-10-face ((t :foreground "#69cabf")))
+   '(context-coloring-level-11-face ((t :foreground "#b4c342")))
+   '(context-coloring-level-12-face ((t :foreground "#deb542")))
+   '(context-coloring-level-13-face ((t :foreground "#f2804f")))
+   '(context-coloring-level-14-face ((t :foreground "#ff6e64")))
+   '(context-coloring-level-15-face ((t :foreground "#f771ac")))
+   '(context-coloring-level-16-face ((t :foreground "#9ea0e5"))))
+  )
+
+
+(use-package eshell-git-prompt
+  :config
+  (eshell-git-prompt-use-theme 'git-radar))
 
 ;;;---------パッケージ毎の設定終わり
 
@@ -1144,32 +1184,6 @@
 ;;; フォント関連の設定
 ;;;
    
-;;;** Consolas + MSゴシック
-;;;   (set-default-font "Consolas 14")
-;;;   (set-fontset-font (frame-parameter nil 'font)
-;;;                     'japanese-jisx0208
-;;;                     '("ＭＳ ゴシック" . "unicode-bmp")
-;;;                     )
-;;;   (set-fontset-font (frame-parameter nil 'font)
-;;;                     'katakana-jisx0201
-;;;                     '("ＭＳ ゴシック" . "unicode-bmp")
-;;;
-;;;                      )
-;;;
-;;;http://xiuxing.blog.jp/archives/8346924.html
-;;;
-;; (set-default-font "MeiryoKe_Console 14")
-;; (set-fontset-font (frame-parameter nil 'font)
-;;                   'japanese-jisx0208
-;;                   '("MeiryoKe_Console" . "unicode-bmp")
-;; ;                  '("Ricty Diminished" . "unicode-bmp")
-;;                   )
-
-;; (set-fontset-font (frame-parameter nil 'font)
-;;                   'katakana-jisx0201
-;;                   '("MeiryoKe_Console" . "unicode-bmp")
-;; ;                  '("Ricty Diminished" . "unicode-bmp")
-;;                   )
 ;;
 ;; プログラミング用フォント Myrica
 ;; https://myrica.estable.jp/
@@ -1290,7 +1304,7 @@
 
   ;; git-complete
   (require 'git-complete)
-  (global-set-key (kbd "C-c C-g") 'git-complete)
+  (global-set-key (kbd "C-c C-G") 'git-complete)
   
 );;;ここまでUNIX用
 
