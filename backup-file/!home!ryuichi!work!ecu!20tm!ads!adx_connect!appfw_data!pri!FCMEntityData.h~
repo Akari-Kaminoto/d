@@ -1,0 +1,83 @@
+#ifndef DATA_DEFINITION_FCMENTITYDATA_H
+#define DATA_DEFINITION_FCMENTITYDATA_H
+
+#include "FCMAttribute.h"
+#include "Position2D.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define FCMENTITYDATA_DATAINFO                                                 \
+  "{\"name\": \"FCMEntityData\", \"description\": \"FCM\u7269\u6a19\", "       \
+  "\"members\": [{\"name\": \"synchronize_counter\", \"type\": \"uint64_t\", " \
+  "\"description\": \"\u540c\u671f\u30ab\u30a6\u30f3\u30bf\", \"min\": 0, "    \
+  "\"max\": 15, \"ignore_naming_rule\": true}, {\"name\": \"valid_flag\", "    \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u7269\u6a19\u6709\u52b9\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"rejection_information_flag\", " \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u30ea\u30b8\u30a7\u30af\u30c8\u60c5\u5831\u30d5\u30e9\u30b0\", "         \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"position\", \"type\": " POSITION2D_DATAINFO                               \
+  ", \"description\": \"\u7269\u6a19\u4f4d\u7f6e\", \"ignore_naming_rule\": "  \
+  "true}, {\"name\": \"angle\", \"type\": \"float\", \"unit\": \"rad\", "      \
+  "\"description\": \"\u65b9\u4f4d\u89d2\", \"max\": 0.572, "                  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"angle_width_and_height\", "     \
+  "\"type\": \"float\", \"unit\": \"rad\", \"description\": "                  \
+  "\"\u65b9\u4f4d\u89d2\u5ea6\u5e45/\u9ad8\u3055\", \"min\": 0, \"max\": "     \
+  "0.715, \"ignore_naming_rule\": true}, {\"name\": \"relative_velocity\", "   \
+  "\"type\": \"float\", \"unit\": \"m/s\", \"description\": "                  \
+  "\"\u8ddd\u96e2\u65b9\u5411\u76f8\u5bfe\u901f\u5ea6\", \"max\": 102.35, "    \
+  "\"ignore_naming_rule\": true}, {\"name\": \"attribute\", "                  \
+  "\"type\": " FCMATTRIBUTE_DATAINFO                                           \
+  ", \"description\": \"FCM\u5c5e\u6027\u60c5\u5831\", "                       \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"fcm_entity_data\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// FCMEntityData.hで定義されている型をシリアライズした時のバイト数
+#define FCMENTITYDATA_SERIALIZED_SIZE                                          \
+  (8 + 1 + 1 + POSITION2D_SERIALIZED_SIZE + 4 + 4 + 4 +                        \
+   FCMATTRIBUTE_SERIALIZED_SIZE)
+
+// 定数の定義
+#define FCM_ENTITY_DATA_SYNCHRONIZE_COUNTER_MIN ((uint64_t)0)
+#define FCM_ENTITY_DATA_SYNCHRONIZE_COUNTER_MAX ((uint64_t)15)
+#define FCM_ENTITY_DATA_VALID_FLAG_MIN ((uint8_t)0)
+#define FCM_ENTITY_DATA_VALID_FLAG_MAX ((uint8_t)1)
+#define FCM_ENTITY_DATA_REJECTION_INFORMATION_FLAG_MIN ((uint8_t)0)
+#define FCM_ENTITY_DATA_REJECTION_INFORMATION_FLAG_MAX ((uint8_t)1)
+#define FCM_ENTITY_DATA_ANGLE_MAX ((float)0.572)
+#define FCM_ENTITY_DATA_ANGLE_WIDTH_AND_HEIGHT_MIN ((float)0)
+#define FCM_ENTITY_DATA_ANGLE_WIDTH_AND_HEIGHT_MAX ((float)0.715)
+#define FCM_ENTITY_DATA_RELATIVE_VELOCITY_MAX ((float)102.35)
+
+/* FCM物標 */
+typedef struct {
+  uint64_t synchronize_counter;       /* 同期カウンタ */
+  uint8_t valid_flag;                 /* 物標有効フラグ */
+  uint8_t rejection_information_flag; /* リジェクト情報フラグ */
+  Position2D position;                /* 物標位置 */
+  float angle;                        /* 方位角 */
+  float angle_width_and_height;       /* 方位角度幅/高さ */
+  float relative_velocity;            /* 距離方向相対速度 */
+  FCMAttribute attribute;             /* FCM属性情報 */
+} FCMEntityData;
+
+size_t SerializeFCMEntityData(void *buffer, FCMEntityData *data,
+                              size_t max_buffer_size);
+size_t SerializeFCMEntityDataAutoRelease(void *buffer, void *data,
+                                         size_t max_buffer_size);
+size_t DeserializeFCMEntityData(FCMEntityData *data, void *buffer);
+bool IsEqualFCMEntityData(FCMEntityData *data1, FCMEntityData *data2);
+void InitializeFCMEntityData(FCMEntityData *data);
+void InitializeDefaultOnlyFCMEntityData(FCMEntityData *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_FCMENTITYDATA_H

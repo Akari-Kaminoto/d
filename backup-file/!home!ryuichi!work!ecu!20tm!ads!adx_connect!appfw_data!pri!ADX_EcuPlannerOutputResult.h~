@@ -1,0 +1,79 @@
+#ifndef DATA_DEFINITION_ADX_ECUPLANNEROUTPUTRESULT_H
+#define DATA_DEFINITION_ADX_ECUPLANNEROUTPUTRESULT_H
+
+#include "CarState.h"
+#include "LaneStatePrediction.h"
+#include "MrgSpcResult.h"
+#include "MrgSpdResult.h"
+#include "ObjectPrediction.h"
+#include "UsdCommonInfo.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADX_ECUPLANNEROUTPUTRESULT_DATAINFO                                    \
+  "{\"name\": \"ADX_EcuPlannerOutputResult\", \"description\": "               \
+  "\"ADX-ECU\u306e\u30d7\u30e9\u30f3\u30ca\u51fa\u529b\u7d50\u679c\", "        \
+  "\"members\": [{\"name\": \"car_state\", \"type\": " CARSTATE_DATAINFO       \
+  ", \"description\": \"\u81ea\u8eca\u4f4d\u7f6e\u60c5\u5831\", "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"usd_common_info\", "            \
+  "\"type\": " USDCOMMONINFO_DATAINFO                                          \
+  ", \"description\": "                                                        \
+  "\"\u30bf\u30a4\u30e0\u30b9\u30bf\u30f3\u30d7\u306a\u3069\", "               \
+  "\"ignore_naming_rule\": true}, {\"name\": \"lane_state_prediction\", "      \
+  "\"type\": " LANESTATEPREDICTION_DATAINFO                                    \
+  ", \"description\": "                                                        \
+  "\"\u30ec\u30fc\u30f3\u72b6\u614b\u4e88\u6e2c\u7d50\u679c\", "               \
+  "\"ignore_naming_rule\": true}, {\"name\": \"object_prediction\", "          \
+  "\"type\": " OBJECTPREDICTION_DATAINFO                                       \
+  ", \"description\": \"\u7269\u6a19\u884c\u52d5\u4e88\u6e2c\u7d50\u679c\", "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"mrd_spd_result\", "             \
+  "\"type\": " MRGSPDRESULT_DATAINFO                                           \
+  ", \"description\": "                                                        \
+  "\"\u5408\u6d41\u9032\u5165\u8eca\u901f\u63a8\u5968\u5224\u65ad\u7d50\u679c" \
+  "\", \"ignore_naming_rule\": true}, {\"name\": \"mrd_spc_result\", "         \
+  "\"type\": " MRGSPCRESULT_DATAINFO                                           \
+  ", \"description\": \"\u5408\u6d41\u5148\u5224\u65ad\u7d50\u679c\", "        \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"adx_ecu_planner_output_result\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADX_EcuPlannerOutputResult.hで定義されている型をシリアライズした時のバイト数
+#define ADX_ECUPLANNEROUTPUTRESULT_SERIALIZED_SIZE                             \
+  (CARSTATE_SERIALIZED_SIZE + USDCOMMONINFO_SERIALIZED_SIZE +                  \
+   LANESTATEPREDICTION_SERIALIZED_SIZE + OBJECTPREDICTION_SERIALIZED_SIZE +    \
+   MRGSPDRESULT_SERIALIZED_SIZE + MRGSPCRESULT_SERIALIZED_SIZE)
+
+// 定数の定義
+
+/* ADX-ECUのプランナ出力結果 */
+typedef struct {
+  CarState car_state;                        /* 自車位置情報 */
+  UsdCommonInfo usd_common_info;             /* タイムスタンプなど */
+  LaneStatePrediction lane_state_prediction; /* レーン状態予測結果 */
+  ObjectPrediction object_prediction;        /* 物標行動予測結果 */
+  MrgSpdResult mrd_spd_result; /* 合流進入車速推奨判断結果 */
+  MrgSpcResult mrd_spc_result; /* 合流先判断結果 */
+} ADX_EcuPlannerOutputResult;
+
+size_t SerializeADX_EcuPlannerOutputResult(void *buffer,
+                                           ADX_EcuPlannerOutputResult *data,
+                                           size_t max_buffer_size);
+size_t SerializeADX_EcuPlannerOutputResultAutoRelease(void *buffer, void *data,
+                                                      size_t max_buffer_size);
+size_t DeserializeADX_EcuPlannerOutputResult(ADX_EcuPlannerOutputResult *data,
+                                             void *buffer);
+bool IsEqualADX_EcuPlannerOutputResult(ADX_EcuPlannerOutputResult *data1,
+                                       ADX_EcuPlannerOutputResult *data2);
+void InitializeADX_EcuPlannerOutputResult(ADX_EcuPlannerOutputResult *data);
+void InitializeDefaultOnlyADX_EcuPlannerOutputResult(
+    ADX_EcuPlannerOutputResult *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADX_ECUPLANNEROUTPUTRESULT_H

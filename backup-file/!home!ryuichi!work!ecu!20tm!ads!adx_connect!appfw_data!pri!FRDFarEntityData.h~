@@ -1,0 +1,70 @@
+#ifndef DATA_DEFINITION_FRDFARENTITYDATA_H
+#define DATA_DEFINITION_FRDFARENTITYDATA_H
+
+#include "FRDFarAttribute.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define FRDFARENTITYDATA_DATAINFO                                              \
+  "{\"name\": \"FRDFarEntityData\", \"description\": "                         \
+  "\"\u9060\u65b9FRD\u7269\u6a19\", \"members\": [{\"name\": \"sync_count\", " \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u540c\u671f\u30ab\u30a6\u30f3\u30bf\", \"min\": 0, \"max\": 255, "       \
+  "\"ignore_naming_rule\": true}, {\"name\": \"distance\", \"type\": "         \
+  "\"float\", \"unit\": \"m\", \"description\": \"\u8ddd\u96e2\", \"min\": "   \
+  "0, \"max\": 327.67, \"ignore_naming_rule\": true}, {\"name\": "             \
+  "\"lateral_location\", \"type\": \"float\", \"unit\": \"m\", "               \
+  "\"description\": \"\u6a2a\u4f4d\u7f6e\", \"max\": 40.92, "                  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"relative_speed\", \"type\": "   \
+  "\"float\", \"unit\": \"m/s\", \"description\": "                            \
+  "\"\u76f8\u5bfe\u901f\u5ea6\", \"max\": 51.75, \"ignore_naming_rule\": "     \
+  "true}, {\"name\": \"relative_acc\", \"type\": \"float\", \"unit\": "        \
+  "\"m/s^2\", \"description\": \"\u76f8\u5bfe\u52a0\u901f\u5ea6\", \"max\": "  \
+  "12.7, \"ignore_naming_rule\": true}, {\"name\": \"attribute\", "            \
+  "\"type\": " FRDFARATTRIBUTE_DATAINFO                                        \
+  ", \"description\": \"\u5c5e\u6027\u60c5\u5831\", \"ignore_naming_rule\": "  \
+  "true}], \"ignore_naming_rule\": true, \"ads\": false, "                     \
+  "\"name_snake_case\": \"frd_far_entity_data\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// FRDFarEntityData.hで定義されている型をシリアライズした時のバイト数
+#define FRDFARENTITYDATA_SERIALIZED_SIZE                                       \
+  (1 + 4 + 4 + 4 + 4 + FRDFARATTRIBUTE_SERIALIZED_SIZE)
+
+// 定数の定義
+#define FRD_FAR_ENTITY_DATA_SYNC_COUNT_MIN ((uint8_t)0)
+#define FRD_FAR_ENTITY_DATA_SYNC_COUNT_MAX ((uint8_t)255)
+#define FRD_FAR_ENTITY_DATA_DISTANCE_MIN ((float)0)
+#define FRD_FAR_ENTITY_DATA_DISTANCE_MAX ((float)327.67)
+#define FRD_FAR_ENTITY_DATA_LATERAL_LOCATION_MAX ((float)40.92)
+#define FRD_FAR_ENTITY_DATA_RELATIVE_SPEED_MAX ((float)51.75)
+#define FRD_FAR_ENTITY_DATA_RELATIVE_ACC_MAX ((float)12.7)
+
+/* 遠方FRD物標 */
+typedef struct {
+  uint8_t sync_count;        /* 同期カウンタ */
+  float distance;            /* 距離 */
+  float lateral_location;    /* 横位置 */
+  float relative_speed;      /* 相対速度 */
+  float relative_acc;        /* 相対加速度 */
+  FRDFarAttribute attribute; /* 属性情報 */
+} FRDFarEntityData;
+
+size_t SerializeFRDFarEntityData(void *buffer, FRDFarEntityData *data,
+                                 size_t max_buffer_size);
+size_t SerializeFRDFarEntityDataAutoRelease(void *buffer, void *data,
+                                            size_t max_buffer_size);
+size_t DeserializeFRDFarEntityData(FRDFarEntityData *data, void *buffer);
+bool IsEqualFRDFarEntityData(FRDFarEntityData *data1, FRDFarEntityData *data2);
+void InitializeFRDFarEntityData(FRDFarEntityData *data);
+void InitializeDefaultOnlyFRDFarEntityData(FRDFarEntityData *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_FRDFARENTITYDATA_H

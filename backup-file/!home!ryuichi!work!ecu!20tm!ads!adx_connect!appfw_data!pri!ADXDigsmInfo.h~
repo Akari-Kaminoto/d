@@ -1,0 +1,69 @@
+#ifndef DATA_DEFINITION_ADXDIGSMINFO_H
+#define DATA_DEFINITION_ADXDIGSMINFO_H
+
+#include "ADXDigsmStatus.h"
+#include "appfw.h"
+#include "digsmReason.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADXDIGSMINFO_DATAINFO                                                  \
+  "{\"name\": \"ADXDigsmInfo\", \"description\": "                             \
+  "\"\u30c0\u30a4\u30a2\u30b0\u60c5\u5831\", \"members\": [{\"name\": "        \
+  "\"digsm_drive_mode_request\", \"type\": \"uint8_t\", \"description\": "     \
+  "\"\u8d70\u884c\u30e2\u30fc\u30c9\u8981\u6c42\", \"min\": 0, \"max\": 5, "   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"digsm_limit_mode_request\", "   \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u6a5f\u80fd\u5236\u9650\u30e2\u30fc\u30c9\u8981\u6c42\", \"min\": 0, "   \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "                     \
+  "\"digsm_ready_status\", \"type\": \"uint8_t\", \"description\": "           \
+  "\"READY\u72b6\u614b\", \"min\": 0, \"max\": 1, \"ignore_naming_rule\": "    \
+  "true}, {\"name\": \"adx_digsm_status\", \"type\": " ADXDIGSMSTATUS_DATAINFO \
+  ", \"description\": \"\u30c0\u30a4\u30a2\u30b0\u72b6\u614b\", "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"adx_digsm_reason\", "           \
+  "\"type\": " DIGSMREASON_DATAINFO                                            \
+  ", \"description\": "                                                        \
+  "\"\u30c0\u30a4\u30a2\u30b0\u6545\u969c\u4e0d\u8abf\u8981\u56e0\", "         \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"adx_digsm_info\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADXDigsmInfo.hで定義されている型をシリアライズした時のバイト数
+#define ADXDIGSMINFO_SERIALIZED_SIZE                                           \
+  (1 + 1 + 1 + ADXDIGSMSTATUS_SERIALIZED_SIZE + DIGSMREASON_SERIALIZED_SIZE)
+
+// 定数の定義
+#define ADX_DIGSM_INFO_DIGSM_DRIVE_MODE_REQUEST_MIN ((uint8_t)0)
+#define ADX_DIGSM_INFO_DIGSM_DRIVE_MODE_REQUEST_MAX ((uint8_t)5)
+#define ADX_DIGSM_INFO_DIGSM_LIMIT_MODE_REQUEST_MIN ((uint8_t)0)
+#define ADX_DIGSM_INFO_DIGSM_LIMIT_MODE_REQUEST_MAX ((uint8_t)1)
+#define ADX_DIGSM_INFO_DIGSM_READY_STATUS_MIN ((uint8_t)0)
+#define ADX_DIGSM_INFO_DIGSM_READY_STATUS_MAX ((uint8_t)1)
+
+/* ダイアグ情報 */
+typedef struct {
+  uint8_t digsm_drive_mode_request; /* 走行モード要求 */
+  uint8_t digsm_limit_mode_request; /* 機能制限モード要求 */
+  uint8_t digsm_ready_status;       /* READY状態 */
+  ADXDigsmStatus adx_digsm_status;  /* ダイアグ状態 */
+  digsmReason adx_digsm_reason;     /* ダイアグ故障不調要因 */
+} ADXDigsmInfo;
+
+size_t SerializeADXDigsmInfo(void *buffer, ADXDigsmInfo *data,
+                             size_t max_buffer_size);
+size_t DeserializeADXDigsmInfo(ADXDigsmInfo *data, void *buffer);
+size_t SerializeADXDigsmInfoAutoRelease(void *buffer, void *data,
+                                        size_t max_buffer_size);
+size_t DeserializeADXDigsmInfoForDumper(void *data, void *buffer);
+bool IsEqualADXDigsmInfo(ADXDigsmInfo *data1, ADXDigsmInfo *data2);
+void InitializeADXDigsmInfo(ADXDigsmInfo *data);
+void InitializeDefaultOnlyADXDigsmInfo(ADXDigsmInfo *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADXDIGSMINFO_H

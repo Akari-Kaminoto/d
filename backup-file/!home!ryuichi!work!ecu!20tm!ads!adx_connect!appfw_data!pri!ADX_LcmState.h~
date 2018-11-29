@@ -1,0 +1,76 @@
+#ifndef DATA_DEFINITION_ADX_LCMSTATE_H
+#define DATA_DEFINITION_ADX_LCMSTATE_H
+
+#include "ADX_LaneRecognitionUnstable.h"
+#include "ADX_ObjectRecognitionFailure.h"
+#include "CarState.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADX_LCMSTATE_DATAINFO                                                  \
+  "{\"name\": \"ADX_LcmState\", \"description\": "                             \
+  "\"\u30ab\u30e1\u30e9\u72b6\u614b\u60c5\u5831 "                              \
+  "(\u30ed\u30b1\u30ab\u30e1)\", \"members\": [{\"name\": "                    \
+  "\"adx_lcm_car_state\", \"type\": " CARSTATE_DATAINFO                        \
+  ", \"description\": \"\u81ea\u8eca\u4f4d\u7f6e\u60c5\u5831\", "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"adx_lcm_failure_flag\", "       \
+  "\"type\": \"uint32_t\", \"description\": "                                  \
+  "\"ADX\u30ed\u30b1\u30ab\u30e1\u6545\u969c\u30d5\u30e9\u30b0\", \"min\": "   \
+  "0, \"max\": 4294967295, \"lsb\": 1, \"default\": \"0\", "                   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"adx_lcm_unstable_flag\", "      \
+  "\"type\": \"uint32_t\", \"description\": "                                  \
+  "\"ADX\u30ed\u30b1\u30ab\u30e1\u4e0d\u8abf\u30d5\u30e9\u30b0\", \"min\": "   \
+  "0, \"max\": 4294967295, \"lsb\": 1, \"default\": \"0\", "                   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"adx_lcm_object_failure\", "     \
+  "\"type\": " ADX_OBJECTRECOGNITIONFAILURE_DATAINFO                           \
+  ", \"description\": "                                                        \
+  "\"ADX\u30ed\u30b1\u30ab\u30e1\u7269\u6a19\u8a8d\u8b58\u4e0d\u8abf\u8981"    \
+  "\u56e0\", \"ignore_naming_rule\": true}, {\"name\": "                       \
+  "\"adx_lcm_lane_unstable\", \"type\": " ADX_LANERECOGNITIONUNSTABLE_DATAINFO \
+  ", \"description\": "                                                        \
+  "\"ADX\u30ed\u30b1\u30ab\u30e1\u30ec\u30fc\u30f3\u8a8d\u8b58\u4e0d\u8abf"    \
+  "\u8981\u56e0\", \"ignore_naming_rule\": true}], \"ignore_naming_rule\": "   \
+  "true, \"ads\": false, \"name_snake_case\": \"adx_lcm_state\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADX_LcmState.hで定義されている型をシリアライズした時のバイト数
+#define ADX_LCMSTATE_SERIALIZED_SIZE                                           \
+  (CARSTATE_SERIALIZED_SIZE + 4 + 4 +                                          \
+   ADX_OBJECTRECOGNITIONFAILURE_SERIALIZED_SIZE +                              \
+   ADX_LANERECOGNITIONUNSTABLE_SERIALIZED_SIZE)
+
+// 定数の定義
+#define ADX_LCM_STATE_ADX_LCM_FAILURE_FLAG_MIN ((uint32_t)0)
+#define ADX_LCM_STATE_ADX_LCM_FAILURE_FLAG_MAX ((uint32_t)4294967295)
+#define ADX_LCM_STATE_ADX_LCM_UNSTABLE_FLAG_MIN ((uint32_t)0)
+#define ADX_LCM_STATE_ADX_LCM_UNSTABLE_FLAG_MAX ((uint32_t)4294967295)
+
+/* カメラ状態情報 (ロケカメ) */
+typedef struct {
+  CarState adx_lcm_car_state;     /* 自車位置情報 */
+  uint32_t adx_lcm_failure_flag;  /* ADXロケカメ故障フラグ */
+  uint32_t adx_lcm_unstable_flag; /* ADXロケカメ不調フラグ */
+  ADX_ObjectRecognitionFailure
+      adx_lcm_object_failure; /* ADXロケカメ物標認識不調要因 */
+  ADX_LaneRecognitionUnstable
+      adx_lcm_lane_unstable; /* ADXロケカメレーン認識不調要因 */
+} ADX_LcmState;
+
+size_t SerializeADX_LcmState(void *buffer, ADX_LcmState *data,
+                             size_t max_buffer_size);
+size_t SerializeADX_LcmStateAutoRelease(void *buffer, void *data,
+                                        size_t max_buffer_size);
+size_t DeserializeADX_LcmState(ADX_LcmState *data, void *buffer);
+bool IsEqualADX_LcmState(ADX_LcmState *data1, ADX_LcmState *data2);
+void InitializeADX_LcmState(ADX_LcmState *data);
+void InitializeDefaultOnlyADX_LcmState(ADX_LcmState *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADX_LCMSTATE_H

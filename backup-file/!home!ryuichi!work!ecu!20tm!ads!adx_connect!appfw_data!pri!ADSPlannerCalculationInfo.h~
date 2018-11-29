@@ -1,0 +1,91 @@
+#ifndef DATA_DEFINITION_ADSPLANNERCALCULATIONINFO_H
+#define DATA_DEFINITION_ADSPLANNERCALCULATIONINFO_H
+
+#include "CarState.h"
+#include "EnvInterpretationResult.h"
+#include "InputInterpretationResult.h"
+#include "LaneChangeRequest.h"
+#include "LaneChangeStatus.h"
+#include "LanePlanResult.h"
+#include "PlannerCommon.h"
+#include "SystemStateOutput.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADSPLANNERCALCULATIONINFO_DATAINFO                                     \
+  "{\"name\": \"ADSPlannerCalculationInfo\", \"description\": "                \
+  "\"ADS\u30d7\u30e9\u30f3\u30ca\u5185\u90e8\u8a08\u7b97\u60c5\u5831\", "      \
+  "\"members\": [{\"name\": \"car_state\", \"type\": " CARSTATE_DATAINFO       \
+  ", \"description\": \"\u81ea\u8eca\u4f4d\u7f6e\u60c5\u5831\", "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"planner_common\", "             \
+  "\"type\": " PLANNERCOMMON_DATAINFO                                          \
+  ", \"description\": \"Planner\u5171\u7528\", \"ignore_naming_rule\": "       \
+  "true}, {\"name\": \"env_interpretation\", "                                 \
+  "\"type\": " ENVINTERPRETATIONRESULT_DATAINFO                                \
+  ", \"description\": \"\u74b0\u5883\u89e3\u91c8\u7d50\u679c\", "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"lane_plan\", "                  \
+  "\"type\": " LANEPLANRESULT_DATAINFO                                         \
+  ", \"description\": \"\u30ec\u30fc\u30f3\u30d7\u30e9\u30f3\u7d50\u679c\", "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"lane_change_req\", "            \
+  "\"type\": " LANECHANGEREQUEST_DATAINFO                                      \
+  ", \"description\": "                                                        \
+  "\"\u30ec\u30fc\u30f3\u30c1\u30a7\u30f3\u30b8\u8981\u6c42\", "               \
+  "\"ignore_naming_rule\": true}, {\"name\": \"lane_change_status\", "         \
+  "\"type\": " LANECHANGESTATUS_DATAINFO                                       \
+  ", \"description\": "                                                        \
+  "\"\u30ec\u30fc\u30f3\u30c1\u30a7\u30f3\u30b8\u72b6\u6cc1\", "               \
+  "\"ignore_naming_rule\": true}, {\"name\": \"input_interpretation\", "       \
+  "\"type\": " INPUTINTERPRETATIONRESULT_DATAINFO                              \
+  ", \"description\": "                                                        \
+  "\"\u5165\u529b\u30c7\u30fc\u30bf\u89e3\u91c8\u7d50\u679c\", "               \
+  "\"ignore_naming_rule\": true}, {\"name\": \"system_state_output\", "        \
+  "\"type\": " SYSTEMSTATEOUTPUT_DATAINFO                                      \
+  ", \"description\": \"\u30b7\u30b9\u30c6\u30e0\u72b6\u614b\u51fa\u529b\", "  \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"ads_planner_calculation_info\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADSPlannerCalculationInfo.hで定義されている型をシリアライズした時のバイト数
+#define ADSPLANNERCALCULATIONINFO_SERIALIZED_SIZE                              \
+  (CARSTATE_SERIALIZED_SIZE + PLANNERCOMMON_SERIALIZED_SIZE +                  \
+   ENVINTERPRETATIONRESULT_SERIALIZED_SIZE + LANEPLANRESULT_SERIALIZED_SIZE +  \
+   LANECHANGEREQUEST_SERIALIZED_SIZE + LANECHANGESTATUS_SERIALIZED_SIZE +      \
+   INPUTINTERPRETATIONRESULT_SERIALIZED_SIZE +                                 \
+   SYSTEMSTATEOUTPUT_SERIALIZED_SIZE)
+
+// 定数の定義
+
+/* ADSプランナ内部計算情報 */
+typedef struct {
+  CarState car_state;                         /* 自車位置情報 */
+  PlannerCommon planner_common;               /* Planner共用 */
+  EnvInterpretationResult env_interpretation; /* 環境解釈結果 */
+  LanePlanResult lane_plan;                   /* レーンプラン結果 */
+  LaneChangeRequest lane_change_req;          /* レーンチェンジ要求 */
+  LaneChangeStatus lane_change_status;        /* レーンチェンジ状況 */
+  InputInterpretationResult input_interpretation; /* 入力データ解釈結果 */
+  SystemStateOutput system_state_output;          /* システム状態出力 */
+} ADSPlannerCalculationInfo;
+
+size_t SerializeADSPlannerCalculationInfo(void *buffer,
+                                          ADSPlannerCalculationInfo *data,
+                                          size_t max_buffer_size);
+size_t SerializeADSPlannerCalculationInfoAutoRelease(void *buffer, void *data,
+                                                     size_t max_buffer_size);
+size_t DeserializeADSPlannerCalculationInfo(ADSPlannerCalculationInfo *data,
+                                            void *buffer);
+bool IsEqualADSPlannerCalculationInfo(ADSPlannerCalculationInfo *data1,
+                                      ADSPlannerCalculationInfo *data2);
+void InitializeADSPlannerCalculationInfo(ADSPlannerCalculationInfo *data);
+void InitializeDefaultOnlyADSPlannerCalculationInfo(
+    ADSPlannerCalculationInfo *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADSPLANNERCALCULATIONINFO_H

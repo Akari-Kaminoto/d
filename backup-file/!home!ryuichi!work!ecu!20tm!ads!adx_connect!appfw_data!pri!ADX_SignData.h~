@@ -1,0 +1,57 @@
+#ifndef DATA_DEFINITION_ADX_SIGNDATA_H
+#define DATA_DEFINITION_ADX_SIGNDATA_H
+
+#include "CarState.h"
+#include "RoadSignStatus.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADX_SIGNDATA_DATAINFO                                                  \
+  "{\"name\": \"ADX_SignData\", \"description\": "                             \
+  "\"\u6a19\u8b58\u60c5\u5831\", \"members\": [{\"name\": "                    \
+  "\"adx_sign_car_state\", \"type\": " CARSTATE_DATAINFO                       \
+  ", \"description\": \"\u81ea\u8eca\u4f4d\u7f6e\u60c5\u5831\", "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"number_of_signs\", \"type\": "  \
+  "\"uint8_t\", \"unit\": \"\u500b\", \"description\": "                       \
+  "\"\u8a8d\u8b58\u500b\u6570\", \"min\": 0, \"max\": 16, "                    \
+  "\"ignore_naming_rule\": true}, {\"name\": \"adx_load_sign_status\", "       \
+  "\"type\": " ROADSIGNSTATUS_DATAINFO                                         \
+  ", \"dimension\": [32], \"description\": \"\u6a19\u8b58\u60c5\u5831\", "     \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"adx_sign_data\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADX_SignData.hで定義されている型をシリアライズした時のバイト数
+#define ADX_SIGNDATA_SERIALIZED_SIZE                                           \
+  (CARSTATE_SERIALIZED_SIZE + 1 + ROADSIGNSTATUS_SERIALIZED_SIZE * (32))
+
+// 定数の定義
+#define ADX_SIGN_DATA_NUMBER_OF_SIGNS_MIN ((uint8_t)0)
+#define ADX_SIGN_DATA_NUMBER_OF_SIGNS_MAX ((uint8_t)16)
+#define ADX_SIGN_DATA_ADX_LOAD_SIGN_STATUS_DIM1 ((size_t)32)
+
+/* 標識情報 */
+typedef struct {
+  CarState adx_sign_car_state;             /* 自車位置情報 */
+  uint8_t number_of_signs;                 /* 認識個数 */
+  RoadSignStatus adx_load_sign_status[32]; /* 標識情報 */
+} ADX_SignData;
+
+size_t SerializeADX_SignData(void *buffer, ADX_SignData *data,
+                             size_t max_buffer_size);
+size_t SerializeADX_SignDataAutoRelease(void *buffer, void *data,
+                                        size_t max_buffer_size);
+size_t DeserializeADX_SignData(ADX_SignData *data, void *buffer);
+bool IsEqualADX_SignData(ADX_SignData *data1, ADX_SignData *data2);
+void InitializeADX_SignData(ADX_SignData *data);
+void InitializeDefaultOnlyADX_SignData(ADX_SignData *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADX_SIGNDATA_H

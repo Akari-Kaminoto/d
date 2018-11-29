@@ -1,0 +1,326 @@
+#ifndef DATA_DEFINITION_FSNINTERPRETATIONRESULT_H
+#define DATA_DEFINITION_FSNINTERPRETATIONRESULT_H
+
+#include "AbsVelocityEgovehicleAxis.h"
+#include "ObjectBoxNearestPoint.h"
+#include "ObjectBoxSize.h"
+#include "UncertainObjectBoxCenter.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define FSNINTERPRETATIONRESULT_DATAINFO                                       \
+  "{\"name\": \"FsnInterpretationResult\", \"description\": "                  \
+  "\"\u4ed6\u8eca\u89e3\u91c8\u7d50\u679c\", \"members\": [{\"name\": "        \
+  "\"fsn_vcl_jdg_cnt\", \"type\": \"uint8_t\", \"description\": "              \
+  "\"\u8eca\u4e21\u5224\u5b9a\u30ab\u30a6\u30f3\u30bf\", \"min\": 0, "         \
+  "\"max\": 15, \"ignore_naming_rule\": true}, {\"name\": "                    \
+  "\"stop_car_possibility_flg\", \"type\": \"uint8_t\", \"description\": "     \
+  "\"\u505c\u6b62\u53ef\u5426\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 15, "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fsn_track_cnt\", \"type\": "    \
+  "\"uint8_t\", \"description\": "                                             \
+  "\"\u30c8\u30e9\u30c3\u30ad\u30f3\u30b0\u30d5\u30e9\u30b0\", \"min\": 0, "   \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": \"rel_height\", "     \
+  "\"type\": \"float\", \"description\": \"\u9ad8\u3055\", "                   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"target_attribute\", \"type\": " \
+  "\"uint64_t\", \"description\": \"\u7269\u6a19\u7a2e\u5225\", \"min\": 0, "  \
+  "\"max\": 7, \"ignore_naming_rule\": true}, {\"name\": \"is_new\", "         \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u65b0\u898f\u7269\u6a19\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"id\", \"type\": \"uint64_t\", " \
+  "\"description\": \"Fusion\u7269\u6a19ID\", \"min\": 0, "                    \
+  "\"ignore_naming_rule\": true}, {\"name\": \"count_is_out_of_lane\", "       \
+  "\"type\": \"uint32_t\", \"description\": "                                  \
+  "\"\u30ec\u30fc\u30f3\u5916\u5224\u5b9a\u56de\u6570\", "                     \
+  "\"ignore_naming_rule\": true}, {\"name\": \"age\", \"type\": "              \
+  "\"uint64_t\", \"description\": \"\u767b\u5834\u56de\u6570\", \"min\": 0, "  \
+  "\"max\": 255, \"ignore_naming_rule\": true}, {\"name\": \"hidden_age\", "   \
+  "\"type\": \"uint64_t\", \"description\": "                                  \
+  "\"\u9023\u7d9a\u5916\u633f\u30d5\u30ec\u30fc\u30e0\u6570\", \"min\": 0, "   \
+  "\"max\": 255, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"uncertain_object_box_center\", "                                          \
+  "\"type\": " UNCERTAINOBJECTBOXCENTER_DATAINFO                               \
+  ", \"description\": "                                                        \
+  "\"\u30b0\u30eb\u30fc\u30d4\u30f3\u30b0\u63a2\u7d22\u4e2d\u5fc3\u5ea7\u6a19" \
+  "(\u81ea\u8eca\u5f8c\u8f2a\u8ef8\u4e2d\u5fc3\u5ea7\u6a19\u7cfb\uff09\", "    \
+  "\"ignore_naming_rule\": true}, {\"name\": \"object_box_size\", "            \
+  "\"type\": " OBJECTBOXSIZE_DATAINFO                                          \
+  ", \"description\": \"\u7269\u6a19\u9577\u3055\u3001\u7269\u6a19\u5e45\", "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"object_box_nearest_point\", "   \
+  "\"type\": " OBJECTBOXNEARESTPOINT_DATAINFO                                  \
+  ", \"description\": "                                                        \
+  "\"\u8ddd\u96e2\uff08\uff38\uff09\u3001\u6a2a\u4f4d\u7f6e\uff08\uff39\uff09" \
+  "(\u81ea\u8eca\u5f8c\u8f2a\u8ef8\u4e2d\u5fc3\u5ea7\u6a19\u7cfb\uff09\", "    \
+  "\"ignore_naming_rule\": true}, {\"name\": \"yaw\", \"type\": \"float\", "   \
+  "\"unit\": \"rad\", \"description\": "                                       \
+  "\"\u7269\u6a19\u59ff\u52e2\u89d2\uff08\u81ea\u8eca\u5f8c\u8f2a\u8ef8\u4e2d" \
+  "\u5fc3\u5ea7\u6a19\u7cfb\uff09\", \"min\": -10, \"max\": 10, "              \
+  "\"ignore_naming_rule\": true}, {\"name\": "                                 \
+  "\"abs_velocity_egovehicle_axis\", "                                         \
+  "\"type\": " ABSVELOCITYEGOVEHICLEAXIS_DATAINFO                              \
+  ", \"description\": "                                                        \
+  "\"\u8ddd\u96e2\u65b9\u5411\u306e\u7d76\u5bfe\u901f\u5ea6\u3001\u6a2a\u4f4d" \
+  "\u7f6e\u65b9\u5411\u306e\u7d76\u5bfe\u901f\u5ea6\uff08\u81ea\u8eca\u5f8c"   \
+  "\u8f2a\u8ef8\u4e2d\u5fc3\u5ea7\u6a19\u7cfb\uff09\", "                       \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fsn_frd_state\", \"type\": "    \
+  "\"bool\", \"description\": \"FRD\u5bfe\u5fdc\u4ed8\u3051\u72b6\u614b\", "   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fsn_fsr_r_state\", \"type\": "  \
+  "\"bool\", \"description\": "                                                \
+  "\"\u53f3\u5074FSR\u5bfe\u5fdc\u4ed8\u3051\u72b6\u614b\", "                  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fsn_fsr_l_state\", \"type\": "  \
+  "\"bool\", \"description\": "                                                \
+  "\"\u5de6\u5074FSR\u5bfe\u5fdc\u4ed8\u3051\u72b6\u614b\", "                  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fsn_bsr_r_state\", \"type\": "  \
+  "\"bool\", \"description\": "                                                \
+  "\"\u53f3\u5074BSR\u5bfe\u5fdc\u4ed8\u3051\u72b6\u614b\", "                  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fsn_bsr_l_state\", \"type\": "  \
+  "\"bool\", \"description\": "                                                \
+  "\"\u5de6\u5074BSR\u5bfe\u5fdc\u4ed8\u3051\u72b6\u614b\", "                  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fsn_fr_lidar_state\", "         \
+  "\"type\": \"bool\", \"description\": "                                      \
+  "\"\u524d\u65b9LiDAR\u5bfe\u5fdc\u4ed8\u3051\u72b6\u614b\", "                \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fsn_rr_lidar_state\", "         \
+  "\"type\": \"bool\", \"description\": "                                      \
+  "\"\u5f8c\u65b9LiDAR\u5bfe\u5fdc\u4ed8\u3051\u72b6\u614b\", "                \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fsn_lt_lidar_state\", "         \
+  "\"type\": \"bool\", \"description\": "                                      \
+  "\"\u5de6\u65b9LiDAR\u5bfe\u5fdc\u4ed8\u3051\u72b6\u614b\", "                \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fsn_rt_lidar_state\", "         \
+  "\"type\": \"bool\", \"description\": "                                      \
+  "\"\u53f3\u65b9LiDAR\u5bfe\u5fdc\u4ed8\u3051\u72b6\u614b\", "                \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fsn_multi_detection_count\", "  \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u591a\u91cd\u7cfb\u30ab\u30a6\u30f3\u30c8\", \"min\": 0, \"max\": 255, " \
+  "\"ignore_naming_rule\": true}, {\"name\": \"reliability\", \"type\": "      \
+  "\"int32_t\", \"description\": \"\u4fe1\u983c\u5ea6\", \"min\": 0, "         \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "                     \
+  "\"abs_acceleration_egovehicle_axis\", \"type\": \"float\", \"unit\": "      \
+  "\"m/s^2\", \"description\": "                                               \
+  "\"\u8ddd\u96e2\u65b9\u5411\u306e\u7d76\u5bfe\u52a0\u901f\u5ea6\", "         \
+  "\"min\": -10000, \"max\": 10000, \"ignore_naming_rule\": true}, "           \
+  "{\"name\": \"longitudinal_acceleration_state\", \"type\": \"int32_t\", "    \
+  "\"description\": \"\u7d76\u5bfe\u52a0\u901f\u5ea6\u72b6\u614b\", \"min\": " \
+  "0, \"max\": 3, \"ignore_naming_rule\": true}, {\"name\": "                  \
+  "\"target_threshold\", \"type\": \"uint8_t\", \"description\": "             \
+  "\"\u95be\u5024\u72b6\u614b\", \"min\": 0, \"max\": 3, "                     \
+  "\"ignore_naming_rule\": true}, {\"name\": \"winker_on_flag\", \"type\": "   \
+  "\"uint8_t\", \"description\": "                                             \
+  "\"\u30a6\u30a3\u30f3\u30ab\u4f5c\u52d5\u72b6\u614b\", \"min\": 0, "         \
+  "\"max\": 7, \"ignore_naming_rule\": true}, {\"name\": \"brake_on_flag\", "  \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u30d6\u30ec\u30fc\u30ad\u4f5c\u52d5\u72b6\u614b\", \"min\": 0, "         \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "                     \
+  "\"left_lane_wrap_rate_and_in_lane_offset_rate\", \"type\": \"float\", "     \
+  "\"unit\": \"%\", \"description\": "                                         \
+  "\"\u5de6\u767d\u7dda\u30e9\u30c3\u30d7\u7387/"                              \
+  "\u8eca\u7dda\u5185\u30aa\u30d5\u30bb\u30c3\u30c8\u7387\", \"min\": -512, "  \
+  "\"max\": 511, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"right_lane_wrap_rate\", \"type\": \"float\", \"unit\": \"%\", "           \
+  "\"description\": \"\u53f3\u767d\u7dda\u30e9\u30c3\u30d7\u7387\", \"min\": " \
+  "-512, \"max\": 511, \"ignore_naming_rule\": true}, {\"name\": "             \
+  "\"acc_target_object_flag\", \"type\": \"uint8_t\", \"description\": "       \
+  "\"ACC\u5148\u884c\u8eca\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "      \
+  "\"ignore_naming_rule\": true}, {\"name\": \"stationary_object_flag\", "     \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u9759\u6b62\u7269\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "         \
+  "\"ignore_naming_rule\": true}, {\"name\": \"moving_object_flag\", "         \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u79fb\u52d5\u7269\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "         \
+  "\"ignore_naming_rule\": true}, {\"name\": \"onconfig_object_flag\", "       \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u5bfe\u5411\u7269\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "         \
+  "\"ignore_naming_rule\": true}, {\"name\": \"extrapolation_object_flag\", "  \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u5916\u633f\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "               \
+  "\"ignore_naming_rule\": true}, {\"name\": \"vehicle_count\", \"type\": "    \
+  "\"int8_t\", \"description\": \"\u8eca\u4e21\u30ab\u30a6\u30f3\u30bf\", "    \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"motorcycle_bicycle_count\", \"type\": \"int8_t\", \"description\": "      \
+  "\"2\u8f2a\u8eca\u30ab\u30a6\u30f3\u30bf\", \"min\": 0, \"max\": 1, "        \
+  "\"ignore_naming_rule\": true}, {\"name\": \"over_head_object_flag\", "      \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u4e0a\u65b9\u69cb\u9020\u7269\u30d5\u30e9\u30b0\", \"min\": 0, "         \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "                     \
+  "\"fsn_truck_width_flg\", \"type\": \"uint8_t\", \"description\": "          \
+  "\"\u30c8\u30e9\u30c3\u30af\u8eca\u5e45\u30d5\u30e9\u30b0\", \"min\": 0, "   \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "                     \
+  "\"pln_lcd_tgt_flg\", \"type\": \"int8_t\", \"description\": "               \
+  "\"LCD\u7ba1\u7406\u5bfe\u8c61\u30d5\u30e9\u30b0\", \"min\": -1, \"max\": "  \
+  "8, \"ignore_naming_rule\": true}, {\"name\": \"pln_tgd_obj_road_dist\", "   \
+  "\"type\": \"float\", \"unit\": \"m\", \"description\": "                    \
+  "\"\u9053\u306e\u308a\u8ddd\u96e2\", \"min\": -100, \"max\": 500, "          \
+  "\"ignore_naming_rule\": true}, {\"name\": \"pln_tgd_abs_velocity\", "       \
+  "\"type\": \"float\", \"unit\": \"m/s\", \"description\": "                  \
+  "\"\u7d76\u5bfe\u901f\u5ea6\", \"min\": 0, \"max\": 100, "                   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"pln_tgd_abs_acceleration\", "   \
+  "\"type\": \"float\", \"unit\": \"m/s^2\", \"description\": "                \
+  "\"\u7d76\u5bfe\u52a0\u901f\u5ea6\", \"min\": 0, \"max\": 100, "             \
+  "\"ignore_naming_rule\": true}, {\"name\": \"pln_tgd_nnlink\", \"type\": "   \
+  "\"int64_t\", \"description\": \"\u6700\u8fd1\u508d\u30ea\u30f3\u30afID\", " \
+  "\"min\": -1, \"ignore_naming_rule\": true}, {\"name\": \"fsn_rsvd\", "      \
+  "\"type\": \"uint8_t\", \"description\": \"Reserve\", \"dimension\": [24], " \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"fsn_interpretation_result\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// FsnInterpretationResult.hで定義されている型をシリアライズした時のバイト数
+#define FSNINTERPRETATIONRESULT_SERIALIZED_SIZE                                \
+  (1 + 1 + 1 + 4 + 8 + 1 + 8 + 4 + 8 + 8 +                                     \
+   UNCERTAINOBJECTBOXCENTER_SERIALIZED_SIZE + OBJECTBOXSIZE_SERIALIZED_SIZE +  \
+   OBJECTBOXNEARESTPOINT_SERIALIZED_SIZE + 4 +                                 \
+   ABSVELOCITYEGOVEHICLEAXIS_SERIALIZED_SIZE + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + \
+   1 + 1 + 4 + 4 + 4 + 1 + 1 + 1 + 4 + 4 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + \
+   1 + 4 + 4 + 4 + 8 + 1 * (24))
+
+// 定数の定義
+#define FSN_INTERPRETATION_RESULT_FSN_VCL_JDG_CNT_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_FSN_VCL_JDG_CNT_MAX ((uint8_t)15)
+#define FSN_INTERPRETATION_RESULT_STOP_CAR_POSSIBILITY_FLG_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_STOP_CAR_POSSIBILITY_FLG_MAX ((uint8_t)15)
+#define FSN_INTERPRETATION_RESULT_FSN_TRACK_CNT_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_FSN_TRACK_CNT_MAX ((uint8_t)1)
+#define FSN_INTERPRETATION_RESULT_TARGET_ATTRIBUTE_MIN ((uint64_t)0)
+#define FSN_INTERPRETATION_RESULT_TARGET_ATTRIBUTE_MAX ((uint64_t)7)
+#define FSN_INTERPRETATION_RESULT_IS_NEW_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_IS_NEW_MAX ((uint8_t)1)
+#define FSN_INTERPRETATION_RESULT_ID_MIN ((uint64_t)0)
+#define FSN_INTERPRETATION_RESULT_AGE_MIN ((uint64_t)0)
+#define FSN_INTERPRETATION_RESULT_AGE_MAX ((uint64_t)255)
+#define FSN_INTERPRETATION_RESULT_HIDDEN_AGE_MIN ((uint64_t)0)
+#define FSN_INTERPRETATION_RESULT_HIDDEN_AGE_MAX ((uint64_t)255)
+#define FSN_INTERPRETATION_RESULT_YAW_MIN ((float)-10)
+#define FSN_INTERPRETATION_RESULT_YAW_MAX ((float)10)
+#define FSN_INTERPRETATION_RESULT_FSN_MULTI_DETECTION_COUNT_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_FSN_MULTI_DETECTION_COUNT_MAX ((uint8_t)255)
+#define FSN_INTERPRETATION_RESULT_RELIABILITY_MIN ((int32_t)0)
+#define FSN_INTERPRETATION_RESULT_RELIABILITY_MAX ((int32_t)1)
+#define FSN_INTERPRETATION_RESULT_ABS_ACCELERATION_EGOVEHICLE_AXIS_MIN         \
+  ((float)-10000)
+#define FSN_INTERPRETATION_RESULT_ABS_ACCELERATION_EGOVEHICLE_AXIS_MAX         \
+  ((float)10000)
+#define FSN_INTERPRETATION_RESULT_LONGITUDINAL_ACCELERATION_STATE_MIN          \
+  ((int32_t)0)
+#define FSN_INTERPRETATION_RESULT_LONGITUDINAL_ACCELERATION_STATE_MAX          \
+  ((int32_t)3)
+#define FSN_INTERPRETATION_RESULT_TARGET_THRESHOLD_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_TARGET_THRESHOLD_MAX ((uint8_t)3)
+#define FSN_INTERPRETATION_RESULT_WINKER_ON_FLAG_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_WINKER_ON_FLAG_MAX ((uint8_t)7)
+#define FSN_INTERPRETATION_RESULT_BRAKE_ON_FLAG_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_BRAKE_ON_FLAG_MAX ((uint8_t)1)
+#define FSN_INTERPRETATION_RESULT_LEFT_LANE_WRAP_RATE_AND_IN_LANE_OFFSET_RATE_MIN \
+  ((float)-512)
+#define FSN_INTERPRETATION_RESULT_LEFT_LANE_WRAP_RATE_AND_IN_LANE_OFFSET_RATE_MAX \
+  ((float)511)
+#define FSN_INTERPRETATION_RESULT_RIGHT_LANE_WRAP_RATE_MIN ((float)-512)
+#define FSN_INTERPRETATION_RESULT_RIGHT_LANE_WRAP_RATE_MAX ((float)511)
+#define FSN_INTERPRETATION_RESULT_ACC_TARGET_OBJECT_FLAG_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_ACC_TARGET_OBJECT_FLAG_MAX ((uint8_t)1)
+#define FSN_INTERPRETATION_RESULT_STATIONARY_OBJECT_FLAG_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_STATIONARY_OBJECT_FLAG_MAX ((uint8_t)1)
+#define FSN_INTERPRETATION_RESULT_MOVING_OBJECT_FLAG_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_MOVING_OBJECT_FLAG_MAX ((uint8_t)1)
+#define FSN_INTERPRETATION_RESULT_ONCONFIG_OBJECT_FLAG_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_ONCONFIG_OBJECT_FLAG_MAX ((uint8_t)1)
+#define FSN_INTERPRETATION_RESULT_EXTRAPOLATION_OBJECT_FLAG_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_EXTRAPOLATION_OBJECT_FLAG_MAX ((uint8_t)1)
+#define FSN_INTERPRETATION_RESULT_VEHICLE_COUNT_MIN ((int8_t)0)
+#define FSN_INTERPRETATION_RESULT_VEHICLE_COUNT_MAX ((int8_t)1)
+#define FSN_INTERPRETATION_RESULT_MOTORCYCLE_BICYCLE_COUNT_MIN ((int8_t)0)
+#define FSN_INTERPRETATION_RESULT_MOTORCYCLE_BICYCLE_COUNT_MAX ((int8_t)1)
+#define FSN_INTERPRETATION_RESULT_OVER_HEAD_OBJECT_FLAG_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_OVER_HEAD_OBJECT_FLAG_MAX ((uint8_t)1)
+#define FSN_INTERPRETATION_RESULT_FSN_TRUCK_WIDTH_FLG_MIN ((uint8_t)0)
+#define FSN_INTERPRETATION_RESULT_FSN_TRUCK_WIDTH_FLG_MAX ((uint8_t)1)
+#define FSN_INTERPRETATION_RESULT_PLN_LCD_TGT_FLG_MIN ((int8_t)-1)
+#define FSN_INTERPRETATION_RESULT_PLN_LCD_TGT_FLG_MAX ((int8_t)8)
+#define FSN_INTERPRETATION_RESULT_PLN_TGD_OBJ_ROAD_DIST_MIN ((float)-100)
+#define FSN_INTERPRETATION_RESULT_PLN_TGD_OBJ_ROAD_DIST_MAX ((float)500)
+#define FSN_INTERPRETATION_RESULT_PLN_TGD_ABS_VELOCITY_MIN ((float)0)
+#define FSN_INTERPRETATION_RESULT_PLN_TGD_ABS_VELOCITY_MAX ((float)100)
+#define FSN_INTERPRETATION_RESULT_PLN_TGD_ABS_ACCELERATION_MIN ((float)0)
+#define FSN_INTERPRETATION_RESULT_PLN_TGD_ABS_ACCELERATION_MAX ((float)100)
+#define FSN_INTERPRETATION_RESULT_PLN_TGD_NNLINK_MIN ((int64_t)-1)
+#define FSN_INTERPRETATION_RESULT_FSN_RSVD_DIM1 ((size_t)24)
+
+/* 他車解釈結果 */
+typedef struct {
+  uint8_t fsn_vcl_jdg_cnt;          /* 車両判定カウンタ */
+  uint8_t stop_car_possibility_flg; /* 停止可否フラグ */
+  uint8_t fsn_track_cnt;            /* トラッキングフラグ */
+  float rel_height;                 /* 高さ */
+  uint64_t target_attribute;        /* 物標種別 */
+  uint8_t is_new;                   /* 新規物標フラグ */
+  uint64_t id;                      /* Fusion物標ID */
+  uint32_t count_is_out_of_lane;    /* レーン外判定回数 */
+  uint64_t age;                     /* 登場回数 */
+  uint64_t hidden_age;              /* 連続外挿フレーム数 */
+  UncertainObjectBoxCenter
+      uncertain_object_box_center; /* グルーピング探索中心座標(自車後輪軸中心座標系）
+                                      */
+  ObjectBoxSize object_box_size; /* 物標長さ、物標幅 */
+  ObjectBoxNearestPoint
+      object_box_nearest_point; /* 距離（Ｘ）、横位置（Ｙ）(自車後輪軸中心座標系）
+                                   */
+  float yaw; /* 物標姿勢角（自車後輪軸中心座標系） */
+  AbsVelocityEgovehicleAxis
+      abs_velocity_egovehicle_axis;        /* 距離方向の絶対速度、横位置方向の絶対速度（自車後輪軸中心座標系）
+                                              */
+  bool fsn_frd_state;                      /* FRD対応付け状態 */
+  bool fsn_fsr_r_state;                    /* 右側FSR対応付け状態 */
+  bool fsn_fsr_l_state;                    /* 左側FSR対応付け状態 */
+  bool fsn_bsr_r_state;                    /* 右側BSR対応付け状態 */
+  bool fsn_bsr_l_state;                    /* 左側BSR対応付け状態 */
+  bool fsn_fr_lidar_state;                 /* 前方LiDAR対応付け状態 */
+  bool fsn_rr_lidar_state;                 /* 後方LiDAR対応付け状態 */
+  bool fsn_lt_lidar_state;                 /* 左方LiDAR対応付け状態 */
+  bool fsn_rt_lidar_state;                 /* 右方LiDAR対応付け状態 */
+  uint8_t fsn_multi_detection_count;       /* 多重系カウント */
+  int32_t reliability;                     /* 信頼度 */
+  float abs_acceleration_egovehicle_axis;  /* 距離方向の絶対加速度 */
+  int32_t longitudinal_acceleration_state; /* 絶対加速度状態 */
+  uint8_t target_threshold;                /* 閾値状態 */
+  uint8_t winker_on_flag;                  /* ウィンカ作動状態 */
+  uint8_t brake_on_flag;                   /* ブレーキ作動状態 */
+  float
+      left_lane_wrap_rate_and_in_lane_offset_rate; /* 左白線ラップ率/車線内オフセット率
+                                                      */
+  float right_lane_wrap_rate;        /* 右白線ラップ率 */
+  uint8_t acc_target_object_flag;    /* ACC先行車フラグ */
+  uint8_t stationary_object_flag;    /* 静止物フラグ */
+  uint8_t moving_object_flag;        /* 移動物フラグ */
+  uint8_t onconfig_object_flag;      /* 対向物フラグ */
+  uint8_t extrapolation_object_flag; /* 外挿フラグ */
+  int8_t vehicle_count;              /* 車両カウンタ */
+  int8_t motorcycle_bicycle_count;   /* 2輪車カウンタ */
+  uint8_t over_head_object_flag;     /* 上方構造物フラグ */
+  uint8_t fsn_truck_width_flg;       /* トラック車幅フラグ */
+  int8_t pln_lcd_tgt_flg;            /* LCD管理対象フラグ */
+  float pln_tgd_obj_road_dist;       /* 道のり距離 */
+  float pln_tgd_abs_velocity;        /* 絶対速度 */
+  float pln_tgd_abs_acceleration;    /* 絶対加速度 */
+  int64_t pln_tgd_nnlink;            /* 最近傍リンクID */
+  uint8_t fsn_rsvd[24];              /* Reserve */
+} FsnInterpretationResult;
+
+size_t SerializeFsnInterpretationResult(void *buffer,
+                                        FsnInterpretationResult *data,
+                                        size_t max_buffer_size);
+size_t SerializeFsnInterpretationResultAutoRelease(void *buffer, void *data,
+                                                   size_t max_buffer_size);
+size_t DeserializeFsnInterpretationResult(FsnInterpretationResult *data,
+                                          void *buffer);
+bool IsEqualFsnInterpretationResult(FsnInterpretationResult *data1,
+                                    FsnInterpretationResult *data2);
+void InitializeFsnInterpretationResult(FsnInterpretationResult *data);
+void InitializeDefaultOnlyFsnInterpretationResult(
+    FsnInterpretationResult *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_FSNINTERPRETATIONRESULT_H

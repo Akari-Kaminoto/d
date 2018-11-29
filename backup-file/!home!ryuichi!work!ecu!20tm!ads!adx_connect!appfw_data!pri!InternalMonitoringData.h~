@@ -1,0 +1,60 @@
+#ifndef DATA_DEFINITION_INTERNALMONITORINGDATA_H
+#define DATA_DEFINITION_INTERNALMONITORINGDATA_H
+
+#include "InternalState.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define INTERNALMONITORINGDATA_DATAINFO                                        \
+  "{\"name\": \"InternalMonitoringData\", \"description\": "                   \
+  "\"\u5185\u90e8\u76e3\u8996\u7d50\u679c\", \"members\": [{\"name\": "        \
+  "\"is_fail\", \"type\": \"uint16_t\", \"description\": "                     \
+  "\"\u5185\u90e8\u76e3\u8996\u7570\u5e38\u30d5\u30e9\u30b0\", \"min\": 0, "   \
+  "\"max\": 3, \"ignore_naming_rule\": true}, {\"name\": \"is_invalid\", "     \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u5185\u90e8\u76e3\u8996\u7121\u52b9\u30d5\u30e9\u30b0\", \"min\": 0, "   \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": \"internal_state\", " \
+  "\"type\": " INTERNALSTATE_DATAINFO                                          \
+  ", \"description\": \"\u5185\u90e8\u76e3\u8996\u72b6\u614b\", "              \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"internal_monitoring_data\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// InternalMonitoringData.hで定義されている型をシリアライズした時のバイト数
+#define INTERNALMONITORINGDATA_SERIALIZED_SIZE                                 \
+  (2 + 1 + INTERNALSTATE_SERIALIZED_SIZE)
+
+// 定数の定義
+#define INTERNAL_MONITORING_DATA_IS_FAIL_MIN ((uint16_t)0)
+#define INTERNAL_MONITORING_DATA_IS_FAIL_MAX ((uint16_t)3)
+#define INTERNAL_MONITORING_DATA_IS_INVALID_MIN ((uint8_t)0)
+#define INTERNAL_MONITORING_DATA_IS_INVALID_MAX ((uint8_t)1)
+
+/* 内部監視結果 */
+typedef struct {
+  uint16_t is_fail;             /* 内部監視異常フラグ */
+  uint8_t is_invalid;           /* 内部監視無効フラグ */
+  InternalState internal_state; /* 内部監視状態 */
+} InternalMonitoringData;
+
+size_t SerializeInternalMonitoringData(void *buffer,
+                                       InternalMonitoringData *data,
+                                       size_t max_buffer_size);
+size_t SerializeInternalMonitoringDataAutoRelease(void *buffer, void *data,
+                                                  size_t max_buffer_size);
+size_t DeserializeInternalMonitoringData(InternalMonitoringData *data,
+                                         void *buffer);
+bool IsEqualInternalMonitoringData(InternalMonitoringData *data1,
+                                   InternalMonitoringData *data2);
+void InitializeInternalMonitoringData(InternalMonitoringData *data);
+void InitializeDefaultOnlyInternalMonitoringData(InternalMonitoringData *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_INTERNALMONITORINGDATA_H

@@ -1,0 +1,68 @@
+#ifndef DATA_DEFINITION_OBJECTPREDICTIONSTATE_H
+#define DATA_DEFINITION_OBJECTPREDICTIONSTATE_H
+
+#include "ObjectPoint.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define OBJECTPREDICTIONSTATE_DATAINFO                                         \
+  "{\"name\": \"ObjectPredictionState\", \"description\": "                    \
+  "\"\u7269\u6a19\u72b6\u614b\", \"members\": [{\"name\": \"efctv\", "         \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u6709\u52b9\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "               \
+  "\"ignore_naming_rule\": true}, {\"name\": \"id\", \"type\": \"int32_t\", "  \
+  "\"description\": \"\u7269\u6a19ID\", \"ignore_naming_rule\": true}, "       \
+  "{\"name\": \"obj_point\", \"type\": " OBJECTPOINT_DATAINFO                  \
+  ", \"description\": \"\u7269\u6a19\u5ea7\u6a19\", \"ignore_naming_rule\": "  \
+  "true}, {\"name\": \"nn_link_id\", \"type\": \"int64_t\", \"description\": " \
+  "\"\u6700\u8fd1\u508d\u30ea\u30f3\u30afID\", \"ignore_naming_rule\": "       \
+  "true}, {\"name\": \"yield_prblty\", \"type\": \"float\", \"unit\": \"%\", " \
+  "\"description\": \"\u4f75\u8d70\u8b72\u308a\u78ba\u7387\", \"min\": 0, "    \
+  "\"max\": 100, \"ignore_naming_rule\": true}, {\"name\": \"rsvd\", "         \
+  "\"type\": \"uint8_t\", \"description\": \"reserved\", \"dimension\": "      \
+  "[64], \"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, "       \
+  "\"ads\": false, \"name_snake_case\": \"object_prediction_state\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ObjectPredictionState.hで定義されている型をシリアライズした時のバイト数
+#define OBJECTPREDICTIONSTATE_SERIALIZED_SIZE                                  \
+  (1 + 4 + OBJECTPOINT_SERIALIZED_SIZE + 8 + 4 + 1 * (64))
+
+// 定数の定義
+#define OBJECT_PREDICTION_STATE_EFCTV_MIN ((uint8_t)0)
+#define OBJECT_PREDICTION_STATE_EFCTV_MAX ((uint8_t)1)
+#define OBJECT_PREDICTION_STATE_YIELD_PRBLTY_MIN ((float)0)
+#define OBJECT_PREDICTION_STATE_YIELD_PRBLTY_MAX ((float)100)
+#define OBJECT_PREDICTION_STATE_RSVD_DIM1 ((size_t)64)
+
+/* 物標状態 */
+typedef struct {
+  uint8_t efctv;         /* 有効フラグ */
+  int32_t id;            /* 物標ID */
+  ObjectPoint obj_point; /* 物標座標 */
+  int64_t nn_link_id;    /* 最近傍リンクID */
+  float yield_prblty;    /* 併走譲り確率 */
+  uint8_t rsvd[64];      /* reserved */
+} ObjectPredictionState;
+
+size_t SerializeObjectPredictionState(void *buffer, ObjectPredictionState *data,
+                                      size_t max_buffer_size);
+size_t DeserializeObjectPredictionState(ObjectPredictionState *data,
+                                        void *buffer);
+size_t SerializeObjectPredictionStateAutoRelease(void *buffer, void *data,
+                                                 size_t max_buffer_size);
+size_t DeserializeObjectPredictionStateForDumper(void *data, void *buffer);
+bool IsEqualObjectPredictionState(ObjectPredictionState *data1,
+                                  ObjectPredictionState *data2);
+void InitializeObjectPredictionState(ObjectPredictionState *data);
+void InitializeDefaultOnlyObjectPredictionState(ObjectPredictionState *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_OBJECTPREDICTIONSTATE_H

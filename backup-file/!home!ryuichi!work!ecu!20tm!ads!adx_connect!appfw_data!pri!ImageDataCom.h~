@@ -1,0 +1,51 @@
+#ifndef DATA_DEFINITION_IMAGEDATACOM_H
+#define DATA_DEFINITION_IMAGEDATACOM_H
+
+#include "CarState.h"
+#include "Image__RAW16__Com.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define IMAGEDATACOM_DATAINFO                                                  \
+  "{\"name\": \"ImageDataCom\", \"description\": "                             \
+  "\"\u30ed\u30b1\u30ab\u30e1\u753b\u50cf\", \"members\": [{\"name\": "        \
+  "\"imaRAW16\", \"type\": " IMAGE__RAW16__COM_DATAINFO                        \
+  ", \"description\": \"16bit "                                                \
+  "RAW\u753b\u50cf\u306e\u914d\u5217(\u901a\u4fe1\u7528)\", "                  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"car_pose\", "                   \
+  "\"type\": " CARSTATE_DATAINFO                                               \
+  ", \"description\": \"\u81ea\u8eca\u60c5\u5831\", \"ignore_naming_rule\": "  \
+  "true}], \"ignore_naming_rule\": true, \"ads\": false, "                     \
+  "\"name_snake_case\": \"image_data_com\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ImageDataCom.hで定義されている型をシリアライズした時のバイト数
+#define IMAGEDATACOM_SERIALIZED_SIZE                                           \
+  (IMAGE__RAW16__COM_SERIALIZED_SIZE + CARSTATE_SERIALIZED_SIZE)
+
+// 定数の定義
+
+/* ロケカメ画像 */
+typedef struct {
+  Image__RAW16__Com imaRAW16; /* 16bit RAW画像の配列(通信用) */
+  CarState car_pose;          /* 自車情報 */
+} ImageDataCom;
+
+size_t SerializeImageDataCom(void *buffer, ImageDataCom *data,
+                             size_t max_buffer_size);
+size_t SerializeImageDataComAutoRelease(void *buffer, void *data,
+                                        size_t max_buffer_size);
+size_t DeserializeImageDataCom(ImageDataCom *data, void *buffer);
+bool IsEqualImageDataCom(ImageDataCom *data1, ImageDataCom *data2);
+void InitializeImageDataCom(ImageDataCom *data);
+void InitializeDefaultOnlyImageDataCom(ImageDataCom *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_IMAGEDATACOM_H

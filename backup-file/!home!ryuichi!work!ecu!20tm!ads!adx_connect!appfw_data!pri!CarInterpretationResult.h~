@@ -1,0 +1,207 @@
+#ifndef DATA_DEFINITION_CARINTERPRETATIONRESULT_H
+#define DATA_DEFINITION_CARINTERPRETATIONRESULT_H
+
+#include "AbsolutePosition.h"
+#include "Displacement.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define CARINTERPRETATIONRESULT_DATAINFO                                       \
+  "{\"name\": \"CarInterpretationResult\", \"description\": "                  \
+  "\"\u81ea\u8eca\u89e3\u91c8\u7d50\u679c\", \"members\": [{\"name\": "        \
+  "\"departure_length_from_lane\", \"type\": \"double\", \"unit\": \"m\", "    \
+  "\"description\": "                                                          \
+  "\"\u8eca\u7dda\u4e2d\u5fc3\u304b\u3089\u306e\u9038\u8131\u8ddd\u96e2\", "   \
+  "\"min\": 0, \"max\": 100, \"ignore_naming_rule\": true}, {\"name\": "       \
+  "\"right_lane_bound_ok_\", \"type\": \"uint8_t\", \"description\": "         \
+  "\"\u53f3\u30ec\u30fc\u30f3\u30c1\u30a7\u30f3\u30b8\u53ef\u80fd\u7dda\u7a2e" \
+  "\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, \"ignore_naming_rule\": "     \
+  "true}, {\"name\": \"left_lane_bound_ok_\", \"type\": \"uint8_t\", "         \
+  "\"description\": "                                                          \
+  "\"\u5de6\u30ec\u30fc\u30f3\u30c1\u30a7\u30f3\u30b8\u53ef\u80fd\u7dda\u7a2e" \
+  "\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, \"ignore_naming_rule\": "     \
+  "true}, {\"name\": \"is_newest_success\", \"type\": \"uint8_t\", "           \
+  "\"description\": "                                                          \
+  "\"\u524d\u56de\u30d1\u30b9\u63a8\u5b9a\u6709\u52b9\u30d5\u30e9\u30b0\", "   \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"displacement\", \"type\": " DISPLACEMENT_DATAINFO                         \
+  ", \"description\": \"\u5909\u4f4d\u91cf\", \"ignore_naming_rule\": true}, " \
+  "{\"name\": \"car_absolute_pos\", \"type\": " ABSOLUTEPOSITION_DATAINFO      \
+  ", \"description\": \"\u81ea\u8eca\u7d76\u5bfe\u4f4d\u7f6e\", "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"current_link_id_\", \"type\": " \
+  "\"int64_t\", \"description\": "                                             \
+  "\"\u81ea\u8eca\u8d70\u884c\u30ea\u30f3\u30af\uff29\uff24\", \"min\": -1, "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"current_lane_id_\", \"type\": " \
+  "\"int32_t\", \"description\": "                                             \
+  "\"\u81ea\u8eca\u8d70\u884c\u30ec\u30fc\u30f3\uff29\uff24\", \"min\": -1, "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"link_pos_\", \"type\": "        \
+  "\"double\", \"unit\": \"m\", \"description\": "                             \
+  "\"\u30ea\u30f3\u30af\u5185\u81ea\u8eca\u524d\u5f8c\u4f4d\u7f6e\", "         \
+  "\"min\": 0, \"max\": 1000000, \"ignore_naming_rule\": true}, {\"name\": "   \
+  "\"max_speed_\", \"type\": \"double\", \"unit\": \"m/s\", \"description\": " \
+  "\"\u8a2d\u5b9a\u901f\u5ea6\", \"min\": 0, \"max\": 100, "                   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"time_stamp_\", \"type\": "      \
+  "\"double\", \"unit\": \"sec\", \"description\": "                           \
+  "\"\u73fe\u5728\u5236\u5fa1\u6642\u523b\u79d2\", \"min\": -1, \"max\": "     \
+  "1000000, \"ignore_naming_rule\": true}, {\"name\": \"speed_\", \"type\": "  \
+  "\"double\", \"unit\": \"m/s\", \"description\": "                           \
+  "\"\u73fe\u5728\u8eca\u901f\", \"min\": 0, \"max\": 100, "                   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"cycle_time_\", \"type\": "      \
+  "\"double\", \"unit\": \"sec\", \"description\": "                           \
+  "\"\u6f14\u7b97\u5468\u671f\", \"min\": 0, \"max\": 100, "                   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"over_take_sw_status_\", "       \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u8ffd\u8d8a\u8a31\u53ef\u72b6\u614b\", \"min\": 0, \"max\": 1, "         \
+  "\"ignore_naming_rule\": true}, {\"name\": \"lane_plan_sw_status_\", "       \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u30ec\u30fc\u30f3\u30d7\u30e9\u30f3\u8a31\u53ef\u72b6\u614b\", "         \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"left_winker_\", \"type\": \"uint8_t\", \"description\": "                 \
+  "\"\u5de6\u30a6\u30a3\u30f3\u30ab\u70b9\u706f\u72b6\u614b\", \"min\": 0, "   \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": \"right_winker_\", "  \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u53f3\u30a6\u30a3\u30f3\u30ab\u70b9\u706f\u72b6\u614b\", \"min\": 0, "   \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "                     \
+  "\"steering_manual_input_\", \"type\": \"int32_t\", \"description\": "       \
+  "\"\u64cd\u8235\u4ecb\u5165\u72b6\u614b\", \"min\": 0, \"max\": 2, "         \
+  "\"ignore_naming_rule\": true}, {\"name\": \"speed_manual_input_\", "        \
+  "\"type\": \"int32_t\", \"description\": "                                   \
+  "\"\u30b9\u30d4\u30fc\u30c9\u4ecb\u5165\u72b6\u614b\", \"min\": 0, "         \
+  "\"max\": 3, \"ignore_naming_rule\": true}, {\"name\": \"acc_\", \"type\": " \
+  "\"double\", \"unit\": \"m/s2\", \"description\": "                          \
+  "\"\u73fe\u5728\u52a0\u901f\u5ea6\", \"min\": -100, \"max\": 100, "          \
+  "\"ignore_naming_rule\": true}, {\"name\": \"path_departure_state_\", "      \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u30d1\u30b9\u9038\u8131\u65b9\u5411\", \"min\": 0, \"max\": 4, "         \
+  "\"ignore_naming_rule\": true}, {\"name\": \"is_on_lane_center_\", "         \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u30aa\u30f3\u30bb\u30f3\u30bf\u30fc\u30d5\u30e9\u30b0\", \"min\": 0, "   \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "                     \
+  "\"auto_steer_control_\", \"type\": \"uint8_t\", \"description\": "          \
+  "\"\u30b9\u30c6\u30a2\u5236\u5fa1\u72b6\u614b\", \"min\": 0, \"max\": 1, "   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"auto_speed_control_\", "        \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u901f\u5ea6\u5236\u5fa1\u72b6\u614b\", \"min\": 0, \"max\": 1, "         \
+  "\"ignore_naming_rule\": true}, {\"name\": \"handness_of_traffic_\", "       \
+  "\"type\": \"int32_t\", \"description\": "                                   \
+  "\"\u5de6\u53f3\u901a\u884c\u533a\u5206\", \"min\": 0, \"max\": 1, "         \
+  "\"ignore_naming_rule\": true}, {\"name\": \"travel_disp_\", \"type\": "     \
+  "\"double\", \"unit\": \"m\", \"description\": "                             \
+  "\"\u79fb\u52d5\u91cf\u53d6\u5f97\", \"min\": -1000000, \"max\": 1000000, "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"link_pos_precise_\", "          \
+  "\"type\": \"double\", \"unit\": \"m\", \"description\": "                   \
+  "\"\u30ea\u30f3\u30af\u5185\u81ea\u8eca\u4e21\u9ad8\u7cbe\u5ea6\u4f4d\u7f6e" \
+  "\", \"min\": 0, \"max\": 1000000, \"ignore_naming_rule\": true}], "         \
+  "\"ignore_naming_rule\": true, \"ads\": false, \"name_snake_case\": "        \
+  "\"car_interpretation_result\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// CarInterpretationResult.hで定義されている型をシリアライズした時のバイト数
+#define CARINTERPRETATIONRESULT_SERIALIZED_SIZE                                \
+  (8 + 1 + 1 + 1 + DISPLACEMENT_SERIALIZED_SIZE +                              \
+   ABSOLUTEPOSITION_SERIALIZED_SIZE + 8 + 4 + 8 + 8 + 8 + 8 + 8 + 1 + 1 + 1 +  \
+   1 + 4 + 4 + 8 + 1 + 1 + 1 + 1 + 4 + 8 + 8)
+
+// 定数の定義
+#define CAR_INTERPRETATION_RESULT_DEPARTURE_LENGTH_FROM_LANE_MIN ((double)0)
+#define CAR_INTERPRETATION_RESULT_DEPARTURE_LENGTH_FROM_LANE_MAX ((double)100)
+#define CAR_INTERPRETATION_RESULT_RIGHT_LANE_BOUND_OK__MIN ((uint8_t)0)
+#define CAR_INTERPRETATION_RESULT_RIGHT_LANE_BOUND_OK__MAX ((uint8_t)1)
+#define CAR_INTERPRETATION_RESULT_LEFT_LANE_BOUND_OK__MIN ((uint8_t)0)
+#define CAR_INTERPRETATION_RESULT_LEFT_LANE_BOUND_OK__MAX ((uint8_t)1)
+#define CAR_INTERPRETATION_RESULT_IS_NEWEST_SUCCESS_MIN ((uint8_t)0)
+#define CAR_INTERPRETATION_RESULT_IS_NEWEST_SUCCESS_MAX ((uint8_t)1)
+#define CAR_INTERPRETATION_RESULT_CURRENT_LINK_ID__MIN ((int64_t)-1)
+#define CAR_INTERPRETATION_RESULT_CURRENT_LANE_ID__MIN ((int32_t)-1)
+#define CAR_INTERPRETATION_RESULT_LINK_POS__MIN ((double)0)
+#define CAR_INTERPRETATION_RESULT_LINK_POS__MAX ((double)1000000)
+#define CAR_INTERPRETATION_RESULT_MAX_SPEED__MIN ((double)0)
+#define CAR_INTERPRETATION_RESULT_MAX_SPEED__MAX ((double)100)
+#define CAR_INTERPRETATION_RESULT_TIME_STAMP__MIN ((double)-1)
+#define CAR_INTERPRETATION_RESULT_TIME_STAMP__MAX ((double)1000000)
+#define CAR_INTERPRETATION_RESULT_SPEED__MIN ((double)0)
+#define CAR_INTERPRETATION_RESULT_SPEED__MAX ((double)100)
+#define CAR_INTERPRETATION_RESULT_CYCLE_TIME__MIN ((double)0)
+#define CAR_INTERPRETATION_RESULT_CYCLE_TIME__MAX ((double)100)
+#define CAR_INTERPRETATION_RESULT_OVER_TAKE_SW_STATUS__MIN ((uint8_t)0)
+#define CAR_INTERPRETATION_RESULT_OVER_TAKE_SW_STATUS__MAX ((uint8_t)1)
+#define CAR_INTERPRETATION_RESULT_LANE_PLAN_SW_STATUS__MIN ((uint8_t)0)
+#define CAR_INTERPRETATION_RESULT_LANE_PLAN_SW_STATUS__MAX ((uint8_t)1)
+#define CAR_INTERPRETATION_RESULT_LEFT_WINKER__MIN ((uint8_t)0)
+#define CAR_INTERPRETATION_RESULT_LEFT_WINKER__MAX ((uint8_t)1)
+#define CAR_INTERPRETATION_RESULT_RIGHT_WINKER__MIN ((uint8_t)0)
+#define CAR_INTERPRETATION_RESULT_RIGHT_WINKER__MAX ((uint8_t)1)
+#define CAR_INTERPRETATION_RESULT_STEERING_MANUAL_INPUT__MIN ((int32_t)0)
+#define CAR_INTERPRETATION_RESULT_STEERING_MANUAL_INPUT__MAX ((int32_t)2)
+#define CAR_INTERPRETATION_RESULT_SPEED_MANUAL_INPUT__MIN ((int32_t)0)
+#define CAR_INTERPRETATION_RESULT_SPEED_MANUAL_INPUT__MAX ((int32_t)3)
+#define CAR_INTERPRETATION_RESULT_ACC__MIN ((double)-100)
+#define CAR_INTERPRETATION_RESULT_ACC__MAX ((double)100)
+#define CAR_INTERPRETATION_RESULT_PATH_DEPARTURE_STATE__MIN ((uint8_t)0)
+#define CAR_INTERPRETATION_RESULT_PATH_DEPARTURE_STATE__MAX ((uint8_t)4)
+#define CAR_INTERPRETATION_RESULT_IS_ON_LANE_CENTER__MIN ((uint8_t)0)
+#define CAR_INTERPRETATION_RESULT_IS_ON_LANE_CENTER__MAX ((uint8_t)1)
+#define CAR_INTERPRETATION_RESULT_AUTO_STEER_CONTROL__MIN ((uint8_t)0)
+#define CAR_INTERPRETATION_RESULT_AUTO_STEER_CONTROL__MAX ((uint8_t)1)
+#define CAR_INTERPRETATION_RESULT_AUTO_SPEED_CONTROL__MIN ((uint8_t)0)
+#define CAR_INTERPRETATION_RESULT_AUTO_SPEED_CONTROL__MAX ((uint8_t)1)
+#define CAR_INTERPRETATION_RESULT_HANDNESS_OF_TRAFFIC__MIN ((int32_t)0)
+#define CAR_INTERPRETATION_RESULT_HANDNESS_OF_TRAFFIC__MAX ((int32_t)1)
+#define CAR_INTERPRETATION_RESULT_TRAVEL_DISP__MIN ((double)-1000000)
+#define CAR_INTERPRETATION_RESULT_TRAVEL_DISP__MAX ((double)1000000)
+#define CAR_INTERPRETATION_RESULT_LINK_POS_PRECISE__MIN ((double)0)
+#define CAR_INTERPRETATION_RESULT_LINK_POS_PRECISE__MAX ((double)1000000)
+
+/* 自車解釈結果 */
+typedef struct {
+  double departure_length_from_lane; /* 車線中心からの逸脱距離 */
+  uint8_t right_lane_bound_ok_; /* 右レーンチェンジ可能線種フラグ */
+  uint8_t left_lane_bound_ok_; /* 左レーンチェンジ可能線種フラグ */
+  uint8_t is_newest_success;   /* 前回パス推定有効フラグ */
+  Displacement displacement;   /* 変位量 */
+  AbsolutePosition car_absolute_pos; /* 自車絶対位置 */
+  int64_t current_link_id_;          /* 自車走行リンクＩＤ */
+  int32_t current_lane_id_;          /* 自車走行レーンＩＤ */
+  double link_pos_;                  /* リンク内自車前後位置 */
+  double max_speed_;                 /* 設定速度 */
+  double time_stamp_;                /* 現在制御時刻秒 */
+  double speed_;                     /* 現在車速 */
+  double cycle_time_;                /* 演算周期 */
+  uint8_t over_take_sw_status_;      /* 追越許可状態 */
+  uint8_t lane_plan_sw_status_;      /* レーンプラン許可状態 */
+  uint8_t left_winker_;              /* 左ウィンカ点灯状態 */
+  uint8_t right_winker_;             /* 右ウィンカ点灯状態 */
+  int32_t steering_manual_input_;    /* 操舵介入状態 */
+  int32_t speed_manual_input_;       /* スピード介入状態 */
+  double acc_;                       /* 現在加速度 */
+  uint8_t path_departure_state_;     /* パス逸脱方向 */
+  uint8_t is_on_lane_center_;        /* オンセンターフラグ */
+  uint8_t auto_steer_control_;       /* ステア制御状態 */
+  uint8_t auto_speed_control_;       /* 速度制御状態 */
+  int32_t handness_of_traffic_;      /* 左右通行区分 */
+  double travel_disp_;               /* 移動量取得 */
+  double link_pos_precise_;          /* リンク内自車両高精度位置 */
+} CarInterpretationResult;
+
+size_t SerializeCarInterpretationResult(void *buffer,
+                                        CarInterpretationResult *data,
+                                        size_t max_buffer_size);
+size_t SerializeCarInterpretationResultAutoRelease(void *buffer, void *data,
+                                                   size_t max_buffer_size);
+size_t DeserializeCarInterpretationResult(CarInterpretationResult *data,
+                                          void *buffer);
+bool IsEqualCarInterpretationResult(CarInterpretationResult *data1,
+                                    CarInterpretationResult *data2);
+void InitializeCarInterpretationResult(CarInterpretationResult *data);
+void InitializeDefaultOnlyCarInterpretationResult(
+    CarInterpretationResult *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_CARINTERPRETATIONRESULT_H

@@ -1,0 +1,1 @@
+("~/.emacs.d/" "/home/share/20tm/")

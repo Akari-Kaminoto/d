@@ -1,0 +1,49 @@
+#ifndef DATA_DEFINITION_ADX_IDENTIFICATIONINFOGROUP_H
+#define DATA_DEFINITION_ADX_IDENTIFICATIONINFOGROUP_H
+
+#include "ADX_IdentificationResult.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADX_IDENTIFICATIONINFOGROUP_DATAINFO                                   \
+  "{\"name\": \"ADX_IdentificationInfoGroup\", \"description\": "              \
+  "\"\u8b58\u5225\u60c5\u5831\u7fa4\", \"members\": [{\"name\": "              \
+  "\"identification_result\", \"type\": " ADX_IDENTIFICATIONRESULT_DATAINFO    \
+  ", \"description\": \"\u8b58\u5225\u7d50\u679c\", \"ignore_naming_rule\": "  \
+  "true}], \"ignore_naming_rule\": true, \"ads\": false, "                     \
+  "\"name_snake_case\": \"adx_identification_info_group\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADX_IdentificationInfoGroup.hで定義されている型をシリアライズした時のバイト数
+#define ADX_IDENTIFICATIONINFOGROUP_SERIALIZED_SIZE                            \
+  (ADX_IDENTIFICATIONRESULT_SERIALIZED_SIZE)
+
+// 定数の定義
+
+/* 識別情報群 */
+typedef struct {
+  ADX_IdentificationResult identification_result; /* 識別結果 */
+} ADX_IdentificationInfoGroup;
+
+size_t SerializeADX_IdentificationInfoGroup(void *buffer,
+                                            ADX_IdentificationInfoGroup *data,
+                                            size_t max_buffer_size);
+size_t SerializeADX_IdentificationInfoGroupAutoRelease(void *buffer, void *data,
+                                                       size_t max_buffer_size);
+size_t DeserializeADX_IdentificationInfoGroup(ADX_IdentificationInfoGroup *data,
+                                              void *buffer);
+bool IsEqualADX_IdentificationInfoGroup(ADX_IdentificationInfoGroup *data1,
+                                        ADX_IdentificationInfoGroup *data2);
+void InitializeADX_IdentificationInfoGroup(ADX_IdentificationInfoGroup *data);
+void InitializeDefaultOnlyADX_IdentificationInfoGroup(
+    ADX_IdentificationInfoGroup *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADX_IDENTIFICATIONINFOGROUP_H

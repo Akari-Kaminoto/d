@@ -1,0 +1,55 @@
+#ifndef DATA_DEFINITION_OBJECTBOXNEARESTPOINT_H
+#define DATA_DEFINITION_OBJECTBOXNEARESTPOINT_H
+
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define OBJECTBOXNEARESTPOINT_DATAINFO                                         \
+  "{\"name\": \"ObjectBoxNearestPoint\", \"description\": "                    \
+  "\"\u8ddd\u96e2\uff08\uff38\uff09\u3001\u6a2a\u4f4d\u7f6e\uff08\uff39\uff09" \
+  "(\u81ea\u8eca\u5f8c\u8f2a\u8ef8\u4e2d\u5fc3\u5ea7\u6a19\u7cfb\uff09\", "    \
+  "\"members\": [{\"name\": \"nx\", \"type\": \"float\", \"unit\": \"m\", "    \
+  "\"description\": \"X\u5024\", \"min\": -10000, \"max\": 10000, "            \
+  "\"ignore_naming_rule\": true}, {\"name\": \"ny\", \"type\": \"float\", "    \
+  "\"unit\": \"m\", \"description\": \"Y\u5024\", \"min\": -10000, \"max\": "  \
+  "10000, \"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, "      \
+  "\"ads\": false, \"name_snake_case\": \"object_box_nearest_point\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ObjectBoxNearestPoint.hで定義されている型をシリアライズした時のバイト数
+#define OBJECTBOXNEARESTPOINT_SERIALIZED_SIZE (4 + 4)
+
+// 定数の定義
+#define OBJECT_BOX_NEAREST_POINT_NX_MIN ((float)-10000)
+#define OBJECT_BOX_NEAREST_POINT_NX_MAX ((float)10000)
+#define OBJECT_BOX_NEAREST_POINT_NY_MIN ((float)-10000)
+#define OBJECT_BOX_NEAREST_POINT_NY_MAX ((float)10000)
+
+/* 距離（Ｘ）、横位置（Ｙ）(自車後輪軸中心座標系） */
+typedef struct {
+  float nx; /* X値 */
+  float ny; /* Y値 */
+} ObjectBoxNearestPoint;
+
+size_t SerializeObjectBoxNearestPoint(void *buffer, ObjectBoxNearestPoint *data,
+                                      size_t max_buffer_size);
+size_t DeserializeObjectBoxNearestPoint(ObjectBoxNearestPoint *data,
+                                        void *buffer);
+size_t SerializeObjectBoxNearestPointAutoRelease(void *buffer, void *data,
+                                                 size_t max_buffer_size);
+size_t DeserializeObjectBoxNearestPointForDumper(void *data, void *buffer);
+bool IsEqualObjectBoxNearestPoint(ObjectBoxNearestPoint *data1,
+                                  ObjectBoxNearestPoint *data2);
+void InitializeObjectBoxNearestPoint(ObjectBoxNearestPoint *data);
+void InitializeDefaultOnlyObjectBoxNearestPoint(ObjectBoxNearestPoint *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_OBJECTBOXNEARESTPOINT_H
+q

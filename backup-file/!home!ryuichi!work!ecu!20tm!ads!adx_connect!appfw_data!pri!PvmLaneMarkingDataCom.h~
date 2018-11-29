@@ -1,0 +1,67 @@
+#ifndef DATA_DEFINITION_PVMLANEMARKINGDATACOM_H
+#define DATA_DEFINITION_PVMLANEMARKINGDATACOM_H
+
+#include "LaneSensingData.h"
+#include "LaneSensingData.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define PVMLANEMARKINGDATACOM_DATAINFO                                         \
+  "{\"name\": \"PvmLaneMarkingDataCom\", \"description\": "                    \
+  "\"PVM\u533a\u753b\u7dda\u8a8d\u8b58\u60c5\u5831\", \"members\": "           \
+  "[{\"name\": \"transmit_counter\", \"type\": \"uint8_t\", \"description\": " \
+  "\"\u9001\u4fe1\u30ab\u30a6\u30f3\u30bf\u30fc\", \"min\": 0, \"max\": 63, "  \
+  "\"ignore_naming_rule\": true}, {\"name\": "                                 \
+  "\"pvm_system_malfunction_flag\", \"type\": \"bool\", \"description\": "     \
+  "\"\u6545\u969c\u691c\u51fa\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"ls_data_right\", "              \
+  "\"type\": " LANESENSINGDATA_DATAINFO                                        \
+  ", \"description\": "                                                        \
+  "\"\u533a\u753b\u7dda\u8a8d\u8b58\u60c5\u5831\uff08\u53f3\uff09\", "         \
+  "\"ignore_naming_rule\": true}, {\"name\": \"ls_data_left\", "               \
+  "\"type\": " LANESENSINGDATA_DATAINFO                                        \
+  ", \"description\": "                                                        \
+  "\"\u533a\u753b\u7dda\u8a8d\u8b58\u60c5\u5831\uff08\u5de6\uff09\", "         \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"pvm_lane_marking_data_com\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// PvmLaneMarkingDataCom.hで定義されている型をシリアライズした時のバイト数
+#define PVMLANEMARKINGDATACOM_SERIALIZED_SIZE                                  \
+  (1 + 1 + LANESENSINGDATA_SERIALIZED_SIZE + LANESENSINGDATA_SERIALIZED_SIZE)
+
+// 定数の定義
+#define PVM_LANE_MARKING_DATA_COM_TRANSMIT_COUNTER_MIN ((uint8_t)0)
+#define PVM_LANE_MARKING_DATA_COM_TRANSMIT_COUNTER_MAX ((uint8_t)63)
+#define PVM_LANE_MARKING_DATA_COM_PVM_SYSTEM_MALFUNCTION_FLAG_MIN ((bool)0)
+#define PVM_LANE_MARKING_DATA_COM_PVM_SYSTEM_MALFUNCTION_FLAG_MAX ((bool)1)
+
+/* PVM区画線認識情報 */
+typedef struct {
+  uint8_t transmit_counter;         /* 送信カウンター */
+  bool pvm_system_malfunction_flag; /* 故障検出フラグ */
+  LaneSensingData ls_data_right;    /* 区画線認識情報（右） */
+  LaneSensingData ls_data_left;     /* 区画線認識情報（左） */
+} PvmLaneMarkingDataCom;
+
+size_t SerializePvmLaneMarkingDataCom(void *buffer, PvmLaneMarkingDataCom *data,
+                                      size_t max_buffer_size);
+size_t DeserializePvmLaneMarkingDataCom(PvmLaneMarkingDataCom *data,
+                                        void *buffer);
+size_t SerializePvmLaneMarkingDataComAutoRelease(void *buffer, void *data,
+                                                 size_t max_buffer_size);
+size_t DeserializePvmLaneMarkingDataComForDumper(void *data, void *buffer);
+bool IsEqualPvmLaneMarkingDataCom(PvmLaneMarkingDataCom *data1,
+                                  PvmLaneMarkingDataCom *data2);
+void InitializePvmLaneMarkingDataCom(PvmLaneMarkingDataCom *data);
+void InitializeDefaultOnlyPvmLaneMarkingDataCom(PvmLaneMarkingDataCom *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_PVMLANEMARKINGDATACOM_H

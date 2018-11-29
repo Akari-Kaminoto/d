@@ -1,0 +1,185 @@
+#ifndef DATA_DEFINITION_ADXLCMOBJINFO_H
+#define DATA_DEFINITION_ADXLCMOBJINFO_H
+
+#include "ObjBicycleInfo.h"
+#include "ObjCarInfo.h"
+#include "ObjConstructionEquipmentInfo.h"
+#include "ObjFallingInfo.h"
+#include "ObjMiscInfo.h"
+#include "ObjSignboardInfo.h"
+#include "ObjWalkerInfo.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADXLCMOBJINFO_DATAINFO                                                 \
+  "{\"name\": \"ADXLcmObjInfo\", \"description\": "                            \
+  "\"\u7269\u6a19\u60c5\u5831\", \"members\": [{\"name\": \"id\", \"type\": "  \
+  "\"uint16_t\", \"description\": \"\u7269\u6a19ID\", \"min\": 0, \"max\": "   \
+  "255, \"ignore_naming_rule\": true}, {\"name\": \"err_cov\", \"type\": "     \
+  "\"int16_t\", \"dimension\": [21], \"description\": \"error "                \
+  "covariance\u5024\", \"ignore_naming_rule\": true}, {\"name\": "             \
+  "\"attribute\", \"type\": \"uint8_t\", \"description\": "                    \
+  "\"\u7269\u6a19\u7a2e\u5225\", \"min\": 0, \"max\": 6, "                     \
+  "\"ignore_naming_rule\": true}, {\"name\": \"attribute_likelihood\", "       \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u7269\u6a19\u5c24\u5ea6\uff08\u305d\u306e\u7a2e\u5225\u3067\u3042\u308b" \
+  "\u3082\u3063\u3068\u3082\u3089\u3057\u3055\uff09\", \"min\": 0, \"max\": "  \
+  "4, \"ignore_naming_rule\": true}, {\"name\": \"dist\", \"type\": "          \
+  "\"float\", \"unit\": \"m\", \"description\": "                              \
+  "\"\u8ddd\u96e2\uff08\u7e26\u65b9\u5411\uff09\", \"max\": 500, "             \
+  "\"ignore_naming_rule\": true}, {\"name\": \"lateral_loc\", \"type\": "      \
+  "\"float\", \"unit\": \"m\", \"description\": \"\u6a2a\u4f4d\u7f6e\", "      \
+  "\"max\": 500, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"relative_speed\", \"type\": \"float\", \"unit\": \"m/s\", "               \
+  "\"description\": \"\u76f8\u5bfe\u7e26\u901f\u5ea6\", \"max\": 500, "        \
+  "\"ignore_naming_rule\": true}, {\"name\": \"relative_lateral_velocity\", "  \
+  "\"type\": \"float\", \"unit\": \"m/s\", \"description\": "                  \
+  "\"\u76f8\u5bfe\u6a2a\u901f\u5ea6\", \"max\": 500, \"ignore_naming_rule\": " \
+  "true}, {\"name\": \"width\", \"type\": \"float\", \"unit\": \"m\", "        \
+  "\"description\": \"\u6a2a\u5e45\", \"min\": 0, \"max\": 100, "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"height\", \"type\": "           \
+  "\"float\", \"unit\": \"m\", \"description\": \"\u7e26\u5e45\", \"min\": "   \
+  "0, \"max\": 100, \"ignore_naming_rule\": true}, {\"name\": \"angle\", "     \
+  "\"type\": \"float\", \"unit\": \"deg\", \"description\": "                  \
+  "\"\u76f8\u5bfe\u89d2\u5ea6\", \"max\": 180, \"ignore_naming_rule\": "       \
+  "true}, {\"name\": \"heading\", \"type\": \"float\", \"unit\": \"deg\", "    \
+  "\"description\": \"\u5411\u304d\", \"max\": 180, \"ignore_naming_rule\": "  \
+  "true}, {\"name\": \"depth\", \"type\": \"float\", \"unit\": \"m\", "        \
+  "\"description\": \"\u5965\u884c\u304d\", \"min\": 0, \"max\": 300, "        \
+  "\"ignore_naming_rule\": true}, {\"name\": \"angle_width_and_height\", "     \
+  "\"type\": \"float\", \"unit\": \"rad\", \"description\": "                  \
+  "\"\u65b9\u4f4d\u89d2\u5ea6\u5e45/\u9ad8\u3055\", \"min\": 0, \"max\": "     \
+  "0.715, \"ignore_naming_rule\": true}, {\"name\": \"new_object_flag\", "     \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u65b0\u898f\u7269\u6a19\u30d5\u30e9\u30b0\", \"ignore_naming_rule\": "   \
+  "true}, {\"name\": \"tracking_count\", \"type\": \"uint16_t\", \"unit\": "   \
+  "\"\u56de\", \"description\": "                                              \
+  "\"\u7269\u6a19\u4fe1\u983c\u5ea61\\n\uff08\u89b3\u6e2c\u56de\u6570)\", "    \
+  "\"min\": 0, \"max\": 65535, \"ignore_naming_rule\": true}, {\"name\": "     \
+  "\"hidden_count\", \"type\": \"uint8_t\", \"unit\": \"\u56de\", "            \
+  "\"description\": "                                                          \
+  "\"\u7269\u6a19\u4fe1\u983c\u5ea62\\n(\u30ed\u30b9\u30c8\u56de\u6570)\", "   \
+  "\"min\": 0, \"max\": 255, \"ignore_naming_rule\": true}, {\"name\": "       \
+  "\"extrapolating_flag\", \"type\": \"uint8_t\", \"description\": "           \
+  "\"\u7269\u6a19\u4fe1\u983c\u5ea63\\n(\u5916\u633f(\u88dc\u5b8c)"            \
+  "\u72b6\u614b)\", \"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, "   \
+  "{\"name\": \"obj_car_info\", \"type\": " OBJCARINFO_DATAINFO                \
+  ", \"description\": \"\u8eca\u4e21\u8a8d\u8b58\u95a2\u9023\u60c5\u5831\", "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"obj_walker_info\", "            \
+  "\"type\": " OBJWALKERINFO_DATAINFO                                          \
+  ", \"description\": \"\u6b69\u884c\u8005\u8a8d\u8b58\u60c5\u5831\", "        \
+  "\"ignore_naming_rule\": true}, {\"name\": \"obj_bicycle_info\", "           \
+  "\"type\": " OBJBICYCLEINFO_DATAINFO                                         \
+  ", \"description\": \"\u81ea\u8ee2\u8eca\u8a8d\u8b58\u60c5\u5831\", "        \
+  "\"ignore_naming_rule\": true}, {\"name\": \"obj_signboard_info\", "         \
+  "\"type\": " OBJSIGNBOARDINFO_DATAINFO                                       \
+  ", \"description\": \"\u770b\u677f\u8a8d\u8b58\u60c5\u5831\", "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"obj_falling_info\", "           \
+  "\"type\": " OBJFALLINGINFO_DATAINFO                                         \
+  ", \"description\": \"\u843d\u4e0b\u7269\u8a8d\u8b58\u60c5\u5831\", "        \
+  "\"ignore_naming_rule\": true}, {\"name\": "                                 \
+  "\"obj_construction_equipment_info\", "                                      \
+  "\"type\": " OBJCONSTRUCTIONEQUIPMENTINFO_DATAINFO                           \
+  ", \"description\": \"\u5de5\u4e8b\u73fe\u5834\u8a8d\u8b58\u60c5\u5831\", "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"obj_misc_info\", "              \
+  "\"type\": " OBJMISCINFO_DATAINFO                                            \
+  ", \"description\": "                                                        \
+  "\"\u305d\u306e\u4ed6\u7269\u6a19\u8a8d\u8b58\u60c5\u5831\", "               \
+  "\"ignore_naming_rule\": true}, {\"name\": \"ext_reserved\", \"type\": "     \
+  "\"uint8_t\", \"dimension\": [64], \"description\": "                        \
+  "\"\u3010Reverved\u3011\", \"ignore_naming_rule\": true}], "                 \
+  "\"ignore_naming_rule\": true, \"ads\": false, \"name_snake_case\": "        \
+  "\"adx_lcm_obj_info\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADXLcmObjInfo.hで定義されている型をシリアライズした時のバイト数
+#define ADXLCMOBJINFO_SERIALIZED_SIZE                                          \
+  (2 + 2 * (21) + 1 + 1 + 4 + 4 + 4 + 4 + 4 + 4 + 4 + 4 + 4 + 4 + 1 + 2 + 1 +  \
+   1 + OBJCARINFO_SERIALIZED_SIZE + OBJWALKERINFO_SERIALIZED_SIZE +            \
+   OBJBICYCLEINFO_SERIALIZED_SIZE + OBJSIGNBOARDINFO_SERIALIZED_SIZE +         \
+   OBJFALLINGINFO_SERIALIZED_SIZE +                                            \
+   OBJCONSTRUCTIONEQUIPMENTINFO_SERIALIZED_SIZE +                              \
+   OBJMISCINFO_SERIALIZED_SIZE + 1 * (64))
+
+// 定数の定義
+#define ADX_LCM_OBJ_INFO_ID_MIN ((uint16_t)0)
+#define ADX_LCM_OBJ_INFO_ID_MAX ((uint16_t)255)
+#define ADX_LCM_OBJ_INFO_ERR_COV_DIM1 ((size_t)21)
+#define ADX_LCM_OBJ_INFO_ATTRIBUTE_MIN ((uint8_t)0)
+#define ADX_LCM_OBJ_INFO_ATTRIBUTE_MAX ((uint8_t)6)
+#define ADX_LCM_OBJ_INFO_ATTRIBUTE_LIKELIHOOD_MIN ((uint8_t)0)
+#define ADX_LCM_OBJ_INFO_ATTRIBUTE_LIKELIHOOD_MAX ((uint8_t)4)
+#define ADX_LCM_OBJ_INFO_DIST_MAX ((float)500)
+#define ADX_LCM_OBJ_INFO_LATERAL_LOC_MAX ((float)500)
+#define ADX_LCM_OBJ_INFO_RELATIVE_SPEED_MAX ((float)500)
+#define ADX_LCM_OBJ_INFO_RELATIVE_LATERAL_VELOCITY_MAX ((float)500)
+#define ADX_LCM_OBJ_INFO_WIDTH_MIN ((float)0)
+#define ADX_LCM_OBJ_INFO_WIDTH_MAX ((float)100)
+#define ADX_LCM_OBJ_INFO_HEIGHT_MIN ((float)0)
+#define ADX_LCM_OBJ_INFO_HEIGHT_MAX ((float)100)
+#define ADX_LCM_OBJ_INFO_ANGLE_MAX ((float)180)
+#define ADX_LCM_OBJ_INFO_HEADING_MAX ((float)180)
+#define ADX_LCM_OBJ_INFO_DEPTH_MIN ((float)0)
+#define ADX_LCM_OBJ_INFO_DEPTH_MAX ((float)300)
+#define ADX_LCM_OBJ_INFO_ANGLE_WIDTH_AND_HEIGHT_MIN ((float)0)
+#define ADX_LCM_OBJ_INFO_ANGLE_WIDTH_AND_HEIGHT_MAX ((float)0.715)
+#define ADX_LCM_OBJ_INFO_TRACKING_COUNT_MIN ((uint16_t)0)
+#define ADX_LCM_OBJ_INFO_TRACKING_COUNT_MAX ((uint16_t)65535)
+#define ADX_LCM_OBJ_INFO_HIDDEN_COUNT_MIN ((uint8_t)0)
+#define ADX_LCM_OBJ_INFO_HIDDEN_COUNT_MAX ((uint8_t)255)
+#define ADX_LCM_OBJ_INFO_EXTRAPOLATING_FLAG_MIN ((uint8_t)0)
+#define ADX_LCM_OBJ_INFO_EXTRAPOLATING_FLAG_MAX ((uint8_t)1)
+#define ADX_LCM_OBJ_INFO_EXT_RESERVED_DIM1 ((size_t)64)
+
+/* 物標情報 */
+typedef struct {
+  uint16_t id;         /* 物標ID */
+  int16_t err_cov[21]; /* error covariance値 */
+  uint8_t attribute;   /* 物標種別 */
+  uint8_t attribute_likelihood; /* 物標尤度（その種別であるもっともらしさ） */
+  float dist;                   /* 距離（縦方向） */
+  float lateral_loc;                   /* 横位置 */
+  float relative_speed;                /* 相対縦速度 */
+  float relative_lateral_velocity;     /* 相対横速度 */
+  float width;                         /* 横幅 */
+  float height;                        /* 縦幅 */
+  float angle;                         /* 相対角度 */
+  float heading;                       /* 向き */
+  float depth;                         /* 奥行き */
+  float angle_width_and_height;        /* 方位角度幅/高さ */
+  uint8_t new_object_flag;             /* 新規物標フラグ */
+  uint16_t tracking_count;             /* 物標信頼度1
+            （観測回数) */
+  uint8_t hidden_count;                /* 物標信頼度2
+               (ロスト回数) */
+  uint8_t extrapolating_flag;          /* 物標信頼度3
+         (外挿(補完)状態) */
+  ObjCarInfo obj_car_info;             /* 車両認識関連情報 */
+  ObjWalkerInfo obj_walker_info;       /* 歩行者認識情報 */
+  ObjBicycleInfo obj_bicycle_info;     /* 自転車認識情報 */
+  ObjSignboardInfo obj_signboard_info; /* 看板認識情報 */
+  ObjFallingInfo obj_falling_info;     /* 落下物認識情報 */
+  ObjConstructionEquipmentInfo
+      obj_construction_equipment_info; /* 工事現場認識情報 */
+  ObjMiscInfo obj_misc_info;           /* その他物標認識情報 */
+  uint8_t ext_reserved[64];            /* 【Reverved】 */
+} ADXLcmObjInfo;
+
+size_t SerializeADXLcmObjInfo(void *buffer, ADXLcmObjInfo *data,
+                              size_t max_buffer_size);
+size_t SerializeADXLcmObjInfoAutoRelease(void *buffer, void *data,
+                                         size_t max_buffer_size);
+size_t DeserializeADXLcmObjInfo(ADXLcmObjInfo *data, void *buffer);
+bool IsEqualADXLcmObjInfo(ADXLcmObjInfo *data1, ADXLcmObjInfo *data2);
+void InitializeADXLcmObjInfo(ADXLcmObjInfo *data);
+void InitializeDefaultOnlyADXLcmObjInfo(ADXLcmObjInfo *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADXLCMOBJINFO_H

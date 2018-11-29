@@ -1,0 +1,51 @@
+#ifndef DATA_DEFINITION_FRDFARENTITYDATA_ARRAYCOM_H
+#define DATA_DEFINITION_FRDFARENTITYDATA_ARRAYCOM_H
+
+#include "FRDFarEntityData.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define FRDFARENTITYDATA_ARRAYCOM_DATAINFO                                     \
+  "{\"name\": \"FRDFarEntityData_arrayCom\", \"description\": "                \
+  "\"FRDFarEntityData\u306e\u914d\u5217\u3092\u8868\u3059\u69cb\u9020\u4f53\"" \
+  ", \"members\": [{\"name\": \"frd_far_entities\", "                          \
+  "\"type\": " FRDFARENTITYDATA_DATAINFO                                       \
+  ", \"dimension\": [8], \"description\": \"\u9060\u65b9FRD\u7269\u6a19\", "   \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"frd_far_entity_data_array_com\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// FRDFarEntityData_arrayCom.hで定義されている型をシリアライズした時のバイト数
+#define FRDFARENTITYDATA_ARRAYCOM_SERIALIZED_SIZE                              \
+  (FRDFARENTITYDATA_SERIALIZED_SIZE * (8))
+
+// 定数の定義
+#define FRD_FAR_ENTITY_DATA_ARRAY_COM_FRD_FAR_ENTITIES_DIM1 ((size_t)8)
+
+/* FRDFarEntityDataの配列を表す構造体 */
+typedef struct {
+  FRDFarEntityData frd_far_entities[8]; /* 遠方FRD物標 */
+} FRDFarEntityData_arrayCom;
+
+size_t SerializeFRDFarEntityData_arrayCom(void *buffer,
+                                          FRDFarEntityData_arrayCom *data,
+                                          size_t max_buffer_size);
+size_t SerializeFRDFarEntityData_arrayComAutoRelease(void *buffer, void *data,
+                                                     size_t max_buffer_size);
+size_t DeserializeFRDFarEntityData_arrayCom(FRDFarEntityData_arrayCom *data,
+                                            void *buffer);
+bool IsEqualFRDFarEntityData_arrayCom(FRDFarEntityData_arrayCom *data1,
+                                      FRDFarEntityData_arrayCom *data2);
+void InitializeFRDFarEntityData_arrayCom(FRDFarEntityData_arrayCom *data);
+void InitializeDefaultOnlyFRDFarEntityData_arrayCom(
+    FRDFarEntityData_arrayCom *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_FRDFARENTITYDATA_ARRAYCOM_H

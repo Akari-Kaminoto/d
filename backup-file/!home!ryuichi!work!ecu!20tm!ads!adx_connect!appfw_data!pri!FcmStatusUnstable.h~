@@ -1,0 +1,106 @@
+#ifndef DATA_DEFINITION_FCMSTATUSUNSTABLE_H
+#define DATA_DEFINITION_FCMSTATUSUNSTABLE_H
+
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define FCMSTATUSUNSTABLE_DATAINFO                                             \
+  "{\"name\": \"FcmStatusUnstable\", \"description\": "                        \
+  "\"\u30ed\u30b1\u30ab\u30e1\u4e0d\u8abf\u8981\u56e0\", \"members\": "        \
+  "[{\"name\": \"is_beyond_operation_temparature_unstable\", \"type\": "       \
+  "\"uint8_t\", \"default\": \"0.0\", \"description\": "                       \
+  "\"\u30ab\u30e1\u30e9\u9ad8\u6e29\u72b6\u614b\", \"min\": 0, \"max\": 1, "   \
+  "\"lsb\": 1}, {\"name\": \"is_camera_fogged_up_unstable\", \"type\": "       \
+  "\"uint8_t\", \"default\": \"0.0\", \"description\": "                       \
+  "\"\u30ab\u30e1\u30e9\u66c7\u308a\u30d5\u30e9\u30b0\", \"min\": 0, "         \
+  "\"max\": 1, \"lsb\": 1}, {\"name\": \"is_camera_blockage_unstable\", "      \
+  "\"type\": \"uint8_t\", \"default\": \"0.0\", \"description\": "             \
+  "\"\u30ab\u30e1\u30e9\u906e\u853d\u30d5\u30e9\u30b0\", \"min\": 0, "         \
+  "\"max\": 1, \"lsb\": 1}, {\"name\": "                                       \
+  "\"is_camera_not_guaranteed_temperature_flag_unstable\", \"type\": "         \
+  "\"uint8_t\", \"default\": \"0.0\", \"description\": "                       \
+  "\"\u30ab\u30e1\u30e9\u52d5\u4f5c\u4fdd\u8a3c\u6e29\u5ea6\u5916\u30d5\u30e9" \
+  "\u30b0\", \"min\": 0, \"max\": 1, \"lsb\": 1}, {\"name\": "                 \
+  "\"is_camera_not_guaranteed_voltage_flag_unstable\", \"type\": "             \
+  "\"uint8_t\", \"default\": \"0.0\", \"description\": "                       \
+  "\"\u30ab\u30e1\u30e9\u52d5\u4f5c\u4fdd\u8a3c\u96fb\u5727\u5916\u30d5\u30e9" \
+  "\u30b0\", \"min\": 0, \"max\": 1, \"lsb\": 1}, {\"name\": "                 \
+  "\"is_pcs_camera_high_temperature_unstable\", \"type\": \"uint8_t\", "       \
+  "\"default\": \"0.0\", \"description\": "                                    \
+  "\"PCS\u30ab\u30e1\u30e9\u9ad8\u6e29\u8a8d\u8b58\u4e0d\u53ef\", \"min\": "   \
+  "0, \"max\": 1, \"lsb\": 1}, {\"name\": \"is_direct_sunlight_unstable\", "   \
+  "\"type\": \"uint8_t\", \"default\": \"0.0\", \"description\": "             \
+  "\"\u9006\u5149\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, \"lsb\": 1}, "  \
+  "{\"name\": \"is_invalid_recognition_unstable\", \"type\": \"uint8_t\", "    \
+  "\"default\": \"0.0\", \"description\": "                                    \
+  "\"\u30ab\u30e1\u30e9\u8a8d\u8b58\u7121\u52b9\", \"min\": 0, \"max\": 1, "   \
+  "\"lsb\": 1}], \"ads\": false, \"name_snake_case\": "                        \
+  "\"fcm_status_unstable\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// FcmStatusUnstable.hで定義されている型をシリアライズした時のバイト数
+#define FCMSTATUSUNSTABLE_SERIALIZED_SIZE (1 + 1 + 1 + 1 + 1 + 1 + 1 + 1)
+
+// 定数の定義
+#define FCM_STATUS_UNSTABLE_IS_BEYOND_OPERATION_TEMPARATURE_UNSTABLE_MIN       \
+  ((uint8_t)0)
+#define FCM_STATUS_UNSTABLE_IS_BEYOND_OPERATION_TEMPARATURE_UNSTABLE_MAX       \
+  ((uint8_t)1)
+#define FCM_STATUS_UNSTABLE_IS_CAMERA_FOGGED_UP_UNSTABLE_MIN ((uint8_t)0)
+#define FCM_STATUS_UNSTABLE_IS_CAMERA_FOGGED_UP_UNSTABLE_MAX ((uint8_t)1)
+#define FCM_STATUS_UNSTABLE_IS_CAMERA_BLOCKAGE_UNSTABLE_MIN ((uint8_t)0)
+#define FCM_STATUS_UNSTABLE_IS_CAMERA_BLOCKAGE_UNSTABLE_MAX ((uint8_t)1)
+#define FCM_STATUS_UNSTABLE_IS_CAMERA_NOT_GUARANTEED_TEMPERATURE_FLAG_UNSTABLE_MIN \
+  ((uint8_t)0)
+#define FCM_STATUS_UNSTABLE_IS_CAMERA_NOT_GUARANTEED_TEMPERATURE_FLAG_UNSTABLE_MAX \
+  ((uint8_t)1)
+#define FCM_STATUS_UNSTABLE_IS_CAMERA_NOT_GUARANTEED_VOLTAGE_FLAG_UNSTABLE_MIN \
+  ((uint8_t)0)
+#define FCM_STATUS_UNSTABLE_IS_CAMERA_NOT_GUARANTEED_VOLTAGE_FLAG_UNSTABLE_MAX \
+  ((uint8_t)1)
+#define FCM_STATUS_UNSTABLE_IS_PCS_CAMERA_HIGH_TEMPERATURE_UNSTABLE_MIN        \
+  ((uint8_t)0)
+#define FCM_STATUS_UNSTABLE_IS_PCS_CAMERA_HIGH_TEMPERATURE_UNSTABLE_MAX        \
+  ((uint8_t)1)
+#define FCM_STATUS_UNSTABLE_IS_DIRECT_SUNLIGHT_UNSTABLE_MIN ((uint8_t)0)
+#define FCM_STATUS_UNSTABLE_IS_DIRECT_SUNLIGHT_UNSTABLE_MAX ((uint8_t)1)
+#define FCM_STATUS_UNSTABLE_IS_INVALID_RECOGNITION_UNSTABLE_MIN ((uint8_t)0)
+#define FCM_STATUS_UNSTABLE_IS_INVALID_RECOGNITION_UNSTABLE_MAX ((uint8_t)1)
+
+/* ロケカメ不調要因 */
+typedef struct {
+  uint8_t is_beyond_operation_temparature_unstable; /* カメラ高温状態 */
+  uint8_t is_camera_fogged_up_unstable; /* カメラ曇りフラグ */
+  uint8_t is_camera_blockage_unstable;  /* カメラ遮蔽フラグ */
+  uint8_t
+      is_camera_not_guaranteed_temperature_flag_unstable; /* カメラ動作保証温度外フラグ
+                                                             */
+  uint8_t
+      is_camera_not_guaranteed_voltage_flag_unstable; /* カメラ動作保証電圧外フラグ
+                                                         */
+  uint8_t is_pcs_camera_high_temperature_unstable; /* PCSカメラ高温認識不可 */
+  uint8_t is_direct_sunlight_unstable;             /* 逆光フラグ */
+  uint8_t is_invalid_recognition_unstable;         /* カメラ認識無効 */
+} FcmStatusUnstable;
+
+size_t SerializeFcmStatusUnstable(void *buffer, FcmStatusUnstable *data,
+                                  size_t max_buffer_size);
+size_t DeserializeFcmStatusUnstable(FcmStatusUnstable *data, void *buffer);
+size_t SerializeFcmStatusUnstableAutoRelease(void *buffer, void *data,
+                                             size_t max_buffer_size);
+size_t DeserializeFcmStatusUnstableForDumper(void *data, void *buffer);
+bool IsEqualFcmStatusUnstable(FcmStatusUnstable *data1,
+                              FcmStatusUnstable *data2);
+void InitializeFcmStatusUnstable(FcmStatusUnstable *data);
+void InitializeDefaultOnlyFcmStatusUnstable(FcmStatusUnstable *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_FCMSTATUSUNSTABLE_H
+<

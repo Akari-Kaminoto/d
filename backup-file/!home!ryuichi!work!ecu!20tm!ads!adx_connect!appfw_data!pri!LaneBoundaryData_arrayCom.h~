@@ -1,0 +1,56 @@
+#ifndef DATA_DEFINITION_LANEBOUNDARYDATA_ARRAYCOM_H
+#define DATA_DEFINITION_LANEBOUNDARYDATA_ARRAYCOM_H
+
+#include "CarState.h"
+#include "LaneBoundaryData.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define LANEBOUNDARYDATA_ARRAYCOM_DATAINFO                                     \
+  "{\"name\": \"LaneBoundaryData_arrayCom\", \"description\": "                \
+  "\"\u30ec\u30fc\u30f3\u5883\u754c\u60c5\u5831\u914d\u5217\", \"members\": "  \
+  "[{\"name\": \"pose\", \"type\": " CARSTATE_DATAINFO                         \
+  ", \"description\": \"\u8eca\u4e21\u60c5\u5831\", \"ignore_naming_rule\": "  \
+  "true}, {\"name\": \"lane_boundary_data\", "                                 \
+  "\"type\": " LANEBOUNDARYDATA_DATAINFO                                       \
+  ", \"dimension\": [4], \"description\": "                                    \
+  "\"\u30ec\u30fc\u30f3\u5883\u754c\u60c5\u5831\", \"ignore_naming_rule\": "   \
+  "true}], \"ignore_naming_rule\": true, \"ads\": false, "                     \
+  "\"name_snake_case\": \"lane_boundary_data_array_com\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// LaneBoundaryData_arrayCom.hで定義されている型をシリアライズした時のバイト数
+#define LANEBOUNDARYDATA_ARRAYCOM_SERIALIZED_SIZE                              \
+  (CARSTATE_SERIALIZED_SIZE + LANEBOUNDARYDATA_SERIALIZED_SIZE * (4))
+
+// 定数の定義
+#define LANE_BOUNDARY_DATA_ARRAY_COM_LANE_BOUNDARY_DATA_DIM1 ((size_t)4)
+
+/* レーン境界情報配列 */
+typedef struct {
+  CarState pose;                          /* 車両情報 */
+  LaneBoundaryData lane_boundary_data[4]; /* レーン境界情報 */
+} LaneBoundaryData_arrayCom;
+
+size_t SerializeLaneBoundaryData_arrayCom(void *buffer,
+                                          LaneBoundaryData_arrayCom *data,
+                                          size_t max_buffer_size);
+size_t SerializeLaneBoundaryData_arrayComAutoRelease(void *buffer, void *data,
+                                                     size_t max_buffer_size);
+size_t DeserializeLaneBoundaryData_arrayCom(LaneBoundaryData_arrayCom *data,
+                                            void *buffer);
+bool IsEqualLaneBoundaryData_arrayCom(LaneBoundaryData_arrayCom *data1,
+                                      LaneBoundaryData_arrayCom *data2);
+void InitializeLaneBoundaryData_arrayCom(LaneBoundaryData_arrayCom *data);
+void InitializeDefaultOnlyLaneBoundaryData_arrayCom(
+    LaneBoundaryData_arrayCom *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_LANEBOUNDARYDATA_ARRAYCOM_H

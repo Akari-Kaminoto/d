@@ -1,0 +1,63 @@
+#ifndef DATA_DEFINITION_ADX_FRLIDAROBJDATAINCGENERALPATH_H
+#define DATA_DEFINITION_ADX_FRLIDAROBJDATAINCGENERALPATH_H
+
+#include "ADX_ObjectInfoGroup.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADX_FRLIDAROBJDATAINCGENERALPATH_DATAINFO                              \
+  "{\"name\": \"ADX_FrLidarObjDataIncGeneralPath\", \"description\": "         \
+  "\"\u4e00\u822c\u9053\u542b\u3080\u524d\u65b9LiDAR\u7269\u6a19\u60c5\u5831"  \
+  "\", \"members\": [{\"name\": \"time_stamp\", \"type\": \"uint64_t\", "      \
+  "\"unit\": \"ms\", \"description\": "                                        \
+  "\"\u30bf\u30a4\u30e0\u30b9\u30bf\u30f3\u30d7\", \"min\": 0, \"max\": "      \
+  "1.8446744073709552e+19, \"lsb\": 1, \"ignore_naming_rule\": true}, "        \
+  "{\"name\": \"object_info_group\", \"type\": " ADX_OBJECTINFOGROUP_DATAINFO  \
+  ", \"dimension\": [49], \"description\": "                                   \
+  "\"\u7269\u6a19\u60c5\u5831\u7fa4\", \"ignore_naming_rule\": true}], "       \
+  "\"ignore_naming_rule\": true, \"ads\": false, \"name_snake_case\": "        \
+  "\"adx_fr_lidar_obj_data_inc_general_path\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADX_FrLidarObjDataIncGeneralPath.hで定義されている型をシリアライズした時のバイト数
+#define ADX_FRLIDAROBJDATAINCGENERALPATH_SERIALIZED_SIZE                       \
+  (8 + ADX_OBJECTINFOGROUP_SERIALIZED_SIZE * (49))
+
+// 定数の定義
+#define ADX_FR_LIDAR_OBJ_DATA_INC_GENERAL_PATH_TIME_STAMP_MIN ((uint64_t)0)
+#define ADX_FR_LIDAR_OBJ_DATA_INC_GENERAL_PATH_TIME_STAMP_MAX                  \
+  ((uint64_t)1.8446744073709552e+19)
+#define ADX_FR_LIDAR_OBJ_DATA_INC_GENERAL_PATH_OBJECT_INFO_GROUP_DIM1          \
+  ((size_t)49)
+
+/* 一般道含む前方LiDAR物標情報 */
+typedef struct {
+  uint64_t time_stamp;                       /* タイムスタンプ */
+  ADX_ObjectInfoGroup object_info_group[49]; /* 物標情報群 */
+} ADX_FrLidarObjDataIncGeneralPath;
+
+size_t SerializeADX_FrLidarObjDataIncGeneralPath(
+    void *buffer, ADX_FrLidarObjDataIncGeneralPath *data,
+    size_t max_buffer_size);
+size_t
+SerializeADX_FrLidarObjDataIncGeneralPathAutoRelease(void *buffer, void *data,
+                                                     size_t max_buffer_size);
+size_t DeserializeADX_FrLidarObjDataIncGeneralPath(
+    ADX_FrLidarObjDataIncGeneralPath *data, void *buffer);
+bool IsEqualADX_FrLidarObjDataIncGeneralPath(
+    ADX_FrLidarObjDataIncGeneralPath *data1,
+    ADX_FrLidarObjDataIncGeneralPath *data2);
+void InitializeADX_FrLidarObjDataIncGeneralPath(
+    ADX_FrLidarObjDataIncGeneralPath *data);
+void InitializeDefaultOnlyADX_FrLidarObjDataIncGeneralPath(
+    ADX_FrLidarObjDataIncGeneralPath *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADX_FRLIDAROBJDATAINCGENERALPATH_H

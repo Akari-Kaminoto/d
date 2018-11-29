@@ -1,0 +1,67 @@
+#ifndef DATA_DEFINITION_ADX_IDENTIFICATIONRESULT_H
+#define DATA_DEFINITION_ADX_IDENTIFICATIONRESULT_H
+
+#include "ADX_LayerInfo.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADX_IDENTIFICATIONRESULT_DATAINFO                                      \
+  "{\"name\": \"ADX_IdentificationResult\", \"description\": "                 \
+  "\"\u8b58\u5225\u7d50\u679c\", \"members\": [{\"name\": \"object_flags\", "  \
+  "\"type\": \"uint32_t\", \"description\": \"Object Flags\", \"min\": 0, "    \
+  "\"max\": 4294967295, \"ignore_naming_rule\": true}, {\"name\": "            \
+  "\"classification\", \"type\": \"uint8_t\", \"description\": "               \
+  "\"Classification\", \"min\": 0, \"max\": 255, \"ignore_naming_rule\": "     \
+  "true}, {\"name\": \"rect_width\", \"type\": \"uint16_t\", "                 \
+  "\"description\": \"\u8b58\u5225\u4fe1\u983c\u5ea6\", \"min\": 0, \"max\": " \
+  "65535, \"lsb\": 0.01, \"ignore_naming_rule\": true}, {\"name\": "           \
+  "\"layer_info_array\", \"type\": " ADX_LAYERINFO_DATAINFO                    \
+  ", \"dimension\": [6], \"description\": "                                    \
+  "\"\u30ec\u30a4\u30e4\u30fc\u60c5\u5831\", \"ignore_naming_rule\": true}], " \
+  "\"ignore_naming_rule\": true, \"ads\": false, \"name_snake_case\": "        \
+  "\"adx_identification_result\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADX_IdentificationResult.hで定義されている型をシリアライズした時のバイト数
+#define ADX_IDENTIFICATIONRESULT_SERIALIZED_SIZE                               \
+  (4 + 1 + 2 + ADX_LAYERINFO_SERIALIZED_SIZE * (6))
+
+// 定数の定義
+#define ADX_IDENTIFICATION_RESULT_OBJECT_FLAGS_MIN ((uint32_t)0)
+#define ADX_IDENTIFICATION_RESULT_OBJECT_FLAGS_MAX ((uint32_t)4294967295)
+#define ADX_IDENTIFICATION_RESULT_CLASSIFICATION_MIN ((uint8_t)0)
+#define ADX_IDENTIFICATION_RESULT_CLASSIFICATION_MAX ((uint8_t)255)
+#define ADX_IDENTIFICATION_RESULT_RECT_WIDTH_MIN ((uint16_t)0)
+#define ADX_IDENTIFICATION_RESULT_RECT_WIDTH_MAX ((uint16_t)65535)
+#define ADX_IDENTIFICATION_RESULT_LAYER_INFO_ARRAY_DIM1 ((size_t)6)
+
+/* 識別結果 */
+typedef struct {
+  uint32_t object_flags;             /* Object Flags */
+  uint8_t classification;            /* Classification */
+  uint16_t rect_width;               /* 識別信頼度 */
+  ADX_LayerInfo layer_info_array[6]; /* レイヤー情報 */
+} ADX_IdentificationResult;
+
+size_t SerializeADX_IdentificationResult(void *buffer,
+                                         ADX_IdentificationResult *data,
+                                         size_t max_buffer_size);
+size_t SerializeADX_IdentificationResultAutoRelease(void *buffer, void *data,
+                                                    size_t max_buffer_size);
+size_t DeserializeADX_IdentificationResult(ADX_IdentificationResult *data,
+                                           void *buffer);
+bool IsEqualADX_IdentificationResult(ADX_IdentificationResult *data1,
+                                     ADX_IdentificationResult *data2);
+void InitializeADX_IdentificationResult(ADX_IdentificationResult *data);
+void InitializeDefaultOnlyADX_IdentificationResult(
+    ADX_IdentificationResult *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADX_IDENTIFICATIONRESULT_H

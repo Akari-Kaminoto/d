@@ -1,0 +1,51 @@
+#ifndef DATA_DEFINITION_FRLIDARENTITYDATA_ARRAYCOM_H
+#define DATA_DEFINITION_FRLIDARENTITYDATA_ARRAYCOM_H
+
+#include "FrLidarEntityData.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define FRLIDARENTITYDATA_ARRAYCOM_DATAINFO                                    \
+  "{\"name\": \"FrLidarEntityData_arrayCom\", \"description\": "               \
+  "\"FrLiDAR\u7269\u6a19\u306e\u914d\u5217\u3092\u8868\u3059\u69cb\u9020"      \
+  "\u4f53\", \"members\": [{\"name\": \"fr_lidar_entity\", "                   \
+  "\"type\": " FRLIDARENTITYDATA_DATAINFO                                      \
+  ", \"dimension\": [49], \"description\": \"FrLiDAR\u7269\u6a19\", "          \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"fr_lidar_entity_data_array_com\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// FrLidarEntityData_arrayCom.hで定義されている型をシリアライズした時のバイト数
+#define FRLIDARENTITYDATA_ARRAYCOM_SERIALIZED_SIZE                             \
+  (FRLIDARENTITYDATA_SERIALIZED_SIZE * (49))
+
+// 定数の定義
+#define FR_LIDAR_ENTITY_DATA_ARRAY_COM_FR_LIDAR_ENTITY_DIM1 ((size_t)49)
+
+/* FrLiDAR物標の配列を表す構造体 */
+typedef struct {
+  FrLidarEntityData fr_lidar_entity[49]; /* FrLiDAR物標 */
+} FrLidarEntityData_arrayCom;
+
+size_t SerializeFrLidarEntityData_arrayCom(void *buffer,
+                                           FrLidarEntityData_arrayCom *data,
+                                           size_t max_buffer_size);
+size_t SerializeFrLidarEntityData_arrayComAutoRelease(void *buffer, void *data,
+                                                      size_t max_buffer_size);
+size_t DeserializeFrLidarEntityData_arrayCom(FrLidarEntityData_arrayCom *data,
+                                             void *buffer);
+bool IsEqualFrLidarEntityData_arrayCom(FrLidarEntityData_arrayCom *data1,
+                                       FrLidarEntityData_arrayCom *data2);
+void InitializeFrLidarEntityData_arrayCom(FrLidarEntityData_arrayCom *data);
+void InitializeDefaultOnlyFrLidarEntityData_arrayCom(
+    FrLidarEntityData_arrayCom *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_FRLIDARENTITYDATA_ARRAYCOM_H

@@ -1,0 +1,99 @@
+#ifndef DATA_DEFINITION_LUXSCANDATACOM_H
+#define DATA_DEFINITION_LUXSCANDATACOM_H
+
+#include "CarState.h"
+#include "Info.h"
+#include "LuxMissingAlert.h"
+#include "Point3Df.h"
+#include "Point3Df.h"
+#include "Point3Df.h"
+#include "ScanInfo.h"
+#include "ScanInfo.h"
+#include "ScanInfo.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define LUXSCANDATACOM_DATAINFO                                                \
+  "{\"name\": \"LuxScanDataCom\", \"description\": \"Lux\u70b9\u90e1\", "      \
+  "\"members\": [{\"name\": \"devicesInfo\", \"type\": " INFO_DATAINFO         \
+  ", \"dimension\": [6], \"description\": \"\u60c5\u5831\", "                  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"obstacles\", "                  \
+  "\"type\": " POINT3DF_DATAINFO ", \"dimension\": [10000], \"description\": " \
+                                 "\"3D point\", \"ignore_naming_rule\": "      \
+                                 "true}, {\"name\": \"ground\", "              \
+                                 "\"type\": " POINT3DF_DATAINFO                \
+  ", \"dimension\": [10000], \"description\": \"3D point\", "                  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"others\", "                     \
+  "\"type\": " POINT3DF_DATAINFO ", \"dimension\": [10000], \"description\": " \
+                                 "\"3D point\", \"ignore_naming_rule\": "      \
+                                 "true}, {\"name\": \"infoObstacles\", "       \
+                                 "\"type\": " SCANINFO_DATAINFO                \
+  ", \"dimension\": [10000], \"description\": \"info data\", "                 \
+  "\"ignore_naming_rule\": true}, {\"name\": \"infoGround\", "                 \
+  "\"type\": " SCANINFO_DATAINFO ", \"dimension\": [10000], \"description\": " \
+                                 "\"info data\", \"ignore_naming_rule\": "     \
+                                 "true}, {\"name\": \"infoOthers\", "          \
+                                 "\"type\": " SCANINFO_DATAINFO                \
+  ", \"dimension\": [10000], \"description\": \"info data\", "                 \
+  "\"ignore_naming_rule\": true}, {\"name\": \"car_pose\", "                   \
+  "\"type\": " CARSTATE_DATAINFO                                               \
+  ", \"description\": \"\u81ea\u8eca\u60c5\u5831\", \"ignore_naming_rule\": "  \
+  "true}, {\"name\": \"scan_time\", \"type\": \"double\", \"description\": "   \
+  "\"\u70b9\u5217\u30c7\u30fc\u30bf\u306e\u30bf\u30a4\u30e0\u30b9\u30bf\u30f3" \
+  "\u30d7\", \"ignore_naming_rule\": true}, {\"name\": \"missing_alert\", "    \
+  "\"type\": " LUXMISSINGALERT_DATAINFO                                        \
+  ", \"description\": \"Lux\u306e\u6b20\u843d\u60c5\u5831\", "                 \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"lux_scan_data_com\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// LuxScanDataCom.hで定義されている型をシリアライズした時のバイト数
+#define LUXSCANDATACOM_SERIALIZED_SIZE                                         \
+  (INFO_SERIALIZED_SIZE * (6) + POINT3DF_SERIALIZED_SIZE * (10000) +           \
+   POINT3DF_SERIALIZED_SIZE * (10000) + POINT3DF_SERIALIZED_SIZE * (10000) +   \
+   SCANINFO_SERIALIZED_SIZE * (10000) + SCANINFO_SERIALIZED_SIZE * (10000) +   \
+   SCANINFO_SERIALIZED_SIZE * (10000) + CARSTATE_SERIALIZED_SIZE + 8 +         \
+   LUXMISSINGALERT_SERIALIZED_SIZE)
+
+// 定数の定義
+#define LUX_SCAN_DATA_COM_DEVICESINFO_DIM1 ((size_t)6)
+#define LUX_SCAN_DATA_COM_OBSTACLES_DIM1 ((size_t)10000)
+#define LUX_SCAN_DATA_COM_GROUND_DIM1 ((size_t)10000)
+#define LUX_SCAN_DATA_COM_OTHERS_DIM1 ((size_t)10000)
+#define LUX_SCAN_DATA_COM_INFOOBSTACLES_DIM1 ((size_t)10000)
+#define LUX_SCAN_DATA_COM_INFOGROUND_DIM1 ((size_t)10000)
+#define LUX_SCAN_DATA_COM_INFOOTHERS_DIM1 ((size_t)10000)
+
+/* Lux点郡 */
+typedef struct {
+  Info devicesInfo[6];           /* 情報 */
+  Point3Df obstacles[10000];     /* 3D point */
+  Point3Df ground[10000];        /* 3D point */
+  Point3Df others[10000];        /* 3D point */
+  ScanInfo infoObstacles[10000]; /* info data */
+  ScanInfo infoGround[10000];    /* info data */
+  ScanInfo infoOthers[10000];    /* info data */
+  CarState car_pose;             /* 自車情報 */
+  double scan_time;              /* 点列データのタイムスタンプ */
+  LuxMissingAlert missing_alert; /* Luxの欠落情報 */
+} LuxScanDataCom;
+
+size_t SerializeLuxScanDataCom(void *buffer, LuxScanDataCom *data,
+                               size_t max_buffer_size);
+size_t DeserializeLuxScanDataCom(LuxScanDataCom *data, void *buffer);
+size_t SerializeLuxScanDataComAutoRelease(void *buffer, void *data,
+                                          size_t max_buffer_size);
+size_t DeserializeLuxScanDataComForDumper(void *data, void *buffer);
+bool IsEqualLuxScanDataCom(LuxScanDataCom *data1, LuxScanDataCom *data2);
+void InitializeLuxScanDataCom(LuxScanDataCom *data);
+void InitializeDefaultOnlyLuxScanDataCom(LuxScanDataCom *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_LUXSCANDATACOM_H

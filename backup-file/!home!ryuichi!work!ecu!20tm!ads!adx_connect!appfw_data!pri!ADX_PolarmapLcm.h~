@@ -1,0 +1,54 @@
+#ifndef DATA_DEFINITION_ADX_POLARMAPLCM_H
+#define DATA_DEFINITION_ADX_POLARMAPLCM_H
+
+#include "CarState.h"
+#include "LcmPolarFreeSpaceInfo.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADX_POLARMAPLCM_DATAINFO                                               \
+  "{\"name\": \"ADX_PolarmapLcm\", \"description\": "                          \
+  "\"\u30dd\u30fc\u30e9\u30de\u30c3\u30d7 (\u30ed\u30b1\u30ab\u30e1)\", "      \
+  "\"members\": [{\"name\": \"adx_pm_lcm_car_state\", "                        \
+  "\"type\": " CARSTATE_DATAINFO                                               \
+  ", \"description\": \"\u81ea\u8eca\u4f4d\u7f6e\u60c5\u5831\", "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"adx_pm_lcm_free_space_info\", " \
+  "\"type\": " LCMPOLARFREESPACEINFO_DATAINFO                                  \
+  ", \"dimension\": [302], \"description\": "                                  \
+  "\"\u30d5\u30ea\u30fc\u30b9\u30da\u30fc\u30b9\u8a8d\u8b58\u60c5\u5831\", "   \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"adx_polarmap_lcm\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADX_PolarmapLcm.hで定義されている型をシリアライズした時のバイト数
+#define ADX_POLARMAPLCM_SERIALIZED_SIZE                                        \
+  (CARSTATE_SERIALIZED_SIZE + LCMPOLARFREESPACEINFO_SERIALIZED_SIZE * (302))
+
+// 定数の定義
+#define ADX_POLARMAP_LCM_ADX_PM_LCM_FREE_SPACE_INFO_DIM1 ((size_t)302)
+
+/* ポーラマップ (ロケカメ) */
+typedef struct {
+  CarState adx_pm_lcm_car_state; /* 自車位置情報 */
+  LcmPolarFreeSpaceInfo
+      adx_pm_lcm_free_space_info[302]; /* フリースペース認識情報 */
+} ADX_PolarmapLcm;
+
+size_t SerializeADX_PolarmapLcm(void *buffer, ADX_PolarmapLcm *data,
+                                size_t max_buffer_size);
+size_t SerializeADX_PolarmapLcmAutoRelease(void *buffer, void *data,
+                                           size_t max_buffer_size);
+size_t DeserializeADX_PolarmapLcm(ADX_PolarmapLcm *data, void *buffer);
+bool IsEqualADX_PolarmapLcm(ADX_PolarmapLcm *data1, ADX_PolarmapLcm *data2);
+void InitializeADX_PolarmapLcm(ADX_PolarmapLcm *data);
+void InitializeDefaultOnlyADX_PolarmapLcm(ADX_PolarmapLcm *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADX_POLARMAPLCM_H

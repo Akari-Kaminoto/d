@@ -1,0 +1,446 @@
+#ifndef DATA_DEFINITION_FRDSENSORINFOCOM_H
+#define DATA_DEFINITION_FRDSENSORINFOCOM_H
+
+#include "CarState.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define FRDSENSORINFOCOM_DATAINFO                                              \
+  "{\"name\": \"FRDSensorInfoCom\", \"description\": "                         \
+  "\"\u901a\u4fe1\u7528\u524d\u65b9\u30df\u30ea\u6ce2\u30ec\u30fc\u30c0\u60c5" \
+  "\u5831\", \"members\": [{\"name\": \"pose\", \"type\": " CARSTATE_DATAINFO  \
+  ", \"description\": \"\u8eca\u4e21\u60c5\u5831\", \"ignore_naming_rule\": "  \
+  "true}, {\"name\": \"beam_axis_displacement_v\", \"type\": \"uint8_t\", "    \
+  "\"description\": \"\u30d3\u30fc\u30e0\u8ef8\u30ba\u30ec(\u5782\u76f4)\", "  \
+  "\"min\": 0, \"max\": 127, \"ignore_naming_rule\": true}, {\"name\": "       \
+  "\"func_code\", \"type\": \"uint8_t\", \"description\": "                    \
+  "\"\u6a5f\u80fd\u30b3\u30fc\u30c9\", \"min\": 0, \"max\": 63, "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"beam_axis_displacement_h\", "   \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u30d3\u30fc\u30e0\u8ef8\u30ba\u30ec(\u6c34\u5e73)\", \"min\": 0, "       \
+  "\"max\": 127, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"destination_info\", \"type\": \"uint8_t\", \"description\": "             \
+  "\"\u30bb\u30f3\u30b5\u4ed5\u5411\u60c5\u5831\", \"min\": 0, \"max\": 31, "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"adjust_comp_flag5\", "          \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u8abf\u6574\u5b8c\u4e86\u30d5\u30e9\u30b05\", \"min\": 0, \"max\": 1, "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"is_unadjust\", \"type\": "      \
+  "\"uint8_t\", \"description\": \"\u672a\u8abf\u6574\u30d5\u30e9\u30b0\", "   \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"is_heat\", \"type\": \"uint8_t\", \"description\": "                      \
+  "\"\u9ad8\u6e29\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "               \
+  "\"ignore_naming_rule\": true}, {\"name\": \"is_low_volt\", \"type\": "      \
+  "\"uint8_t\", \"description\": \"\u4f4e\u96fb\u5727\u30d5\u30e9\u30b0\", "   \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"is_malfunction\", \"type\": \"uint8_t\", \"description\": "               \
+  "\"\u30bb\u30f3\u30b5\u6545\u969c\u30d5\u30e9\u30b0\", \"min\": 0, "         \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": \"is_trans_error\", " \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u901a\u4fe1\u7570\u5e38\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"is_sending\", \"type\": "       \
+  "\"uint8_t\", \"description\": \"\u9001\u4fe1\u4e2d\u30d5\u30e9\u30b0\", "   \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"is_reset_completion\", \"type\": \"uint8_t\", \"description\": "          \
+  "\"\u4ed5\u5411\u5730\u30ea\u30bb\u30c3\u30c8\u5b8c\u4e86\u30d5\u30e9\u30b0" \
+  "\", \"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "     \
+  "\"is_memory_completion\", \"type\": \"uint8_t\", \"description\": "         \
+  "\"\u8a18\u61b6\u5b8c\u4e86\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"is_g_sensor_cal_completion\", " \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"G\u30bb\u30f3\u30b5CAL\u5b8c\u4e86\u30d5\u30e9\u30b0\", \"min\": 0, "     \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": \"dirt_count\", "     \
+  "\"type\": \"int32_t\", \"description\": "                                   \
+  "\"\u6c5a\u308c\u30ab\u30a6\u30f3\u30bf\u5024\", \"min\": 0, \"max\": "      \
+  "6300, \"ignore_naming_rule\": true}, {\"name\": "                           \
+  "\"dirt_possibility_flag_v\", \"type\": \"uint8_t\", \"description\": "      \
+  "\"\u6c5a\u308c\u53ef\u80fd\u6027\u30d5\u30e9\u30b0(\u5782\u76f4)\", "       \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"dirt_possibility_flag_h\", \"type\": \"uint8_t\", \"description\": "      \
+  "\"\u6c5a\u308c\u53ef\u80fd\u6027\u30d5\u30e9\u30b0(\u6c34\u5e73)\", "       \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"is_dirt_sensor\", \"type\": \"uint8_t\", \"description\": "               \
+  "\"\u30bb\u30f3\u30b5\u6c5a\u308c\u30d5\u30e9\u30b0\", \"min\": 0, "         \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "                     \
+  "\"is_dirt_sensor_pcs\", \"type\": \"uint8_t\", \"description\": "           \
+  "\"\u30bb\u30f3\u30b5\u6c5a\u308c\u30d5\u30e9\u30b02\", \"min\": 0, "        \
+  "\"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "                     \
+  "\"motor_start_times\", \"type\": \"uint8_t\", \"description\": "            \
+  "\"\u30e2\u30fc\u30bf\u7a3c\u52d5\u56de\u6570\", \"min\": 0, \"max\": 255, " \
+  "\"ignore_naming_rule\": true}, {\"name\": \"axis_err_code\", \"type\": "    \
+  "\"uint8_t\", \"description\": "                                             \
+  "\"\u8ef8\u8abf\u6574\u30a8\u30e9\u30fc\u30b3\u30fc\u30c9\", \"min\": 0, "   \
+  "\"max\": 31, \"ignore_naming_rule\": true}, {\"name\": "                    \
+  "\"target_distance\", \"type\": \"float\", \"unit\": \"m\", "                \
+  "\"description\": \"\u30bf\u30fc\u30b2\u30c3\u30c8\u8ddd\u96e2\", \"min\": " \
+  "0, \"max\": 25.5, \"ignore_naming_rule\": true}, {\"name\": "               \
+  "\"sync_count210\", \"type\": \"uint8_t\", \"description\": "                \
+  "\"\u540c\u671f\u30ab\u30a6\u30f3\u30bf210\", \"min\": 0, \"max\": 255, "    \
+  "\"ignore_naming_rule\": true}, {\"name\": \"road_form_est_r\", \"type\": "  \
+  "\"int32_t\", \"unit\": \"m\", \"description\": "                            \
+  "\"\u9053\u8def\u5f62\u72b6\u63a8\u5b9aR\", \"max\": 32767, "                \
+  "\"ignore_naming_rule\": true}, {\"name\": \"mwr_sync_count\", \"type\": "   \
+  "\"int32_t\", \"description\": "                                             \
+  "\"MWR\u540c\u671f\u30ab\u30a6\u30f3\u30bf\", \"min\": 0, \"max\": 65535, "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"complex_env_flag\", \"type\": " \
+  "\"uint8_t\", \"description\": "                                             \
+  "\"\u8907\u96d1\u74b0\u5883\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"complex_env_in_tunnel\", "      \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u8907\u96d1\u74b0\u5883\u30d5\u30e9\u30b02\", \"min\": 0, \"max\": 1, "  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"detect_rain\", \"type\": "      \
+  "\"uint8_t\", \"description\": "                                             \
+  "\"\u964d\u96e8\u691c\u77e5\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, "   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"exist_lvn_object\", \"type\": " \
+  "\"uint8_t\", \"description\": "                                             \
+  "\"LVN\u505c\u8eca\u4e2d\u7269\u4f53\u5b58\u5728\u30d5\u30e9\u30b0\", "      \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"simple_env_flag\", \"type\": \"uint8_t\", \"description\": "              \
+  "\"\u5358\u7d14\u74b0\u5883\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 3, "   \
+  "\"ignore_naming_rule\": true}, {\"name\": \"sync_count211\", \"type\": "    \
+  "\"uint8_t\", \"description\": "                                             \
+  "\"\u540c\u671f\u30ab\u30a6\u30f3\u30bf211\", \"min\": 0, \"max\": 255, "    \
+  "\"ignore_naming_rule\": true}, {\"name\": "                                 \
+  "\"axis_displacement_amount1_v\", \"type\": \"float\", \"unit\": \"deg\", "  \
+  "\"description\": "                                                          \
+  "\"\u8ef8\u30ba\u30ec\u91cf1\uff08\u5782\u76f4\uff09\u8a8d\u8b58\", "        \
+  "\"max\": 31.5, \"ignore_naming_rule\": true}, {\"name\": "                  \
+  "\"axis_displacement_amount2_v\", \"type\": \"float\", \"unit\": \"deg\", "  \
+  "\"description\": "                                                          \
+  "\"\u8ef8\u30ba\u30ec\u91cf2\uff08\u5782\u76f4\uff09\u30cf\u30fc\u30c9\", "  \
+  "\"max\": 25.5, \"ignore_naming_rule\": true}, {\"name\": "                  \
+  "\"axis_displacement_stddev2_v\", \"type\": \"uint8_t\", \"description\": "  \
+  "\"\u8ef8\u30ba\u30ec\u91cf\u6a19\u6e96\u504f\u5dee2\uff08\u5782\u76f4"      \
+  "\uff09\u30cf\u30fc\u30c9\", \"min\": 0, \"max\": 15, "                      \
+  "\"ignore_naming_rule\": true}, {\"name\": "                                 \
+  "\"axis_displacement_stddev_est_v\", \"type\": \"uint8_t\", "                \
+  "\"description\": "                                                          \
+  "\"\u8ef8\u30ba\u30ec\u91cf\u6a19\u6e96\u504f\u5dee\u63a8\u5b9a\u50241"      \
+  "\uff08\u5782\u76f4\uff09\u8a8d\u8b58\", \"min\": 0, \"max\": 15, "          \
+  "\"ignore_naming_rule\": true}, {\"name\": "                                 \
+  "\"is_correcting_axis_displacement_v\", \"type\": \"uint8_t\", "             \
+  "\"description\": "                                                          \
+  "\"\u8ef8\u305a\u308c\u88dc\u6b63\u4e2d\u30d5\u30e9\u30b0\uff08\u5782\u76f4" \
+  "\uff09\", \"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, "          \
+  "{\"name\": \"axis_displacement_correct_amount_v\", \"type\": \"float\", "   \
+  "\"unit\": \"deg\", \"description\": "                                       \
+  "\"\u8ef8\u305a\u308c\u88dc\u6b63\u91cf\uff08\u5782\u76f4\uff09\", "         \
+  "\"max\": 6.3, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"axis_displacement_correct_diag1_v\", \"type\": \"uint8_t\", "             \
+  "\"description\": "                                                          \
+  "\"\u8ef8\u30ba\u30ec\u30c0\u30a4\u30a2\u30b01\uff08\u5782\u76f4\uff09\", "  \
+  "\"min\": 0, \"max\": 7, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"detect_invalid_axis_displacement_v\", \"type\": \"uint8_t\", "            \
+  "\"description\": "                                                          \
+  "\"\u8ef8\u30ba\u30ec\u691c\u77e5\u4e0d\u53ef\uff08\u5782\u76f4\uff09\u30cf" \
+  "\u30fc\u30c9\", \"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, "    \
+  "{\"name\": \"need_axis_displacement_correction_v\", \"type\": "             \
+  "\"uint8_t\", \"description\": "                                             \
+  "\"\u8ef8\u305a\u308c\u88dc\u6b63\u8981\u30d5\u30e9\u30b0\uff08\u5782\u76f4" \
+  "\uff09\", \"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, "          \
+  "{\"name\": \"is_error_axis_displacement_h\", \"type\": \"uint8_t\", "       \
+  "\"description\": "                                                          \
+  "\"\u8ef8\u30ba\u30ec\u30c0\u30a4\u30a2\u30b02\uff08\u6c34\u5e73\uff09\", "  \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"detect_invalid_axis_displacement_h\", \"type\": \"uint8_t\", "            \
+  "\"description\": "                                                          \
+  "\"\u8ef8\u30ba\u30ec\u691c\u77e5\u4e0d\u53ef\uff08\u6c34\u5e73\uff09\", "   \
+  "\"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, {\"name\": "         \
+  "\"axis_displacement_correct_amount_h\", \"type\": \"float\", \"unit\": "    \
+  "\"deg\", \"description\": "                                                 \
+  "\"\u8ef8\u305a\u308c\u7dcf\u88dc\u6b63\u91cf\uff08\u6c34\u5e73\uff09\", "   \
+  "\"max\": 6.3, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"carried_out_axis_displacement_correct_h\", \"type\": \"uint8_t\", "       \
+  "\"description\": "                                                          \
+  "\"\u8ef8\u305a\u308c\u88dc\u6b63\u5b9f\u65bd\u30d5\u30e9\u30b0\uff08\u6c34" \
+  "\u5e73\uff09\", \"min\": 0, \"max\": 1, \"ignore_naming_rule\": true}, "    \
+  "{\"name\": \"sync_count212\", \"type\": \"uint8_t\", \"description\": "     \
+  "\"\u540c\u671f\u30ab\u30a6\u30f3\u30bf212\", \"min\": 0, \"max\": 255, "    \
+  "\"ignore_naming_rule\": true}, {\"name\": \"axis_displacement_est_h\", "    \
+  "\"type\": \"float\", \"dimension\": [3], \"unit\": \"deg\", "               \
+  "\"description\": "                                                          \
+  "\"\u8ef8\u30ba\u30ec\u63a8\u5b9a\u50241\uff5e3\uff08\u6c34\u5e73\uff09\", " \
+  "\"max\": 6.3, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"axis_displacement_reset_flag\", \"type\": \"uint8_t\", \"dimension\": "   \
+  "[3], \"description\": "                                                     \
+  "\"\u8ef8\u30ba\u30ec\u63a8\u5b9a\u50241\uff5e3\u30ea\u30bb\u30c3\u30c8"     \
+  "\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 1, \"ignore_naming_rule\": "     \
+  "true}, {\"name\": \"axis_displacement_stddev_h\", \"type\": \"float\", "    \
+  "\"dimension\": [3], \"unit\": \"deg\", \"description\": "                   \
+  "\"\u8ef8\u30ba\u30ec\u63a8\u5b9a\u50241\uff5e3\u6a19\u6e96\u504f\u5dee"     \
+  "\uff08\u6c34\u5e73\uff09\", \"max\": 1.26, \"ignore_naming_rule\": true}, " \
+  "{\"name\": \"sync_count213\", \"type\": \"uint8_t\", \"description\": "     \
+  "\"\u540c\u671f\u30ab\u30a6\u30f3\u30bf213\", \"min\": 0, \"max\": 255, "    \
+  "\"ignore_naming_rule\": true}, {\"name\": \"left_point_seq_length\", "      \
+  "\"type\": \"float\", \"unit\": \"m\", \"description\": "                    \
+  "\"\u5de6\u70b9\u5217\u9577\", \"min\": 0, \"max\": 25.4, "                  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"left_point_seq_position\", "    \
+  "\"type\": \"float\", \"unit\": \"m\", \"description\": "                    \
+  "\"\u5de6\u70b9\u5217\u6a2a\u4f4d\u7f6e\", \"min\": 0, \"max\": 5.08, "      \
+  "\"ignore_naming_rule\": true}, {\"name\": \"left_point_seq_distance\", "    \
+  "\"type\": \"float\", \"unit\": \"m\", \"description\": "                    \
+  "\"\u5de6\u70b9\u5217\u8ddd\u96e2\", \"min\": 0, \"max\": 20.46, "           \
+  "\"ignore_naming_rule\": true}, {\"name\": \"right_point_seq_length\", "     \
+  "\"type\": \"float\", \"unit\": \"m\", \"description\": "                    \
+  "\"\u53f3\u70b9\u5217\u9577\", \"min\": 0, \"max\": 25.4, "                  \
+  "\"ignore_naming_rule\": true}, {\"name\": \"right_point_seq_position\", "   \
+  "\"type\": \"float\", \"unit\": \"m\", \"description\": "                    \
+  "\"\u53f3\u70b9\u5217\u6a2a\u4f4d\u7f6e\", \"min\": 0, \"max\": 5.08, "      \
+  "\"ignore_naming_rule\": true}, {\"name\": \"right_point_seq_distance\", "   \
+  "\"type\": \"float\", \"unit\": \"m\", \"description\": "                    \
+  "\"\u53f3\u70b9\u5217\u8ddd\u96e2\", \"min\": 0, \"max\": 20.46, "           \
+  "\"ignore_naming_rule\": true}, {\"name\": \"sensor_information1\", "        \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"FRD\u30bb\u30f3\u30b5\u60c5\u58311\", \"min\": 0, \"max\": 255, "         \
+  "\"ignore_naming_rule\": true}, {\"name\": \"destination_error_flag\", "     \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u4ed5\u5411\u7570\u5e38\u30d5\u30e9\u30b0\", \"min\": 0, \"max\": 255, " \
+  "\"ignore_naming_rule\": true}, {\"name\": \"adjust_comp_flag1\", "          \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u8ef8\u8abf\u6574\u30e2\u30fc\u30c9\u30d5\u30e9\u30b01\", \"min\": 0, "  \
+  "\"max\": 255, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"adjust_comp_flag2\", \"type\": \"uint8_t\", \"description\": "            \
+  "\"\u8ef8\u8abf\u6574\u30e2\u30fc\u30c9\u30d5\u30e9\u30b02\", \"min\": 0, "  \
+  "\"max\": 255, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"adjust_comp_flag3\", \"type\": \"uint8_t\", \"description\": "            \
+  "\"\u8ef8\u8abf\u6574\u30e2\u30fc\u30c9\u30d5\u30e9\u30b03\", \"min\": 0, "  \
+  "\"max\": 255, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"adjust_comp_flag4\", \"type\": \"uint8_t\", \"description\": "            \
+  "\"\u8ef8\u8abf\u6574\u30e2\u30fc\u30c9\u30d5\u30e9\u30b04\", \"min\": 0, "  \
+  "\"max\": 255, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"adjust_comp_flag6\", \"type\": \"uint8_t\", \"description\": "            \
+  "\"\u8ef8\u8abf\u6574\u30e2\u30fc\u30c9\u30d5\u30e9\u30b06\", \"min\": 0, "  \
+  "\"max\": 255, \"ignore_naming_rule\": true}, {\"name\": "                   \
+  "\"sensor_information2\", \"type\": \"uint8_t\", \"description\": "          \
+  "\"FRD\u30bb\u30f3\u30b5\u60c5\u58312\", \"min\": 0, \"max\": 255, "         \
+  "\"ignore_naming_rule\": true}, {\"name\": \"sensor_information3\", "        \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"FRD\u30bb\u30f3\u30b5\u60c5\u58313\", \"min\": 0, \"max\": 255, "         \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"frd_sensor_info_com\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// FRDSensorInfoCom.hで定義されている型をシリアライズした時のバイト数
+#define FRDSENSORINFOCOM_SERIALIZED_SIZE                                       \
+  (CARSTATE_SERIALIZED_SIZE + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 +  \
+   1 + 1 + 4 + 1 + 1 + 1 + 1 + 1 + 1 + 4 + 1 + 4 + 4 + 1 + 1 + 1 + 1 + 1 + 1 + \
+   4 + 4 + 1 + 1 + 1 + 4 + 1 + 1 + 1 + 1 + 1 + 4 + 1 + 1 + 4 * (3) + 1 * (3) + \
+   4 * (3) + 1 + 4 + 4 + 4 + 4 + 4 + 4 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1)
+
+// 定数の定義
+#define FRD_SENSOR_INFO_COM_BEAM_AXIS_DISPLACEMENT_V_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_BEAM_AXIS_DISPLACEMENT_V_MAX ((uint8_t)127)
+#define FRD_SENSOR_INFO_COM_FUNC_CODE_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_FUNC_CODE_MAX ((uint8_t)63)
+#define FRD_SENSOR_INFO_COM_BEAM_AXIS_DISPLACEMENT_H_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_BEAM_AXIS_DISPLACEMENT_H_MAX ((uint8_t)127)
+#define FRD_SENSOR_INFO_COM_DESTINATION_INFO_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_DESTINATION_INFO_MAX ((uint8_t)31)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG5_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG5_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_UNADJUST_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_UNADJUST_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_HEAT_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_HEAT_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_LOW_VOLT_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_LOW_VOLT_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_MALFUNCTION_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_MALFUNCTION_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_TRANS_ERROR_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_TRANS_ERROR_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_SENDING_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_SENDING_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_RESET_COMPLETION_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_RESET_COMPLETION_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_MEMORY_COMPLETION_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_MEMORY_COMPLETION_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_G_SENSOR_CAL_COMPLETION_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_G_SENSOR_CAL_COMPLETION_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_DIRT_COUNT_MIN ((int32_t)0)
+#define FRD_SENSOR_INFO_COM_DIRT_COUNT_MAX ((int32_t)6300)
+#define FRD_SENSOR_INFO_COM_DIRT_POSSIBILITY_FLAG_V_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_DIRT_POSSIBILITY_FLAG_V_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_DIRT_POSSIBILITY_FLAG_H_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_DIRT_POSSIBILITY_FLAG_H_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_DIRT_SENSOR_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_DIRT_SENSOR_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_DIRT_SENSOR_PCS_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_DIRT_SENSOR_PCS_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_MOTOR_START_TIMES_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_MOTOR_START_TIMES_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_AXIS_ERR_CODE_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_AXIS_ERR_CODE_MAX ((uint8_t)31)
+#define FRD_SENSOR_INFO_COM_TARGET_DISTANCE_MIN ((float)0)
+#define FRD_SENSOR_INFO_COM_TARGET_DISTANCE_MAX ((float)25.5)
+#define FRD_SENSOR_INFO_COM_SYNC_COUNT210_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_SYNC_COUNT210_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_ROAD_FORM_EST_R_MAX ((int32_t)32767)
+#define FRD_SENSOR_INFO_COM_MWR_SYNC_COUNT_MIN ((int32_t)0)
+#define FRD_SENSOR_INFO_COM_MWR_SYNC_COUNT_MAX ((int32_t)65535)
+#define FRD_SENSOR_INFO_COM_COMPLEX_ENV_FLAG_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_COMPLEX_ENV_FLAG_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_COMPLEX_ENV_IN_TUNNEL_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_COMPLEX_ENV_IN_TUNNEL_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_DETECT_RAIN_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_DETECT_RAIN_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_EXIST_LVN_OBJECT_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_EXIST_LVN_OBJECT_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_SIMPLE_ENV_FLAG_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_SIMPLE_ENV_FLAG_MAX ((uint8_t)3)
+#define FRD_SENSOR_INFO_COM_SYNC_COUNT211_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_SYNC_COUNT211_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_AMOUNT1_V_MAX ((float)31.5)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_AMOUNT2_V_MAX ((float)25.5)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_STDDEV2_V_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_STDDEV2_V_MAX ((uint8_t)15)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_STDDEV_EST_V_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_STDDEV_EST_V_MAX ((uint8_t)15)
+#define FRD_SENSOR_INFO_COM_IS_CORRECTING_AXIS_DISPLACEMENT_V_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_CORRECTING_AXIS_DISPLACEMENT_V_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_CORRECT_AMOUNT_V_MAX ((float)6.3)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_CORRECT_DIAG1_V_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_CORRECT_DIAG1_V_MAX ((uint8_t)7)
+#define FRD_SENSOR_INFO_COM_DETECT_INVALID_AXIS_DISPLACEMENT_V_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_DETECT_INVALID_AXIS_DISPLACEMENT_V_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_NEED_AXIS_DISPLACEMENT_CORRECTION_V_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_NEED_AXIS_DISPLACEMENT_CORRECTION_V_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_IS_ERROR_AXIS_DISPLACEMENT_H_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_IS_ERROR_AXIS_DISPLACEMENT_H_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_DETECT_INVALID_AXIS_DISPLACEMENT_H_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_DETECT_INVALID_AXIS_DISPLACEMENT_H_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_CORRECT_AMOUNT_H_MAX ((float)6.3)
+#define FRD_SENSOR_INFO_COM_CARRIED_OUT_AXIS_DISPLACEMENT_CORRECT_H_MIN        \
+  ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_CARRIED_OUT_AXIS_DISPLACEMENT_CORRECT_H_MAX        \
+  ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_SYNC_COUNT212_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_SYNC_COUNT212_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_EST_H_MAX ((float)6.3)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_EST_H_DIM1 ((size_t)3)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_RESET_FLAG_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_RESET_FLAG_MAX ((uint8_t)1)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_RESET_FLAG_DIM1 ((size_t)3)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_STDDEV_H_MAX ((float)1.26)
+#define FRD_SENSOR_INFO_COM_AXIS_DISPLACEMENT_STDDEV_H_DIM1 ((size_t)3)
+#define FRD_SENSOR_INFO_COM_SYNC_COUNT213_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_SYNC_COUNT213_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_LEFT_POINT_SEQ_LENGTH_MIN ((float)0)
+#define FRD_SENSOR_INFO_COM_LEFT_POINT_SEQ_LENGTH_MAX ((float)25.4)
+#define FRD_SENSOR_INFO_COM_LEFT_POINT_SEQ_POSITION_MIN ((float)0)
+#define FRD_SENSOR_INFO_COM_LEFT_POINT_SEQ_POSITION_MAX ((float)5.08)
+#define FRD_SENSOR_INFO_COM_LEFT_POINT_SEQ_DISTANCE_MIN ((float)0)
+#define FRD_SENSOR_INFO_COM_LEFT_POINT_SEQ_DISTANCE_MAX ((float)20.46)
+#define FRD_SENSOR_INFO_COM_RIGHT_POINT_SEQ_LENGTH_MIN ((float)0)
+#define FRD_SENSOR_INFO_COM_RIGHT_POINT_SEQ_LENGTH_MAX ((float)25.4)
+#define FRD_SENSOR_INFO_COM_RIGHT_POINT_SEQ_POSITION_MIN ((float)0)
+#define FRD_SENSOR_INFO_COM_RIGHT_POINT_SEQ_POSITION_MAX ((float)5.08)
+#define FRD_SENSOR_INFO_COM_RIGHT_POINT_SEQ_DISTANCE_MIN ((float)0)
+#define FRD_SENSOR_INFO_COM_RIGHT_POINT_SEQ_DISTANCE_MAX ((float)20.46)
+#define FRD_SENSOR_INFO_COM_SENSOR_INFORMATION1_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_SENSOR_INFORMATION1_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_DESTINATION_ERROR_FLAG_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_DESTINATION_ERROR_FLAG_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG1_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG1_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG2_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG2_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG3_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG3_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG4_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG4_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG6_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_ADJUST_COMP_FLAG6_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_SENSOR_INFORMATION2_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_SENSOR_INFORMATION2_MAX ((uint8_t)255)
+#define FRD_SENSOR_INFO_COM_SENSOR_INFORMATION3_MIN ((uint8_t)0)
+#define FRD_SENSOR_INFO_COM_SENSOR_INFORMATION3_MAX ((uint8_t)255)
+
+/* 通信用前方ミリ波レーダ情報 */
+typedef struct {
+  CarState pose;                      /* 車両情報 */
+  uint8_t beam_axis_displacement_v;   /* ビーム軸ズレ(垂直) */
+  uint8_t func_code;                  /* 機能コード */
+  uint8_t beam_axis_displacement_h;   /* ビーム軸ズレ(水平) */
+  uint8_t destination_info;           /* センサ仕向情報 */
+  uint8_t adjust_comp_flag5;          /* 調整完了フラグ5 */
+  uint8_t is_unadjust;                /* 未調整フラグ */
+  uint8_t is_heat;                    /* 高温フラグ */
+  uint8_t is_low_volt;                /* 低電圧フラグ */
+  uint8_t is_malfunction;             /* センサ故障フラグ */
+  uint8_t is_trans_error;             /* 通信異常フラグ */
+  uint8_t is_sending;                 /* 送信中フラグ */
+  uint8_t is_reset_completion;        /* 仕向地リセット完了フラグ */
+  uint8_t is_memory_completion;       /* 記憶完了フラグ */
+  uint8_t is_g_sensor_cal_completion; /* GセンサCAL完了フラグ */
+  int32_t dirt_count;                 /* 汚れカウンタ値 */
+  uint8_t dirt_possibility_flag_v;    /* 汚れ可能性フラグ(垂直) */
+  uint8_t dirt_possibility_flag_h;    /* 汚れ可能性フラグ(水平) */
+  uint8_t is_dirt_sensor;             /* センサ汚れフラグ */
+  uint8_t is_dirt_sensor_pcs;         /* センサ汚れフラグ2 */
+  uint8_t motor_start_times;          /* モータ稼動回数 */
+  uint8_t axis_err_code;              /* 軸調整エラーコード */
+  float target_distance;              /* ターゲット距離 */
+  uint8_t sync_count210;              /* 同期カウンタ210 */
+  int32_t road_form_est_r;            /* 道路形状推定R */
+  int32_t mwr_sync_count;             /* MWR同期カウンタ */
+  uint8_t complex_env_flag;           /* 複雑環境フラグ */
+  uint8_t complex_env_in_tunnel;      /* 複雑環境フラグ2 */
+  uint8_t detect_rain;                /* 降雨検知フラグ */
+  uint8_t exist_lvn_object;           /* LVN停車中物体存在フラグ */
+  uint8_t simple_env_flag;            /* 単純環境フラグ */
+  uint8_t sync_count211;              /* 同期カウンタ211 */
+  float axis_displacement_amount1_v;  /* 軸ズレ量1（垂直）認識 */
+  float axis_displacement_amount2_v;  /* 軸ズレ量2（垂直）ハード */
+  uint8_t axis_displacement_stddev2_v; /* 軸ズレ量標準偏差2（垂直）ハード */
+  uint8_t
+      axis_displacement_stddev_est_v; /* 軸ズレ量標準偏差推定値1（垂直）認識 */
+  uint8_t is_correcting_axis_displacement_v; /* 軸ずれ補正中フラグ（垂直） */
+  float axis_displacement_correct_amount_v; /* 軸ずれ補正量（垂直） */
+  uint8_t axis_displacement_correct_diag1_v; /* 軸ズレダイアグ1（垂直） */
+  uint8_t detect_invalid_axis_displacement_v; /* 軸ズレ検知不可（垂直）ハード */
+  uint8_t need_axis_displacement_correction_v; /* 軸ずれ補正要フラグ（垂直） */
+  uint8_t is_error_axis_displacement_h; /* 軸ズレダイアグ2（水平） */
+  uint8_t detect_invalid_axis_displacement_h; /* 軸ズレ検知不可（水平） */
+  float axis_displacement_correct_amount_h; /* 軸ずれ総補正量（水平） */
+  uint8_t
+      carried_out_axis_displacement_correct_h; /* 軸ずれ補正実施フラグ（水平）
+                                                  */
+  uint8_t sync_count212;                       /* 同期カウンタ212 */
+  float axis_displacement_est_h[3]; /* 軸ズレ推定値1～3（水平） */
+  uint8_t axis_displacement_reset_flag[3]; /* 軸ズレ推定値1～3リセットフラグ */
+  float axis_displacement_stddev_h[3]; /* 軸ズレ推定値1～3標準偏差（水平） */
+  uint8_t sync_count213;               /* 同期カウンタ213 */
+  float left_point_seq_length;    /* 左点列長 */
+  float left_point_seq_position;  /* 左点列横位置 */
+  float left_point_seq_distance;  /* 左点列距離 */
+  float right_point_seq_length;   /* 右点列長 */
+  float right_point_seq_position; /* 右点列横位置 */
+  float right_point_seq_distance; /* 右点列距離 */
+  uint8_t sensor_information1;    /* FRDセンサ情報1 */
+  uint8_t destination_error_flag; /* 仕向異常フラグ */
+  uint8_t adjust_comp_flag1;      /* 軸調整モードフラグ1 */
+  uint8_t adjust_comp_flag2;      /* 軸調整モードフラグ2 */
+  uint8_t adjust_comp_flag3;      /* 軸調整モードフラグ3 */
+  uint8_t adjust_comp_flag4;      /* 軸調整モードフラグ4 */
+  uint8_t adjust_comp_flag6;      /* 軸調整モードフラグ6 */
+  uint8_t sensor_information2;    /* FRDセンサ情報2 */
+  uint8_t sensor_information3;    /* FRDセンサ情報3 */
+} FRDSensorInfoCom;
+
+size_t SerializeFRDSensorInfoCom(void *buffer, FRDSensorInfoCom *data,
+                                 size_t max_buffer_size);
+size_t SerializeFRDSensorInfoComAutoRelease(void *buffer, void *data,
+                                            size_t max_buffer_size);
+size_t DeserializeFRDSensorInfoCom(FRDSensorInfoCom *data, void *buffer);
+bool IsEqualFRDSensorInfoCom(FRDSensorInfoCom *data1, FRDSensorInfoCom *data2);
+void InitializeFRDSensorInfoCom(FRDSensorInfoCom *data);
+void InitializeDefaultOnlyFRDSensorInfoCom(FRDSensorInfoCom *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_FRDSENSORINFOCOM_H

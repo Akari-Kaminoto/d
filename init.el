@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/11/07 10:37:37 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/11/29 16:07:04 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -179,7 +179,16 @@
     (defun track-mouse (e))
     (setq mouse-sel-mode t)
   
-))
+    ))
+;;; 共通のhi-line設定
+(defvar global-hl-line-timer-exclude-modes '(todotxt-mode))
+(defun global-hl-line-timer-function ()
+  (unless (memq major-mode global-hl-line-timer-exclude-modes)
+    (global-hl-line-unhighlight-all)
+    (let ((global-hl-line-mode t))
+      (global-hl-line-highlight))))
+(setq global-hl-line-timer
+      (run-with-idle-timer 0.03 t 'global-hl-line-timer-function))
 ;;;
 ;;; CUI/GUIで分ける設定ここまで
 ;;;
@@ -546,6 +555,10 @@
 (use-package helm
   :init
   (helm-mode t)
+
+  :config
+  ;;; M-yでkill-ringを回す
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
   
   ;; C-hで前の文字削除
   (define-key helm-map (kbd "C-h") 'delete-backward-char)
@@ -923,11 +936,11 @@
   (global-set-key "\M-y" 'popup-kill-ring))
 
 ;;; popup-switcher
-;;(use-package popup-switcher
-;;  :config
-;;  (global-set-key (kbd "\C-x b") 'psw-switch-buffer)
-;;  (global-set-key [f3] 'psw-switch-function)
-;;  (setq psw-popup-menu-max-length 15))
+(use-package popup-switcher
+  :config
+  (global-set-key (kbd "\C-x b") 'psw-switch-buffer)
+  (global-set-key [f3] 'psw-switch-function)
+  (setq psw-popup-menu-max-length 15))
 
 ;;; move-text
 ;;; M-↑ M-↓で現在行やリージョンを移動
@@ -1029,7 +1042,7 @@
 (use-package google-translate
   :config
   ;; キーバインドの設定（お好みで）
-  (global-set-key (kbd "C-c C-t") 'google-translate-at-point)
+  (global-set-key (kbd "C-c T") 'google-translate-at-point)
 
   ;; 翻訳のデフォルト値を設定（en -> ja）
   (custom-set-variables
@@ -1042,7 +1055,6 @@
 
 
 ;;;shackle
-
 (use-package shackle
   :config
   (setq shackle-rules
@@ -1137,6 +1149,35 @@
 (use-package eshell-git-prompt
   :config
   (eshell-git-prompt-use-theme 'git-radar))
+
+;; doxymacs mode
+(require 'doxymacs)
+;; usage
+;; M-x doxymacs-mode
+;;
+;; C-c d i	ファイルへのコメントを挿入
+;; C-c d f	カーソルの下にある関数へのコメントを挿入
+;; C-c d ;	メンバへのコメントを挿入
+;; C-c d m	複数行の空コメントを挿入
+;; C-c d s	一行の空コメントを挿入
+;; custom c-mode hook for doxymacs
+(defun doxy-custom-c-mode-hook ()
+  (doxymacs-mode 1)
+  (setq doxymacs-doxygen-style "Qt")
+  (setq doxymacs-command-character "@")
+
+  (add-hook 'c-mode-common-hook 'doxy-custom-c-mode-hook)
+  )
+
+;;; projectile
+(use-package projectile
+  :config
+  (projectile-global-mode))
+
+;;;helm-projectile
+(use-package helm-projectile
+  :config
+  (helm-projectile-on))
 
 ;;;---------パッケージ毎の設定終わり
 
@@ -1289,13 +1330,13 @@
   
   ;; ace-isearch
   (use-package ace-isearch
-    :config
-    (global-ace-isearch-mode +1)
-    (custom-set-variables
-     '(ace-isearch-function 'avy-goto-char)
-     '(ace-isearch-use-jump 'printing-char))
-
-    (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
+   :config
+   (global-ace-isearch-mode +1)
+   (custom-set-variables
+    '(ace-isearch-jump-delay 1.00)
+     '(ace-isearch-function 'avy-goto-char)    
+    '(ace-isearch-use-jump 'printing-char))
+     (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
 
   ;; dired-du
   (use-package dired-du

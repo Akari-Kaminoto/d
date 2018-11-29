@@ -1,0 +1,64 @@
+#ifndef DATA_DEFINITION_ADX_OBJECTINFOGROUP_H
+#define DATA_DEFINITION_ADX_OBJECTINFOGROUP_H
+
+#include "ADX_BasicInfoGroup.h"
+#include "ADX_IdentificationInfoGroup.h"
+#include "ADX_RectangularInfoGroup.h"
+#include "ADX_SpeedInfoGroup.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADX_OBJECTINFOGROUP_DATAINFO                                           \
+  "{\"name\": \"ADX_ObjectInfoGroup\", \"description\": "                      \
+  "\"\u7269\u6a19\u60c5\u5831\u7fa4\", \"members\": [{\"name\": "              \
+  "\"basic_info_group\", \"type\": " ADX_BASICINFOGROUP_DATAINFO               \
+  ", \"description\": \"\u57fa\u672c\u60c5\u5831\u7fa4\", "                    \
+  "\"ignore_naming_rule\": true}, {\"name\": \"rectangular_info_group\", "     \
+  "\"type\": " ADX_RECTANGULARINFOGROUP_DATAINFO                               \
+  ", \"description\": \"\u77e9\u5f62\u60c5\u5831\u7fa4\", "                    \
+  "\"ignore_naming_rule\": true}, {\"name\": \"speed_info_group\", "           \
+  "\"type\": " ADX_SPEEDINFOGROUP_DATAINFO                                     \
+  ", \"description\": \"\u901f\u5ea6\u60c5\u5831\u7fa4\", "                    \
+  "\"ignore_naming_rule\": true}, {\"name\": \"identification_info_group\", "  \
+  "\"type\": " ADX_IDENTIFICATIONINFOGROUP_DATAINFO                            \
+  ", \"description\": \"\u8b58\u5225\u60c5\u5831\u7fa4\", "                    \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"adx_object_info_group\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADX_ObjectInfoGroup.hで定義されている型をシリアライズした時のバイト数
+#define ADX_OBJECTINFOGROUP_SERIALIZED_SIZE                                    \
+  (ADX_BASICINFOGROUP_SERIALIZED_SIZE +                                        \
+   ADX_RECTANGULARINFOGROUP_SERIALIZED_SIZE +                                  \
+   ADX_SPEEDINFOGROUP_SERIALIZED_SIZE +                                        \
+   ADX_IDENTIFICATIONINFOGROUP_SERIALIZED_SIZE)
+
+// 定数の定義
+
+/* 物標情報群 */
+typedef struct {
+  ADX_BasicInfoGroup basic_info_group;                   /* 基本情報群 */
+  ADX_RectangularInfoGroup rectangular_info_group;       /* 矩形情報群 */
+  ADX_SpeedInfoGroup speed_info_group;                   /* 速度情報群 */
+  ADX_IdentificationInfoGroup identification_info_group; /* 識別情報群 */
+} ADX_ObjectInfoGroup;
+
+size_t SerializeADX_ObjectInfoGroup(void *buffer, ADX_ObjectInfoGroup *data,
+                                    size_t max_buffer_size);
+size_t SerializeADX_ObjectInfoGroupAutoRelease(void *buffer, void *data,
+                                               size_t max_buffer_size);
+size_t DeserializeADX_ObjectInfoGroup(ADX_ObjectInfoGroup *data, void *buffer);
+bool IsEqualADX_ObjectInfoGroup(ADX_ObjectInfoGroup *data1,
+                                ADX_ObjectInfoGroup *data2);
+void InitializeADX_ObjectInfoGroup(ADX_ObjectInfoGroup *data);
+void InitializeDefaultOnlyADX_ObjectInfoGroup(ADX_ObjectInfoGroup *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADX_OBJECTINFOGROUP_H

@@ -1,0 +1,50 @@
+#ifndef DATA_DEFINITION_FCMSTATUSDATA_H
+#define DATA_DEFINITION_FCMSTATUSDATA_H
+
+#include "FcmStatusFailure.h"
+#include "FcmStatusUnstable.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define FCMSTATUSDATA_DATAINFO                                                 \
+  "{\"name\": \"FcmStatusData\", \"description\": "                            \
+  "\"FCM\u7570\u5e38\u691c\u51fa\", \"members\": [{\"name\": "                 \
+  "\"fcm_status_failure\", \"type\": " FCMSTATUSFAILURE_DATAINFO               \
+  ", \"description\": \"FCM\u6545\u969c\u8981\u56e0\", "                       \
+  "\"ignore_naming_rule\": true}, {\"name\": \"fcm_status_unstable\", "        \
+  "\"type\": " FCMSTATUSUNSTABLE_DATAINFO                                      \
+  ", \"description\": \"FCM\u4e0d\u8abf\u8981\u56e0\", "                       \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"fcm_status_data\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// FcmStatusData.hで定義されている型をシリアライズした時のバイト数
+#define FCMSTATUSDATA_SERIALIZED_SIZE                                          \
+  (FCMSTATUSFAILURE_SERIALIZED_SIZE + FCMSTATUSUNSTABLE_SERIALIZED_SIZE)
+
+// 定数の定義
+
+/* FCM異常検出 */
+typedef struct {
+  FcmStatusFailure fcm_status_failure;   /* FCM故障要因 */
+  FcmStatusUnstable fcm_status_unstable; /* FCM不調要因 */
+} FcmStatusData;
+
+size_t SerializeFcmStatusData(void *buffer, FcmStatusData *data,
+                              size_t max_buffer_size);
+size_t SerializeFcmStatusDataAutoRelease(void *buffer, void *data,
+                                         size_t max_buffer_size);
+size_t DeserializeFcmStatusData(FcmStatusData *data, void *buffer);
+bool IsEqualFcmStatusData(FcmStatusData *data1, FcmStatusData *data2);
+void InitializeFcmStatusData(FcmStatusData *data);
+void InitializeDefaultOnlyFcmStatusData(FcmStatusData *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_FCMSTATUSDATA_H

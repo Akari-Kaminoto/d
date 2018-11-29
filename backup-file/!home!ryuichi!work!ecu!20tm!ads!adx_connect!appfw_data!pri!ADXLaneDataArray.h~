@@ -1,0 +1,51 @@
+#ifndef DATA_DEFINITION_ADXLANEDATAARRAY_H
+#define DATA_DEFINITION_ADXLANEDATAARRAY_H
+
+#include "CarState.h"
+#include "LaneData.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADXLANEDATAARRAY_DATAINFO                                              \
+  "{\"name\": \"ADXLaneDataArray\", \"description\": "                         \
+  "\"ADX\u51fa\u529b\u30ec\u30fc\u30f3\u60c5\u5831\u914d\u5217\", "            \
+  "\"members\": [{\"name\": \"pose\", \"type\": " CARSTATE_DATAINFO            \
+  ", \"description\": \"\u8eca\u4e21\u60c5\u5831\", \"ignore_naming_rule\": "  \
+  "true}, {\"name\": \"lanedata\", \"type\": " LANEDATA_DATAINFO               \
+  ", \"dimension\": [4], \"description\": "                                    \
+  "\"\u30ec\u30fc\u30f3\u60c5\u5831\", \"ignore_naming_rule\": true}], "       \
+  "\"ignore_naming_rule\": true, \"ads\": false, \"name_snake_case\": "        \
+  "\"adx_lane_data_array\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADXLaneDataArray.hで定義されている型をシリアライズした時のバイト数
+#define ADXLANEDATAARRAY_SERIALIZED_SIZE                                       \
+  (CARSTATE_SERIALIZED_SIZE + LANEDATA_SERIALIZED_SIZE * (4))
+
+// 定数の定義
+#define ADX_LANE_DATA_ARRAY_LANEDATA_DIM1 ((size_t)4)
+
+/* ADX出力レーン情報配列 */
+typedef struct {
+  CarState pose;        /* 車両情報 */
+  LaneData lanedata[4]; /* レーン情報 */
+} ADXLaneDataArray;
+
+size_t SerializeADXLaneDataArray(void *buffer, ADXLaneDataArray *data,
+                                 size_t max_buffer_size);
+size_t SerializeADXLaneDataArrayAutoRelease(void *buffer, void *data,
+                                            size_t max_buffer_size);
+size_t DeserializeADXLaneDataArray(ADXLaneDataArray *data, void *buffer);
+bool IsEqualADXLaneDataArray(ADXLaneDataArray *data1, ADXLaneDataArray *data2);
+void InitializeADXLaneDataArray(ADXLaneDataArray *data);
+void InitializeDefaultOnlyADXLaneDataArray(ADXLaneDataArray *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADXLANEDATAARRAY_H

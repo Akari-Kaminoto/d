@@ -1,0 +1,4 @@
+
+((digest . "d981b09a2d7f6393615de122833337dc") (undo-list nil ("
+" . 201) ((marker . 1134) . -1) ((marker . 1134) . -1) ((marker* . 201) . 1) ((marker* . 201) . 1) ((marker* . 201) . 1) ((marker . 227) . -1) nil ("#include \"ADX_LR_SensorStatus.h\"" . 201) ((marker* . 201) . 32) ((marker) . -32) nil ("
+" . 141) ((marker . 141) . -1) ((marker . 141) . -1) ((marker* . 141) . 1) ((marker* . 141) . 1) ((marker* . 141) . 1) ((marker* . 141) . 1) ((marker* . 141) . 1) ((marker* . 141) . 1) ((marker* . 141) . 1) ((marker* . 141) . 1) ((marker . 227) . -1) nil ("#include \"ADX_FR_SensorStatus.h\"" . 141) ((marker . 141) . -27) ((marker* . 141) . 5) ((marker* . 141) . 5) ((marker . 141) . -27) ((marker . 141) . -27) ((marker* . 141) . 5) ((marker* . 141) . 5) ((marker . 141) . -27) ((marker* . 141) . 32) ((marker* . 141) . 5) ((marker) . -32) (t 23534 38120 55000 0)))

@@ -1,0 +1,53 @@
+#ifndef DATA_DEFINITION_ADX_INCMOBJECTDATA_H
+#define DATA_DEFINITION_ADX_INCMOBJECTDATA_H
+
+#include "CarState.h"
+#include "ObjInfo.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define ADX_INCMOBJECTDATA_DATAINFO                                            \
+  "{\"name\": \"ADX_IncmObjectData\", \"description\": "                       \
+  "\"\u7269\u6a19\u60c5\u5831 (\u96fb\u5b50\u30a4\u30f3\u30ca\u30fc)\", "      \
+  "\"members\": [{\"name\": \"adx_obj_incm_car_state\", "                      \
+  "\"type\": " CARSTATE_DATAINFO                                               \
+  ", \"description\": \"\u81ea\u8eca\u4f4d\u7f6e\u60c5\u5831\", "              \
+  "\"ignore_naming_rule\": true}, {\"name\": \"adx_incm_obj_status\", "        \
+  "\"type\": " OBJINFO_DATAINFO                                                \
+  ", \"dimension\": [256], \"description\": \"\u7269\u6a19\u60c5\u5831\", "    \
+  "\"ignore_naming_rule\": true}], \"ignore_naming_rule\": true, \"ads\": "    \
+  "false, \"name_snake_case\": \"adx_incm_object_data\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// ADX_IncmObjectData.hで定義されている型をシリアライズした時のバイト数
+#define ADX_INCMOBJECTDATA_SERIALIZED_SIZE                                     \
+  (CARSTATE_SERIALIZED_SIZE + OBJINFO_SERIALIZED_SIZE * (256))
+
+// 定数の定義
+#define ADX_INCM_OBJECT_DATA_ADX_INCM_OBJ_STATUS_DIM1 ((size_t)256)
+
+/* 物標情報 (電子インナー) */
+typedef struct {
+  CarState adx_obj_incm_car_state;  /* 自車位置情報 */
+  ObjInfo adx_incm_obj_status[256]; /* 物標情報 */
+} ADX_IncmObjectData;
+
+size_t SerializeADX_IncmObjectData(void *buffer, ADX_IncmObjectData *data,
+                                   size_t max_buffer_size);
+size_t SerializeADX_IncmObjectDataAutoRelease(void *buffer, void *data,
+                                              size_t max_buffer_size);
+size_t DeserializeADX_IncmObjectData(ADX_IncmObjectData *data, void *buffer);
+bool IsEqualADX_IncmObjectData(ADX_IncmObjectData *data1,
+                               ADX_IncmObjectData *data2);
+void InitializeADX_IncmObjectData(ADX_IncmObjectData *data);
+void InitializeDefaultOnlyADX_IncmObjectData(ADX_IncmObjectData *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_ADX_INCMOBJECTDATA_H

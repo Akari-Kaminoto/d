@@ -1,0 +1,92 @@
+#ifndef DATA_DEFINITION_FEEDBACKLOCALIZE2SIS_H
+#define DATA_DEFINITION_FEEDBACKLOCALIZE2SIS_H
+
+#include "LaneLinkId.h"
+#include "appfw.h"
+#include "system_constants.h"
+#include <stddef.h>
+
+#define FEEDBACKLOCALIZE2SIS_DATAINFO                                          \
+  "{\"name\": \"FeedbackLocalize2Sis\", \"description\": "                     \
+  "\"\u30ed\u30fc\u30ab\u30e9\u30a4\u30ba\u30d5\u30a3\u30fc\u30c9\u30d0\u30c3" \
+  "\u30af\", \"members\": [{\"name\": \"loc_time_\", \"type\": \"uint8_t\", "  \
+  "\"description\": "                                                          \
+  "\"\u9ad8\u7cbe\u5ea6\u81ea\u8eca\u4f4d\u7f6e\u63a8\u5b9a\u6642\u523b\", "   \
+  "\"min\": 0, \"ignore_naming_rule\": true}, {\"name\": \"lat_\", \"type\": " \
+  "\"double\", \"unit\": \"deg\", \"description\": "                           \
+  "\"\u81ea\u8eca\u63a8\u5b9a\u7d76\u5bfe\u4f4d\u7f6e\u30fb\u7def\u5ea6\", "   \
+  "\"max\": 90, \"ignore_naming_rule\": true}, {\"name\": \"lon_\", "          \
+  "\"type\": \"double\", \"unit\": \"deg\", \"description\": "                 \
+  "\"\u81ea\u8eca\u63a8\u5b9a\u7d76\u5bfe\u4f4d\u7f6e\u30fb\u7d4c\u5ea6\", "   \
+  "\"min\": 0, \"max\": 360, \"ignore_naming_rule\": true}, {\"name\": "       \
+  "\"hgt_\", \"type\": \"float\", \"unit\": \"m\", \"description\": "          \
+  "\"\u81ea\u8eca\u63a8\u5b9a\u7d76\u5bfe\u9ad8\u5ea6\u30fb\u6955\u5186\u4f53" \
+  "\u9ad8\", \"max\": 10000, \"ignore_naming_rule\": true}, {\"name\": "       \
+  "\"pos_conf_\", \"type\": \"uint8_t\", \"description\": "                    \
+  "\"\u81ea\u8eca\u63a8\u5b9a\u7d76\u5bfe\u4f4d\u7f6e\u30fb\u4fe1\u983c\u5ea6" \
+  "\", \"min\": 0, \"ignore_naming_rule\": true}, {\"name\": \"dir_\", "       \
+  "\"type\": \"float\", \"unit\": \"deg\", \"description\": "                  \
+  "\"\u81ea\u8eca\u63a8\u5b9a\u7d76\u5bfe\u65b9\u4f4d\", \"min\": 0, "         \
+  "\"max\": 359.9, \"ignore_naming_rule\": true}, {\"name\": \"dir_conf_\", "  \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u81ea\u8eca\u63a8\u5b9a\u7d76\u5bfe\u65b9\u4f4d\u30fb\u81ea\u4fe1\u5ea6" \
+  "\", \"min\": 0, \"ignore_naming_rule\": true}, {\"name\": \"ego_link_\", "  \
+  "\"type\": " LANELINKID_DATAINFO                                             \
+  ", \"description\": "                                                        \
+  "\"\u81ea\u8eca\u63a8\u5b9a\u8d70\u884c\u8eca\u7dda\u30ea\u30f3\u30af\u60c5" \
+  "\u5831\", \"ignore_naming_rule\": true}, {\"name\": \"link_conf_\", "       \
+  "\"type\": \"uint8_t\", \"description\": "                                   \
+  "\"\u81ea\u8eca\u63a8\u5b9a\u8d70\u884c\u8eca\u7dda\u30ea\u30f3\u30af\u81ea" \
+  "\u4fe1\u5ea6\", \"min\": 0, \"ignore_naming_rule\": true}], "               \
+  "\"ignore_naming_rule\": true, \"ads\": false, \"name_snake_case\": "        \
+  "\"feedback_localize2_sis\"}"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// FeedbackLocalize2Sis.hで定義されている型をシリアライズした時のバイト数
+#define FEEDBACKLOCALIZE2SIS_SERIALIZED_SIZE                                   \
+  (1 + 8 + 8 + 4 + 1 + 4 + 1 + LANELINKID_SERIALIZED_SIZE + 1)
+
+// 定数の定義
+#define FEEDBACK_LOCALIZE2_SIS_LOC_TIME__MIN ((uint8_t)0)
+#define FEEDBACK_LOCALIZE2_SIS_LAT__MAX ((double)90)
+#define FEEDBACK_LOCALIZE2_SIS_LON__MIN ((double)0)
+#define FEEDBACK_LOCALIZE2_SIS_LON__MAX ((double)360)
+#define FEEDBACK_LOCALIZE2_SIS_HGT__MAX ((float)10000)
+#define FEEDBACK_LOCALIZE2_SIS_POS_CONF__MIN ((uint8_t)0)
+#define FEEDBACK_LOCALIZE2_SIS_DIR__MIN ((float)0)
+#define FEEDBACK_LOCALIZE2_SIS_DIR__MAX ((float)359.9)
+#define FEEDBACK_LOCALIZE2_SIS_DIR_CONF__MIN ((uint8_t)0)
+#define FEEDBACK_LOCALIZE2_SIS_LINK_CONF__MIN ((uint8_t)0)
+
+/* ローカライズフィードバック */
+typedef struct {
+  uint8_t loc_time_;    /* 高精度自車位置推定時刻 */
+  double lat_;          /* 自車推定絶対位置・緯度 */
+  double lon_;          /* 自車推定絶対位置・経度 */
+  float hgt_;           /* 自車推定絶対高度・楕円体高 */
+  uint8_t pos_conf_;    /* 自車推定絶対位置・信頼度 */
+  float dir_;           /* 自車推定絶対方位 */
+  uint8_t dir_conf_;    /* 自車推定絶対方位・自信度 */
+  LaneLinkId ego_link_; /* 自車推定走行車線リンク情報 */
+  uint8_t link_conf_;   /* 自車推定走行車線リンク自信度 */
+} FeedbackLocalize2Sis;
+
+size_t SerializeFeedbackLocalize2Sis(void *buffer, FeedbackLocalize2Sis *data,
+                                     size_t max_buffer_size);
+size_t SerializeFeedbackLocalize2SisAutoRelease(void *buffer, void *data,
+                                                size_t max_buffer_size);
+size_t DeserializeFeedbackLocalize2Sis(FeedbackLocalize2Sis *data,
+                                       void *buffer);
+bool IsEqualFeedbackLocalize2Sis(FeedbackLocalize2Sis *data1,
+                                 FeedbackLocalize2Sis *data2);
+void InitializeFeedbackLocalize2Sis(FeedbackLocalize2Sis *data);
+void InitializeDefaultOnlyFeedbackLocalize2Sis(FeedbackLocalize2Sis *data);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // DATA_DEFINITION_FEEDBACKLOCALIZE2SIS_H
