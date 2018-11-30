@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/11/29 16:07:04 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/11/30 16:14:45 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -100,8 +100,6 @@
 ;; el-get
 (add-to-list 'load-path (locate-user-emacs-file "el-get"))
 (require 'el-get)
-;; el-getでダウンロードしたパッケージは ~/.emacs.d/ に入るようにする
-;(setq el-get-dir (locate-user-emacs-file ""))
 
 ;;; paradox
 (use-package paradox
@@ -286,9 +284,6 @@
 ;; c言語系全部にフックを設定する
 (add-hook 'c-mode-common-hook 'my-c-mode-common-conf)
 
-;; バックアップファイルを作成させない
-;;;(setq make-backup-files nil)
-
 ;;; デフォルトで勝手に作られるbackupファイルの保存先を任意箇所にする
 (setq backup-directory-alist
   (cons (cons ".*" (expand-file-name "~/.emacs.d/backup-file"))
@@ -311,6 +306,8 @@
 
 ;;; メニューバーを非表示
 (menu-bar-mode -1)
+
+;;; focusがあたっている時と外れている時でモードラインの色を変える
 
 ;; EmacsにFocusが外れている際のFace
 (defun my-out-focused-mode-line()
@@ -444,21 +441,6 @@
 (global-set-key (kbd "C-c g") 'goto-line) 
  
 ;;----
-;; ウィンドウ切り替え
-;; SはShiftキーのこと
-;; 参考：http://qiita.com/saku/items/6ef40a0bbaadb2cffbce
-;;----
-;;(defun other-window-or-split (val)
-;;  (interactive)
-;;  (when (one-window-p)
-;;    (split-window-horizontally) ;split horizontally 縦分割にしたい場合はこちら
-;;;;    (split-window-vertically) ;split vertically   横分割にしたい場合はこちら
-;;  )
-;; (other-window val))
-;;(global-set-key (kbd "<C-tab>") (lambda () (interactive) (other-window-or-split 1)))
-;;(global-set-key (kbd "<C-S-tab>") (lambda () (interactive) (other-window-or-split -1)))
- 
-;;----
 ;; 折り返しトグルコマンド
 ;;----
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
@@ -487,13 +469,12 @@
 ;;; t にすると mini buffer に値が表示される
 (setq gud-tooltip-echo-area nil)
 
-;;; init.elを開く
+;;; C-C eでinit.elを開く
 (defun my-find-file-init-el ()
   "init.elを開く"
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "C-c e") 'my-find-file-init-el)
-
 
 ;;; recent
 (setq recentf-max-saved-items 2000) ;; 2000ファイルまで履歴保存する
@@ -503,7 +484,6 @@
 
 (recentf-mode 1)
 (bind-key "C-c r" 'helm-recentf)
-
 
 ;;-------------;;
 ;; org-mode    ;;
@@ -552,6 +532,8 @@
 ;;;
 ;;; helm
 ;;;
+
+;;; helm本体
 (use-package helm
   :init
   (helm-mode t)
@@ -584,6 +566,8 @@
 
 ;;;  helm-gtags
 (use-package helm-gtags
+  :commands
+  (helm-gtags)
   :config
   (helm-gtags-mode t)
   (setq helm-gtags-mode-hook
@@ -605,6 +589,31 @@
            ))
   (add-hook 'c-mode-hook 'helm-gtags-mode)
   (add-hook 'c++-mode-hook 'helm-gtags-mode))
+
+;;; helm-git-grep
+;;; autoload扱い
+(use-package helm-git-grep
+  :commands (helm-git-grep)
+  :config
+  (global-set-key (kbd "C-c C-g") 'helm-git-grep)
+  ;; Invoke `helm-git-grep' from isearch.
+  (define-key isearch-mode-map (kbd "C-c C-g") 'helm-git-grep-from-isearch)
+  ;; Invoke `helm-git-grep' from other helm.
+  (eval-after-load 'helm
+    '(define-key helm-map (kbd "C-c C-g") 'helm-git-grep-from-helm)))
+
+
+;;;helm descbinds
+;;; autoload扱い
+(use-package helm-descbinds
+  :commands (helm-descbinds)
+  :config
+  (helm-descbinds-mode))
+
+;;;
+;;; helm系終わり
+;;;
+
 
 ;;
 ;; rainbow-delimiter
@@ -870,10 +879,6 @@
   (setq beacon-blink-when-focused t)
   (setq beacon-blink-duration 1))
 
-;;; midnight: 一定期間使用しなかった buffer を自動削除
-;;;(use-package midnight
-;;;  :config
-;;;  (setq clean-buffer-list-delay-general 1))
 
 ;;; tempbuf 不要なバッファーを自動的にkillする
 (require 'tempbuf)
@@ -952,8 +957,9 @@
 ;;; 集中してもの書く時用に
 ;;; 余計なモード行とかが消えて文字が大きくなる
 ;;; M-x darkroom-modeでOn/OFFを切り替える
-(use-package darkroom)
-
+;;; autoload扱い
+(use-package darkroom
+  :commands (darkroom))
 
 ;;; undo-tree
 
@@ -1002,6 +1008,7 @@
   (global-emojify-mode))
 
 ;;; Sky-color-clock
+;;; モードラインに今の外の天気と明るさを表示するエリアを１つ作る
 ;;; GitHub: https://github.com/zk-phi/sky-color-clock
 (require 'sky-color-clock)      ; パッケージをロード
 (sky-color-clock-initialize 35) ; 東京（例）の緯度で初期化
@@ -1024,8 +1031,10 @@
 ;;; buffer-menu-color
 (require 'buffer-menu-color)
 
-;; open-junk-file
+;;; open-junk-file
+;;; auto-load扱い
 (use-package open-junk-file
+  :commands (open-junk-file)
   :config
   (setq open-junk-file-format "~/Documents/junk/%Y-%m%d-%H%M%S.")
   (global-set-key "\C-xj" 'open-junk-file))
@@ -1038,7 +1047,6 @@
   (set-face-background 'hiwin-face "#eeeef0"))
 
 ;;; google翻訳
-
 (use-package google-translate
   :config
   ;; キーバインドの設定（お好みで）
@@ -1053,8 +1061,8 @@
     ;; TKK='427110.1469889687'
     (list 427110 1469889687)))
 
-
 ;;;shackle
+;;; helm等分割エリアの割合、位置を指定する
 (use-package shackle
   :config
   (setq shackle-rules
@@ -1100,15 +1108,6 @@
 (use-package org-preview-html
   :commands (org-preview-html-mode))
 
-;;; helm-git-grep
-(use-package helm-git-grep
-  :config
-  (global-set-key (kbd "C-c C-g") 'helm-git-grep)
-  ;; Invoke `helm-git-grep' from isearch.
-  (define-key isearch-mode-map (kbd "C-c C-g") 'helm-git-grep-from-isearch)
-  ;; Invoke `helm-git-grep' from other helm.
-  (eval-after-load 'helm
-    '(define-key helm-map (kbd "C-c C-g") 'helm-git-grep-from-helm)))
 
 ;;; context-coloring( not C langeage;;)
 (use-package context-coloring

@@ -3,8 +3,9 @@
 ;; Copyright (C) 2012 Takafumi Arakaki
 
 ;; Author: Takafumi Arakaki <aka.tkf at gmail.com>
+;; URL: https://github.com/tkf/emacs-request
+;; Package-Version: 20181129.317
 ;; Package-Requires: ((deferred "0.3.1") (request "0.2.0"))
-;; Package-Version: 20160419.2305
 ;; Version: 0.2.0
 
 ;; This file is NOT part of GNU Emacs.
