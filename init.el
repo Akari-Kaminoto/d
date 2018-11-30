@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/11/30 16:14:45 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/11/30 18:01:38 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -1177,6 +1177,25 @@
 (use-package helm-projectile
   :config
   (helm-projectile-on))
+
+;;; git-gutter-fringe+
+(use-package git-gutter-fringe+
+  :ensure t
+  :init  (global-git-gutter+-mode)
+  :config
+  (define-key git-gutter+-mode-map (kbd "C-x n") 'git-gutter+-next-hunk)
+  (define-key git-gutter+-mode-map (kbd "C-x p") 'git-gutter+-previous-hunk)
+  (define-key git-gutter+-mode-map (kbd "C-x v =") 'git-gutter+-show-hunk)
+  (define-key git-gutter+-mode-map (kbd "C-x r") 'git-gutter+-revert-hunks)
+  (define-key git-gutter+-mode-map (kbd "C-x t") 'git-gutter+-stage-hunks)
+  (define-key git-gutter+-mode-map (kbd "C-x c") 'git-gutter+-commit)
+  (define-key git-gutter+-mode-map (kbd "C-x C") 'git-gutter+-stage-and-commit)
+  (define-key git-gutter+-mode-map (kbd "C-x C-y") 'git-gutter+-stage-and-commit-whole-buffer)
+  (define-key git-gutter+-mode-map (kbd "C-x U") 'git-gutter+-unstage-whole-wbuffer)
+  ;; Look and feel
+  (set-face-background 'git-gutter-fr+-modified "purple") ;; background color
+  (set-face-foreground 'git-gutter-fr+-added "#55CC55")
+  (set-face-foreground 'git-gutter-fr+-deleted "#CC5555"))
 
 ;;;---------パッケージ毎の設定終わり
 
