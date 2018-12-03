@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/11/30 18:01:38 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/12/03 17:21:56 from ryuichi-VirtualBox by ryuichi>
 
 ;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -156,11 +156,11 @@
 
   ;; 初期フレームの設定
   (setq initial-frame-alist
-          '((width . 80) (height . 40)))
+          '((width . 100) (height . 40)))
 
   ;; 新規フレームのデフォルト設定
   (setq default-frame-alist
-          '((width . 80) (height . 40)))
+          '((width . 100) (height . 40)))
 
   ;;; gui時のみ speedbar
   (global-set-key (kbd "C-c m") 'speedbar)
@@ -856,17 +856,6 @@
   (setq web-mode-tag-auto-close-style 2)
   (add-hook 'web-mode-hook  'web-mode-hook))
 
-;; ;;; w3 
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(package-selected-packages
-;;    (quote
-;;     (leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-packagsel-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck ccompany auto-read-only auto-complete anti-zenburn-theme)))
-;;  '(yas-trigger-key "TAB"))
-
 
 ;;; beacon
 ;;; 現在行のカーソルをバッファ移動のたびにわかるようにする
@@ -1031,13 +1020,13 @@
 ;;; buffer-menu-color
 (require 'buffer-menu-color)
 
-;;; open-junk-file
-;;; auto-load扱い
-(use-package open-junk-file
-  :commands (open-junk-file)
-  :config
-  (setq open-junk-file-format "~/Documents/junk/%Y-%m%d-%H%M%S.")
-  (global-set-key "\C-xj" 'open-junk-file))
+;; ;;; open-junk-file
+;; ;;; auto-load扱い
+;; (use-package open-junk-file
+;;   :commands (open-junk-file)
+;;   :config
+;;   (setq open-junk-file-format "~/Documents/junk/%Y-%m%d-%H%M%S.")
+;;   (global-set-key "\C-xj" 'open-junk-file))
 
 
 ;;; 非アクティブウインドウの背景色を変更
@@ -1197,19 +1186,46 @@
   (set-face-foreground 'git-gutter-fr+-added "#55CC55")
   (set-face-foreground 'git-gutter-fr+-deleted "#CC5555"))
 
+;;; Python
+
+;;; company-jedi
+(use-package jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (setq jedi:complete-on-dot t)
+  :config
+  (use-package company-jedi
+   :ensure t
+   :init
+   (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
+   (setq  company-jedi-python-bin "python")))
+
+;;
+;; linux 初回起動時のみ $ sudo apt-get install virtualenv
+;; M-x jedi:install-server RETが必要
+;;
+
+;;; py-autopep8
+(use-package py-autopep8
+  :config
+  (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+  (setq py-autopep8-options '("--max-line-length=100")))
+
 ;;;---------パッケージ毎の設定終わり
 
 ;;;
 ;;; OS によって設定を切り替える部分
 ;;;
 
+;;;
+;;; for Windows (NTEmacs)
+;;; 
 (when (eq system-type 'windows-nt) ; Windows
 
 ;;;
 ;;; IME関連の設定
 ;;;
-
-;; Windows-patchVerでも動くように
   
 ;;;** 標準IMEの設定
 (when (locate-library "w32-ime")
@@ -1277,6 +1293,10 @@
 
 );;; ここまでwindows用
 
+;;;
+;;; for Linux/Unix
+;;; 
+
 (when (eq system-type 'gnu/linux) ; Unix
 
   ;; font
@@ -1325,8 +1345,6 @@
   ;; off
   (add-hook 'input-method-inactivate-hook
             (lambda() (set-cursor-color "red")))
-
-
   
   ;; FLYCHECK
   (use-package flycheck
@@ -1364,8 +1382,31 @@
   ;; git-complete
   (require 'git-complete)
   (global-set-key (kbd "C-c C-G") 'git-complete)
-  
+
+  ;; elpy
+  (use-package elpy
+    :ensure t
+    :init (with-eval-after-load `python (elpy-enable))
+    :config
+    (progn
+      ;; Use Flycheck instead of Flymake
+      (when (require 'flycheck nil t)
+        (remove-hook 'elpy-modules 'elpy-module-flymake)
+        (remove-hook 'elpy-modules 'elpy-module-yasnippet)
+        (remove-hook 'elpy-mode-hook 'elpy-module-highlight-indentation)
+        (add-hook 'elpy-mode-hook 'flycheck-mode))
+      (elpy-enable)
+      ;; jedi is great
+      (setq elpy-rpc-python-command "python3")
+      (setq python-shell-interpreter "ipython3")
+      (setq python-shell-interpreter-args "-i --simple-prompt")
+      (setq elpy-rpc-backend "jedi")))
+
 );;;ここまでUNIX用
+
+;;;
+;;; for MacOS-X
+;;;
 
 (when (equal system-type 'darwin)
 ;;;なし
