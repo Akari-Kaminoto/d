@@ -1,0 +1,675 @@
+/****************************************************************************/
+/* ファイル名	: appfw_send_func.c											*/
+/*--------------------------------------------------------------------------*/
+/* モジュール名	: appfw_send 											*/
+/*--------------------------------------------------------------------------*/
+/* 機能			: 機能呼び出し												*/
+/*--------------------------------------------------------------------------*/
+/* 備考			:															*/
+/*--------------------------------------------------------------------------*/
+/****************************************************************************/
+/*	  Include																*/
+/****************************************************************************/
+#include <arpa/inet.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <inttypes.h>
+#include <netinet/in.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+#include <sils/common/type_sils.h>
+#include <dif/common/dif_struct_common.h>
+#include "../../appfw_data/pub/appfw_data.h"
+#include "../pub/appfw_send_func.h"
+#include "../../appfw_send/pri/appfw_send_crc32.h"
+
+/****************************************************************************/
+/*					スタティック関数宣言									*/
+/****************************************************************************/
+#define APPFW_SEND_IPADDR "127.0.0.1"
+#define APPFW_SEND_PORT 15000
+
+#define HEADER_DELIMITER 0xffffffff
+#define HEADER_SIZE 12
+#define CONNECT_TRY_MAX 3
+#define CONNECT_TRY_INTERVAL 1
+
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+
+static int sock = -1;
+static bool sock_connected = false;
+static struct sockaddr_in server;
+static uint8_t *temp_send_buf = NULL;
+static uint8_t *temp_serialize_buf = NULL;
+static size_t max_buf_size = 0;
+
+typedef size_t (*serialize_func_ptr)(void *buffer, const void *data,
+                                     size_t max_buffer_size);
+
+typedef union {
+  /**BUFFER_SIZE_LIST_START**/
+  char m0[SRRENTITYDATA_FSR_R_ARRAY_SERIALIZED_SIZE];
+  char m1[SRRENTITYDATA_FSR_L_ARRAY_SERIALIZED_SIZE];
+  char m2[SRRENTITYDATA_BSR_R_ARRAY_SERIALIZED_SIZE];
+  char m3[SRRENTITYDATA_BSR_L_ARRAY_SERIALIZED_SIZE];
+  char m4[SCMENTITYDATA_ARRAY_SERIALIZED_SIZE];
+  char m5[FCMENTITYDATA_ARRAY_SERIALIZED_SIZE];
+  char m6[LANEDATAARRAY_SERIALIZED_SIZE];
+  char m7[FEEDBACKLOCALIZE2SIS_SERIALIZED_SIZE];
+  char m8[FUSIONOBJECT_ARRAY_SERIALIZED_SIZE];
+  char m9[TELEIMAGEDATAEAS_SERIALIZED_SIZE];
+  char m10[CARSTATE_SERIALIZED_SIZE];
+  char m11[EINNERIMAGECOM_SERIALIZED_SIZE];
+  char m12[IMAGEDATACOM_SERIALIZED_SIZE];
+  char m13[CAMERAEXPOSURECOM_SERIALIZED_SIZE];
+  char m14[CAMERAEXPOSURECOM_SERIALIZED_SIZE];
+  char m15[LIDARSTATUSCOM_SERIALIZED_SIZE];
+  char m16[LCMPOSEESTIMATEINFOCOM_SERIALIZED_SIZE];
+  char m17[FRLIDARENTITYDATA_ARRAYCOM_SERIALIZED_SIZE];
+  char m18[LIDARPOINTGROUPDATACOM_SERIALIZED_SIZE];
+  char m19[CARSTATECOM_SERIALIZED_SIZE];
+  char m20[LUXOBJECTDATACOM_SERIALIZED_SIZE];
+  char m21[LUXSCANDATACOM_SERIALIZED_SIZE];
+  char m22[LTLIDARENTITYDATA_ARRAYCOM_SERIALIZED_SIZE];
+  char m23[RRLIDARENTITYDATA_ARRAYCOM_SERIALIZED_SIZE];
+  char m24[RTLIDARENTITYDATA_ARRAYCOM_SERIALIZED_SIZE];
+  char m25[LIDARSTATUSCOM_SERIALIZED_SIZE];
+  char m26[LIDARSTATUSCOM_SERIALIZED_SIZE];
+  char m27[LIDARSTATUSCOM_SERIALIZED_SIZE];
+  char m28[CARSTATECOM_SERIALIZED_SIZE];
+  char m29[SRRENTITYDATA_BSR_L_ARRAYCOM_SERIALIZED_SIZE];
+  char m30[SRRENTITYDATA_BSR_R_ARRAYCOM_SERIALIZED_SIZE];
+  char m31[SRRENTITYDATA_FSR_L_ARRAYCOM_SERIALIZED_SIZE];
+  char m32[SRRENTITYDATA_FSR_R_ARRAYCOM_SERIALIZED_SIZE];
+  char m33[PVMLANEMARKINGDATACOM_SERIALIZED_SIZE];
+  char m34[FRDSENSORINFOCOM_SERIALIZED_SIZE];
+  char m35[FRDNEARENTITYDATA_ARRAYCOM_SERIALIZED_SIZE];
+  char m36[LANEDATAARRAYCOM_SERIALIZED_SIZE];
+  char m37[LANEBOUNDARYDATA_ARRAYCOM_SERIALIZED_SIZE];
+  char m38[LANERECOGNITIONSTATECOM_SERIALIZED_SIZE];
+  char m39[ROADDATACOM_SERIALIZED_SIZE];
+  char m40[FRDFARENTITYDATA_ARRAYCOM_SERIALIZED_SIZE];
+  char m41[CARSTATECOM_SERIALIZED_SIZE];
+  char m42[CARSTATECOM_SERIALIZED_SIZE];
+  char m43[CARSTATECOM_SERIALIZED_SIZE];
+  char m44[CARSTATECOM_SERIALIZED_SIZE];
+  char m45[CARSTATECOM_SERIALIZED_SIZE];
+  char m46[CARSTATECOM_SERIALIZED_SIZE];
+  char m47[CARSTATECOM_SERIALIZED_SIZE];
+  char m48[CARSTATECOM_SERIALIZED_SIZE];
+  char m49[CARSTATECOM_SERIALIZED_SIZE];
+  char m50[CARSTATECOM_SERIALIZED_SIZE];
+  char m51[CARSTATECOM_SERIALIZED_SIZE];
+  char m52[CARSTATECOM_SERIALIZED_SIZE];
+  char m53[CARSTATECOM_SERIALIZED_SIZE];
+  char m54[CARSTATECOM_SERIALIZED_SIZE];
+  char m55[CARSTATECOM_SERIALIZED_SIZE];
+  char m56[FCMENTITYDATA_ARRAYCOM_SERIALIZED_SIZE];
+  char m57[SCMENTITYDATA_ARRAYCOM_SERIALIZED_SIZE];
+  char m58[FRLIDARPOLARMAPCOM_SERIALIZED_SIZE];
+  char m59[ADSPLANNERCALCULATIONINFO_SERIALIZED_SIZE];
+  char m60[PLANNEROBJECTRESULT_SERIALIZED_SIZE];
+  char m61[MYLANEPOINTINFO_SERIALIZED_SIZE];
+  char m62[ADSTRAJECTORYOUTPUT_SERIALIZED_SIZE];
+  /**BUFFER_SIZE_LIST_END**/
+} BufferSizeList;
+
+typedef struct {
+  uint32_t data_label;
+  void *input_buffer;
+  serialize_func_ptr ser_func;
+} DataInfo;
+
+static bool SendMessageData(const void *msg, serialize_func_ptr func, uint32_t data_id);
+static bool GetData(void *data, uint32_t len);
+static void PrintCrc32(void *data, serialize_func_ptr func, uint32_t data_label);
+
+/****************************************************************************/
+/* 関数名		:	fn_appfw_send_init								*/
+/*--------------------------------------------------------------------------*/
+/* 機能			:	appfw_send_init										*/
+/*--------------------------------------------------------------------------*/
+/* 引数			: なし														*/
+/*--------------------------------------------------------------------------*/
+/* 戻り値		: なし														*/
+/****************************************************************************/
+VD	fn_appfw_send_init(VD)
+{
+  LINUX_PRINT_OUT("%s:%d start-------------end\n", __FUNCTION__, __LINE__);
+  
+  //socket初期化
+  sock = socket(AF_INET, SOCK_STREAM, 0);
+  if (sock < 0) {
+    Slog_Error("socket failed.");
+    return;
+  }
+
+  //inet_addr設定
+  char *ipaddr = APPFW_SEND_IPADDR;
+  server.sin_family = AF_INET;
+  server.sin_port = htons(APPFW_SEND_PORT);
+  server.sin_addr.s_addr = inet_addr((const char *)ipaddr);
+  if (server.sin_addr.s_addr == 0xffffffff) {
+    Slog_Error("inet_addr failed.");
+    return;
+  }
+
+  //シリアライズデータサイズ最大値を取得する
+  max_buf_size = sizeof(BufferSizeList);
+
+  //シリアライズサイズメモリ確保
+  temp_send_buf = malloc(max_buf_size + HEADER_SIZE);
+  *((uint32_t *)(void *)&temp_send_buf[0]) = (HEADER_DELIMITER);
+
+  //疑似乱数初期化
+  srand(0);
+  //crc32初期化
+  fpmw_send_crc32_init();
+
+  LINUX_PRINT_OUT("%s:%d end-------------\n", __FUNCTION__, __LINE__);
+  return;
+}
+
+/****************************************************************************/
+/* 関数名		:	fn_appfw_send_compute							*/
+/*--------------------------------------------------------------------------*/
+/* 機能			:	fn_appfw_send_compute											*/
+/*--------------------------------------------------------------------------*/
+/* 引数			: なし														*/
+/*--------------------------------------------------------------------------*/
+/* 戻り値		: なし														*/
+/****************************************************************************/
+VD	fn_appfw_send_compute(VD)
+{
+  LINUX_PRINT_OUT("%s:%d start-------------\n", __FUNCTION__, __LINE__);
+
+  size_t i;
+
+  //ダミーのCarData
+//  ST_CarState car_state;
+//  CarState *send_car_state = (CarState*)&car_state;
+  /**DUMMY_DATA_DEF_START**/
+  ST_SRREntityData_fsr_r_array srr_entity_data_fsr_r_array;
+  ST_SRREntityData_fsr_l_array srr_entity_data_fsr_l_array;
+  ST_SRREntityData_bsr_r_array srr_entity_data_bsr_r_array;
+  ST_SRREntityData_bsr_l_array srr_entity_data_bsr_l_array;
+  ST_SCMEntityData_array scm_entity_data_array;
+  ST_FCMEntityData_array fcm_entity_data_array;
+  ST_LaneDataArray lane_data_array;
+  ST_FeedbackLocalize2Sis feedback_localize2_sis;
+  ST_FusionObject_array fusion_object_array;
+  ST_TeleImageDataEas tele_image_data_eas;
+  ST_CarState car_state;
+  ST_EinnerImageCom einner_image_com;
+  ST_ImageDataCom image_data_com;
+  ST_CameraExposureCom camera_exposure_com;
+  ST_CameraExposureCom camera_exposure_com2;
+  ST_LidarStatusCom lidar_status_com;
+  ST_LCMPoseEstimateInfoCom lcm_pose_estimate_info_com;
+  ST_FrLidarEntityData_arrayCom fr_lidar_entity_data_array_com;
+  ST_LidarPointGroupDataCom lidar_point_group_data_com;
+  ST_CarStateCom car_state_com;
+  ST_LuxObjectDataCom lux_object_data_com;
+  ST_LuxScanDataCom lux_scan_data_com;
+  ST_LtLidarEntityData_arrayCom lt_lidar_entity_data_array_com;
+  ST_RrLidarEntityData_arrayCom rr_lidar_entity_data_array_com;
+  ST_RtLidarEntityData_arrayCom rt_lidar_entity_data_array_com;
+  ST_LidarStatusCom lidar_status_com2;
+  ST_LidarStatusCom lidar_status_com3;
+  ST_LidarStatusCom lidar_status_com4;
+  ST_CarStateCom car_state_com2;
+  ST_SRREntityData_bsr_l_arrayCom srr_entity_data_bsr_l_array_com;
+  ST_SRREntityData_bsr_r_arrayCom srr_entity_data_bsr_r_array_com;
+  ST_SRREntityData_fsr_l_arrayCom srr_entity_data_fsr_l_array_com;
+  ST_SRREntityData_fsr_r_arrayCom srr_entity_data_fsr_r_array_com;
+  ST_PvmLaneMarkingDataCom pvm_lane_marking_data_com;
+  ST_FRDSensorInfoCom frd_sensor_info_com;
+  ST_FRDNearEntityData_arrayCom frd_near_entity_data_array_com;
+  ST_LaneDataArrayCom lane_data_array_com;
+  ST_LaneBoundaryData_arrayCom lane_boundary_data_array_com;
+  ST_LaneRecognitionStateCom lane_recognition_state_com;
+  ST_RoadDataCom road_data_com;
+  ST_FRDFarEntityData_arrayCom frd_far_entity_data_array_com;
+  ST_CarStateCom car_state_com3;
+  ST_CarStateCom car_state_com4;
+  ST_CarStateCom car_state_com5;
+  ST_CarStateCom car_state_com6;
+  ST_CarStateCom car_state_com7;
+  ST_CarStateCom car_state_com8;
+  ST_CarStateCom car_state_com9;
+  ST_CarStateCom car_state_com10;
+  ST_CarStateCom car_state_com11;
+  ST_CarStateCom car_state_com12;
+  ST_CarStateCom car_state_com13;
+  ST_CarStateCom car_state_com14;
+  ST_CarStateCom car_state_com15;
+  ST_CarStateCom car_state_com16;
+  ST_CarStateCom car_state_com17;
+  ST_FCMEntityData_arrayCom fcm_entity_data_array_com;
+  ST_SCMEntityData_arrayCom scm_entity_data_array_com;
+  ST_FrLidarPolarMapCom fr_lidar_polar_map_com;
+  ST_ADSPlannerCalculationInfo ads_planner_calculation_info;
+  ST_PlannerObjectResult planner_object_result;
+  ST_MyLanePointInfo my_lane_point_info;
+  ST_AdsTrajectoryOutput ads_trajectory_output;
+  /**DUMMY_DATA_DEF_END**/
+	
+  /**DUMMY_SEND_DATA_START**/
+  SRREntityData_fsr_r_array *send_srr_entity_data_fsr_r_array = (SRREntityData_fsr_r_array*)&srr_entity_data_fsr_r_array;
+  SRREntityData_fsr_l_array *send_srr_entity_data_fsr_l_array = (SRREntityData_fsr_l_array*)&srr_entity_data_fsr_l_array;
+  SRREntityData_bsr_r_array *send_srr_entity_data_bsr_r_array = (SRREntityData_bsr_r_array*)&srr_entity_data_bsr_r_array;
+  SRREntityData_bsr_l_array *send_srr_entity_data_bsr_l_array = (SRREntityData_bsr_l_array*)&srr_entity_data_bsr_l_array;
+  SCMEntityData_array *send_scm_entity_data_array = (SCMEntityData_array*)&scm_entity_data_array;
+  FCMEntityData_array *send_fcm_entity_data_array = (FCMEntityData_array*)&fcm_entity_data_array;
+  LaneDataArray *send_lane_data_array = (LaneDataArray*)&lane_data_array;
+  FeedbackLocalize2Sis *send_feedback_localize2_sis = (FeedbackLocalize2Sis*)&feedback_localize2_sis;
+  FusionObject_array *send_fusion_object_array = (FusionObject_array*)&fusion_object_array;
+  TeleImageDataEas *send_tele_image_data_eas = (TeleImageDataEas*)&tele_image_data_eas;
+  CarState *send_car_state = (CarState*)&car_state;
+  EinnerImageCom *send_einner_image_com = (EinnerImageCom*)&einner_image_com;
+  ImageDataCom *send_image_data_com = (ImageDataCom*)&image_data_com;
+  CameraExposureCom *send_camera_exposure_com = (CameraExposureCom*)&camera_exposure_com;
+  CameraExposureCom *send_camera_exposure_com2 = (CameraExposureCom*)&camera_exposure_com2;
+  LidarStatusCom *send_lidar_status_com = (LidarStatusCom*)&lidar_status_com;
+  LCMPoseEstimateInfoCom *send_lcm_pose_estimate_info_com = (LCMPoseEstimateInfoCom*)&lcm_pose_estimate_info_com;
+  FrLidarEntityData_arrayCom *send_fr_lidar_entity_data_array_com = (FrLidarEntityData_arrayCom*)&fr_lidar_entity_data_array_com;
+  LidarPointGroupDataCom *send_lidar_point_group_data_com = (LidarPointGroupDataCom*)&lidar_point_group_data_com;
+  CarStateCom *send_car_state_com = (CarStateCom*)&car_state_com;
+  LuxObjectDataCom *send_lux_object_data_com = (LuxObjectDataCom*)&lux_object_data_com;
+  LuxScanDataCom *send_lux_scan_data_com = (LuxScanDataCom*)&lux_scan_data_com;
+  LtLidarEntityData_arrayCom *send_lt_lidar_entity_data_array_com = (LtLidarEntityData_arrayCom*)&lt_lidar_entity_data_array_com;
+  RrLidarEntityData_arrayCom *send_rr_lidar_entity_data_array_com = (RrLidarEntityData_arrayCom*)&rr_lidar_entity_data_array_com;
+  RtLidarEntityData_arrayCom *send_rt_lidar_entity_data_array_com = (RtLidarEntityData_arrayCom*)&rt_lidar_entity_data_array_com;
+  LidarStatusCom *send_lidar_status_com2 = (LidarStatusCom*)&lidar_status_com2;
+  LidarStatusCom *send_lidar_status_com3 = (LidarStatusCom*)&lidar_status_com3;
+  LidarStatusCom *send_lidar_status_com4 = (LidarStatusCom*)&lidar_status_com4;
+  CarStateCom *send_car_state_com2 = (CarStateCom*)&car_state_com2;
+  SRREntityData_bsr_l_arrayCom *send_srr_entity_data_bsr_l_array_com = (SRREntityData_bsr_l_arrayCom*)&srr_entity_data_bsr_l_array_com;
+  SRREntityData_bsr_r_arrayCom *send_srr_entity_data_bsr_r_array_com = (SRREntityData_bsr_r_arrayCom*)&srr_entity_data_bsr_r_array_com;
+  SRREntityData_fsr_l_arrayCom *send_srr_entity_data_fsr_l_array_com = (SRREntityData_fsr_l_arrayCom*)&srr_entity_data_fsr_l_array_com;
+  SRREntityData_fsr_r_arrayCom *send_srr_entity_data_fsr_r_array_com = (SRREntityData_fsr_r_arrayCom*)&srr_entity_data_fsr_r_array_com;
+  PvmLaneMarkingDataCom *send_pvm_lane_marking_data_com = (PvmLaneMarkingDataCom*)&pvm_lane_marking_data_com;
+  FRDSensorInfoCom *send_frd_sensor_info_com = (FRDSensorInfoCom*)&frd_sensor_info_com;
+  FRDNearEntityData_arrayCom *send_frd_near_entity_data_array_com = (FRDNearEntityData_arrayCom*)&frd_near_entity_data_array_com;
+  LaneDataArrayCom *send_lane_data_array_com = (LaneDataArrayCom*)&lane_data_array_com;
+  LaneBoundaryData_arrayCom *send_lane_boundary_data_array_com = (LaneBoundaryData_arrayCom*)&lane_boundary_data_array_com;
+  LaneRecognitionStateCom *send_lane_recognition_state_com = (LaneRecognitionStateCom*)&lane_recognition_state_com;
+  RoadDataCom *send_road_data_com = (RoadDataCom*)&road_data_com;
+  FRDFarEntityData_arrayCom *send_frd_far_entity_data_array_com = (FRDFarEntityData_arrayCom*)&frd_far_entity_data_array_com;
+  CarStateCom *send_car_state_com3 = (CarStateCom*)&car_state_com3;
+  CarStateCom *send_car_state_com4 = (CarStateCom*)&car_state_com4;
+  CarStateCom *send_car_state_com5 = (CarStateCom*)&car_state_com5;
+  CarStateCom *send_car_state_com6 = (CarStateCom*)&car_state_com6;
+  CarStateCom *send_car_state_com7 = (CarStateCom*)&car_state_com7;
+  CarStateCom *send_car_state_com8 = (CarStateCom*)&car_state_com8;
+  CarStateCom *send_car_state_com9 = (CarStateCom*)&car_state_com9;
+  CarStateCom *send_car_state_com10 = (CarStateCom*)&car_state_com10;
+  CarStateCom *send_car_state_com11 = (CarStateCom*)&car_state_com11;
+  CarStateCom *send_car_state_com12 = (CarStateCom*)&car_state_com12;
+  CarStateCom *send_car_state_com13 = (CarStateCom*)&car_state_com13;
+  CarStateCom *send_car_state_com14 = (CarStateCom*)&car_state_com14;
+  CarStateCom *send_car_state_com15 = (CarStateCom*)&car_state_com15;
+  CarStateCom *send_car_state_com16 = (CarStateCom*)&car_state_com16;
+  CarStateCom *send_car_state_com17 = (CarStateCom*)&car_state_com17;
+  FCMEntityData_arrayCom *send_fcm_entity_data_array_com = (FCMEntityData_arrayCom*)&fcm_entity_data_array_com;
+  SCMEntityData_arrayCom *send_scm_entity_data_array_com = (SCMEntityData_arrayCom*)&scm_entity_data_array_com;
+  FrLidarPolarMapCom *send_fr_lidar_polar_map_com = (FrLidarPolarMapCom*)&fr_lidar_polar_map_com;
+  ADSPlannerCalculationInfo *send_ads_planner_calculation_info = (ADSPlannerCalculationInfo*)&ads_planner_calculation_info;
+  PlannerObjectResult *send_planner_object_result = (PlannerObjectResult*)&planner_object_result;
+  MyLanePointInfo *send_my_lane_point_info = (MyLanePointInfo*)&my_lane_point_info;
+  AdsTrajectoryOutput *send_ads_trajectory_output = (AdsTrajectoryOutput*)&ads_trajectory_output;
+  /**DUMMY_SEND_DATA_END**/
+
+  if (sock < 0) {
+    Slog_Error("socket error.");
+    return;
+  }
+
+  DataInfo data_info_list[] = {
+      /**DATA_INFO_LIST_START**/
+      {kIoDataLabelSRREntityData_fsr_r_array, (void*)send_srr_entity_data_fsr_r_array, (serialize_func_ptr)&SerializeSRREntityData_fsr_r_array},
+      {kIoDataLabelSRREntityData_fsr_l_array, (void*)send_srr_entity_data_fsr_l_array, (serialize_func_ptr)&SerializeSRREntityData_fsr_l_array},
+      {kIoDataLabelSRREntityData_bsr_r_array, (void*)send_srr_entity_data_bsr_r_array, (serialize_func_ptr)&SerializeSRREntityData_bsr_r_array},
+      {kIoDataLabelSRREntityData_bsr_l_array, (void*)send_srr_entity_data_bsr_l_array, (serialize_func_ptr)&SerializeSRREntityData_bsr_l_array},
+      {kIoDataLabelSCMEntityData_array, (void*)send_scm_entity_data_array, (serialize_func_ptr)&SerializeSCMEntityData_array},
+      {kIoDataLabelFCMEntityData_array, (void*)send_fcm_entity_data_array, (serialize_func_ptr)&SerializeFCMEntityData_array},
+      {kIoDataLabelLaneDataArray, (void*)send_lane_data_array, (serialize_func_ptr)&SerializeLaneDataArray},
+      {kIoDataLabelFeedbackLocalize2Sis, (void*)send_feedback_localize2_sis, (serialize_func_ptr)&SerializeFeedbackLocalize2Sis},
+      {kIoDataLabelFusionObject_array, (void*)send_fusion_object_array, (serialize_func_ptr)&SerializeFusionObject_array},
+      {kIoDataLabelTeleImageDataEas, (void*)send_tele_image_data_eas, (serialize_func_ptr)&SerializeTeleImageDataEas},
+      {kIoDataLabelCarState, (void*)send_car_state, (serialize_func_ptr)&SerializeCarState},
+      {kIoDataLabelEinnerImageCom, (void*)send_einner_image_com, (serialize_func_ptr)&SerializeEinnerImageCom},
+      {kIoDataLabelImageDataCom, (void*)send_image_data_com, (serialize_func_ptr)&SerializeImageDataCom},
+      {kIoDataLabelCameraExposureCom, (void*)send_camera_exposure_com, (serialize_func_ptr)&SerializeCameraExposureCom},
+      {kIoDataLabelCameraExposureCom2, (void*)send_camera_exposure_com2, (serialize_func_ptr)&SerializeCameraExposureCom},
+      {kIoDataLabelLidarStatusCom, (void*)send_lidar_status_com, (serialize_func_ptr)&SerializeLidarStatusCom},
+      {kIoDataLabelLCMPoseEstimateInfoCom, (void*)send_lcm_pose_estimate_info_com, (serialize_func_ptr)&SerializeLCMPoseEstimateInfoCom},
+      {kIoDataLabelFrLidarEntityData_arrayCom, (void*)send_fr_lidar_entity_data_array_com, (serialize_func_ptr)&SerializeFrLidarEntityData_arrayCom},
+      {kIoDataLabelLidarPointGroupDataCom, (void*)send_lidar_point_group_data_com, (serialize_func_ptr)&SerializeLidarPointGroupDataCom},
+      {kIoDataLabelCarStateCom, (void*)send_car_state_com, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelLuxObjectDataCom, (void*)send_lux_object_data_com, (serialize_func_ptr)&SerializeLuxObjectDataCom},
+      {kIoDataLabelLuxScanDataCom, (void*)send_lux_scan_data_com, (serialize_func_ptr)&SerializeLuxScanDataCom},
+      {kIoDataLabelLtLidarEntityData_arrayCom, (void*)send_lt_lidar_entity_data_array_com, (serialize_func_ptr)&SerializeLtLidarEntityData_arrayCom},
+      {kIoDataLabelRrLidarEntityData_arrayCom, (void*)send_rr_lidar_entity_data_array_com, (serialize_func_ptr)&SerializeRrLidarEntityData_arrayCom},
+      {kIoDataLabelRtLidarEntityData_arrayCom, (void*)send_rt_lidar_entity_data_array_com, (serialize_func_ptr)&SerializeRtLidarEntityData_arrayCom},
+      {kIoDataLabelLidarStatusCom2, (void*)send_lidar_status_com2, (serialize_func_ptr)&SerializeLidarStatusCom},
+      {kIoDataLabelLidarStatusCom3, (void*)send_lidar_status_com3, (serialize_func_ptr)&SerializeLidarStatusCom},
+      {kIoDataLabelLidarStatusCom4, (void*)send_lidar_status_com4, (serialize_func_ptr)&SerializeLidarStatusCom},
+      {kIoDataLabelCarStateCom2, (void*)send_car_state_com2, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelSRREntityData_bsr_l_arrayCom, (void*)send_srr_entity_data_bsr_l_array_com, (serialize_func_ptr)&SerializeSRREntityData_bsr_l_arrayCom},
+      {kIoDataLabelSRREntityData_bsr_r_arrayCom, (void*)send_srr_entity_data_bsr_r_array_com, (serialize_func_ptr)&SerializeSRREntityData_bsr_r_arrayCom},
+      {kIoDataLabelSRREntityData_fsr_l_arrayCom, (void*)send_srr_entity_data_fsr_l_array_com, (serialize_func_ptr)&SerializeSRREntityData_fsr_l_arrayCom},
+      {kIoDataLabelSRREntityData_fsr_r_arrayCom, (void*)send_srr_entity_data_fsr_r_array_com, (serialize_func_ptr)&SerializeSRREntityData_fsr_r_arrayCom},
+      {kIoDataLabelPvmLaneMarkingDataCom, (void*)send_pvm_lane_marking_data_com, (serialize_func_ptr)&SerializePvmLaneMarkingDataCom},
+      {kIoDataLabelFRDSensorInfoCom, (void*)send_frd_sensor_info_com, (serialize_func_ptr)&SerializeFRDSensorInfoCom},
+      {kIoDataLabelFRDNearEntityData_arrayCom, (void*)send_frd_near_entity_data_array_com, (serialize_func_ptr)&SerializeFRDNearEntityData_arrayCom},
+      {kIoDataLabelLaneDataArrayCom, (void*)send_lane_data_array_com, (serialize_func_ptr)&SerializeLaneDataArrayCom},
+      {kIoDataLabelLaneBoundaryData_arrayCom, (void*)send_lane_boundary_data_array_com, (serialize_func_ptr)&SerializeLaneBoundaryData_arrayCom},
+      {kIoDataLabelLaneRecognitionStateCom, (void*)send_lane_recognition_state_com, (serialize_func_ptr)&SerializeLaneRecognitionStateCom},
+      {kIoDataLabelRoadDataCom, (void*)send_road_data_com, (serialize_func_ptr)&SerializeRoadDataCom},
+      {kIoDataLabelFRDFarEntityData_arrayCom, (void*)send_frd_far_entity_data_array_com, (serialize_func_ptr)&SerializeFRDFarEntityData_arrayCom},
+      {kIoDataLabelCarStateCom3, (void*)send_car_state_com3, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom4, (void*)send_car_state_com4, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom5, (void*)send_car_state_com5, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom6, (void*)send_car_state_com6, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom7, (void*)send_car_state_com7, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom8, (void*)send_car_state_com8, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom9, (void*)send_car_state_com9, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom10, (void*)send_car_state_com10, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom11, (void*)send_car_state_com11, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom12, (void*)send_car_state_com12, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom13, (void*)send_car_state_com13, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom14, (void*)send_car_state_com14, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom15, (void*)send_car_state_com15, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom16, (void*)send_car_state_com16, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelCarStateCom17, (void*)send_car_state_com17, (serialize_func_ptr)&SerializeCarStateCom},
+      {kIoDataLabelFCMEntityData_arrayCom, (void*)send_fcm_entity_data_array_com, (serialize_func_ptr)&SerializeFCMEntityData_arrayCom},
+      {kIoDataLabelSCMEntityData_arrayCom, (void*)send_scm_entity_data_array_com, (serialize_func_ptr)&SerializeSCMEntityData_arrayCom},
+      {kIoDataLabelFrLidarPolarMapCom, (void*)send_fr_lidar_polar_map_com, (serialize_func_ptr)&SerializeFrLidarPolarMapCom},
+      {kIoDataLabelADSPlannerCalculationInfo, (void*)send_ads_planner_calculation_info, (serialize_func_ptr)&SerializeADSPlannerCalculationInfo},
+      {kIoDataLabelPlannerObjectResult, (void*)send_planner_object_result, (serialize_func_ptr)&SerializePlannerObjectResult},
+      {kIoDataLabelMyLanePointInfo, (void*)send_my_lane_point_info, (serialize_func_ptr)&SerializeMyLanePointInfo},
+      {kIoDataLabelAdsTrajectoryOutput, (void*)send_ads_trajectory_output, (serialize_func_ptr)&SerializeAdsTrajectoryOutput},
+      /**DATA_INFO_LIST_END**/
+  };
+  size_t data_info_list_count =
+      (size_t)(sizeof(data_info_list) / sizeof(DataInfo));
+
+  //コネクション状態チェック
+  uint32_t dummybuf;
+  int32_t recv_len =
+      recv(sock, &dummybuf, sizeof(dummybuf), MSG_DONTWAIT | MSG_PEEK);
+  if (recv_len != -1 || errno != EAGAIN) {
+    if (sock_connected == true) {
+      Slog_Info("connection closed.");
+      sock_connected = false;
+    }
+  }
+
+  //コネクション切断時は再接続
+  if (sock_connected == false) {
+    close(sock);
+    sock = socket(AF_INET, SOCK_STREAM, 0);
+    if (sock < 0) {
+      Slog_Error("socket failed.");
+      return;
+    }
+    int try
+      ;
+    for (try = 0; try < CONNECT_TRY_MAX; try ++) {
+      if (connect(sock, (struct sockaddr *)&server, sizeof(server)) == 0) {
+        sock_connected = true;
+        Slog_Info("connected.");
+        break;
+      }
+      sleep(CONNECT_TRY_INTERVAL);
+    }
+    if (sock_connected == false) {
+      Slog_Error("connect failed.");
+      return;
+    }
+  }
+
+  //ダミーのテストデータを生成してcrc32表示する
+//  GetData((void*)&car_state, sizeof(ST_CarState));
+//  PrintCrc32((void*)&car_state, (serialize_func_ptr)&SerializeCarState, kIoDataLabelCarState);
+  /**GETDATA_DUMMY_DATA_START**/
+  GetData((void*)&send_srr_entity_data_fsr_r_array, sizeof(ST_SRREntityData_fsr_r_array));
+  GetData((void*)&send_srr_entity_data_fsr_l_array, sizeof(ST_SRREntityData_fsr_l_array));
+  GetData((void*)&send_srr_entity_data_bsr_r_array, sizeof(ST_SRREntityData_bsr_r_array));
+  GetData((void*)&send_srr_entity_data_bsr_l_array, sizeof(ST_SRREntityData_bsr_l_array));
+  GetData((void*)&send_scm_entity_data_array, sizeof(ST_SCMEntityData_array));
+  GetData((void*)&send_fcm_entity_data_array, sizeof(ST_FCMEntityData_array));
+  GetData((void*)&send_lane_data_array, sizeof(ST_LaneDataArray));
+  GetData((void*)&send_feedback_localize2_sis, sizeof(ST_FeedbackLocalize2Sis));
+  GetData((void*)&send_fusion_object_array, sizeof(ST_FusionObject_array));
+  GetData((void*)&send_tele_image_data_eas, sizeof(ST_TeleImageDataEas));
+  GetData((void*)&send_car_state, sizeof(ST_CarState));
+  GetData((void*)&send_einner_image_com, sizeof(ST_EinnerImageCom));
+  GetData((void*)&send_image_data_com, sizeof(ST_ImageDataCom));
+  GetData((void*)&send_camera_exposure_com, sizeof(ST_CameraExposureCom));
+  GetData((void*)&send_camera_exposure_com2, sizeof(ST_CameraExposureCom));
+  GetData((void*)&send_lidar_status_com, sizeof(ST_LidarStatusCom));
+  GetData((void*)&send_lcm_pose_estimate_info_com, sizeof(ST_LCMPoseEstimateInfoCom));
+  GetData((void*)&send_fr_lidar_entity_data_array_com, sizeof(ST_FrLidarEntityData_arrayCom));
+  GetData((void*)&send_lidar_point_group_data_com, sizeof(ST_LidarPointGroupDataCom));
+  GetData((void*)&send_car_state_com, sizeof(ST_CarStateCom));
+  GetData((void*)&send_lux_object_data_com, sizeof(ST_LuxObjectDataCom));
+  GetData((void*)&send_lux_scan_data_com, sizeof(ST_LuxScanDataCom));
+  GetData((void*)&send_lt_lidar_entity_data_array_com, sizeof(ST_LtLidarEntityData_arrayCom));
+  GetData((void*)&send_rr_lidar_entity_data_array_com, sizeof(ST_RrLidarEntityData_arrayCom));
+  GetData((void*)&send_rt_lidar_entity_data_array_com, sizeof(ST_RtLidarEntityData_arrayCom));
+  GetData((void*)&send_lidar_status_com2, sizeof(ST_LidarStatusCom));
+  GetData((void*)&send_lidar_status_com3, sizeof(ST_LidarStatusCom));
+  GetData((void*)&send_lidar_status_com4, sizeof(ST_LidarStatusCom));
+  GetData((void*)&send_car_state_com2, sizeof(ST_CarStateCom));
+  GetData((void*)&send_srr_entity_data_bsr_l_array_com, sizeof(ST_SRREntityData_bsr_l_arrayCom));
+  GetData((void*)&send_srr_entity_data_bsr_r_array_com, sizeof(ST_SRREntityData_bsr_r_arrayCom));
+  GetData((void*)&send_srr_entity_data_fsr_l_array_com, sizeof(ST_SRREntityData_fsr_l_arrayCom));
+  GetData((void*)&send_srr_entity_data_fsr_r_array_com, sizeof(ST_SRREntityData_fsr_r_arrayCom));
+  GetData((void*)&send_pvm_lane_marking_data_com, sizeof(ST_PvmLaneMarkingDataCom));
+  GetData((void*)&send_frd_sensor_info_com, sizeof(ST_FRDSensorInfoCom));
+  GetData((void*)&send_frd_near_entity_data_array_com, sizeof(ST_FRDNearEntityData_arrayCom));
+  GetData((void*)&send_lane_data_array_com, sizeof(ST_LaneDataArrayCom));
+  GetData((void*)&send_lane_boundary_data_array_com, sizeof(ST_LaneBoundaryData_arrayCom));
+  GetData((void*)&send_lane_recognition_state_com, sizeof(ST_LaneRecognitionStateCom));
+  GetData((void*)&send_road_data_com, sizeof(ST_RoadDataCom));
+  GetData((void*)&send_frd_far_entity_data_array_com, sizeof(ST_FRDFarEntityData_arrayCom));
+  GetData((void*)&send_car_state_com3, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com4, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com5, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com6, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com7, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com8, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com9, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com10, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com11, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com12, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com13, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com14, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com15, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com16, sizeof(ST_CarStateCom));
+  GetData((void*)&send_car_state_com17, sizeof(ST_CarStateCom));
+  GetData((void*)&send_fcm_entity_data_array_com, sizeof(ST_FCMEntityData_arrayCom));
+  GetData((void*)&send_scm_entity_data_array_com, sizeof(ST_SCMEntityData_arrayCom));
+  GetData((void*)&send_fr_lidar_polar_map_com, sizeof(ST_FrLidarPolarMapCom));
+  GetData((void*)&send_ads_planner_calculation_info, sizeof(ST_ADSPlannerCalculationInfo));
+  GetData((void*)&send_planner_object_result, sizeof(ST_PlannerObjectResult));
+  GetData((void*)&send_my_lane_point_info, sizeof(ST_MyLanePointInfo));
+  GetData((void*)&send_ads_trajectory_output, sizeof(ST_AdsTrajectoryOutput));
+  /**GETDATA_DUMMY_DATA_END**/
+  /**PRINT_DUMMY_DATA_START**/
+  PrintCrc32((void*)&send_srr_entity_data_fsr_r_array, (serialize_func_ptr)&SerializeSRREntityData_fsr_r_array, kIoDataLabelSRREntityData_fsr_r_array);
+  PrintCrc32((void*)&send_srr_entity_data_fsr_l_array, (serialize_func_ptr)&SerializeSRREntityData_fsr_l_array, kIoDataLabelSRREntityData_fsr_l_array);
+  PrintCrc32((void*)&send_srr_entity_data_bsr_r_array, (serialize_func_ptr)&SerializeSRREntityData_bsr_r_array, kIoDataLabelSRREntityData_bsr_r_array);
+  PrintCrc32((void*)&send_srr_entity_data_bsr_l_array, (serialize_func_ptr)&SerializeSRREntityData_bsr_l_array, kIoDataLabelSRREntityData_bsr_l_array);
+  PrintCrc32((void*)&send_scm_entity_data_array, (serialize_func_ptr)&SerializeSCMEntityData_array, kIoDataLabelSCMEntityData_array);
+  PrintCrc32((void*)&send_fcm_entity_data_array, (serialize_func_ptr)&SerializeFCMEntityData_array, kIoDataLabelFCMEntityData_array);
+  PrintCrc32((void*)&send_lane_data_array, (serialize_func_ptr)&SerializeLaneDataArray, kIoDataLabelLaneDataArray);
+  PrintCrc32((void*)&send_feedback_localize2_sis, (serialize_func_ptr)&SerializeFeedbackLocalize2Sis, kIoDataLabelFeedbackLocalize2Sis);
+  PrintCrc32((void*)&send_fusion_object_array, (serialize_func_ptr)&SerializeFusionObject_array, kIoDataLabelFusionObject_array);
+  PrintCrc32((void*)&send_tele_image_data_eas, (serialize_func_ptr)&SerializeTeleImageDataEas, kIoDataLabelTeleImageDataEas);
+  PrintCrc32((void*)&send_car_state, (serialize_func_ptr)&SerializeCarState, kIoDataLabelCarState);
+  PrintCrc32((void*)&send_einner_image_com, (serialize_func_ptr)&SerializeEinnerImageCom, kIoDataLabelEinnerImageCom);
+  PrintCrc32((void*)&send_image_data_com, (serialize_func_ptr)&SerializeImageDataCom, kIoDataLabelImageDataCom);
+  PrintCrc32((void*)&send_camera_exposure_com, (serialize_func_ptr)&SerializeCameraExposureCom, kIoDataLabelCameraExposureCom);
+  PrintCrc32((void*)&send_camera_exposure_com2, (serialize_func_ptr)&SerializeCameraExposureCom, kIoDataLabelCameraExposureCom2);
+  PrintCrc32((void*)&send_lidar_status_com, (serialize_func_ptr)&SerializeLidarStatusCom, kIoDataLabelLidarStatusCom);
+  PrintCrc32((void*)&send_lcm_pose_estimate_info_com, (serialize_func_ptr)&SerializeLCMPoseEstimateInfoCom, kIoDataLabelLCMPoseEstimateInfoCom);
+  PrintCrc32((void*)&send_fr_lidar_entity_data_array_com, (serialize_func_ptr)&SerializeFrLidarEntityData_arrayCom, kIoDataLabelFrLidarEntityData_arrayCom);
+  PrintCrc32((void*)&send_lidar_point_group_data_com, (serialize_func_ptr)&SerializeLidarPointGroupDataCom, kIoDataLabelLidarPointGroupDataCom);
+  PrintCrc32((void*)&send_car_state_com, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom);
+  PrintCrc32((void*)&send_lux_object_data_com, (serialize_func_ptr)&SerializeLuxObjectDataCom, kIoDataLabelLuxObjectDataCom);
+  PrintCrc32((void*)&send_lux_scan_data_com, (serialize_func_ptr)&SerializeLuxScanDataCom, kIoDataLabelLuxScanDataCom);
+  PrintCrc32((void*)&send_lt_lidar_entity_data_array_com, (serialize_func_ptr)&SerializeLtLidarEntityData_arrayCom, kIoDataLabelLtLidarEntityData_arrayCom);
+  PrintCrc32((void*)&send_rr_lidar_entity_data_array_com, (serialize_func_ptr)&SerializeRrLidarEntityData_arrayCom, kIoDataLabelRrLidarEntityData_arrayCom);
+  PrintCrc32((void*)&send_rt_lidar_entity_data_array_com, (serialize_func_ptr)&SerializeRtLidarEntityData_arrayCom, kIoDataLabelRtLidarEntityData_arrayCom);
+  PrintCrc32((void*)&send_lidar_status_com2, (serialize_func_ptr)&SerializeLidarStatusCom, kIoDataLabelLidarStatusCom2);
+  PrintCrc32((void*)&send_lidar_status_com3, (serialize_func_ptr)&SerializeLidarStatusCom, kIoDataLabelLidarStatusCom3);
+  PrintCrc32((void*)&send_lidar_status_com4, (serialize_func_ptr)&SerializeLidarStatusCom, kIoDataLabelLidarStatusCom4);
+  PrintCrc32((void*)&send_car_state_com2, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom2);
+  PrintCrc32((void*)&send_srr_entity_data_bsr_l_array_com, (serialize_func_ptr)&SerializeSRREntityData_bsr_l_arrayCom, kIoDataLabelSRREntityData_bsr_l_arrayCom);
+  PrintCrc32((void*)&send_srr_entity_data_bsr_r_array_com, (serialize_func_ptr)&SerializeSRREntityData_bsr_r_arrayCom, kIoDataLabelSRREntityData_bsr_r_arrayCom);
+  PrintCrc32((void*)&send_srr_entity_data_fsr_l_array_com, (serialize_func_ptr)&SerializeSRREntityData_fsr_l_arrayCom, kIoDataLabelSRREntityData_fsr_l_arrayCom);
+  PrintCrc32((void*)&send_srr_entity_data_fsr_r_array_com, (serialize_func_ptr)&SerializeSRREntityData_fsr_r_arrayCom, kIoDataLabelSRREntityData_fsr_r_arrayCom);
+  PrintCrc32((void*)&send_pvm_lane_marking_data_com, (serialize_func_ptr)&SerializePvmLaneMarkingDataCom, kIoDataLabelPvmLaneMarkingDataCom);
+  PrintCrc32((void*)&send_frd_sensor_info_com, (serialize_func_ptr)&SerializeFRDSensorInfoCom, kIoDataLabelFRDSensorInfoCom);
+  PrintCrc32((void*)&send_frd_near_entity_data_array_com, (serialize_func_ptr)&SerializeFRDNearEntityData_arrayCom, kIoDataLabelFRDNearEntityData_arrayCom);
+  PrintCrc32((void*)&send_lane_data_array_com, (serialize_func_ptr)&SerializeLaneDataArrayCom, kIoDataLabelLaneDataArrayCom);
+  PrintCrc32((void*)&send_lane_boundary_data_array_com, (serialize_func_ptr)&SerializeLaneBoundaryData_arrayCom, kIoDataLabelLaneBoundaryData_arrayCom);
+  PrintCrc32((void*)&send_lane_recognition_state_com, (serialize_func_ptr)&SerializeLaneRecognitionStateCom, kIoDataLabelLaneRecognitionStateCom);
+  PrintCrc32((void*)&send_road_data_com, (serialize_func_ptr)&SerializeRoadDataCom, kIoDataLabelRoadDataCom);
+  PrintCrc32((void*)&send_frd_far_entity_data_array_com, (serialize_func_ptr)&SerializeFRDFarEntityData_arrayCom, kIoDataLabelFRDFarEntityData_arrayCom);
+  PrintCrc32((void*)&send_car_state_com3, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom3);
+  PrintCrc32((void*)&send_car_state_com4, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom4);
+  PrintCrc32((void*)&send_car_state_com5, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom5);
+  PrintCrc32((void*)&send_car_state_com6, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom6);
+  PrintCrc32((void*)&send_car_state_com7, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom7);
+  PrintCrc32((void*)&send_car_state_com8, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom8);
+  PrintCrc32((void*)&send_car_state_com9, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom9);
+  PrintCrc32((void*)&send_car_state_com10, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom10);
+  PrintCrc32((void*)&send_car_state_com11, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom11);
+  PrintCrc32((void*)&send_car_state_com12, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom12);
+  PrintCrc32((void*)&send_car_state_com13, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom13);
+  PrintCrc32((void*)&send_car_state_com14, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom14);
+  PrintCrc32((void*)&send_car_state_com15, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom15);
+  PrintCrc32((void*)&send_car_state_com16, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom16);
+  PrintCrc32((void*)&send_car_state_com17, (serialize_func_ptr)&SerializeCarStateCom, kIoDataLabelCarStateCom17);
+  PrintCrc32((void*)&send_fcm_entity_data_array_com, (serialize_func_ptr)&SerializeFCMEntityData_arrayCom, kIoDataLabelFCMEntityData_arrayCom);
+  PrintCrc32((void*)&send_scm_entity_data_array_com, (serialize_func_ptr)&SerializeSCMEntityData_arrayCom, kIoDataLabelSCMEntityData_arrayCom);
+  PrintCrc32((void*)&send_fr_lidar_polar_map_com, (serialize_func_ptr)&SerializeFrLidarPolarMapCom, kIoDataLabelFrLidarPolarMapCom);
+  PrintCrc32((void*)&send_ads_planner_calculation_info, (serialize_func_ptr)&SerializeADSPlannerCalculationInfo, kIoDataLabelADSPlannerCalculationInfo);
+  PrintCrc32((void*)&send_planner_object_result, (serialize_func_ptr)&SerializePlannerObjectResult, kIoDataLabelPlannerObjectResult);
+  PrintCrc32((void*)&send_my_lane_point_info, (serialize_func_ptr)&SerializeMyLanePointInfo, kIoDataLabelMyLanePointInfo);
+  PrintCrc32((void*)&send_ads_trajectory_output, (serialize_func_ptr)&SerializeAdsTrajectoryOutput, kIoDataLabelAdsTrajectoryOutput);
+  /**PRINT_DUMMY_DATA_END**/
+
+  //各データの配信フラグをチェックして送信
+  for (i = 0; i < data_info_list_count; i++) {
+    bool is_updated = true;
+    // １データ限定常時true
+    //Appfw_MsgUtilIsUpdated(data_info_list[i].input_buffer, &is_updated);
+    if (is_updated) {
+      bool ret = SendMessageData((const void *)data_info_list[i].input_buffer,
+                                 (serialize_func_ptr)data_info_list[i].ser_func,
+                                 data_info_list[i].data_label);
+      if (!ret) {
+        return;
+      }
+    }
+  }
+
+  LINUX_PRINT_OUT("%s:%d end-------------\n", __FUNCTION__, __LINE__);
+  return;
+}
+
+/****************************************************************************/
+/* 関数名		:	GetData							*/
+/*--------------------------------------------------------------------------*/
+/* 機能			:	ダミーデータ取得											*/
+/*--------------------------------------------------------------------------*/
+/* 引数			: 略														*/
+/*--------------------------------------------------------------------------*/
+/* 戻り値		: 略														*/
+/****************************************************************************/
+static bool GetData(void *data, uint32_t len)
+{
+  char *ptr = (char*)data;
+  for (uint32_t i=0; i<len; i++) {
+    ptr[i] = (char)(rand()&0x01);
+  }
+}
+
+/****************************************************************************/
+/* 関数名		:	PrintCrc32							*/
+/*--------------------------------------------------------------------------*/
+/* 機能			:	ダミーデータ取得											*/
+/*--------------------------------------------------------------------------*/
+/* 引数			: 略														*/
+/*--------------------------------------------------------------------------*/
+/* 戻り値		: 略														*/
+/****************************************************************************/
+static void PrintCrc32(void *data, serialize_func_ptr func, uint32_t data_label)
+{
+  if (temp_serialize_buf==NULL) {
+      temp_serialize_buf = malloc(max_buf_size);
+  }
+  //serialize -> crc32 -> print
+  size_t serialized_size = (func)(temp_serialize_buf, data, max_buf_size);
+  uint32_t crc = fpmw_send_crc32(temp_serialize_buf, serialized_size);
+  printf("dataid:%"PRIu32" crc32:0x%08"PRIx32"\n", data_label, crc);
+}
+
+/****************************************************************************/
+/* 関数名		:	SendMessageData							*/
+/*--------------------------------------------------------------------------*/
+/* 機能			:	汎用データ型送信											*/
+/*--------------------------------------------------------------------------*/
+/* 引数			: 略														*/
+/*--------------------------------------------------------------------------*/
+/* 戻り値		: 略														*/
+/****************************************************************************/
+static bool SendMessageData(const void *msg, serialize_func_ptr func,
+                            uint32_t data_id) {
+  //シリアライズ関数
+  size_t serialized_size =
+      (func)(&temp_send_buf[HEADER_SIZE], msg, max_buf_size);
+  if (serialized_size == 0) {
+    return false;
+  }
+
+  //ヘッダ情報
+  *((uint32_t *)(void *)&temp_send_buf[4]) = (uint32_t)data_id;
+  *((uint32_t *)(void *)&temp_send_buf[8]) = (uint32_t)serialized_size;
+
+  //socket送信
+  size_t remain = serialized_size + HEADER_SIZE;
+  size_t sended = 0;
+  errno = 0;
+  do {
+    int32_t send_len = (int32_t)send(sock, temp_send_buf + sended, remain, 0);
+    if (send_len < 0 && errno != EINTR) {
+      sock_connected = false;
+      Slog_Error("send failed. %s", strerror(errno));
+      Slog_Info("connection closed.");
+      return false;
+    }
+    if (send_len >= 0) {
+      if ((size_t)send_len != remain) {
+        //(注意)このログが出力されるケースではTCPの伝送が間に合っていない可能性がある
+        Slog_Warn("data_id:%" PRIu32 ", send() %zubytes but return %" PRId32
+                  "bytes. resending...",
+                  data_id, remain, send_len);
+      }
+      remain -= send_len;
+      sended += send_len;
+    }
+  } while (remain);
+  return true;
+}

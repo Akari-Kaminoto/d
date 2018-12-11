@@ -1,6 +1,10 @@
-;;;Last Updated:<2018/12/03 17:21:56 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/12/10 10:34:22 from ryuichi-VirtualBox by ryuichi>
 
-;; ロゴの設定
+;;;起動時にガベージコレクタを動かさない
+(setq gc-cons-threshold 134217728) ;; 128MB 注) 環境によります。
+(setq garbage-collection-messages t) ;; GC発生時にメッセージを出す
+
+;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
 
 ;;; theme select:
@@ -45,6 +49,14 @@
 
 
 ;;; package系を使うための設定
+
+;;; windowsの場合gitのpath設定など先に追加しておく
+(when (eq system-type 'windows-nt) ; Windows
+  ;;magit &git
+  (setq magit-git-executable "C:/Program Files/Git/bin/git.exe")
+  
+  (add-to-list 'exec-path "C:/Program Files/Git/bin")
+  )
 
 ;;
 ;; straight.el
@@ -475,6 +487,9 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "C-c e") 'my-find-file-init-el)
+
+;;; C-C u でpackage-listを出す(updateのため)
+(global-set-key (kbd "C-c u") 'package-list-packages)
 
 ;;; recent
 (setq recentf-max-saved-items 2000) ;; 2000ファイルまで履歴保存する

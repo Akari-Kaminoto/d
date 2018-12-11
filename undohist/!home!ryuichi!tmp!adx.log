@@ -1,0 +1,496 @@
+
+((digest . "26e3618ba05015a80051e3a939e646af") (undo-list (13171 . 13173) nil (13170 . 13171) nil (13087 . 13089) nil ("o" . -13087) ((marker . 13173) . -1) ((marker* . 13089) . 1) ((marker . 13087) . -1) 13088 nil (13086 . 13088) nil (13003 . 13005) nil (13002 . 13003) nil (12917 . 12920) nil (12917 . 12918) nil (12833 . 12836) nil (12750 . 12752) nil (12749 . 12750) nil (12665 . 12668) nil (12583 . 12584) nil (12498 . 12502) nil (12415 . 12418) nil (12254 . 12255) nil (12171 . 12174) nil (11928 . 11931) nil (11846 . 11848) nil (11845 . 11846) nil (10277 . 10279) nil (10276 . 10277) nil ("K" . 9706) ("O" . 9706) nil (11760 . 11763) nil (11677 . 11679) nil (11676 . 11677) nil (11592 . 11595) nil (11508 . 11511) nil (11424 . 11427) nil (11340 . 11343) nil (11256 . 11259) nil (11173 . 11175) nil (11172 . 11173) nil (10764 . 10767) nil (9870 . 9873) nil ("\\" . -9708) ((marker . 3878) . -1) 9709 nil (9708 . 9709) nil ("
+" . -9708) ((marker . 3878) . -1) ((marker . 13090) . -1) 9709 nil (9708 . 9709) nil (9706 . 9708) nil ("m" . -9706) ((marker . 3878) . -1) ("a" . -9707) ((marker . 3878) . -1) ("k" . -9708) ((marker . 3878) . -1) ("e" . -9709) ((marker . 3878) . -1) (" " . -9710) ((marker . 3878) . -1) 9711 nil (9706 . 9711) nil (9705 . 9706) nil (9621 . 9624) nil (9377 . 9378) nil (9294 . 9296) nil ("I" . -9294) ((marker . 3878) . -1) 9295 nil (9293 . 9295) nil (9209 . 9212) nil (9125 . 9127) nil (9124 . 9125) nil (9124 . 9125) nil (9041 . 9043) nil (9040 . 9041) nil (8957 . 8959) nil (8956 . 8957) nil (8873 . 8875) nil (8872 . 8873) nil (8788 . 8791) (t 23566 4090 470999 617000) nil (8706 . 8707) nil (8622 . 8625) nil (8539 . 8542) nil (8296 . 8299) nil (8053 . 8056) nil (7970 . 7973) nil (7886 . 7889) nil (7802 . 7805) nil (7718 . 7721) nil (7634 . 7637) nil (7550 . 7553) nil (7466 . 7469) nil (7383 . 7385) nil (7382 . 7383) nil (7298 . 7301) nil (6890 . 6893) nil (6401 . 6404) nil (5993 . 5996) nil (5830 . 5831) nil (5746 . 5749) nil (5502 . 5503) nil (5418 . 5421) nil (5335 . 5337) nil (5334 . 5335) nil (5251 . 5253) nil (5250 . 5251) nil (5167 . 5169) nil (5166 . 5167) nil (5083 . 5085) nil (5082 . 5083) nil (4998 . 5001) nil (4914 . 4917) nil (4830 . 4833) nil ("
+" . 4014) ((marker . 7550) . -1) ((marker . 13255) . -1) ((marker . 13255) . -1) ((marker . 13174) . -1) nil ("2018-12-10T04:01:12+0000 000000027 IFO [FpmwTestSend] dataid:1 crc32:0x70af4e6d 
+2018-12-10T04:01:13+0000 000000129 IFO [FpmwTestSend] dataid:2 crc32:0x9c76cba2
+2018-12-10T04:01:13+0000 000000230 IFO [FpmwTestSend] dataid:3 crc32:0xef65d6a4
+2018-12-10T04:01:13+0000 000000332 IFO [FpmwTestSend] dataid:4 crc32:0xbeebc0b8
+2018-12-10T04:01:13+0000 000000434 IFO [FpmwTestSend] dataid:5 crc32:0xaf1a4148
+2018-12-10T04:01:13+0000 000000535 IFO [FpmwTestSend] dataid:6 crc32:0x58cd7faa
+2018-12-10T04:01:13+0000 000000638 IFO [FpmwTestSend] dataid:7 crc32:0xa8ab7a66
+2018-12-10T04:01:13+0000 000000740 IFO [FpmwTestSend] dataid:8 crc32:0xfa6c748b
+2018-12-10T04:01:13+0000 000000841 IFO [FpmwTestSend] dataid:9 crc32:0xacff62ce
+2018-12-10T04:01:13+0000 000000944 IFO [FpmwTestSend] dataid:10 crc32:0x45340ce0
+2018-12-10T04:01:13+0000 000001048 IFO [FpmwTestSend] dataid:11 crc32:0xd72890cc
+2018-12-10T04:01:14+0000 000001148 IFO [FpmwTestSend] dataid:12 crc32:0x2bfe2f90
+2018-12-10T04:01:14+0000 000001249 IFO [FpmwTestSend] dataid:13 crc32:0xacff62ce
+2018-12-10T04:01:14+0000 000001351 IFO [FpmwTestSend] dataid:14 crc32:0x00d756a4
+2018-12-10T04:01:14+0000 000001454 IFO [FpmwTestSend] dataid:15 crc32:0x047679ca
+2018-12-10T04:01:14+0000 000001557 IFO [FpmwTestSend] dataid:16 crc32:0x1b3da69e
+2018-12-10T04:01:14+0000 000001663 IFO [FpmwTestSend] dataid:17 crc32:0x07391782
+2018-12-10T04:01:14+0000 000001765 IFO [FpmwTestSend] dataid:18 crc32:0x73d5298a
+2018-12-10T04:01:14+0000 000001867 IFO [FpmwTestSend] dataid:19 crc32:0x352aab79
+2018-12-10T04:01:14+0000 000001968 IFO [FpmwTestSend] dataid:20 crc32:0x0d9c80bf
+2018-12-10T04:01:14+0000 000002069 IFO [FpmwTestSend] dataid:21 crc32:0xdbce1f1c
+2018-12-10T04:01:15+0000 000002171 IFO [FpmwTestSend] dataid:22 crc32:0xd3aef207
+2018-12-10T04:01:15+0000 000002273 IFO [FpmwTestSend] dataid:23 crc32:0xc6eb9587
+2018-12-10T04:01:15+0000 000002374 IFO [FpmwTestSend] dataid:24 crc32:0x5cc378c0
+2018-12-10T04:01:15+0000 000002475 IFO [FpmwTestSend] dataid:25 crc32:0x18da75f6
+2018-12-10T04:01:15+0000 000002578 IFO [FpmwTestSend] dataid:26 crc32:0x04acf180
+2018-12-10T04:01:15+0000 000002686 IFO [FpmwTestSend] dataid:27 crc32:0x23a7ac3e
+2018-12-10T04:01:15+0000 000002787 IFO [FpmwTestSend] dataid:28 crc32:0x4bfb20e6
+2018-12-10T04:01:15+0000 000002889 IFO [FpmwTestSend] dataid:29 crc32:0xe860293a
+2018-12-10T04:01:15+0000 000002990 IFO [FpmwTestSend] dataid:30 crc32:0xddb96677
+2018-12-10T04:01:16+0000 000003092 IFO [FpmwTestSend] dataid:31 crc32:0x1b1c8be0
+2018-12-10T04:01:16+0000 000003194 IFO [FpmwTestSend] dataid:32 crc32:0x4e9d474a
+2018-12-10T04:01:16+0000 000003340 IFO [FpmwTestSend] dataid:33 crc32:0xae396fbc
+2018-12-10T04:01:16+0000 000003442 IFO [FpmwTestSend] dataid:34 crc32:0x04c295e0
+2018-12-10T04:01:16+0000 000003543 IFO [FpmwTestSend] dataid:35 crc32:0xb6709050
+2018-12-10T04:01:16+0000 000003646 IFO [FpmwTestSend] dataid:36 crc32:0x72aca6fa
+2018-12-10T04:01:16+0000 000003748 IFO [FpmwTestSend] dataid:37 crc32:0xa2a56696
+2018-12-10T04:01:16+0000 000003850 IFO [FpmwTestSend] dataid:38 crc32:0xbdf55b4e
+2018-12-10T04:01:16+0000 000003952 IFO [FpmwTestSend] dataid:39 crc32:0xf0eb0bda
+2018-12-10T04:01:16+0000 000004054 IFO [FpmwTestSend] dataid:40 crc32:0xe0f0838d
+2018-12-10T04:01:17+0000 000004156 IFO [FpmwTestSend] dataid:41 crc32:0xdbce1f1c
+2018-12-10T04:01:17+0000 000004259 IFO [FpmwTestSend] dataid:42 crc32:0xd4bf86ef
+2018-12-10T04:01:17+0000 000004360 IFO [FpmwTestSend] dataid:43 crc32:0x2115b47c
+2018-12-10T04:01:17+0000 000004462 IFO [FpmwTestSend] dataid:44 crc32:0xd4bf86ef
+2018-12-10T04:01:17+0000 000004563 IFO [FpmwTestSend] dataid:45 crc32:0x21a1e09c
+2018-12-10T04:01:17+0000 000004665 IFO [FpmwTestSend] dataid:46 crc32:0x4957ea2f
+2018-12-10T04:01:17+0000 000004765 IFO [FpmwTestSend] dataid:47 crc32:0x15f69300
+" . 4015) ((marker . 3878) . -3799) ((marker . 3044) . -2179) ((marker . 4181) . -2746) ((marker . 4181) . -2746) ((marker . 3125) . -3151) ((marker . 3125) . -3151) ((marker . 13336) . -2422) ((marker . 13336) . -2422) ((marker . 13174) . -2827) ((marker . 13174) . -2827) ((marker . 12336) . -2989) ((marker . 12336) . -2989) ((marker . 13090) . -3637) ((marker . 13090) . -3637) ((marker . 12837) . -3475) ((marker . 12837) . -3475) ((marker . 13255) . -2179) ((marker . 13255) . -2179) ((marker . 13579) . -3799) ((marker . 13579) . -3799) ((marker . 13417) . -3232) ((marker . 13417) . -3232) ((marker) . -3799) ((marker . 13090) . -3799) 7814 nil (8547 . 8549) nil (8546 . 8547) nil (8463 . 8466) nil (8220 . 8223) nil (7977 . 7980) nil (7894 . 7897) nil (4094 . 4095) nil (19531 . 19532) nil ("2018-12-10T04:01:32+0000 000019763 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019765 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019765 IFO [FpmwTestSend] dataid:5 crc32:0xaec2edcf
+2018-12-10T04:01:32+0000 000019865 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019866 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019866 IFO [FpmwTestSend] dataid:6 crc32:0x0e62e218
+2018-12-10T04:01:32+0000 000019966 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019967 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019967 IFO [FpmwTestSend] dataid:7 crc32:0x00336035
+2018-12-10T04:01:32+0000 000020059 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:32+0000 000020059 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:32+0000 000020067 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000020070 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000020071 IFO [FpmwTestSend] dataid:8 crc32:0x6884f396
+2018-12-10T04:01:33+0000 000020171 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020172 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020172 IFO [FpmwTestSend] dataid:9 crc32:0x6884f396
+2018-12-10T04:01:33+0000 000020272 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020273 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020273 IFO [FpmwTestSend] dataid:10 crc32:0xcb2b4d13
+2018-12-10T04:01:33+0000 000020373 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020373 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020373 IFO [FpmwTestSend] dataid:11 crc32:0x7f864048
+2018-12-10T04:01:33+0000 000020474 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020474 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020474 IFO [FpmwTestSend] dataid:12 crc32:0xef85bec8
+2018-12-10T04:01:33+0000 000020574 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020575 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020575 IFO [FpmwTestSend] dataid:13 crc32:0xfa0ff823
+2018-12-10T04:01:33+0000 000020676 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020676 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020676 IFO [FpmwTestSend] dataid:14 crc32:0xf836b473
+2018-12-10T04:01:33+0000 000020776 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020777 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020777 IFO [FpmwTestSend] dataid:15 crc32:0xd2aea5a1
+2018-12-10T04:01:33+0000 000020877 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020878 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020880 IFO [FpmwTestSend] dataid:16 crc32:0x1b3da69e
+2018-12-10T04:01:33+0000 000020980 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020982 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:33+0000 000020988 IFO [FpmwTestSend] dataid:17 crc32:0x593a640e
+2018-12-10T04:01:33+0000 000021059 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:33+0000 000021060 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:33+0000 000021088 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021092 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021093 IFO [FpmwTestSend] dataid:18 crc32:0xfd017c3a
+2018-12-10T04:01:34+0000 000021193 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021194 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021194 IFO [FpmwTestSend] dataid:19 crc32:0x352aab79
+2018-12-10T04:01:34+0000 000021294 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021295 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021296 IFO [FpmwTestSend] dataid:20 crc32:0xfdb92819
+2018-12-10T04:01:34+0000 000021397 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021400 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021400 IFO [FpmwTestSend] dataid:21 crc32:0x2e642d8f
+2018-12-10T04:01:34+0000 000021500 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021501 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021501 IFO [FpmwTestSend] dataid:22 crc32:0x0071dd3f
+2018-12-10T04:01:34+0000 000021602 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021603 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021604 IFO [FpmwTestSend] dataid:23 crc32:0x2d240e3d
+2018-12-10T04:01:34+0000 000021707 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021708 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021708 IFO [FpmwTestSend] dataid:24 crc32:0xf43aa843
+2018-12-10T04:01:34+0000 000021808 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021808 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021809 IFO [FpmwTestSend] dataid:25 crc32:0x33ee9b09
+2018-12-10T04:01:34+0000 000021909 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021910 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000021910 IFO [FpmwTestSend] dataid:26 crc32:0x6cd8500c
+2018-12-10T04:01:34+0000 000022010 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000022011 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:34+0000 000022011 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:34+0000 000022011 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:34+0000 000022012 IFO [FpmwTestSend] dataid:27 crc32:0x11671c02
+2018-12-10T04:01:34+0000 000022061 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:34+0000 000022061 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:35+0000 000022113 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022115 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022115 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000022115 IFO [FpmwTestSend] dataid:28 crc32:0x76206e3e
+2018-12-10T04:01:35+0000 000022115 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000022215 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022216 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000022216 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022216 IFO [FpmwTestSend] dataid:29 crc32:0xa4e23dcf
+2018-12-10T04:01:35+0000 000022216 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000022316 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022317 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022318 IFO [FpmwTestSend] dataid:30 crc32:0x011900c4
+2018-12-10T04:01:35+0000 000022418 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022421 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000022424 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000022424 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022425 IFO [FpmwTestSend] dataid:31 crc32:0xe3c236ec
+2018-12-10T04:01:35+0000 000022525 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022526 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000022526 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000022526 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022527 IFO [FpmwTestSend] dataid:32 crc32:0x0fa46831
+2018-12-10T04:01:35+0000 000022627 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022627 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022628 IFO [FpmwTestSend] dataid:33 crc32:0x655c3bcd
+2018-12-10T04:01:35+0000 000022728 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022728 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022728 IFO [FpmwTestSend] dataid:34 crc32:0xc07db566
+2018-12-10T04:01:35+0000 000022829 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022830 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022830 IFO [FpmwTestSend] dataid:35 crc32:0x64b16003
+2018-12-10T04:01:35+0000 000022831 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000022833 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000022931 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022932 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000022933 IFO [FpmwTestSend] dataid:36 crc32:0xae2724ea
+2018-12-10T04:01:35+0000 000023033 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000023034 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000023034 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:35+0000 000023035 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:35+0000 000023035 IFO [FpmwTestSend] dataid:37 crc32:0x50430907
+2018-12-10T04:01:35+0000 000023061 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:35+0000 000023061 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:36+0000 000023135 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023136 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023136 IFO [FpmwTestSend] dataid:38 crc32:0xa3009163
+2018-12-10T04:01:36+0000 000023236 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023238 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023238 IFO [FpmwTestSend] dataid:39 crc32:0xf0eb0bda
+2018-12-10T04:01:36+0000 000023338 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023338 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023338 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023339 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023339 IFO [FpmwTestSend] dataid:40 crc32:0x9d69c852
+2018-12-10T04:01:36+0000 000023439 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023440 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023440 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023440 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023440 IFO [FpmwTestSend] dataid:41 crc32:0x5c8cffa3
+2018-12-10T04:01:36+0000 000023540 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023541 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023541 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023541 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023542 IFO [FpmwTestSend] dataid:42 crc32:0x155ab11e
+2018-12-10T04:01:36+0000 000023642 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023642 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023642 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023642 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023642 IFO [FpmwTestSend] dataid:43 crc32:0x2e642d8f
+2018-12-10T04:01:36+0000 000023745 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023746 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023746 IFO [FpmwTestSend] dataid:44 crc32:0x5c8cffa3
+2018-12-10T04:01:36+0000 000023746 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023746 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023846 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023846 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023846 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023847 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023847 IFO [FpmwTestSend] dataid:45 crc32:0x21a1e09c
+2018-12-10T04:01:36+0000 000023947 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023947 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023947 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000023947 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000023947 IFO [FpmwTestSend] dataid:46 crc32:0x0081a492
+2018-12-10T04:01:36+0000 000024048 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000024048 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000024048 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:36+0000 000024048 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:36+0000 000024048 IFO [FpmwTestSend] dataid:47 crc32:0x91a063b6
+2018-12-10T04:01:36+0000 000024062 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:36+0000 000024062 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:37+0000 000024149 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024149 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:37+0000 000024149 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024150 IFO [FpmwTestSend] dataid:1 crc32:0x684d0d63
+2018-12-10T04:01:37+0000 000024150 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:37+0000 000024250 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024253 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024253 IFO [FpmwTestSend] dataid:2 crc32:0x0f4c3904
+2018-12-10T04:01:37+0000 000024353 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024354 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024354 IFO [FpmwTestSend] dataid:3 crc32:0xfe950ef3
+2018-12-10T04:01:37+0000 000024454 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024455 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024455 IFO [FpmwTestSend] dataid:4 crc32:0x7e2ff349
+2018-12-10T04:01:37+0000 000024556 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024557 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024557 IFO [FpmwTestSend] dataid:5 crc32:0x3a7abc72
+2018-12-10T04:01:37+0000 000024657 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024658 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024658 IFO [FpmwTestSend] dataid:6 crc32:0x082ecbc8
+2018-12-10T04:01:37+0000 000024758 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024759 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024759 IFO [FpmwTestSend] dataid:7 crc32:0x2752a121
+2018-12-10T04:01:37+0000 000024860 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024860 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024860 IFO [FpmwTestSend] dataid:8 crc32:0xfa0ff823
+2018-12-10T04:01:37+0000 000024961 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024961 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000024961 IFO [FpmwTestSend] dataid:9 crc32:0xb916a88d
+2018-12-10T04:01:37+0000 000025062 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000025063 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:37+0000 000025063 IFO [FpmwTestSend] dataid:10 crc32:0xfebeb4bd
+2018-12-10T04:01:37+0000 000025063 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:37+0000 000025063 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:38+0000 000025163 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025164 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025164 IFO [FpmwTestSend] dataid:11 crc32:0x05e9609f
+2018-12-10T04:01:38+0000 000025264 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025268 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025270 IFO [FpmwTestSend] dataid:12 crc32:0x7d6d39d5
+2018-12-10T04:01:38+0000 000025371 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025372 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025372 IFO [FpmwTestSend] dataid:13 crc32:0xfa6c748b
+2018-12-10T04:01:38+0000 000025473 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025475 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025475 IFO [FpmwTestSend] dataid:14 crc32:0xb9f8a4e2
+2018-12-10T04:01:38+0000 000025577 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025578 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025578 IFO [FpmwTestSend] dataid:15 crc32:0xd66fb816
+2018-12-10T04:01:38+0000 000025678 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025679 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025681 IFO [FpmwTestSend] dataid:16 crc32:0x6305a1da
+2018-12-10T04:01:38+0000 000025781 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025783 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025788 IFO [FpmwTestSend] dataid:17 crc32:0x9df74d46
+2018-12-10T04:01:38+0000 000025889 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025891 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025892 IFO [FpmwTestSend] dataid:18 crc32:0x483fc037
+2018-12-10T04:01:38+0000 000025993 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025994 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:38+0000 000025994 IFO [FpmwTestSend] dataid:19 crc32:0xbd19d235
+2018-12-10T04:01:38+0000 000026064 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:38+0000 000026064 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:39+0000 000026094 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026095 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026096 IFO [FpmwTestSend] dataid:20 crc32:0x99db6baa
+2018-12-10T04:01:39+0000 000026197 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026198 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026198 IFO [FpmwTestSend] dataid:21 crc32:0xdbce1f1c
+2018-12-10T04:01:39+0000 000026300 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026302 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026302 IFO [FpmwTestSend] dataid:22 crc32:0x36eb67b5
+2018-12-10T04:01:39+0000 000026405 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026407 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026408 IFO [FpmwTestSend] dataid:23 crc32:0xacf3fed9
+2018-12-10T04:01:39+0000 000026509 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026513 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026513 IFO [FpmwTestSend] dataid:24 crc32:0x732b997c
+2018-12-10T04:01:39+0000 000026614 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026617 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026617 IFO [FpmwTestSend] dataid:25 crc32:0xe6fa1b9f
+2018-12-10T04:01:39+0000 000026717 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026718 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026718 IFO [FpmwTestSend] dataid:26 crc32:0xd549220f
+2018-12-10T04:01:39+0000 000026818 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026818 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:39+0000 000026819 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026819 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:39+0000 000026820 IFO [FpmwTestSend] dataid:27 crc32:0x35defb72
+2018-12-10T04:01:39+0000 000026920 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026921 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:39+0000 000026921 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:39+0000 000026921 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000026922 IFO [FpmwTestSend] dataid:28 crc32:0xb26b0e8d
+2018-12-10T04:01:39+0000 000027022 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000027023 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:39+0000 000027023 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:39+0000 000027023 IFO [FpmwTestSend] dataid:29 crc32:0x277c23dc
+2018-12-10T04:01:39+0000 000027027 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:39+0000 000027065 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:39+0000 000027065 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:40+0000 000027124 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027126 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027127 IFO [FpmwTestSend] dataid:30 crc32:0x72874259
+2018-12-10T04:01:40+0000 000027227 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027228 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:40+0000 000027229 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027230 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:40+0000 000027233 IFO [FpmwTestSend] dataid:31 crc32:0xc7bced53
+2018-12-10T04:01:40+0000 000027334 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027335 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027335 IFO [FpmwTestSend] dataid:32 crc32:0x4e9d474a
+2018-12-10T04:01:40+0000 000027338 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:40+0000 000027338 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:40+0000 000027435 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027435 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027435 IFO [FpmwTestSend] dataid:33 crc32:0xb56d8c2f
+2018-12-10T04:01:40+0000 000027536 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027536 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027536 IFO [FpmwTestSend] dataid:34 crc32:0xee8ab2fd
+2018-12-10T04:01:40+0000 000027636 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027637 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027637 IFO [FpmwTestSend] dataid:35 crc32:0xb6709050
+2018-12-10T04:01:40+0000 000027637 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:40+0000 000027638 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:40+0000 000027737 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027738 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027739 IFO [FpmwTestSend] dataid:36 crc32:0x6ffab5e0
+2018-12-10T04:01:40+0000 000027839 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027840 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:40+0000 000027840 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:40+0000 000027840 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027840 IFO [FpmwTestSend] dataid:37 crc32:0x0d20f700
+2018-12-10T04:01:40+0000 000027942 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027943 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000027943 IFO [FpmwTestSend] dataid:38 crc32:0x88868acf
+2018-12-10T04:01:40+0000 000028045 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000028045 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:40+0000 000028046 IFO [FpmwTestSend] dataid:39 crc32:0xbb37af7b
+2018-12-10T04:01:40+0000 000028066 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:40+0000 000028066 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:41+0000 000028146 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028146 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:41+0000 000028146 IFO [FpmwSend] connection closed.
+2018-12-10T04:01:41+0000 000028147 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028147 IFO [FpmwTestSend] dataid:40 crc32:0x9d69c852
+2018-12-10T04:01:41+0000 000028247 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028248 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028248 IFO [FpmwTestSend] dataid:41 crc32:0x2115b47c
+2018-12-10T04:01:41+0000 000028348 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028349 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028349 IFO [FpmwTestSend] dataid:42 crc32:0x5c8cffa3
+2018-12-10T04:01:41+0000 000028449 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028449 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028449 IFO [FpmwTestSend] dataid:43 crc32:0x2115b47c
+2018-12-10T04:01:41+0000 000028550 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028551 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028551 IFO [FpmwTestSend] dataid:44 crc32:0xef811a7e
+2018-12-10T04:01:41+0000 000028651 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028652 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028652 IFO [FpmwTestSend] dataid:45 crc32:0x8847e915
+2018-12-10T04:01:41+0000 000028754 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028754 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028754 IFO [FpmwTestSend] dataid:46 crc32:0x34cea1f0
+2018-12-10T04:01:41+0000 000028855 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028855 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028855 IFO [FpmwTestSend] dataid:47 crc32:0x9a7511ad
+2018-12-10T04:01:41+0000 000028955 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028956 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000028957 IFO [FpmwTestSend] dataid:1 crc32:0x3cbfd8a4
+2018-12-10T04:01:41+0000 000029057 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000029057 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:41+0000 000029057 IFO [FpmwTestSend] dataid:2 crc32:0x9c76cba2
+2018-12-10T04:01:41+0000 000029071 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:41+0000 000029071 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:42+0000 000029158 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:42+0000 000029161 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:42+0000 000029161 IFO [FpmwTestSend] dataid:3 crc32:0x6d32a935
+2018-12-10T04:01:42+0000 000029262 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:42+0000 000029263 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . 19531) ((marker . 3878) . -32709) ((marker . 3044) . -31007) ((marker) . -32709) ((marker . 13090) . -32709) ((marker . 13174) . -32709) 52240 nil ("2018-12-10T04:01:29+0000 000016786 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:29+0000 000016787 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -17185) ((marker . 3878) . -200) ((marker) . -200) ((marker . 13090) . -200) 17385 nil ("2018-12-10T04:01:32+0000 000019662 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019663 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -19651) ((marker . 3878) . -200) ((marker) . -200) ((marker . 13090) . -200) 19851 nil ("2018-12-10T04:01:32+0000 000019559 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019560 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -19571) ((marker . 3878) . -200) ((marker) . -200) ((marker . 13090) . -200) 19771 nil ("2018-12-10T04:01:32+0000 000019456 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019458 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -19491) ((marker . 3878) . -200) ((marker) . -200) ((marker . 13090) . -200) 19691 nil (19410 . 19411) nil ("2018-12-10T04:01:32+0000 000019355 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019355 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:32+0000 000019355 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:32+0000 000019356 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -19410) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 19794 nil ("2018-12-10T04:01:32+0000 000019253 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019253 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:32+0000 000019253 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:32+0000 000019254 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -19329) ((marker . 3878) . -284) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 19713 nil ("2018-12-10T04:01:31+0000 000019058 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:31+0000 000019058 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:32+0000 000019150 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:32+0000 000019151 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:32+0000 000019151 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:32+0000 000019152 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -19248) ((marker . 3878) . -584) ((marker) . -584) ((marker . 13090) . -584) 19832 nil ("2018-12-10T04:01:31+0000 000019049 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:31+0000 000019049 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000019049 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000019050 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -19167) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 19551 nil ("2018-12-10T04:01:31+0000 000018947 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:31+0000 000018948 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018948 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018949 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -19086) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 19470 nil ("2018-12-10T04:01:31+0000 000018846 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:31+0000 000018846 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018846 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018847 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -19005) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 19389 nil ("2018-12-10T04:01:31+0000 000018646 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018646 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018743 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:31+0000 000018743 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018743 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018744 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18924) ((marker . 3878) . -568) ((marker) . -568) ((marker . 13090) . -568) 19492 nil ("2018-12-10T04:01:31+0000 000018642 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:31+0000 000018643 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18843) ((marker . 3878) . -200) ((marker) . -200) ((marker . 13090) . -200) 19043 nil ("2018-12-10T04:01:31+0000 000018541 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:31+0000 000018541 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018541 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018542 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18762) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 19146 nil ("2018-12-10T04:01:31+0000 000018438 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:31+0000 000018439 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18681) ((marker . 3878) . -200) ((marker) . -200) ((marker . 13090) . -200) 18881 nil ("2018-12-10T04:01:31+0000 000018236 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018236 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:31+0000 000018335 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:31+0000 000018336 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18600) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 18984 nil ("2018-12-10T04:01:31+0000 000018232 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:31+0000 000018233 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18519) ((marker . 3878) . -200) ((marker) . -200) ((marker . 13090) . -200) 18719 nil ("2018-12-10T04:01:30+0000 000018056 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:30+0000 000018057 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:31+0000 000018128 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:31+0000 000018129 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18438) ((marker . 3878) . -400) ((marker) . -400) ((marker . 13090) . -400) 18838 nil ("2018-12-10T04:01:30+0000 000018026 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:30+0000 000018026 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:30+0000 000018026 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:30+0000 000018027 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18357) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 18741 nil ("2018-12-10T04:01:30+0000 000017921 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:30+0000 000017922 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18276) ((marker . 3878) . -200) ((marker) . -200) ((marker . 13090) . -200) 18476 nil ("2018-12-10T04:01:30+0000 000017716 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:30+0000 000017716 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:30+0000 000017816 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:30+0000 000017817 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18195) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 18579 nil ("2018-12-10T04:01:30+0000 000017713 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:30+0000 000017715 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18114) ((marker . 3878) . -200) ((marker) . -200) ((marker . 13090) . -200) 18314 nil ("2018-12-10T04:01:30+0000 000017607 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:30+0000 000017608 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:30+0000 000017608 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:30+0000 000017608 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -18033) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 18417 nil ("2018-12-10T04:01:30+0000 000017504 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:30+0000 000017505 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -17952) ((marker . 3878) . -200) ((marker) . -200) ((marker . 13090) . -200) 18152 nil ("2018-12-10T04:01:30+0000 000017402 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:30+0000 000017403 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:30+0000 000017403 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:30+0000 000017404 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . -17871) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 18255 nil ("2018-12-10T04:01:30+0000 000017297 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:30+0000 000017297 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:30+0000 000017297 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:30+0000 000017301 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . 17790) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 18174 nil ("2018-12-10T04:01:30+0000 000017195 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:30+0000 000017196 IFO [FpmwSend] --- ENTER DevTools_FpmwSend's Compute ---
+2018-12-10T04:01:30+0000 000017196 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:30+0000 000017196 IFO [FpmwSend] --- EXIT  DevTools_FpmwSend's Compute ---
+" . 17709) ((marker . 3878) . -384) ((marker) . -384) ((marker . 13090) . -384) 18093 nil ("2018-12-10T04:01:29+0000 000017055 IFO [TestTextRecv] --- EXIT  DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:29+0000 000017055 IFO [TestTextRecv] --- ENTER DevTools_TestTextRecv's Compute ---
+2018-12-10T04:01:30+0000 000017092 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:30+0000 000017095 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . 17628) ((marker . 3878) . -400) ((marker) . -400) ((marker . 13090) . -400) 18028 nil ("2018-12-10T04:01:29+0000 000016991 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:29+0000 000016992 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . 17547) ((marker . 3878) . -200) ((marker) . -200) ((marker . 13090) . -200) 17747 nil ("2018-12-10T04:01:29+0000 000016890 IFO [FpmwTestSend] --- EXIT  DevTools_FpmwTestSend's Compute ---
+2018-12-10T04:01:29+0000 000016891 IFO [FpmwTestSend] --- ENTER DevTools_FpmwTestSend's Compute ---
+" . 17466) ((marker . 3878) . -200) ((marker* . 13660) . 200) ((marker* . 13660) . 200) ((marker* . 13660) . 200) ((marker* . 13660) . 200) ((marker) . -200) ((marker . 13090) . -200) 17666 nil undo-tree-canary))
