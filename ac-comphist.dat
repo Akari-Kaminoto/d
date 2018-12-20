@@ -133,4 +133,26 @@
   ("endl" .
    [2 0 0 0])
   ("std" .
-   [4 0 0])))
+   [4 0 0])
+  ("DIF_FUNC_HEADER_INCLUIDE_STARTの整形" .
+   [0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("append" .
+   [1 0 0 0 0 1])
+  ("dif" .
+   [1 0 0])
+  ("buffer_count_define" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("dif_func_header_include_list" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("dif_ram_header_include_list" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("postfix" .
+   [1 0 0 0 0 0 1])
+  ("recv_data_list" .
+   [1 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("i" .
+   [13])
+  ("zfill" .
+   [1 0 0 0 1])
+  ("indent" .
+   [1 0 0 0 0 0])))

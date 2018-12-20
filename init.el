@@ -1,8 +1,5 @@
-;;;Last Updated:<2018/12/10 10:34:22 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/12/20 14:19:10 from ryuichi-VirtualBox by ryuichi>
 
-;;;起動時にガベージコレクタを動かさない
-(setq gc-cons-threshold 134217728) ;; 128MB 注) 環境によります。
-(setq garbage-collection-messages t) ;; GC発生時にメッセージを出す
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -205,8 +202,8 @@
 
 ;;; インデント設定
 
-(setq-default c-basic-offset 2     ;;基本インデント量
-              tab-width 2          ;;タブ幅
+(setq-default c-basic-offset 4     ;;基本インデント量
+              tab-width 4          ;;タブ幅
               indent-tabs-mode nil)  ;;インデントをタブでするかスペースでするか
 
 ;;; C,C++の設定
@@ -220,8 +217,8 @@
 (add-hook 'c++-mode-hook
           '(lambda ()
              ;;(setq tab-width 32)
-             (setq tab-width 2)
-             (setq c-basic-offset 2)
+             (setq tab-width 4)
+             (setq c-basic-offset 4)
              ;; 以下 *:*1 -:*-1 ++:*2 --:*-2 *:*0.5 /:*-0.5
              (setq c++-auto-newline nil)
              (setq c++-tab-always-indent t)
@@ -455,7 +452,7 @@
 ;;----
 ;; 折り返しトグルコマンド
 ;;----
-(global-set-key (kbd "C-c l") 'toggle-truncate-lines)
+(global-set-key (kbd "C-c j") 'toggle-truncate-lines)
  
 ;;----
 ;; バックスペースをC-hにする
@@ -490,6 +487,9 @@
 
 ;;; C-C u でpackage-listを出す(updateのため)
 (global-set-key (kbd "C-c u") 'package-list-packages)
+
+;;; フレーム間移動を個別定義(本来はC-x 5 o)
+(global-set-key (kbd "C-c o") 'other-frame)
 
 ;;; recent
 (setq recentf-max-saved-items 2000) ;; 2000ファイルまで履歴保存する
@@ -883,13 +883,6 @@
   (setq beacon-blink-when-focused t)
   (setq beacon-blink-duration 1))
 
-
-;;; tempbuf 不要なバッファーを自動的にkillする
-(require 'tempbuf)
-(add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
-(add-hook 'magit-mode-hook 'turn-on-tempbuf-mode)
-
-
 ;;;saveplace: 前回の修正位置を記憶する.
 (use-package saveplace
   :config
@@ -950,12 +943,6 @@
   (global-set-key (kbd "\C-x b") 'psw-switch-buffer)
   (global-set-key [f3] 'psw-switch-function)
   (setq psw-popup-menu-max-length 15))
-
-;;; move-text
-;;; M-↑ M-↓で現在行やリージョンを移動
-(use-package move-text
-  :config
-  (move-text-default-bindings))
 
 ;;; darkroom
 ;;; 集中してもの書く時用に
@@ -1182,26 +1169,13 @@
   :config
   (helm-projectile-on))
 
-;;; git-gutter-fringe+
-(use-package git-gutter-fringe+
-  :ensure t
-  :init  (global-git-gutter+-mode)
-  :config
-  (define-key git-gutter+-mode-map (kbd "C-x n") 'git-gutter+-next-hunk)
-  (define-key git-gutter+-mode-map (kbd "C-x p") 'git-gutter+-previous-hunk)
-  (define-key git-gutter+-mode-map (kbd "C-x v =") 'git-gutter+-show-hunk)
-  (define-key git-gutter+-mode-map (kbd "C-x r") 'git-gutter+-revert-hunks)
-  (define-key git-gutter+-mode-map (kbd "C-x t") 'git-gutter+-stage-hunks)
-  (define-key git-gutter+-mode-map (kbd "C-x c") 'git-gutter+-commit)
-  (define-key git-gutter+-mode-map (kbd "C-x C") 'git-gutter+-stage-and-commit)
-  (define-key git-gutter+-mode-map (kbd "C-x C-y") 'git-gutter+-stage-and-commit-whole-buffer)
-  (define-key git-gutter+-mode-map (kbd "C-x U") 'git-gutter+-unstage-whole-wbuffer)
-  ;; Look and feel
-  (set-face-background 'git-gutter-fr+-modified "purple") ;; background color
-  (set-face-foreground 'git-gutter-fr+-added "#55CC55")
-  (set-face-foreground 'git-gutter-fr+-deleted "#CC5555"))
-
 ;;; Python
+
+;;; python-mode
+(use-package python-mode
+    :config
+    (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+    (add-to-list 'interpreter-mode-alist '("python" . python-mode)))
 
 ;;; company-jedi
 (use-package jedi
@@ -1215,6 +1189,10 @@
    :init
    (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
    (setq  company-jedi-python-bin "python")))
+
+(use-package py-yapf
+  :config
+  (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
 
 ;;
 ;; linux 初回起動時のみ $ sudo apt-get install virtualenv
@@ -1322,8 +1300,7 @@
   ;; $ cp  ~/.emacs.d/RictyFont/ ~/.fonts/
   ;; $ sudo fc-cache -vfでインストール
   (set-frame-font "ricty-12")
-  (add-to-list 'default-frame-alist '(font . "ricty-13.5"))
-  
+    (add-to-list 'default-frame-alist '(font . "ricty-12"))
   
   ;;;;;;;;;;;;;;;;;;;;
   ;; Dired 

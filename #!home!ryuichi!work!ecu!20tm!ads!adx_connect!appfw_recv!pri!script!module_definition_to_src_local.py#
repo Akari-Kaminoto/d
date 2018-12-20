@@ -1,0 +1,133 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import argparse
+import codecs
+import os.path as path
+import sys
+import re
+import hjson as json
+
+def get_indent(line, keyword):
+    indent = line
+    indent = indent.replace('\r','')
+    indent = indent.replace('\n','')
+    indent = indent.replace(keyword,'')
+    return indent
+
+def insert_block_c_file(output_file, block_list, keyword_start, keyword_end):
+    original_list_top = []
+    original_list_bottom = []
+    block_state = 0
+    indent = ''
+
+    # 出力ファイルの情報を収集
+    f = open(output_file, 'r',encoding='cp932')
+    for line in f:
+        # キーワードにより挿入位置ブロック終端特定
+        if keyword_end in line:
+            block_state = 2
+
+        #ブロックより先頭側と終端側のオリジナル記述収集
+        if block_state == 0:
+            original_list_top.append(line)
+        if block_state == 2:
+            original_list_bottom.append(line)
+
+        # キーワードにより挿入位置ブロック先頭特定
+        if keyword_start in line:
+            block_state = 1
+            indent = get_indent(line, keyword_start)
+    f.close()
+
+    # 出力ファイルの先頭側＋ブロック＋終端側を出力
+    f = open(output_file, 'w', encoding='cp932', newline='\r\n')
+    for x in original_list_top:
+        f.write(str(x))
+    for x in block_list:
+        f.write(indent + str(x))
+    for x in original_list_bottom:
+        f.write(str(x))
+    f.close()
+
+def generate_c_file(def_json, output_file):
+    module_definition = {}
+
+    # module出力を取得
+    module_definition['buffers'] = def_json.get('buffers', [])
+
+    #DIF_FUNC_HEADER_INCLUDEの整形
+    dif_func_header_include_list = []
+    for i, _ in enumerate(module_definition['buffers']):
+        dif_func_header_include_list.append( '#include <sils/dif/adxcon_recv_'+str(i + 1).zfill(2)+'/dif_funclv_dif_adxcon_recv_'+str(i + 1).zfill(2)+'.h>\n')
+    insert_block_c_file(output_file, dif_func_header_include_list, '/**DIF_FUNC_HEADER_INCLUDE_LIST_START**/', '/**DIF_FUNC_HEADER_INCLUDE_LIST_END**/')
+
+    #DIF_RAM_HEADER_INCLUDE_LISTの整形
+    dif_ram_header_include_list = []
+    for i, _ in enumerate(module_definition['buffers']):
+        dif_ram_header_include_list.append( '#include <sils/dif/adxcon_recv_'+str(i + 1).zfill(2)+'/dif_global_ram_adxcon_recv_'+str(i + 1).zfill(2)+'.h>\n')
+    for i, _ in enumerate(module_definition['buffers']):
+        dif_ram_header_include_list.append( '#include <sils/dif/adxcon_test_recv_'+str(i + 1).zfill(2)+'/dif_global_ram_adxcon_test_recv_'+str(i + 1).zfill(2)+'.h>\n')
+
+    insert_block_c_file(output_file, dif_ram_header_include_list, '/**DIF_RAM_HEADER_INCLUDE_LIST_START**/', '/**DIF_RAM_HEADER_INCLUDE_LIST_END**/')
+
+    #BUFFER_COUNT_DEFINEの整形
+    buffer_count_define = ['#define BUFFER_LIST_COUNT ('+str(len(module_definition['buffers']))+')\n']
+    insert_block_c_file(output_file, buffer_count_define, '/**BUFFER_COUNT_DEFINE_START**/', '/**BUFFER_COUNT_DEFINE_END**/')
+    
+    # BUFFER_SIZE_LISTの整形
+    buffer_size_list = []
+    for i, _ in enumerate(module_definition['buffers']):
+        buffer_size_list.append( 'char m' + str(i) + '[' + module_definition['buffers'][i]['type'].upper() + '_SERIALIZED_SIZE];\n')
+    insert_block_c_file(output_file, buffer_size_list, '/**BUFFER_SIZE_LIST_START**/', '/**BUFFER_SIZE_LIST_END**/')
+
+   
+    # DATA_INFO_LISTの整形
+    data_info_list = []
+    for i, _ in enumerate(module_definition['buffers']):
+        typename = module_definition['buffers'][i]['type']
+        bufname = module_definition['buffers'][i]['name']
+        postfixname = module_definition['buffers'][i]['postfix']
+        labelname = module_definition['buffers'][i]['data_label']
+        data_info_list.append( '{'+labelname+', '+'(void *)&adxcon_test_recv_' + str(i + 1).zfill(2) +'_st_g_' + postfixname + ', (deserialize_func_ptr)&Deserialize' + typename + ', '+ typename.upper() + '_SERIALIZED_SIZE, (dif_func_ptr)&fn_dataout_dif_adxcon_recv_' + str(i + 1).zfill(2) + '},\n')
+    insert_block_c_file(output_file, data_info_list, '/**DATA_INFO_LIST_START**/', '/**DATA_INFO_LIST_END**/')
+
+def main():
+    # パラメータパーサ作成
+    parser = argparse.ArgumentParser(description='モジュール定義書よりCソースを生成する')
+
+    # パラメータ：入力ファイル(JSON)(必須)
+    parser.add_argument('-i', '--input_file', nargs=1, type=str, required=True,
+                        help='Input Module Definition file path. (mandatory)', dest='input_file')
+    # パラメータ：出力ファイル(C)(必須)
+    parser.add_argument('-o', '--output_file', nargs=1, type=str, required=True,
+                       help='Output source code file path.  (mandatory)', dest='output_file')
+
+    # パラメータパーサ登録
+    args = parser.parse_args()
+    input_file = args.input_file[0]
+    output_file = args.output_file[0]
+
+    try:
+        with codecs.open(input_file, 'r', encoding='utf-8') as f:
+            def_json = json.load(f)
+
+    except FileNotFoundError:
+        print('error: "%s"が見つかりません。' % input_file)
+        exit(1)
+
+    except json.scanner.HjsonDecodeError:
+        print('error: "%s"は有効なJSON/HJSONファイルではありません。' % input_file)
+        exit(1)
+
+    except:
+        print("Unexpected error:", sys.exc_info()[0])
+        raise
+
+    print('ソースコードを生成')
+    generate_c_file(def_json, output_file)
+    exit(0)
+
+
+if __name__ == '__main__':
+    main()

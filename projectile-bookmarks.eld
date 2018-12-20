@@ -1,1 +1,1 @@
-("~/.emacs.d/" "/home/share/20tm/" "~/work/ecu/adx/")
+("~/.emacs.d/" "~/work/ecu/20tm/" "/home/share/20tm/" "~/work/ecu/adx/")
