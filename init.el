@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/12/20 14:19:10 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/12/21 10:15:39 from ryuichi-VirtualBox by ryuichi>
 
 
 ;;; ロゴの設定
@@ -297,6 +297,12 @@
 (setq backup-directory-alist
   (cons (cons ".*" (expand-file-name "~/.emacs.d/backup-file"))
         backup-directory-alist))
+
+;;; 番号付けによる複数保存
+ (setq version-control     t)  ;; 実行の有無
+ (setq kept-new-versions   5)  ;; 最新の保持数
+ (setq kept-old-versions   1)  ;; 最古の保持数
+ (setq delete-old-versions t)  ;; 範囲外を削除
 
 ;;; 編集中の異常終了の際などに作られるauto-saveファイルの保存先を
 ;;; 任意箇所にする
@@ -1205,7 +1211,24 @@
   (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
   (setq py-autopep8-options '("--max-line-length=100")))
 
-;;;---------パッケージ毎の設定終わり
+
+;;; dashboard
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook)
+  ;; set title 
+  (setq dashboard-banner-logo-title "Welcome to Emacs Genm Dashboard!!!")
+  ;; Set the banner
+  (setq dashboard-startup-banner "~/.emacs.d/genm.png")
+  (setq dashboard-items '((recents  . 8)
+                          (bookmarks . 3))))
+
+
+
+
+
+;;;---------パッケージ毎の設定終わり end of package setting
 
 ;;;
 ;;; OS によって設定を切り替える部分

@@ -1,0 +1,5 @@
+
+((digest . "0c2d97b3473183918290f3ccde06f83f") (undo-list nil (32 . 33) (t 23580 16300 646000 0) nil ("r" . -32) ((marker . 49) . -1) ((marker . 32) . -1) 33 nil (46 . 48) nil ("s" . -46) ((marker . 49) . -1) ((marker* . 48) . 1) ((marker . 46) . -1) 47 nil (41 . 47) nil (36 . 41) nil ("a" . -36) ((marker . 49) . -1) 37 nil (28 . 37) nil (27 . 28) nil (nil rear-nonsticky nil 26 . 27) (nil fontified nil 19 . 27) (19 . 27) nil ("s" . -19) ((marker . 49) . -1) ((marker . 19) . -1) ("t" . -20) ((marker . 49) . -1) ((marker . 19) . -1) 21 (t 23580 16266 506000 0) nil (12 . 22) nil (10 . 12) nil ("
+" . -10) ((marker . 49) . -1) ((marker . 49) . -1) ((marker . 49) . -1) 11 nil ("
+" . -11) ((marker . 49) . -1) ((marker . 49) . -1) ((marker . 49) . -1) 12 (t 23580 16256 6000 0) nil (11 . 12) nil ("
+" . -11) ((marker . 49) . -1) ((marker . 49) . -1) ((marker . 49) . -1) 12 nil (11 . 12) nil (10 . 11) nil (1 . 10) nil ("/" . -1) ((marker . 49) . -1) ((marker . 49) . -1) 2 nil (1 . 2) nil ("!" . -1) ((marker . 49) . -1) ((marker . 49) . -1) 2 nil (1 . 2) nil ("/" . -1) ((marker . 49) . -1) ((marker . 49) . -1) 2 nil (1 . 2) (t . -1)))

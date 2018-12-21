@@ -223,7 +223,7 @@ Sets basic comint variables, see also versions-related stuff in `py-shell'.
 
 \(fn)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "python-mode" '("pep8" "pst-here" "pps-emacs-version" "pios" "info-lookup-mode" "ios" "ipy" "iyp" "Python" "IPython" "Ipython" "virtualenv-" "jython-" "durck" "druck" "empty-line-p" "eva" "force-py-shell-name-p-o" "flake8" "toggle-" "turn-o" "highlight-indent-active" "hs-hide-comments-when-hiding-all" "strip-chars-" "autopair-mode")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "python-mode" '("pdb-track-stack-from-shell-p" "pep8" "pst-here" "pps-emacs-version" "pios" "info-lookup-mode" "ios" "ipy" "iyp" "Python" "IPython" "Ipython" "virtualenv-" "jython-" "durck" "druck" "empty-line-p" "eva" "force-py-shell-name-p-o" "flake8" "toggle-" "turn-o" "highlight-indent-active" "hs-hide-comments-when-hiding-all" "strip-chars-" "autopair-mode")))
 
 ;;;***
 
