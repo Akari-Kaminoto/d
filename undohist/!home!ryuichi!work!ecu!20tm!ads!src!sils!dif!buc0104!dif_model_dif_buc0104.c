@@ -1,2 +1,0 @@
-
-((digest . "ade93fee99d8a7919aa0edd2eabe86c4") (undo-list nil ("8" . 12688) ((marker . 12688) . -1) ((marker* . 12688) . 1) ((marker* . 12688) . 1) nil (12687 . 12688) nil ("8" . 12524) ((marker* . 12524) . 1) ((marker* . 12524) . 1) ((marker . 12524) . -1) ((marker . 12524) . -1) ((marker* . 12524) . 1) ((marker* . 12524) . 1) nil (12523 . 12524) nil ("8" . 12365) ((marker* . 12365) . 1) ((marker* . 12365) . 1) ((marker . 12365) . -1) ((marker* . 12365) . 1) ((marker* . 12365) . 1) nil (12364 . 12365) nil undo-tree-canary))

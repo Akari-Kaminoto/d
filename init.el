@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/12/21 10:15:39 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2018/12/25 10:16:44 from ryuichi-VirtualBox by ryuichi>
 
 
 ;;; ロゴの設定
@@ -505,6 +505,34 @@
 
 (recentf-mode 1)
 (bind-key "C-c r" 'helm-recentf)
+
+;;;折りたたみ
+(add-hook 'c++-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'c-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'scheme-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'lisp-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'xml-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(define-key global-map (kbd "C-c q") 'hs-toggle-hiding)
+
 
 ;;-------------;;
 ;; org-mode    ;;
@@ -1224,7 +1252,48 @@
   (setq dashboard-items '((recents  . 8)
                           (bookmarks . 3))))
 
+;;; cl-libにより、使用コードと改行コードをわかりやすくする
+(use-package cl-lib
+  :ensure t
+  :config
+  ;; 改行文字の文字列表現
+  (set 'eol-mnemonic-dos "(CRLF)")
+  (set 'eol-mnemonic-unix "(LF)")
+  (set 'eol-mnemonic-mac "(CR)")
+  (set 'eol-mnemonic-undecided "(?)")
+  
+  ;; 文字エンコーディングの文字列表現
+  (defun my-coding-system-name-mnemonic (coding-system)
+  (let* ((base (coding-system-base coding-system))
+         (name (symbol-name base)))
+    (cond ((string-prefix-p "utf-8" name) "U8")
+          ((string-prefix-p "utf-16" name) "U16")
+          ((string-prefix-p "utf-7" name) "U7")
+          ((string-prefix-p "japanese-shift-jis" name) "SJIS")
+          ((string-match "cp\\([0-9]+\\)" name) (match-string 1 name))
+          ((string-match "japanese-iso-8bit" name) "EUC")
+          (t "???")
+          )))
+  
+  (defun my-coding-system-bom-mnemonic (coding-system)
+    (let ((name (symbol-name coding-system)))
+      (cond ((string-match "be-with-signature" name) "[BE]")
+            ((string-match "le-with-signature" name) "[LE]")
+            ((string-match "-with-signature" name) "[BOM]")
+            (t ""))))
 
+  (defun my-buffer-coding-system-mnemonic ()
+    "Return a mnemonic for `buffer-file-coding-system'."
+    (let* ((code buffer-file-coding-system)
+           (name (my-coding-system-name-mnemonic code))
+           (bom (my-coding-system-bom-mnemonic code)))
+      (format "%s%s" name bom)))
+
+  ;; `mode-line-mule-info' の文字エンコーディングの文字列表現を差し替える
+  (setq-default mode-line-mule-info
+                (cl-substitute '(:eval (my-buffer-coding-system-mnemonic))
+                               "%z" mode-line-mule-info :test 'equal))
+  )
 
 
 

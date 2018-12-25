@@ -1,2 +1,0 @@
-
-((digest . "b9337b455b7aa526c6501d0de21e6495") (undo-list nil ("/" . -102) ((marker . 102) . -1) ((marker* . 102) . 1) ((marker . 102) . -1) ((marker . 102) . -1) ((marker . 102) . -1) ("/" . -103) ((marker . 102) . -1) ((marker* . 102) . 1) ((marker . 102) . -1) 104 nil (102 . 104) nil ("/" . -80) ((marker . 102) . -1) ((marker* . 80) . 1) ((marker . 80) . -1) ((marker . 80) . -1) ((marker . 80) . -1) ("/" . -81) ((marker . 102) . -1) ((marker* . 80) . 1) ((marker . 80) . -1) 82 nil (80 . 82) (t 23533 14781 40743 999000)))
