@@ -1,1 +1,1 @@
-("/home/share/20tm/" "~/.emacs.d/" "~/work/ecu/adx/" "~/work/ecu/20tm/")
+("~/.emacs.d/" "/home/share/20tm/" "~/work/ecu/adx/" "/media/sf_share/tmpclkv10/src/" "/media/sf_share/znclkv10/src/" "~/work/ecu/20tm/")

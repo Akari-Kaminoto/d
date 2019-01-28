@@ -1,4 +1,4 @@
-;;;Last Updated:<2018/12/25 10:16:44 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2019/01/28 10:19:13 from ryuichi-VirtualBox by ryuichi>
 
 
 ;;; ロゴの設定
@@ -115,6 +115,21 @@
   :config
   (paradox-enable))
 
+;;; mykie
+(use-package mykie
+  :config
+  (setq mykie:use-major-mode-key-override t)
+  (mykie:initialize)
+  (mykie:set-keys nil
+    "C-w"
+    :default     (kill-region (line-beginning-position)(line-end-position))
+    :region      kill-region
+    "M-w"
+    :default     (kill-ring-save (line-beginning-position)(line-end-position))
+    :region      kill-ring-save 
+    ))
+
+
 ;;; package系終わり
 
 ;;;
@@ -202,8 +217,8 @@
 
 ;;; インデント設定
 
-(setq-default c-basic-offset 4     ;;基本インデント量
-              tab-width 4          ;;タブ幅
+(setq-default c-basic-offset 2     ;;基本インデント量
+              tab-width 2          ;;タブ幅
               indent-tabs-mode nil)  ;;インデントをタブでするかスペースでするか
 
 ;;; C,C++の設定
@@ -216,9 +231,9 @@
 ;; 自分の書き方にあわせて調整
 (add-hook 'c++-mode-hook
           '(lambda ()
-             ;;(setq tab-width 32)
-             (setq tab-width 4)
-             (setq c-basic-offset 4)
+             ;;(setq tab-width 32) ;;タブが有った時にすぐわかる設定だけど要らない
+             (setq tab-width 2)
+             (setq c-basic-offset 2)
              ;; 以下 *:*1 -:*-1 ++:*2 --:*-2 *:*0.5 /:*-0.5
              (setq c++-auto-newline nil)
              (setq c++-tab-always-indent t)
@@ -612,6 +627,13 @@
                 ;; EmacsのデフォルトのC-kの動作に戻す
                 (define-key helm-map (kbd "C-k") 'kill-line)
                 )))
+
+;;; helm-smex
+(use-package helm-smex
+  :config
+  (global-set-key [remap execute-extended-command] #'helm-smex)
+  (global-set-key (kbd "M-X") #'helm-smex-major-mode-commands))
+
 
 ;;;  helm-gtags
 (use-package helm-gtags
@@ -1207,7 +1229,8 @@
 
 ;;; python-mode
 (use-package python-mode
-    :config
+  :commands (python-mode)
+  :config
     (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
     (add-to-list 'interpreter-mode-alist '("python" . python-mode)))
 
