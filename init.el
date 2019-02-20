@@ -1,4 +1,4 @@
-;;;Last Updated:<2019/01/28 10:19:13 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2019/02/20 18:31:46 from ryuichi-VirtualBox by ryuichi>
 
 
 ;;; ロゴの設定
@@ -114,20 +114,6 @@
 (use-package paradox
   :config
   (paradox-enable))
-
-;;; mykie
-(use-package mykie
-  :config
-  (setq mykie:use-major-mode-key-override t)
-  (mykie:initialize)
-  (mykie:set-keys nil
-    "C-w"
-    :default     (kill-region (line-beginning-position)(line-end-position))
-    :region      kill-region
-    "M-w"
-    :default     (kill-ring-save (line-beginning-position)(line-end-position))
-    :region      kill-ring-save 
-    ))
 
 
 ;;; package系終わり
@@ -512,14 +498,6 @@
 ;;; フレーム間移動を個別定義(本来はC-x 5 o)
 (global-set-key (kbd "C-c o") 'other-frame)
 
-;;; recent
-(setq recentf-max-saved-items 2000) ;; 2000ファイルまで履歴保存する
-(setq recentf-auto-cleanup 'never)  ;; 存在しないファイルは消さない
-(setq recentf-exclude '("/recentf" "COMMIT_EDITMSG" "/.?TAGS" "^/sudo:" "/\\.emacs\\.d/games/*-scores" "/\\.emacs\\.d/\\.cask/"))
-(setq recentf-auto-save-timer (run-with-idle-timer 30 t 'recentf-save-list))
-
-(recentf-mode 1)
-(bind-key "C-c r" 'helm-recentf)
 
 ;;;折りたたみ
 (add-hook 'c++-mode-hook
@@ -996,9 +974,9 @@
 ;;; popup-switcher
 (use-package popup-switcher
   :config
-  (global-set-key (kbd "\C-x b") 'psw-switch-buffer)
-  (global-set-key [f3] 'psw-switch-function)
-  (setq psw-popup-menu-max-length 15))
+   (global-set-key (kbd "\C-x b") 'psw-switch-buffer)
+   (global-set-key [f3] 'psw-switch-function)
+   (setq psw-popup-menu-max-length 20))
 
 ;;; darkroom
 ;;; 集中してもの書く時用に
@@ -1031,13 +1009,18 @@
 
 ;;; markdown-preview-mode
 ;;;autoload扱い
-(use-package markdown-preview-mode
-  :commands (markdown-preview-mode))
+;; (use-package markdown-preview-mode
+;;   :commands (markdown-preview-mode))
+
+(use-package markdown-preview-mode)
 
 ;;; markdown-preview-eww
 ;;;autoload扱い
-(use-package markdown-preview-eww
-  :commands (markdown-preview-eww))
+;; (use-package markdown-preview-eww
+;;   :commands (markdown-preview-eww))
+
+(use-package markdown-preview-eww)
+
 
 ;;; easy-kill
 (use-package easy-kill
@@ -1318,7 +1301,24 @@
                                "%z" mode-line-mule-info :test 'equal))
   )
 
+;;; recentf-ext
+(use-package recentf-ext
+  :config
+  (recentf-mode 1)
+  (setq recentf-max-saved-items 200)
+  (setq recentf-exclude '(".recentf"))
+  (setq recentf-auto-cleanup 'never))
 
+;;; ace-isearch
+(use-package ace-isearch
+  :config
+  (global-ace-isearch-mode +1)
+  (custom-set-variables
+   '(ace-isearch-input-length 7)
+   '(ace-isearch-jump-delay 1.00)
+   '(ace-isearch-function 'ace-jump-word-mode)    
+   '(ace-isearch-use-jump 'printing-char))
+  (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
 
 ;;;---------パッケージ毎の設定終わり end of package setting
 
@@ -1471,15 +1471,6 @@
                              (setq flycheck-gcc-language-standard "c++11")
                              (setq flycheck-clang-language-standard "c++11"))))
   
-  ;; ace-isearch
-  (use-package ace-isearch
-   :config
-   (global-ace-isearch-mode +1)
-   (custom-set-variables
-    '(ace-isearch-jump-delay 1.00)
-     '(ace-isearch-function 'avy-goto-char)    
-    '(ace-isearch-use-jump 'printing-char))
-     (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
 
   ;; dired-du
   (use-package dired-du
@@ -1559,7 +1550,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ace-isearch-function (quote avy-goto-char))
+ '(ace-isearch-function (quote ace-jump-word-mode))
  '(ace-isearch-use-jump (quote printing-char))
  '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
  '(irony-additional-clang-options (quote ("-std=c++11")))

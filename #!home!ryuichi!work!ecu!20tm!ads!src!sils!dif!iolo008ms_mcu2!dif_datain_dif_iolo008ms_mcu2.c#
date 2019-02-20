@@ -1,0 +1,101 @@
+/****************************************************************************/
+/* ファイル名	: dif_datain_dif_iolo008ms_mcu2.c							*/
+/*--------------------------------------------------------------------------*/
+/* モジュール名	: 入力データ確定(iolo008ms_mcu2)							*/
+/*--------------------------------------------------------------------------*/
+/* 作成日時		: 2018/12/12 9:00:59										*/
+/*--------------------------------------------------------------------------*/
+/* 作成者		: 															*/
+/*--------------------------------------------------------------------------*/
+/* 設計書番号	: preCV_ADS_アプリ構造設計書v4.29.1.1.xlsm					*/
+/*--------------------------------------------------------------------------*/
+/* ツールVer	: 0.29														*/
+/*--------------------------------------------------------------------------*/
+/* $Id: $ */
+/****************************************************************************/
+/****************************************************************************/
+/* インクルードファイル定義													*/
+/****************************************************************************/
+#include	<common/type.h>
+#include	<common/defcom.h>
+#include	"../common/dif_data_config.h"
+#include	"../common/dif_global_ram_common.h"
+#include	"dif_global_ram_iolo008ms_mcu2.h"
+#include	"dif_funclv_dif_iolo008ms_mcu2.h"
+
+/****************************************************************************/
+/* 関数宣言																	*/
+/****************************************************************************/
+static VD fn_datain_dif_iolo008ms_mcu2_dif(VD);
+static VD fn_datain_ms_iolo008ms_mcu2_dif(VD);
+
+/****************************************************************************/
+/* セクション定義(iolo008ms_mcu2, DIF, DATAIN)								*/
+/****************************************************************************/
+#pragma ghs section text	= ".PROGRAM_DIF_IOLO008MS_MCU2_DATAIN_DIF"
+#pragma ghs section rodata	= ".CTABLE_DIF_IOLO008MS_MCU2_DATAIN_DIF"
+#pragma ghs section bss		= ".RAM_DIF_IOLO008MS_MCU2_DATAIN_DIF"
+
+/****************************************************************************/
+/* 関数名		: fn_datain_dif_iolo008ms_mcu2								*/
+/*--------------------------------------------------------------------------*/
+/* 機能			: データ入力(iolo008ms_mcu2, DIF, DATAIN)					*/
+/****************************************************************************/
+VD fn_datain_dif_iolo008ms_mcu2(VD)
+{
+	fn_schdl_api_wait_sem(CEN_SCHDL_SEM_DIF_DATAPOOL);
+
+	/* DIF読み出し */
+	fn_datain_dif_iolo008ms_mcu2_dif();
+
+	/* MS読み出し */
+	fn_datain_ms_iolo008ms_mcu2_dif();
+
+	fn_schdl_api_release_sem(CEN_SCHDL_SEM_DIF_DATAPOOL);
+
+	/* モデル入力 */
+	fn_model_in_dif_iolo008ms_mcu2();
+
+	return;
+}
+
+/****************************************************************************/
+/* 関数名		: fn_datain_dif_iolo008ms_mcu2_dif							*/
+/*--------------------------------------------------------------------------*/
+/* 機能			: DIF読み出し(iolo008ms_mcu2, DIF, DATAIN)					*/
+/****************************************************************************/
+static VD fn_datain_dif_iolo008ms_mcu2_dif(VD)
+{
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_hsi_sm_info, (U1 *)&dif_st_out_hsi01_mcu1.HSI01_MCU1_st_hsi_sm_info, sizeof(dif_st_out_hsi01_mcu1.HSI01_MCU1_st_hsi_sm_info));	/* HSISMデータ */
+	iolo008ms_mcu2_fl_g_speed_std = dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_fl_speed_std;			/* 標準車速 */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_CarData, (U1 *)&dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_CarData, sizeof(dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_CarData));	/* 車両データ */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_hcinCanIfData, (U1 *)&dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_hcinCanIfData, sizeof(dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_hcinCanIfData));	/* ACC用CAN通信入力 */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_bdb_data, (U1 *)&dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_bdb_data, sizeof(dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_bdb_data));	/* BDBデータ */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_ecb_sub_data, (U1 *)&dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_ecb_sub_data, sizeof(dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_ecb_sub_data));	/* ECB_SUBデータ */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_ehv_data, (U1 *)&dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_ehv_data, sizeof(dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_ehv_data));	/* EHVデータ */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_met00_data, (U1 *)&dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_met00_data, sizeof(dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_met00_data));	/* MET00データ */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_ygs00_data, (U1 *)&dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_ygs00_data, sizeof(dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_ygs00_data));	/* YGS00データ */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_sis_data, (U1 *)&dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_sis_data, sizeof(dif_st_out_ioci004ms_mcu1.IOCI004MS_MCU1_st_sis_data));	/* SISデータ */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_io_02_out_03_data, (U1 *)&dif_st_out_ioci004ms_mcu2.IOCI004MS_MC
+      U2_st_io_02_out_03_data, sizeof(dif_st_out_ioci004ms_mcu2.IOCI004MS_MCU2_st_io_02_out_03_data));	/* CAN通信無効OUT_03データ */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_io_11_nvmout_01_data, (U1 *)&dif_st_out_axis_mcu2.AXIS_MCU2_st_io_11_nvmout_01_data, sizeof(dif_st_out_axis_mcu2.AXIS_MCU2_st_io_11_nvmout_01_data));	/* 情報記憶OUT_01データ */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_camera_calibration, (U1 *)&dif_st_out_loc02.LOC02_st_camera_calibration, sizeof(dif_st_out_loc02.LOC02_st_camera_calibration));	/* カメラ光軸調整 */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_apl_permit_output, (U1 *)&dif_st_out_loc10.LOC10_st_apl_permit_output, sizeof(dif_st_out_loc10.LOC10_st_apl_permit_output));	/* アプリ許可禁止出力データ */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_axis_nvm, (U1 *)&dif_st_out_axis_mcu2.AXIS_MCU2_st_axis_nvm, sizeof(dif_st_out_axis_mcu2.AXIS_MCU2_st_axis_nvm));	/* 光軸調整_NVM記憶データ */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_axis_sid22_read_data, (U1 *)&dif_st_out_axis_mcu2.AXIS_MCU2_st_axis_sid22_read_data, sizeof(dif_st_out_axis_mcu2.AXIS_MCU2_st_axis_sid22_read_data));	/* AXIS_SID22_読出値 */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_axis_io_adj_output, (U1 *)&dif_st_out_axis_mcu2.AXIS_MCU2_st_axis_io_adj_output, sizeof(dif_st_out_axis_mcu2.AXIS_MCU2_st_axis_io_adj_output));	/* AXIS_IO_ADJ_出力 */
+	fn_cmn_memory_memcpy((U1 *)&iolo008ms_mcu2_st_g_IO_car_info, (U1 *)&dif_st_out_ioli004ms_mcu2.IOLI004MS_MCU2_st_IO_car_info, sizeof(dif_st_out_ioli004ms_mcu2.IOLI004MS_MCU2_st_IO_car_info));	/* 車両情報 */
+
+	return;
+}
+
+/****************************************************************************/
+/* 関数名		: fn_datain_ms_iolo008ms_mcu2_dif							*/
+/*--------------------------------------------------------------------------*/
+/* 機能			: MS読み出し(iolo008ms_mcu2, MS, DATAIN)					*/
+/****************************************************************************/
+static VD fn_datain_ms_iolo008ms_mcu2_dif(VD)
+{
+
+	return;
+}
