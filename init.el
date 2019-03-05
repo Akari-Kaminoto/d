@@ -1,4 +1,4 @@
-;;;Last Updated:<2019/03/05 15:12:52 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2019/03/05 15:53:02 from ryuichi-VirtualBox by ryuichi>
 
 
 ;;; ロゴの設定
@@ -107,7 +107,7 @@
 
 ;; el-get
 (add-to-list 'load-path (locate-user-emacs-file "el-get"))
-(require 'el-get)
+(use-package el-get)
 
 ;;; paradox
 (use-package paradox
@@ -543,62 +543,94 @@
 ;;-------------;;
 ;; org-mode    ;;
 ;;-------------;;
-;; 使わないorg-moduleを削除
-(with-eval-after-load "emms"
-  (unless noninteractive
-    (require 'org-emms nil t)))
+(defun org-git-version ()
+  "The Git version of org-mode.
+Inserted by installing org-mode or when a release is made."
+  (require 'git)
+  (let ((git-repo (expand-file-name
+                   "straight/repos/org/" user-emacs-directory)))
+    (string-trim
+     (git-run "describe"
+              "--match=release\*"
+              "--abbrev=6"
+              "HEAD"))))
 
-(with-eval-after-load "org"
-  (setq org-modules (delete 'org-bbdb org-modules))
-  (setq org-modules (delete 'org-bibtex org-modules))
-  (setq org-modules (delete 'org-docview org-modules))
-  (setq org-modules (delete 'org-gnus org-modules))
-  (setq org-modules (delete 'org-info org-modules))
-  (setq org-modules (delete 'org-irc org-modules))
-  (setq org-modules (delete 'org-mhe org-modules))
-  (setq org-modules (delete 'org-rmail org-modules)))
+(defun org-release ()
+  "The release version of org-mode.
+Inserted by installing org-mode or when a release is made."
+  (require 'git)
+  (let ((git-repo (expand-file-name
+                   "straight/repos/org/" user-emacs-directory)))
+    (string-trim
+     (string-remove-prefix
+      "release_"
+      (git-run "describe"
+               "--match=release\*"
+               "--abbrev=0"
+               "HEAD")))))
 
-;; 画像をインラインで表示
-(setq org-startup-with-inline-images t)
+(provide 'org-version)
 
-;; 見出しの余分な*を消す
-(setq org-hide-leading-stars t)
-
-;; LOGBOOK drawerに時間を格納する
-(setq org-clock-into-drawer t)
-
-;; .orgファイルは自動的にorg-mode
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-
-;; org-directory内のファイルすべてからagendaを作成する
-(setq my-org-agenda-dir "~/org/")
-(setq org-agenda-files (list my-org-agenda-dir))
-
-;; TODO状態
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "WAIT(w)" "NOTE(n)"  "|" "DONE(d)" "SOMEDAY(s)" "CANCEL(c)")))
-
-;; DONEの時刻を記録
-(setq org-log-done 'time)
-
-;; ショートカットキー
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c a") 'org-agenda)
-
+(use-package org
+  ;; :defer t で起動時に Org を読み込まない（起動が速くなる）
+  :defer t
+  :config
+  ;; 使わないorg-moduleを削除
+  (with-eval-after-load "emms"
+    (unless noninteractive
+      (require 'org-emms nil t)))
+  
+  (with-eval-after-load "org"
+    (setq org-modules (delete 'org-bbdb org-modules))
+    (setq org-modules (delete 'org-bibtex org-modules))
+    (setq org-modules (delete 'org-docview org-modules))
+    (setq org-modules (delete 'org-gnus org-modules))
+    (setq org-modules (delete 'org-info org-modules))
+    (setq org-modules (delete 'org-irc org-modules))
+    (setq org-modules (delete 'org-mhe org-modules))
+    (setq org-modules (delete 'org-rmail org-modules)))
+  
+  ;; 画像をインラインで表示
+  (setq org-startup-with-inline-images t)
+  
+  ;; 見出しの余分な*を消す
+  (setq org-hide-leading-stars t)
+  
+  ;; LOGBOOK drawerに時間を格納する
+  (setq org-clock-into-drawer t)
+  
+  ;; .orgファイルは自動的にorg-mode
+  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+  
+  ;; org-directory内のファイルすべてからagendaを作成する
+  (setq my-org-agenda-dir "~/org/")
+  (setq org-agenda-files (list my-org-agenda-dir))
+  
+  ;; TODO状態
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "WAIT(w)" "NOTE(n)"  "|" "DONE(d)" "SOMEDAY(s)" "CANCEL(c)")))
+  
+  ;; DONEの時刻を記録
+  (setq org-log-done 'time)
+  
+  ;; ショートカットキー
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (global-set-key (kbd "C-c a") 'org-agenda))
+  
 
 ;;;;; ココらへんからパッケージの話 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; 最終更新日の自動挿入
-(with-eval-after-load "postpone"
-  (use-package time-stamp
-    :config
-    (add-hook 'before-save-hook 'time-stamp)
-    (setq time-stamp-active t)
-    (setq time-stamp-start "[lL]ast[ -][uU]pdated[ \t]*:[ \t]*<")
+(use-package time-stamp
+  :defer t
+  :config
+  (add-hook 'before-save-hook 'time-stamp)
+  (setq time-stamp-active t)
+  (setq time-stamp-start "[lL]ast[ -][uU]pdated[ \t]*:[ \t]*<")
     (setq time-stamp-format "%:y/%02m/%02d %02H:%02M:%02S from %s by %u")
     (setq time-stamp-end ">")
-    (setq time-stamp-line-limit 20)))
+    (setq time-stamp-line-limit 20))
 ;;;
 ;;; helm
 ;;;
@@ -708,8 +740,8 @@
 
   ;; 括弧の色を強調する設定
 (with-eval-after-load "postpone"
-  (require 'cl-lib)
-  (require 'color)
+  (use-package cl-lib)
+  (use-package color)
   (defun rainbow-delimiters-using-stronger-colors ()
     (interactive)
     (cl-loop
@@ -762,11 +794,10 @@
     (setq whitespace-action '(auto-cleanup))))
 
 ;;;yasnippet
-(with-eval-after-load "postpone"
   (use-package yasnippet
     :config
     (define-key yas-keymap (kbd "<tab>") nil)
-    (yas-global-mode 1)))
+    (yas-global-mode 1))
 
 ;;;
 ;;;company
@@ -825,84 +856,74 @@
 ;;; neotree
 ;;; 左側にファイルツリーバッファを作る
 ;;;
-(with-eval-after-load "postpone"
-  (use-package neotree
-    :init
-    ;; C-c tでnetreee-windowが開くようにする
-    (global-set-key (kbd "C-c t") 'neotree-toggle)
-    ;; neotreeでファイルを新規作成した場合のそのファイルを開く
-    (setq neo-create-file-auto-open t)
-    ;; delete-other-window で neotree ウィンドウを消さない
-    (setq neo-persist-show t)
-    :config
-    (custom-set-faces
-     ;; custom-set-faces was added by Custom.
-     ;; If you edit it by hand, you could mess it up, so be careful.
-     ;; Your init file should contain only one such instance.
-     ;; If there is more than one, they won't work right.
-   )))
+(use-package neotree
+  :defer t
+  :init
+  ;; C-c tでnetreee-windowが開くようにする
+  (global-set-key (kbd "C-c t") 'neotree-toggle)
+  ;; neotreeでファイルを新規作成した場合のそのファイルを開く
+  (setq neo-create-file-auto-open t)
+  ;; delete-other-window で neotree ウィンドウを消さない
+  (setq neo-persist-show t)
+  :config
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   ))
 
 ;;; volatile-highlight
 ;;; yank や undoした時のリージョンをハイライト表示
-(with-eval-after-load "postpone"
-  (use-package volatile-highlights
-    :init
-    (volatile-highlights-mode t)
-    :config
-    ;; ふわっとエフェクトの追加（ペースト時の色 => カーソル色 => 本来色）
-    (defun my:vhl-change-color ()
-      (let
-          ((next 0.2)
-           (reset 0.5)
-           (colors '("#F8D3D7" "#F2DAE1" "#EBE0EB" "#E5E7F5" "#DEEDFF")))
-        (dolist (color colors)
-          (run-at-time next nil
-                       'set-face-attribute
-                       'vhl/default-face
-                       nil :foreground "#FF3333" :background color)
-          (setq next (+ 0.05 next)))
+(use-package volatile-highlights
+  :init
+  (volatile-highlights-mode t)
+  :config
+  ;; ふわっとエフェクトの追加（ペースト時の色 => カーソル色 => 本来色）
+  (defun my:vhl-change-color ()
+    (let
+        ((next 0.2)
+         (reset 0.5)
+         (colors '("#F8D3D7" "#F2DAE1" "#EBE0EB" "#E5E7F5" "#DEEDFF")))
+      (dolist (color colors)
+        (run-at-time next nil
+                     'set-face-attribute
+                     'vhl/default-face
+                     nil :foreground "#FF3333" :background color)
+        (setq next (+ 0.05 next)))
         (run-at-time reset nil 'vhl/clear-all))
-      (set-face-attribute 'vhl/default-face
-                          nil :foreground "#FF3333"
-                          :background "#FFCDCD"))
-    
-    (defun my:yank (&optional ARG)
-      (interactive)
-      (yank ARG)
-      (my:vhl-change-color))
-    (global-set-key (kbd "M-v") 'my:yank)
-    (global-set-key (kbd "C-y") 'my:yank)
-    
-    (with-eval-after-load "org"
-      (define-key org-mode-map (kbd "C-y")
-        '(lambda () (interactive)
-           (org-yank)
-           (my:vhl-change-color))))))
+    (set-face-attribute 'vhl/default-face
+                        nil :foreground "#FF3333"
+                        :background "#FFCDCD"))
+  
+  (defun my:yank (&optional ARG)
+    (interactive)
+    (yank ARG)
+    (my:vhl-change-color))
+  (global-set-key (kbd "M-v") 'my:yank)
+  (global-set-key (kbd "C-y") 'my:yank)
+  
+  (with-eval-after-load "org"
+    (define-key org-mode-map (kbd "C-y")
+      '(lambda () (interactive)
+         (org-yank)
+         (my:vhl-change-color)))))
 
 ;;; smoooth-scroll
 ;;; スクロールをスムーズに
-(with-eval-after-load "postpone"
-  (use-package smooth-scroll
+(use-package smooth-scroll
     :config
-    (smooth-scroll-mode t)))
+    (smooth-scroll-mode t))
 
 ;;;hlinum
-(with-eval-after-load "postpone"
-  (use-package hlinum
-    :config
-    (hlinum-activate)))
-
-;;;ctags 共用設定
-;;; (ctags-global-auto-update-mode nil)
-;;;  ;; M-.で移動してM-*で戻るはずが戻れないのでC-c u に再定義
-;;;  ;; C-x 4 . C-x 5 .も使えるがなんかいまいち
-;;;  (define-key global-map (kbd "\C-cu") 'pop-tag-mark)
+(use-package hlinum
+  :config
+  (hlinum-activate))
 
 ;;; undohist
-(with-eval-after-load "postpone"
-  (use-package undohist
-    :config
-    (undohist-initialize)))
+(use-package undohist
+  :config
+    (undohist-initialize))
 
 ;;; anzu
 ;;; 検索文字が何個あるか表示
@@ -913,28 +934,28 @@
 
 ;;; shell-pop
 ;;; ちっちゃいシェルウインドウを開いたり閉じたりする
-(with-eval-after-load "postpone"
-  (use-package shell-pop
-    :init
-    ;;(setq shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
-    (setq shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
-    ;; (setq shell-pop-shell-type '("terminal" "*terminal*" (lambda () (term shell-pop-term-shell))))
-    ;; (setq shell-pop-shell-type '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell))))
-    (global-set-key (kbd "C-c s") 'shell-pop)))
+(use-package shell-pop
+  :defer t
+  :init
+  ;;(setq shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
+  (setq shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
+  ;; (setq shell-pop-shell-type '("terminal" "*terminal*" (lambda () (term shell-pop-term-shell))))
+  ;; (setq shell-pop-shell-type '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell))))
+  (global-set-key (kbd "C-c s") 'shell-pop))
 
 ;;; web mode
 ;;; HTMLモードではhtmlの中のjavascriptなどが色分けされないので導入
 ;;; http://web-mode.org/
 ;;; http://yanmoo.blogspot.jp/2013/06/html5web-mode.html
-(with-eval-after-load "postpone"
-  (use-package web-mode
-    :mode
-    (("\\.html?\\'" . web-mode)
-     ("\\.jsp\\'"   . web-mode)
-     ("\\.ctp\\'"   . web-mode)
-     ("\\.gsp\\'"   . web-mode))
-    :config
-    (defun web-mode-hook ()
+(use-package web-mode
+  :defer t
+  :mode
+  (("\\.html?\\'" . web-mode)
+   ("\\.jsp\\'"   . web-mode)
+   ("\\.ctp\\'"   . web-mode)
+   ("\\.gsp\\'"   . web-mode))
+  :config
+  (defun web-mode-hook ()
       (setq web-mode-markup-indent-offset 2)
       (setq web-mode-css-indent-offset 2)
       (setq web-mode-code-indent-offset 2)
@@ -942,17 +963,16 @@
             '(("php"    . "\\.ctp\\'"))
             )
       )
-    ;; auto tag closing
-    ;;0=no auto-closing
-    ;;1=auto-close with </
-    ;;2=auto-close with > and </
-    (setq web-mode-tag-auto-close-style 2)
-    (add-hook 'web-mode-hook  'web-mode-hook)))
+  ;; auto tag closing
+  ;;0=no auto-closing
+  ;;1=auto-close with </
+  ;;2=auto-close with > and </
+  (setq web-mode-tag-auto-close-style 2)
+  (add-hook 'web-mode-hook  'web-mode-hook))
 
   
 ;;; beacon
 ;;; 現在行のカーソルをバッファ移動のたびにわかるようにする
-(with-eval-after-load "postpone"
   (use-package beacon
     :init
     (beacon-mode 1)
@@ -960,41 +980,39 @@
   (setq beacon-color "#F5DE34")
   (setq beacon-size 400)
   (setq beacon-blink-when-focused t)
-  (setq beacon-blink-duration 1)))
+  (setq beacon-blink-duration 1))
 
 ;;;saveplace: 前回の修正位置を記憶する.
-(with-eval-after-load "postpone"
-  (use-package saveplace
-    :config
-    (save-place-mode 1)
-    (setq save-place-file (concat "~/.emacs.d/tmp/emacs-places"))))
+(use-package saveplace
+  :config
+  (save-place-mode 1)
+  (setq save-place-file (concat "~/.emacs.d/tmp/emacs-places")))
 
 ;;; japanese-holidays 日本語カレンダー
-(with-eval-after-load "postpone"
-  (use-package japanese-holidays
-    :ensure t
-    :init
-    (add-hook 'calendar-today-visible-hook   'japanese-holiday-mark-weekend)
-    (add-hook 'calendar-today-invisible-hook 'japanese-holiday-mark-weekend)
-    (add-hook 'calendar-today-visible-hook   'calendar-mark-today)
-    :config 
-    (setq calendar-holidays               ; とりあえず日本のみを表示
-          (append japanese-holidays holiday-local-holidays)
-          mark-holidays-in-calendar t     ; 祝日をカレンダーに表示
-          calendar-month-name-array       ; 月と曜日の表示調整
-          ["01" "02" "03" "04" "05" "06" "07" "08" "09" "10" "11" "12" ]
-          calendar-day-name-array
-          ["日" "月" "火" "水" "木" "金" "土"]
-          calendar-day-header-array
-          ["日" "月" "火" "水" "木" "金" "土"]
-          calendar-date-style 'iso         ; ISO format (YYYY/MM/DD) に変更
-          japanese-holiday-weekend '(0 6)  ; 土曜日・日曜日を祝日として表示
-          japanese-holiday-weekend-marker
-          '(holiday nil nil nil nil nil japanese-holiday-saturday)
-          ;; 月曜開始
-          calendar-week-start-day 1)
-    (calendar-set-date-style 'iso)
-    ))
+(use-package japanese-holidays
+  :ensure t
+  :init
+  (add-hook 'calendar-today-visible-hook   'japanese-holiday-mark-weekend)
+  (add-hook 'calendar-today-invisible-hook 'japanese-holiday-mark-weekend)
+  (add-hook 'calendar-today-visible-hook   'calendar-mark-today)
+  :config 
+  (setq calendar-holidays               ; とりあえず日本のみを表示
+        (append japanese-holidays holiday-local-holidays)
+        mark-holidays-in-calendar t     ; 祝日をカレンダーに表示
+        calendar-month-name-array       ; 月と曜日の表示調整
+        ["01" "02" "03" "04" "05" "06" "07" "08" "09" "10" "11" "12" ]
+        calendar-day-name-array
+        ["日" "月" "火" "水" "木" "金" "土"]
+        calendar-day-header-array
+        ["日" "月" "火" "水" "木" "金" "土"]
+        calendar-date-style 'iso         ; ISO format (YYYY/MM/DD) に変更
+        japanese-holiday-weekend '(0 6)  ; 土曜日・日曜日を祝日として表示
+        japanese-holiday-weekend-marker
+        '(holiday nil nil nil nil nil japanese-holiday-saturday)
+        ;; 月曜開始
+        calendar-week-start-day 1)
+  (calendar-set-date-style 'iso)
+  )
 
 ;;; rainbow-mode:#RRGGBB のカラーコードに勝手に色が付く
 (with-eval-after-load "postpone"
@@ -1013,62 +1031,50 @@
     ))
 
 ;;; popup-kill-ring
-(with-eval-after-load "postpone"
-  (use-package popup-kill-ring
-    :config
-    (global-set-key "\M-y" 'popup-kill-ring)))
+(use-package popup-kill-ring
+  :config
+  (global-set-key "\M-y" 'popup-kill-ring))
 
 ;;; popup-switcher
-(with-eval-after-load "postpone"
-  (use-package popup-switcher
+(use-package popup-switcher
     :config
     (global-set-key (kbd "C-x b") 'psw-switch-buffer)
     (global-set-key [f3] 'psw-switch-function)
-    (setq psw-popup-menu-max-length 20)))
+    (setq psw-popup-menu-max-length 20))
 
 ;;; darkroom
 ;;; 集中してもの書く時用に
 ;;; 余計なモード行とかが消えて文字が大きくなる
 ;;; M-x darkroom-modeでOn/OFFを切り替える
 ;;; autoload扱い
-(with-eval-after-load "postpone"
-  (use-package darkroom
-    :commands (darkroom)))
+(use-package darkroom
+    :commands (darkroom))
 
 ;;; undo-tree
-(with-eval-after-load "postpone"
-  (use-package undo-tree
-    :config
-    (global-undo-tree-mode)))
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode))
 
 ;;; markdown-mode
-(with-eval-after-load "postpone"
-  (use-package markdown-mode
-    :ensure t
-    :commands (markdown-mode gfm-mode)
-    :mode (("README\\.md\\'" . gfm-mode)
-           ("\\.md\\'" . markdown-mode)
-           ("\\.markdown\\'" . markdown-mode))
-    :init (setq markdown-command "multimarkdown")))
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
 ;;; poly-markdown-mode
-(with-eval-after-load "postpone"
-  (use-package polymode
-    :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))))
+(use-package polymode
+  :ensure t
+  :config
+    (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode)))
 
 ;;; markdown-preview-mode
-;;;autoload扱い
-;; (use-package markdown-preview-mode
-;;   :commands (markdown-preview-mode))
 (with-eval-after-load "postpone"
   (use-package markdown-preview-mode))
 
 ;;; markdown-preview-eww
-;;;autoload扱い
-;; (use-package markdown-preview-eww
-;;   :commands (markdown-preview-eww))
 (with-eval-after-load "postpone"
   (use-package markdown-preview-eww))
 
@@ -1080,41 +1086,43 @@
     (global-set-key [remap kill-ring-save] 'easy-kill)))
 
 ;;; clang-format
-(with-eval-after-load "postpone"
 (use-package clang-format
+  :defer t
   :commands
-  (clang-format)))
+  (clang-format))
 
 ;;; emojify
-(with-eval-after-load "postpone"
-  (use-package emojify
+(use-package emojify
   :config
-  (global-emojify-mode)))
+  (global-emojify-mode))
 
 ;;; Sky-color-clock
 ;;; モードラインに今の外の天気と明るさを表示するエリアを１つ作る
 ;;; GitHub: https://github.com/zk-phi/sky-color-clock
-(require 'sky-color-clock)      ; パッケージをロード
-(sky-color-clock-initialize 35) ; 東京（例）の緯度で初期化
-
-(sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 5384214) ; 東京の City ID
-;; デフォルトの mode-line-format の先頭に sky-color-clock を追加
-(push '(:eval (sky-color-clock)) (default-value 'mode-line-format))
-(setq sky-color-clock-format "%m/%d %H:%M")
-(setq sky-color-clock-enable-emoji-icon t)
-
-(sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 1850144) ;天気取得
-(setq sky-color-clock-enable-temperature-indicator t)
+(straight-use-package
+ '(sky-color-clock :type git :host github :repo "zk-phi/sky-color-clock"))
+(use-package sky-color-clock
+  :init
+  (sky-color-clock-initialize 35) ; 東京（例）の緯度で初期化
+  
+  (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 5384214) ; 東京の City ID
+  ;; デフォルトの mode-line-format の先頭に sky-color-clock を追加
+  (push '(:eval (sky-color-clock)) (default-value 'mode-line-format))
+  (setq sky-color-clock-format "%m/%d %H:%M")
+  (setq sky-color-clock-enable-emoji-icon t)
+  
+  (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 1850144) ;天気取得
+  (setq sky-color-clock-enable-temperature-indicator t))
 
 
 ;;; focus-autosave-mode
-(with-eval-after-load "postpone"
-  (use-package focus-autosave-mode
-    :config
-    (focus-autosave-mode)))
+(use-package focus-autosave-mode
+  :config
+  (focus-autosave-mode))
 
 ;;; buffer-menu-color
-(require 'buffer-menu-color)
+(use-package buffer-menu-color
+  :straight nil)
 
 ;;; 非アクティブウインドウの背景色を変更
 (use-package hiwin
@@ -1123,70 +1131,66 @@
   (set-face-background 'hiwin-face "#eeeef0"))
 
 ;;; google翻訳
-(with-eval-after-load "postpone"
-  (use-package google-translate
-    :config
-    ;; キーバインドの設定（お好みで）
-    (global-set-key (kbd "C-c T") 'google-translate-at-point)
-    
-    ;; 翻訳のデフォルト値を設定（en -> ja）
-    (custom-set-variables
-     '(google-translate-default-source-language "en")
-     '(google-translate-default-target-language "ja"))
-    ;; Fix error of "Failed to search TKK"
-    (defun google-translate--get-b-d1 ()
-      ;; TKK='427110.1469889687'
-      (list 427110 1469889687))))
+(use-package google-translate
+  :config
+  ;; キーバインドの設定（お好みで）
+  (global-set-key (kbd "C-c C-t") 'google-translate-at-point)
+  
+  ;; 翻訳のデフォルト値を設定（en -> ja）
+  (custom-set-variables
+   '(google-translate-default-source-language "en")
+   '(google-translate-default-target-language "ja"))
+  ;; Fix error of "Failed to search TKK"
+  (defun google-translate--get-b-d1 ()
+    ;; TKK='427110.1469889687'
+    (list 427110 1469889687)))
 
 ;;;shackle
 ;;; helm等分割エリアの割合、位置を指定する
-(with-eval-after-load "postpone"
-  (use-package shackle
-    :config
-    (setq shackle-rules
-          '(;; *compilation*は下部に2割の大きさで表示
-            (compilation-mode :align below :ratio 0.2)
-            ;; ヘルプバッファは右側に表示
-            ("*Help*" :align right)
-            ;; 補完バッファは下部に3割の大きさで表示
-            ("*Completions*" :align below :ratio 0.3)
-            ;; google翻訳バッファは下部に3割の大きさで表示
-            ("*Google Translate*" :align below :ratio 0.3)
-            ;; M-x helm-miniは下部に7割の大きさで表示
-            ("*helm mini*" :align below :ratio 0.7)
-            ;; 他のhelmコマンドは右側に表示 (バッファ名の正規表現マッチ)
-            ("\*helm" :regexp t :align right)
-            ;; 上部に表示
-            ("foo" :align above)
-            ;; 別フレームで表示
-            ("neotree" :frame t)
-            ;; 別フレームで表示
-            ;; ("bar" :frame t)
-            ;; 同じウィンドウで表示
-            ;; ("baz" :same t)
-            ;; ポップアップで表示
-            ;;  ("hoge" :popup t)
-            ;; 選択する
-            ;;  ("abc" :select t)
-            ))
-    (shackle-mode 1)
-    (setq shackle-lighter ""))
+(use-package shackle
+  :config
+  (setq shackle-rules
+        '(;; *compilation*は下部に2割の大きさで表示
+          (compilation-mode :align below :ratio 0.2)
+          ;; ヘルプバッファは右側に表示
+          ("*Help*" :align right)
+          ;; 補完バッファは下部に3割の大きさで表示
+          ("*Completions*" :align below :ratio 0.3)
+          ;; google翻訳バッファは下部に3割の大きさで表示
+          ("*Google Translate*" :align below :ratio 0.3)
+          ;; M-x helm-miniは下部に7割の大きさで表示
+          ("*helm mini*" :align below :ratio 0.7)
+          ;; 他のhelmコマンドは右側に表示 (バッファ名の正規表現マッチ)
+          ("\*helm" :regexp t :align right)
+          ;; 上部に表示
+          ("foo" :align above)
+          ;; 別フレームで表示
+          ("neotree" :frame t)
+          ;; 別フレームで表示
+          ;; ("bar" :frame t)
+          ;; 同じウィンドウで表示
+          ;; ("baz" :same t)
+          ;; ポップアップで表示
+          ;;  ("hoge" :popup t)
+          ;; 選択する
+          ;;  ("abc" :select t)
+          ))
+  (shackle-mode 1)
+  (setq shackle-lighter ""))
   
 ;;; C-zで直前のウィンドウ構成に戻す
-  (winner-mode 1)
-  (global-set-key (kbd "C-c z") 'winner-undo))
+(winner-mode 1)
+(global-set-key (kbd "C-c z") 'winner-undo)
 
 ;;; org-bullets
-(with-eval-after-load "postpone"
-  (use-package org-bullets
-    :ensure t
-    :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 ;;; org-preview-html-mode
-(with-eval-after-load "postpone"
-  (use-package org-preview-html
-    :commands (org-preview-html-mode)))
+(use-package org-preview-html
+  :commands (org-preview-html-mode))
 
 ;;; context-coloring( not C langeage;;)
 (with-eval-after-load "postpone"
@@ -1230,17 +1234,18 @@
     (eshell-git-prompt-use-theme 'git-radar)))
 
 ;; doxymacs mode
-(with-eval-after-load "postpone"
-  (require 'doxymacs)
-;; usage
-;; M-x doxymacs-mode
-;;
-;; C-c d i	ファイルへのコメントを挿入
-;; C-c d f	カーソルの下にある関数へのコメントを挿入
-;; C-c d ;	メンバへのコメントを挿入
-;; C-c d m	複数行の空コメントを挿入
-;; C-c d s	一行の空コメントを挿入
-;; custom c-mode hook for doxymacs
+(use-package doxymacs
+  :commands doxymacs
+  ;; usage
+  ;; M-x doxymacs-mode
+  ;;
+  ;; C-c d i	ファイルへのコメントを挿入
+  ;; C-c d f	カーソルの下にある関数へのコメントを挿入
+  ;; C-c d ;	メンバへのコメントを挿入
+  ;; C-c d m	複数行の空コメントを挿入
+  ;; C-c d s	一行の空コメントを挿入
+  ;; custom c-mode hook for doxymacs
+  :config
   (defun doxy-custom-c-mode-hook ()
     (doxymacs-mode 1)
     (setq doxymacs-doxygen-style "Qt")
@@ -1249,45 +1254,41 @@
     (add-hook 'c-mode-common-hook 'doxy-custom-c-mode-hook)))
 
 ;;; projectile
-(with-eval-after-load "postpone"
-  (use-package projectile
-    :config
-    (projectile-global-mode)))
+(use-package projectile
+  :config
+  (projectile-global-mode))
 
 ;;;helm-projectile
-(with-eval-after-load "postpone"
-  (use-package helm-projectile
+(use-package helm-projectile
     :config
-    (helm-projectile-on)))
+    (helm-projectile-on))
 
 ;;; Python
 
 ;;; python-mode
-(with-eval-after-load "postpone"
-  (use-package python-mode
-    :commands (python-mode)
-    :config
-    (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-    (add-to-list 'interpreter-mode-alist '("python" . python-mode))))
+(use-package python-mode
+  :commands (python-mode)
+  :config
+  (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+  (add-to-list 'interpreter-mode-alist '("python" . python-mode)))
 
 ;;; company-jedi
-(with-eval-after-load "postpone"
-  (use-package jedi
+(use-package jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (setq jedi:complete-on-dot t)
+  :config
+  (use-package company-jedi
     :ensure t
     :init
-    (add-hook 'python-mode-hook 'jedi:setup)
-    (setq jedi:complete-on-dot t)
-    :config
-    (use-package company-jedi
-      :ensure t
-      :init
-      (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
-      (setq  company-jedi-python-bin "python"))))
+    (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
+    (setq  company-jedi-python-bin "python")))
 
-(with-eval-after-load "postpone"
-  (use-package py-yapf
-    :config
-    (add-hook 'python-mode-hook 'py-yapf-enable-on-save)))
+(use-package py-yapf
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
 
 ;;
 ;; linux 初回起動時のみ $ sudo apt-get install virtualenv
@@ -1295,11 +1296,11 @@
 ;;
 
 ;;; py-autopep8
-(with-eval-after-load "postpone"
   (use-package py-autopep8
+    :ensure t
     :config
     (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-    (setq py-autopep8-options '("--max-line-length=100"))))
+    (setq py-autopep8-options '("--max-line-length=100")))
 
 
 ;;; dashboard
@@ -1366,17 +1367,16 @@
   (setq recentf-auto-cleanup 'never))
 
 ;;; ace-isearch
-(with-eval-after-load "postpone"
-  (use-package ace-isearch
-    :config
-    (global-ace-isearch-mode +1)
-    (custom-set-variables
+(use-package ace-isearch
+  :config
+  (global-ace-isearch-mode +1)
+  (custom-set-variables
    '(ace-isearch-input-length 7)
    '(ace-isearch-jump-delay 1.00)
    '(ace-isearch-function 'ace-jump-word-mode)    
    '(ace-isearch-use-jump 'printing-char))
-    (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch)))
-  
+  (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
+
 ;;;---------パッケージ毎の設定終わり end of package setting
 
 ;;;
@@ -1494,9 +1494,11 @@
   ;;;
   ;;; mozc
   ;;;
-  (require 'mozc)
-  ;;(set-language-environment "Japanese")
-  (setq default-input-method "japanese-mozc")
+  (use-package mozc
+    :straight nil
+    :init
+    ;;(set-language-environment "Japanese")
+    (setq default-input-method "japanese-mozc"))
     
   ;; GUIの候補選択ウィンドウをカーソルの直下にぶら下げる（デフォルト）
   (setq mozc-candidate-style 'overlay)
@@ -1538,8 +1540,9 @@
 
   ;; git-complete
   (with-eval-after-load "postpone"
-    (require 'git-complete)
-    (global-set-key (kbd "C-c C-G") 'git-complete))
+    (use-package git-complete
+      :config
+      (global-set-key (kbd "C-c C-G") 'git-complete)))
 
   ;; elpy
   (with-eval-after-load "postpone"
