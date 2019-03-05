@@ -1,4 +1,4 @@
-;;;Last Updated:<2019/02/21 11:49:25 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2019/03/05 15:12:52 from ryuichi-VirtualBox by ryuichi>
 
 
 ;;; ロゴの設定
@@ -449,11 +449,6 @@
 ;;----
 (setq frame-title-format "%f")
 
-;;----
-;; カラーテーマ(未使用）
-;;----
-;(load-theme 'deeper-blue t)
-
 ;; 行間を開ける量、これを調整することでかなり見え方が変わる
 (setq-default line-spacing 2)
 
@@ -560,7 +555,6 @@
   (setq org-modules (delete 'org-gnus org-modules))
   (setq org-modules (delete 'org-info org-modules))
   (setq org-modules (delete 'org-irc org-modules))
-
   (setq org-modules (delete 'org-mhe org-modules))
   (setq org-modules (delete 'org-rmail org-modules)))
 
@@ -588,9 +582,9 @@
 (setq org-log-done 'time)
 
 ;; ショートカットキー
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c a") 'org-agenda)
 
 
 ;;;;; ココらへんからパッケージの話 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -627,7 +621,7 @@
     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)   ; rebind tab to run persistent action
     (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)       ; make TAB work in terminal
     (define-key helm-map (kbd "C-z")  'helm-select-action)            ; list actions using C-z
-    (global-set-key "\C-c\C-r" 'helm-recentf)
+    (global-set-key (kbd "C-c r") 'helm-recentf)
     (define-key global-map (kbd "C-x b")   'helm-buffers-list)
                                         ;(define-key global-map (kbd "C-x b") 'helm-for-files)
     (define-key global-map (kbd "C-x C-f") 'helm-find-files)
@@ -763,7 +757,7 @@
     ;;(global-whitespace-mode 1)
     
     ;;C-cwで切り替え
-    (define-key global-map (kbd "\C-cw") 'whitespace-mode)
+    (define-key global-map (kbd "C-c w") 'whitespace-mode)
     ;; 保存前に自動でクリーンアップ
     (setq whitespace-action '(auto-cleanup))))
 
@@ -1028,7 +1022,7 @@
 (with-eval-after-load "postpone"
   (use-package popup-switcher
     :config
-    (global-set-key (kbd "\C-x b") 'psw-switch-buffer)
+    (global-set-key (kbd "C-x b") 'psw-switch-buffer)
     (global-set-key [f3] 'psw-switch-function)
     (setq psw-popup-menu-max-length 20)))
 
@@ -1522,9 +1516,9 @@
       :config
       (global-flycheck-mode)
       
-      (define-key global-map (kbd "\C-cn") 'flycheck-next-error)
-      (define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
-      (define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
+      (define-key global-map (kbd "C-c n") 'flycheck-next-error)
+      (define-key global-map (kbd "C-c p") 'flycheck-previous-error)
+      (define-key global-map (kbd "C-c d") 'flycheck-list-errors)
       
       (eval-after-load 'flycheck
         '(custom-set-variables
@@ -1635,3 +1629,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
