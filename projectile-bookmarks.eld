@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/work/ecu/adx/" "/home/share/20tm/" "~/gitlab-trainer/" "/home/share/document/master/" "~/work/ecu/20tm/")
+("~/.emacs.d/" "~/.emacs.d/straight/repos/straight.el/" "~/work/ecu/adx/" "/home/share/20tm/" "~/gitlab-trainer/" "/home/share/document/master/" "~/work/ecu/20tm/")

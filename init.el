@@ -117,24 +117,6 @@
 
 ;;; package系終わり
 
-;;; postpone.el
-(if (not (locate-library "postpone"))
-    (message "postpone.el is NOT installed.")
-  (autoload 'postpone-kicker "postpone" nil t)
-  (defun my-postpone-kicker ()
-    (interactive)
-    (unless (memq this-command ;; specify commands for exclusion
-                  '(self-insert-command
-                    save-buffers-kill-terminal
-                    exit-minibuffer))
-      (message "Activating postponed packages...")
-      (let ((t1 (current-time)))
-        (postpone-kicker 'my-postpone-kicker)
-        (setq postpone-init-time (float-time
-                                  (time-subtract (current-time) t1))))
-      (message "Activating postponed packages...done")))
-  (add-hook 'pre-command-hook #'my-postpone-kicker))
-
 
 ;;;
 ;;; FILE CODE設定
@@ -636,54 +618,51 @@ Inserted by installing org-mode or when a release is made."
 ;;;
 
 ;;; helm本体
-(with-eval-after-load "postpone" 
-  (use-package helm
-    :init
-    (helm-mode t)
-    
-    :config
+(use-package helm
+  :diminish helm-mode
+  :init
+  (helm-mode t)
+  
+  :config
   ;;; M-yでkill-ringを回す
-    (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-    
-    ;; C-hで前の文字削除
-    (define-key helm-map (kbd "C-h") 'delete-backward-char)
-    (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-    
-    ;; TABとC-zを入れ替える
-    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)   ; rebind tab to run persistent action
-    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)       ; make TAB work in terminal
-    (define-key helm-map (kbd "C-z")  'helm-select-action)            ; list actions using C-z
-    (global-set-key (kbd "C-c r") 'helm-recentf)
-    (define-key global-map (kbd "C-x b")   'helm-buffers-list)
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+  
+  ;; C-hで前の文字削除
+  (define-key helm-map (kbd "C-h") 'delete-backward-char)
+  (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+  
+  ;; TABとC-zを入れ替える
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)   ; rebind tab to run persistent action
+  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)       ; make TAB work in terminal
+  (define-key helm-map (kbd "C-z")  'helm-select-action)            ; list actions using C-z
+  (global-set-key (kbd "C-c r") 'helm-recentf)
+  (define-key global-map (kbd "C-x b")   'helm-buffers-list)
                                         ;(define-key global-map (kbd "C-x b") 'helm-for-files)
-    (define-key global-map (kbd "C-x C-f") 'helm-find-files)
-    (define-key global-map (kbd "M-x")     'helm-M-x)
-    (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+  (define-key global-map (kbd "C-x C-f") 'helm-find-files)
+  (define-key global-map (kbd "M-x")     'helm-M-x)
+  (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
     ;;fine-fileのみTAB補完
-    (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-    (add-hook 'helm-after-initialize-hook
-              #'(lambda ()
-                  ;; EmacsのデフォルトのC-kの動作に戻す
-                  (define-key helm-map (kbd "C-k") 'kill-line)
-                ))))
+  (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
+  (add-hook 'helm-after-initialize-hook
+            #'(lambda ()
+                ;; EmacsのデフォルトのC-kの動作に戻す
+                (define-key helm-map (kbd "C-k") 'kill-line)
+                )))
 
 ;;; helm-smex
-(with-eval-after-load "postpone"
-  (use-package helm-smex
-    :config
-    (global-set-key [remap execute-extended-command] #'helm-smex)
-    (global-set-key (kbd "M-X") #'helm-smex-major-mode-commands))
-  )
+(use-package helm-smex
+  :config
+  (global-set-key [remap execute-extended-command] #'helm-smex)
+  (global-set-key (kbd "M-X") #'helm-smex-major-mode-commands))
+
 
 ;;;  helm-gtags
-(with-eval-after-load "postpone"
-  (use-package helm-gtags
-    :commands
-    (helm-gtags)
-    :config
-    (helm-gtags-mode t)
-    (setq helm-gtags-mode-hook
-          '(lambda ()
+(use-package helm-gtags
+  :commands (helm-gtags)
+  :config
+  (helm-gtags-mode t)
+  (setq helm-gtags-mode-hook
+        '(lambda ()
                                         ; 文脈から判断してジャンプ
            ;;;(define-key global-map (kbd "C-c C-t") 'helm-gtags-dwim)
                                         ; 定義元へ
@@ -700,7 +679,7 @@ Inserted by installing org-mode or when a release is made."
              (define-key global-map (kbd "C-c C-f") 'helm-gtags-find-file)
              ))
     (add-hook 'c-mode-hook 'helm-gtags-mode)
-    (add-hook 'c++-mode-hook 'helm-gtags-mode)))
+    (add-hook 'c++-mode-hook 'helm-gtags-mode))
 
 ;;; helm-git-grep
 ;;; autoload扱い
@@ -731,24 +710,23 @@ Inserted by installing org-mode or when a release is made."
 ;; rainbow-delimiter
 ;; 括弧の色を色分けする設定
 ;;
-(with-eval-after-load "postpone"
-  (use-package rainbow-delimiters
+(use-package rainbow-delimiters
+    :diminish rainbow-delimiters-mode
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
     (add-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
-    ))
+    )
 
   ;; 括弧の色を強調する設定
-(with-eval-after-load "postpone"
-  (use-package cl-lib)
-  (use-package color)
-  (defun rainbow-delimiters-using-stronger-colors ()
-    (interactive)
-    (cl-loop
-     for index from 1 to rainbow-delimiters-max-face-count
-     do
-     (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
-       (cl-callf color-saturate-name (face-foreground face) 30))))
+(use-package cl-lib)
+(use-package color)
+(defun rainbow-delimiters-using-stronger-colors ()
+  (interactive)
+  (cl-loop
+   for index from 1 to rainbow-delimiters-max-face-count
+   do
+   (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
+     (cl-callf color-saturate-name (face-foreground face) 30)))
   (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors))
 
 ;;----
@@ -757,100 +735,98 @@ Inserted by installing org-mode or when a release is made."
 ;;----
 ;; whitespace-mode の 色設定
 ;;http://ergoemacs.org/emacs/whitespace-mode.html
-(with-eval-after-load "postpone"
-  (use-package whitespace
-    :config
-    (setq whitespace-style 
-          '(face tabs tab-mark spaces space-mark newline newline-mark trailng))
-    (setq whitespace-display-mappings
-          '(
-            (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t]);タブ
-            (space-mark ?\u3000 [?□])        ; 全角スペース
-            (space-mark ?\u0020 [?.])  ; 半角スペース
-            (newline-mark ?\n   [?$ ?\n])     ; 改行記号
-            ) )
-    (setq whitespace-space-regexp "\\([\x0020\x3000]+\\)" )
-    ;;正規表現に関する文書。 Emacs Lispには、正規表現リテラルがないことへの言及
-    ;;http://www.mew.org/~kazu/doc/elisp/regexp.html
-    ;;
-    ;;なぜか、全体をグループ化 \(\) しておかないと、うまくマッチしなかった罠
-    ;;
-    (set-face-foreground 'whitespace-space "#CEDDEF")
-    (set-face-background 'whitespace-space 'nil)
-    ;;  (set-face-bold-p 'whitespace-space t)
-    
-    (set-face-foreground 'whitespace-tab "LightSkyBlue")
-    (set-face-background 'whitespace-tab 'nil)
-    
-    (set-face-foreground 'whitespace-newline  "#CEEDFF")
-    (set-face-background 'whitespace-newline 'nil)
-    
-    ;; タブや全角空白などを強調表示
-    ;;(global-whitespace-mode 1)
-    
-    ;;C-cwで切り替え
-    (define-key global-map (kbd "C-c w") 'whitespace-mode)
-    ;; 保存前に自動でクリーンアップ
-    (setq whitespace-action '(auto-cleanup))))
+(use-package whitespace
+  :config
+  (setq whitespace-style 
+        '(face tabs tab-mark spaces space-mark newline newline-mark trailng))
+  (setq whitespace-display-mappings
+        '(
+          (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t]);タブ
+          (space-mark ?\u3000 [?□])        ; 全角スペース
+          (space-mark ?\u0020 [?.])  ; 半角スペース
+          (newline-mark ?\n   [?$ ?\n])     ; 改行記号
+          ) )
+  (setq whitespace-space-regexp "\\([\x0020\x3000]+\\)" )
+  ;;正規表現に関する文書。 Emacs Lispには、正規表現リテラルがないことへの言及
+  ;;http://www.mew.org/~kazu/doc/elisp/regexp.html
+  ;;
+  ;;なぜか、全体をグループ化 \(\) しておかないと、うまくマッチしなかった罠
+  ;;
+  (set-face-foreground 'whitespace-space "#CEDDEF")
+  (set-face-background 'whitespace-space 'nil)
+  ;;  (set-face-bold-p 'whitespace-space t)
+  
+  (set-face-foreground 'whitespace-tab "LightSkyBlue")
+  (set-face-background 'whitespace-tab 'nil)
+  
+  (set-face-foreground 'whitespace-newline  "#CEEDFF")
+  (set-face-background 'whitespace-newline 'nil)
+  
+  ;; タブや全角空白などを強調表示
+  ;;(global-whitespace-mode 1)
+  
+  ;;C-cwで切り替え
+  (define-key global-map (kbd "C-c w") 'whitespace-mode)
+  ;; 保存前に自動でクリーンアップ
+  (setq whitespace-action '(auto-cleanup)))
 
 ;;;yasnippet
-  (use-package yasnippet
-    :config
-    (define-key yas-keymap (kbd "<tab>") nil)
-    (yas-global-mode 1))
+(use-package yasnippet
+  :config
+  (define-key yas-keymap (kbd "<tab>") nil)
+  (yas-global-mode 1))
 
 ;;;
 ;;;company
 ;;; ironyと合わせて自動補完を行う。
 ;;;
-(with-eval-after-load "postpone"
-  (use-package company
-    :init
-    (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こう とすると一番上に
-    (setq company-minimum-prefix-length 2) ; デフォルトは4
-    ;; (setq company-idle-delay nil) ; 自動補完をしない
-    :bind
-    (:map company-active-map
-          ;; ("C-M-i" . company-complete)
-          ;; ("<tab>" . company-complete-selection)
-          ("M-n" . nil)
-          ("M-p" . nil)
-          ("C-n" . company-select-next)
-          ("C-p" . company-select-previous)
-          ("C-h" . nil))  
-    :config
-    (global-company-mode 1)
-    
-    (defun company--insert-candidate2 (candidate)
-      (when (> (length candidate) 0)
-        (setq candidate (substring-no-properties candidate))
-        (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
-            (insert (company-strip-prefix candidate))
-          (if (equal company-prefix candidate)
-              (company-select-next)
-            (delete-region (- (point) (length company-prefix)) (point))
-            (insert candidate))
-          )))
-    
-    (defun company-complete-common2 ()
-      (interactive)
-      (when (company-manual-begin)
-        (if (and (not (cdr company-candidates))
-                 (equal company-common (car company-candidates)))
-            (company-complete-selection)
-          (company--insert-candidate2 company-common))))
-    
+(use-package company
+  :diminish company-mode
+  :init
+  (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こう とすると一番上に
+  (setq company-minimum-prefix-length 2) ; デフォルトは4
+  ;; (setq company-idle-delay nil) ; 自動補完をしない
+  :bind
+  (:map company-active-map
+        ;; ("C-M-i" . company-complete)
+        ;; ("<tab>" . company-complete-selection)
+        ("M-n" . nil)
+        ("M-p" . nil)
+        ("C-n" . company-select-next)
+        ("C-p" . company-select-previous)
+        ("C-h" . nil))  
+  :config
+  (global-company-mode 1)
+  
+  (defun company--insert-candidate2 (candidate)
+    (when (> (length candidate) 0)
+      (setq candidate (substring-no-properties candidate))
+      (if (eq (company-call-backend 'ignore-case) 'keep-prefix)
+          (insert (company-strip-prefix candidate))
+        (if (equal company-prefix candidate)
+            (company-select-next)
+          (delete-region (- (point) (length company-prefix)) (point))
+          (insert candidate))
+        )))
+  
+  (defun company-complete-common2 ()
+    (interactive)
+    (when (company-manual-begin)
+      (if (and (not (cdr company-candidates))
+               (equal company-common (car company-candidates)))
+          (company-complete-selection)
+        (company--insert-candidate2 company-common))))
+  
     (define-key company-active-map [tab] 'company-complete-common2)
-    (define-key company-active-map [backtab] 'company-select-previous)))
+    (define-key company-active-map [backtab] 'company-select-previous))
 
 ;;;irony
-(with-eval-after-load "postpone"  
-  (eval-after-load "irony"
-    '(progn
-       (custom-set-variables '(irony-additional-clang-options '("-std=c++11")))
-       (add-to-list 'company-backends 'company-irony)
-       (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-       (add-hook 'c-mode-common-hook 'irony-mode))))
+(eval-after-load "irony"
+  '(progn
+     (custom-set-variables '(irony-additional-clang-options '("-std=c++11")))
+     (add-to-list 'company-backends 'company-irony)
+     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+     (add-hook 'c-mode-common-hook 'irony-mode)))
 
 ;;;
 ;;; neotree
@@ -927,10 +903,10 @@ Inserted by installing org-mode or when a release is made."
 
 ;;; anzu
 ;;; 検索文字が何個あるか表示
-(with-eval-after-load "postpone"
-  (use-package anzu
-    :init
-    (global-anzu-mode +1)))
+(use-package anzu
+  :diminish anzu-mode
+  :init
+  (global-anzu-mode +1))
 
 ;;; shell-pop
 ;;; ちっちゃいシェルウインドウを開いたり閉じたりする
@@ -1015,20 +991,19 @@ Inserted by installing org-mode or when a release is made."
   )
 
 ;;; rainbow-mode:#RRGGBB のカラーコードに勝手に色が付く
-(with-eval-after-load "postpone"
-  (use-package rainbow-mode
-    :config
-    (setq rainbow-html-colors t)
-    (setq rainbow-x-colors t)
-    (setq rainbow-latex-colors t)
-    (setq rainbow-ansi-colors t)
-    (add-hook 'css-mode-hook 'rainbow-mode)
-    (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
-    (add-hook 'less-mode-hook 'rainbow-mode)
-    (add-hook 'web-mode-hook 'rainbow-mode)
-    (add-hook 'html-mode-hook 'rainbow-mode)
-    :diminish rainbow-mode
-    ))
+(use-package rainbow-mode
+  :diminish rainbow-mode
+  :config
+  (setq rainbow-html-colors t)
+  (setq rainbow-x-colors t)
+  (setq rainbow-latex-colors t)
+  (setq rainbow-ansi-colors t)
+  (add-hook 'css-mode-hook 'rainbow-mode)
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
+  (add-hook 'less-mode-hook 'rainbow-mode)
+  (add-hook 'web-mode-hook 'rainbow-mode)
+  (add-hook 'html-mode-hook 'rainbow-mode)
+  )
 
 ;;; popup-kill-ring
 (use-package popup-kill-ring
@@ -1052,6 +1027,7 @@ Inserted by installing org-mode or when a release is made."
 
 ;;; undo-tree
 (use-package undo-tree
+  :diminish undo-tree-mode
   :config
   (global-undo-tree-mode))
 
@@ -1071,19 +1047,12 @@ Inserted by installing org-mode or when a release is made."
     (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode)))
 
 ;;; markdown-preview-mode
-(with-eval-after-load "postpone"
-  (use-package markdown-preview-mode))
+(use-package markdown-preview-mode
+  :commands(markdown-preview-mode))
 
 ;;; markdown-preview-eww
-(with-eval-after-load "postpone"
-  (use-package markdown-preview-eww))
-
-
-;;; easy-kill
-(with-eval-after-load "postpone"
-  (use-package easy-kill
-    :config
-    (global-set-key [remap kill-ring-save] 'easy-kill)))
+(use-package markdown-preview-eww
+  :commands(markdown-preview-eww))
 
 ;;; clang-format
 (use-package clang-format
@@ -1117,6 +1086,7 @@ Inserted by installing org-mode or when a release is made."
 
 ;;; focus-autosave-mode
 (use-package focus-autosave-mode
+  :diminish focus-autosave-mode
   :config
   (focus-autosave-mode))
 
@@ -1193,8 +1163,7 @@ Inserted by installing org-mode or when a release is made."
   :commands (org-preview-html-mode))
 
 ;;; context-coloring( not C langeage;;)
-(with-eval-after-load "postpone"
-  (use-package context-coloring
+(use-package context-coloring
     :config
     ;; JavaScript:
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -1226,16 +1195,15 @@ Inserted by installing org-mode or when a release is made."
      '(context-coloring-level-14-face ((t :foreground "#ff6e64")))
      '(context-coloring-level-15-face ((t :foreground "#f771ac")))
      '(context-coloring-level-16-face ((t :foreground "#9ea0e5"))))
-    ))
+    )
 
-(with-eval-after-load "postpone"
-  (use-package eshell-git-prompt
-    :config
-    (eshell-git-prompt-use-theme 'git-radar)))
+(use-package eshell-git-prompt
+  :config
+  (eshell-git-prompt-use-theme 'git-radar))
 
 ;; doxymacs mode
 (use-package doxymacs
-  :commands doxymacs
+  :commands (doxymacs)
   ;; usage
   ;; M-x doxymacs-mode
   ;;
@@ -1255,6 +1223,7 @@ Inserted by installing org-mode or when a release is made."
 
 ;;; projectile
 (use-package projectile
+  :diminish projectile-mode
   :config
   (projectile-global-mode))
 
@@ -1384,7 +1353,7 @@ Inserted by installing org-mode or when a release is made."
 ;;;
 
 ;;;
-;;; for Windows (NTEmacs)
+;;; For Windows (NTEmacs)
 ;;; 
 (when (eq system-type 'windows-nt) ; Windows
 
@@ -1513,56 +1482,48 @@ Inserted by installing org-mode or when a release is made."
             (lambda() (set-cursor-color "red")))
   
   ;; FLYCHECK
-  (with-eval-after-load "postpone"
-    (use-package flycheck
-      :config
-      (global-flycheck-mode)
-      
-      (define-key global-map (kbd "C-c n") 'flycheck-next-error)
-      (define-key global-map (kbd "C-c p") 'flycheck-previous-error)
-      (define-key global-map (kbd "C-c d") 'flycheck-list-errors)
-      
-      (eval-after-load 'flycheck
-        '(custom-set-variables
-          '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
-      
-      
-      (add-hook 'c++-mode-hook (lambda()
-                                 (setq flycheck-gcc-language-standard "c++11")
-                                 (setq flycheck-clang-language-standard "c++11")))))
+  (use-package flycheck
+    :diminish flycheck-mode
+    :config
+    (global-flycheck-mode)
+    
+    (define-key global-map (kbd "C-c n") 'flycheck-next-error)
+    (define-key global-map (kbd "C-c p") 'flycheck-previous-error)
+    (define-key global-map (kbd "C-c d") 'flycheck-list-errors)
+    
+    (eval-after-load 'flycheck
+      '(custom-set-variables
+        '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
     
     
-  ;; dired-du
-  (with-eval-after-load "postpone"
-    (use-package dired-du
-      :config
-      (add-hook 'dired-mode-hook #'dired-du-mode)))
+    (add-hook 'c++-mode-hook (lambda()
+                               (setq flycheck-gcc-language-standard "c++11")
+                               (setq flycheck-clang-language-standard "c++11"))))
 
-  ;; git-complete
-  (with-eval-after-load "postpone"
-    (use-package git-complete
-      :config
-      (global-set-key (kbd "C-c C-G") 'git-complete)))
+
+  ;; dired-du
+  (use-package dired-du
+    :config
+    (add-hook 'dired-mode-hook #'dired-du-mode))
 
   ;; elpy
-  (with-eval-after-load "postpone"
-    (use-package elpy
-      :ensure t
-      :init (with-eval-after-load `python (elpy-enable))
-      :config
-      (progn
-        ;; Use Flycheck instead of Flymake
-        (when (require 'flycheck nil t)
-          (remove-hook 'elpy-modules 'elpy-module-flymake)
-          (remove-hook 'elpy-modules 'elpy-module-yasnippet)
-          (remove-hook 'elpy-mode-hook 'elpy-module-highlight-indentation)
-          (add-hook 'elpy-mode-hook 'flycheck-mode))
-        (elpy-enable)
-        ;; jedi is great
-        (setq elpy-rpc-python-command "python3")
-        (setq python-shell-interpreter "ipython3")
-        (setq python-shell-interpreter-args "-i --simple-prompt")
-        (setq elpy-rpc-backend "jedi"))))
+  (use-package elpy
+    :ensure t
+    :init (with-eval-after-load `python (elpy-enable))
+    :config
+    (progn
+      ;; Use Flycheck instead of Flymake
+      (when (require 'flycheck nil t)
+        (remove-hook 'elpy-modules 'elpy-module-flymake)
+        (remove-hook 'elpy-modules 'elpy-module-yasnippet)
+        (remove-hook 'elpy-mode-hook 'elpy-module-highlight-indentation)
+        (add-hook 'elpy-mode-hook 'flycheck-mode))
+      (elpy-enable)
+      ;; jedi is great
+      (setq elpy-rpc-python-command "python3")
+      (setq python-shell-interpreter "ipython3")
+      (setq python-shell-interpreter-args "-i --simple-prompt")
+      (setq elpy-rpc-backend "jedi")))
 
 );;;ここまでUNIX用
 
@@ -1592,10 +1553,12 @@ Inserted by installing org-mode or when a release is made."
         beacon-mode
         company-mode
         auto-revert-mode
+        projectile-mode
         eldoc-mode
         auto-complete-mode
         magit-auto-revert-mode
         abbrev-mode
+        context-coloring-mode
         focus-autosave-mode
         yas-minor-mode
         helm-gtags-mode
@@ -1607,12 +1570,11 @@ Inserted by installing org-mode or when a release is made."
         my/hidden-minor-modes)
 
 
-
 ;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
+ ;; Your init file should conatin only one such instance.
  ;; If there is more than one, they won't work right.
  '(ace-isearch-function (quote ace-jump-word-mode))
  '(ace-isearch-use-jump (quote printing-char))
