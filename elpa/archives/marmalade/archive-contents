@@ -1870,7 +1870,7 @@
 	  [(20071215)
 	   nil "mode for Notation 3" single])
  (myterminal-controls .
-		      [(20160119 2030)
+		      [(20190305 2115)
 		       ((emacs
 			 (24))
 			(cl-lib

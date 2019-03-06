@@ -388,21 +388,22 @@
 ;;----
 ;; 時計表示
 ;;----
+;; Sky-color-clockを使うため表示しない
 ;; 不採用    (display-time)
-;(setq display-time-day-and-date t)  ;; 曜日・月・日
-(setq display-time-24hr-format t)   ;; 24時表示
-(display-time-mode t)
+;;(setq display-time-day-and-date t)  ;; 曜日・月・日
+;;(setq display-time-24hr-format t)   ;; 24時表示
+;;(display-time-mode t)
 
 ;; モードラインの割合表示を総行数表示
 (defvar my-lines-page-mode t)
 (defvar my-mode-line-format)
 
 (when my-lines-page-mode
-  (setq my-mode-line-format "%d")
+  (setq my-mode-line-format "<Max:%d")
   (if size-indication-mode
       (setq my-mode-line-format (concat my-mode-line-format " of %%I")))
   (cond ((and (eq line-number-mode t) (eq column-number-mode t))
-         (setq my-mode-line-format (concat my-mode-line-format " (%%l,%%c)")))
+         (setq my-mode-line-format (concat my-mode-line-format " in[%%l,%%c]>")))
         ((eq line-number-mode t)
          (setq my-mode-line-format (concat my-mode-line-format " L%%l")))
         ((eq column-number-mode t)
@@ -525,34 +526,6 @@
 ;;-------------;;
 ;; org-mode    ;;
 ;;-------------;;
-(defun org-git-version ()
-  "The Git version of org-mode.
-Inserted by installing org-mode or when a release is made."
-  (require 'git)
-  (let ((git-repo (expand-file-name
-                   "straight/repos/org/" user-emacs-directory)))
-    (string-trim
-     (git-run "describe"
-              "--match=release\*"
-              "--abbrev=6"
-              "HEAD"))))
-
-(defun org-release ()
-  "The release version of org-mode.
-Inserted by installing org-mode or when a release is made."
-  (require 'git)
-  (let ((git-repo (expand-file-name
-                   "straight/repos/org/" user-emacs-directory)))
-    (string-trim
-     (string-remove-prefix
-      "release_"
-      (git-run "describe"
-               "--match=release\*"
-               "--abbrev=0"
-               "HEAD")))))
-
-(provide 'org-version)
-
 (use-package org
   ;; :defer t で起動時に Org を読み込まない（起動が速くなる）
   :defer t
@@ -602,6 +575,11 @@ Inserted by installing org-mode or when a release is made."
   
 
 ;;;;; ココらへんからパッケージの話 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; モードライン非表示
+(use-package diminish)
+
+(diminish 'auto-revert-mode)
+(diminish 'abbrev-mode)
 
 ;; 最終更新日の自動挿入
 (use-package time-stamp
@@ -852,6 +830,7 @@ Inserted by installing org-mode or when a release is made."
 ;;; volatile-highlight
 ;;; yank や undoした時のリージョンをハイライト表示
 (use-package volatile-highlights
+  :diminish volatile-highlights-mode
   :init
   (volatile-highlights-mode t)
   :config
@@ -888,7 +867,8 @@ Inserted by installing org-mode or when a release is made."
 ;;; smoooth-scroll
 ;;; スクロールをスムーズに
 (use-package smooth-scroll
-    :config
+  :diminish smooth-scroll-mode
+  :config
     (smooth-scroll-mode t))
 
 ;;;hlinum
@@ -1164,38 +1144,39 @@ Inserted by installing org-mode or when a release is made."
 
 ;;; context-coloring( not C langeage;;)
 (use-package context-coloring
-    :config
-    ;; JavaScript:
-    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-    (add-hook 'js2-mode-hook #'context-coloring-mode)
+  :diminish context-coloring-mode
+  :config
+  ;; JavaScript:
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  (add-hook 'js2-mode-hook #'context-coloring-mode)
+  
+  ;; Emacs Lisp:
+  (add-hook 'emacs-lisp-mode-hook #'context-coloring-mode)
     
-    ;; Emacs Lisp:
-    (add-hook 'emacs-lisp-mode-hook #'context-coloring-mode)
-    
-    ;; eval-expression:
-    (add-hook 'eval-expression-minibuffer-setup-hook #'context-coloring-mode) ; 24.4+
+  ;; eval-expression:
+  (add-hook 'eval-expression-minibuffer-setup-hook #'context-coloring-mode) ; 24.4+
   ;;;(add-hook 'minibuffer-setup-hook #'context-coloring-mode)                 ; 24.3
-    
-    (custom-theme-set-faces
-     'leuven
-     '(context-coloring-level-0-face  ((t :foreground "#839496")))
-     '(context-coloring-level-1-face  ((t :foreground "#268bd2")))
-     '(context-coloring-level-2-face  ((t :foreground "#2aa198")))
-     '(context-coloring-level-3-face  ((t :foreground "#859900")))
-     '(context-coloring-level-4-face  ((t :foreground "#b58900")))
-     '(context-coloring-level-5-face  ((t :foreground "#cb4b16")))
-     '(context-coloring-level-6-face  ((t :foreground "#dc322f")))
-     '(context-coloring-level-7-face  ((t :foreground "#d33682")))
-     '(context-coloring-level-8-face  ((t :foreground "#6c71c4")))
-     '(context-coloring-level-9-face  ((t :foreground "#69b7f0")))
-     '(context-coloring-level-10-face ((t :foreground "#69cabf")))
-     '(context-coloring-level-11-face ((t :foreground "#b4c342")))
-     '(context-coloring-level-12-face ((t :foreground "#deb542")))
-     '(context-coloring-level-13-face ((t :foreground "#f2804f")))
-     '(context-coloring-level-14-face ((t :foreground "#ff6e64")))
-     '(context-coloring-level-15-face ((t :foreground "#f771ac")))
-     '(context-coloring-level-16-face ((t :foreground "#9ea0e5"))))
-    )
+  
+  (custom-theme-set-faces
+   'leuven
+   '(context-coloring-level-0-face  ((t :foreground "#839496")))
+   '(context-coloring-level-1-face  ((t :foreground "#268bd2")))
+   '(context-coloring-level-2-face  ((t :foreground "#2aa198")))
+   '(context-coloring-level-3-face  ((t :foreground "#859900")))
+   '(context-coloring-level-4-face  ((t :foreground "#b58900")))
+   '(context-coloring-level-5-face  ((t :foreground "#cb4b16")))
+   '(context-coloring-level-6-face  ((t :foreground "#dc322f")))
+   '(context-coloring-level-7-face  ((t :foreground "#d33682")))
+   '(context-coloring-level-8-face  ((t :foreground "#6c71c4")))
+   '(context-coloring-level-9-face  ((t :foreground "#69b7f0")))
+   '(context-coloring-level-10-face ((t :foreground "#69cabf")))
+   '(context-coloring-level-11-face ((t :foreground "#b4c342")))
+   '(context-coloring-level-12-face ((t :foreground "#deb542")))
+   '(context-coloring-level-13-face ((t :foreground "#f2804f")))
+   '(context-coloring-level-14-face ((t :foreground "#ff6e64")))
+   '(context-coloring-level-15-face ((t :foreground "#f771ac")))
+   '(context-coloring-level-16-face ((t :foreground "#9ea0e5"))))
+  )
 
 (use-package eshell-git-prompt
   :config
@@ -1337,6 +1318,7 @@ Inserted by installing org-mode or when a release is made."
 
 ;;; ace-isearch
 (use-package ace-isearch
+  :diminish ace-isearch-mode
   :config
   (global-ace-isearch-mode +1)
   (custom-set-variables
@@ -1346,6 +1328,60 @@ Inserted by installing org-mode or when a release is made."
    '(ace-isearch-use-jump 'printing-char))
   (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
 
+;;; ruby mode
+(use-package ruby-mode
+  :commands (ruby-mode)
+  :config
+  (defun my/ruby-mode-hook-function ()
+    (setq ruby-deep-indent-paren-style nil)
+    (make-local-variable 'ac-omni-completion-sources)
+    (make-local-variable 'ac-ignore-case)
+    (setq ac-ignore-case nil)
+    (setq ac-omni-completion-sources '(("\\.\\=" . (ac-source-rcodetools))))
+    t)
+  (add-hook 'ruby-mode-hook 'my/ruby-mode-hook-function)
+
+;;;ruby hash値を見やすくする
+  (setq my-ruby-highlight-keywords '(
+   ("\\(?:^\\s *\\|[[{(,]\\s *\\|\\sw\\s +\\)\\(\\(\\sw\\|_\\)+:\\)[^:]"
+    (1 (progn (forward-char -1) font-lock-preprocessor-face)))))
+
+  (defun my-ruby-highlight ()
+    (font-lock-add-keywords nil my-ruby-highlight-keywords))
+  
+  (add-hook 'ruby-mode-hook #'my-ruby-highlight))
+
+;;; smartchr
+(use-package smartchr
+  :commands (smartchr))
+
+(use-package php-mode
+  :commands (php-mode)
+  :config
+  (use-package php-eldoc)
+  (use-package company-php)
+  (defun my/php-mode-hook-function ()
+    (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
+    (define-key php-mode-map (kbd "[") (smartchr "[]" "array()" "[[]]"))
+    (define-key php-mode-map (kbd "]") (smartchr "array " "]" "]]"))
+    (let ((my/php-offset 4))
+      (setq tab-width my/php-offset
+            c-basic-offset my/php-offset
+            indent-tabs-mode nil)
+      (c-set-offset 'case-label' my/php-offset)
+      (c-set-offset 'arglist-intro' my/php-offset)
+      (c-set-offset 'arglist-cont-nonempty' my/php-offset)
+      (c-set-offset 'arglist-close' 0))
+    t)
+  (add-hook 'php-mode-hook 'my/php-mode-hook-function)
+
+  (add-hook 'php-mode-hook
+          '(lambda ()
+             (company-mode t)
+             (ac-php-core-eldoc-setup)
+             (make-local-variable 'company-backends)
+             (add-to-list 'company-backends 'company-ac-php-backend))))
+  
 ;;;---------パッケージ毎の設定終わり end of package setting
 
 ;;;
@@ -1539,35 +1575,35 @@ Inserted by installing org-mode or when a release is made."
 ;;;
 ;;; モードラインに表示しない
 ;;;
-(setq my/hidden-minor-modes
-      '(undo-tree-mode
-        anzu-mode
-        flycheck-mode
-        vhdl-mode
-        rainbow-mode
-        scroll-all-mode
-        ace-isearch-mode
-        global-whitespace-mode
-        volatile-highlights-mode
-        smooth-scroll-mode
-        beacon-mode
-        company-mode
-        auto-revert-mode
-        projectile-mode
-        eldoc-mode
-        auto-complete-mode
-        magit-auto-revert-mode
-        abbrev-mode
-        context-coloring-mode
-        focus-autosave-mode
-        yas-minor-mode
-        helm-gtags-mode
-        helm-mode))
+;; (setq my/hidden-minor-modes
+;;       '(undo-tree-mode
+;;         anzu-mode
+;;         flycheck-mode
+;;         vhdl-mode
+;;         rainbow-mode
+;;         scroll-all-mode
+;;         ace-isearch-mode
+;;         global-whitespace-mode
+;;         volatile-highlights-mode
+;;         smooth-scroll-mode
+;;         beacon-mode
+;;         company-mode
+;;         auto-revert-mode
+;;         projectile-mode
+;;         eldoc-mode
+;;         auto-complete-mode
+;;         magit-auto-revert-mode
+;;         abbrev-mode
+;;         context-coloring-mode
+;;         focus-autosave-mode
+;;         yas-minor-mode
+;;         helm-gtags-mode
+;;         helm-mode))
 
-(mapc (lambda (mode)
-          (setq minor-mode-alist
-                (cons (list mode "") (assq-delete-all mode minor-mode-alist))))
-        my/hidden-minor-modes)
+;; (mapc (lambda (mode)
+;;           (setq minor-mode-alist
+;;                 (cons (list mode "") (assq-delete-all mode minor-mode-alist))))
+;;         my/hidden-minor-modes)
 
 
 ;;;
