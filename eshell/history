@@ -13,3 +13,11 @@ cd work/ecu/20tm
 use-theme
 cd work/ecu/20tm
 use-theme
+ls
+pwd
+cd work/ecu/20tm/
+ls
+cd ~/.emacs.d/
+ls
+cd work/ecu/20tm
+dir

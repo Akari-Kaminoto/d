@@ -893,8 +893,9 @@
 (use-package shell-pop
   :defer t
   :init
-  ;;(setq shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
-  (setq shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
+  (setq shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
+  (add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
+  ;;(setq shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
   ;; (setq shell-pop-shell-type '("terminal" "*terminal*" (lambda () (term shell-pop-term-shell))))
   ;; (setq shell-pop-shell-type '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell))))
   (global-set-key (kbd "C-c s") 'shell-pop))
@@ -1381,7 +1382,59 @@
              (ac-php-core-eldoc-setup)
              (make-local-variable 'company-backends)
              (add-to-list 'company-backends 'company-ac-php-backend))))
-  
+
+;;; slack 設定不十分
+;;; https://github.com/yuya373/emacs-slack
+;;;
+(use-package slack
+  :commands (slack-start)
+  :init
+  (setq slack-buffer-emojify nil) ;; if you want to enable emoji, default nil
+  (setq slack-prefer-current-team t)
+;;  (bind-key "C-c u" 'slack-room-update-messages) ;; おかしい
+;;  (bind-key "C-c k" 'slack-buffer-kill) ;; おかしい
+  (bind-key "C-c c" 'slack-select-rooms)
+  :config
+  (slack-register-team
+   :name "hauN-slack"
+   :default t
+   :client-id "533b91a1-1552270278.334"
+   :client-secret "dC7JqWG1Rfk"
+   :token "xoxp-4079111369-298588719237-572224668851-d3142605d6c45a44000e80eeb3a7398e"
+   :subscribed-channels '(general random game)
+   :full-and-display-names t)
+
+  ;; (evil-define-key 'normal slack-info-mode-map
+  ;;   ",u" 'slack-room-update-messages)
+  ;; (evil-define-key 'normal slack-mode-map
+  ;;   ",c" 'slack-buffer-kill
+  ;;   ",ra" 'slack-message-add-reaction
+  ;;   ",rr" 'slack-message-remove-reaction
+  ;;   ",rs" 'slack-message-show-reaction-users
+  ;;   ",pl" 'slack-room-pins-list
+  ;;   ",pa" 'slack-message-pins-add
+  ;;   ",pr" 'slack-message-pins-remove
+  ;;   ",mm" 'slack-message-write-another-buffer
+  ;;   ",me" 'slack-message-edit
+  ;;   ",md" 'slack-message-delete
+  ;;   ",u" 'slack-room-update-messages
+  ;;   ",2" 'slack-message-embed-mention
+  ;;   ",3" 'slack-message-embed-channel
+  ;;   "\C-n" 'slack-buffer-goto-next-message
+  ;;   "\C-p" 'slack-buffer-goto-prev-message)
+  ;;  (evil-define-key 'normal slack-edit-message-mode-map
+  ;;   ",k" 'slack-message-cancel-edit
+  ;;   ",s" 'slack-message-send-from-buffer
+  ;;   ",2" 'slack-message-embed-mention
+  ;;   ",3" 'slack-message-embed-channel))
+)
+
+(use-package alert
+  :commands (alert)
+  :init
+  (setq alert-default-style 'notifier))
+
+
 ;;;---------パッケージ毎の設定終わり end of package setting
 
 ;;;
