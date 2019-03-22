@@ -1,4 +1,4 @@
-;;;Last Updated:<2019/03/05 15:53:02 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2019/03/22 16:47:17 from ryuichi-VirtualBox by ryuichi>
 
 
 ;;; ロゴの設定
@@ -583,7 +583,6 @@
 
 ;; 最終更新日の自動挿入
 (use-package time-stamp
-  :defer t
   :config
   (add-hook 'before-save-hook 'time-stamp)
   (setq time-stamp-active t)
@@ -796,7 +795,26 @@
         (company--insert-candidate2 company-common))))
   
     (define-key company-active-map [tab] 'company-complete-common2)
-    (define-key company-active-map [backtab] 'company-select-previous))
+    (define-key company-active-map [backtab] 'company-select-previous)
+
+    ;; 未選択項目
+      (set-face-attribute 'company-tooltip nil
+                  :foreground "#56c0e6" :background "#24365f")
+      ;; 未選択項目&一致文字
+      (set-face-attribute 'company-tooltip-common nil
+                    :foreground "white" :background "#24366f")
+      ;; 選択項目
+      (set-face-attribute 'company-tooltip-selection nil
+                  :foreground "#a1cdff" :background "#007197")
+      ;; 選択項目&一致文字
+      (set-face-attribute 'company-tooltip-common-selection nil
+                    :foreground "white" :background "#007197")
+      ;; スクロールバー
+      (set-face-attribute 'company-scrollbar-fg nil
+                  :background "#4cd0e1")
+      ;; スクロールバー背景
+      (set-face-attribute 'company-scrollbar-bg nil
+                  :background "#002b87"))
 
 ;;;irony
 (eval-after-load "irony"
@@ -1019,7 +1037,24 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
+  :init (setq markdown-command "multimarkdown")
+  :config
+  (setq markdown-xhtml-header-content "
+<style>
+body {
+  box-sizing: border-box;
+  max-width: 740px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 10px;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('markdown-body');
+});
+</script>
+" ))
 
 ;;; poly-markdown-mode
 (use-package polymode
@@ -1218,41 +1253,39 @@
 
 ;;; python-mode
 (use-package python-mode
-  :commands (python-mode)
+  :mode (("\\.py\\'" . python-mode)
+         ("python" . python-mode))
   :config
-  (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-  (add-to-list 'interpreter-mode-alist '("python" . python-mode)))
-
 ;;; company-jedi
-(use-package jedi
-  :ensure t
-  :init
-  (add-hook 'python-mode-hook 'jedi:setup)
-  (setq jedi:complete-on-dot t)
-  :config
-  (use-package company-jedi
+  (use-package jedi
     :ensure t
     :init
-    (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
-    (setq  company-jedi-python-bin "python")))
-
-(use-package py-yapf
-  :ensure t
-  :config
-  (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
-
-;;
-;; linux 初回起動時のみ $ sudo apt-get install virtualenv
-;; M-x jedi:install-server RETが必要
-;;
-
+    (add-hook 'python-mode-hook 'jedi:setup)
+    (setq jedi:complete-on-dot t)
+    :config
+    (use-package company-jedi
+      :ensure t
+      :init
+      (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
+      (setq  company-jedi-python-bin "python")))
+  
+  (use-package py-yapf
+    :ensure t
+    :config
+    (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
+  
+  ;;
+  ;; linux 初回起動時のみ $ sudo apt-get install virtualenv
+  ;; M-x jedi:install-server RETが必要
+  ;;
+  
 ;;; py-autopep8
   (use-package py-autopep8
     :ensure t
     :config
     (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-    (setq py-autopep8-options '("--max-line-length=100")))
-
+    (setq py-autopep8-options '("--max-line-length=100"))))
+  
 
 ;;; dashboard
 (use-package dashboard
@@ -1331,7 +1364,7 @@
 
 ;;; ruby mode
 (use-package ruby-mode
-  :commands (ruby-mode)
+  :mode   (("\\.rb\\'" . ruby-mode))
   :config
   (defun my/ruby-mode-hook-function ()
     (setq ruby-deep-indent-paren-style nil)
@@ -1357,7 +1390,8 @@
   :commands (smartchr))
 
 (use-package php-mode
-  :commands (php-mode)
+  :mode
+  (("\\.php\\'" . php-mode))
   :config
   (use-package php-eldoc)
   (use-package company-php)
@@ -1391,16 +1425,16 @@
   :init
   (setq slack-buffer-emojify nil) ;; if you want to enable emoji, default nil
   (setq slack-prefer-current-team t)
+  :config
+  (bind-key "C-c c" 'slack-select-rooms)
 ;;  (bind-key "C-c u" 'slack-room-update-messages) ;; おかしい
 ;;  (bind-key "C-c k" 'slack-buffer-kill) ;; おかしい
-  (bind-key "C-c c" 'slack-select-rooms)
-  :config
   (slack-register-team
    :name "hauN-slack"
    :default t
    :client-id "533b91a1-1552270278.334"
    :client-secret "dC7JqWG1Rfk"
-   :token "xoxp-4079111369-298588719237-572224668851-d3142605d6c45a44000e80eeb3a7398e"
+   :token "xoxp-4079111369-298588719237-574776894338-21bd99749fa20f2f9b9c2fdc3cb57537"
    :subscribed-channels '(general random game)
    :full-and-display-names t)
 
@@ -1435,6 +1469,11 @@
   (setq alert-default-style 'notifier))
 
 
+;;; CMake mode
+(use-package cmake-mode
+  :mode (("CMakeLists\\.txt\\'" . cmake-mode)
+	       (("\\.cmake\\'" . cmake-mode))))
+
 ;;;---------パッケージ毎の設定終わり end of package setting
 
 ;;;
@@ -1453,7 +1492,6 @@
 ;;;** 標準IMEの設定
 (when (locate-library "w32-ime")
   (progn
-
     (setq default-input-method "W32-IME")
     
 ;;;** IMEの初期化
@@ -1471,10 +1509,27 @@
               (lambda() (set-cursor-color "red")))
     (add-hook 'input-method-inactivate-hook
               (lambda() (set-cursor-color "green")))
-   
+    
+ ;; ミニバッファに移動した際は最初に日本語入力が無効な状態にする
+  (add-hook 'minibuffer-setup-hook 'deactivate-input-method)
+
+  ;; isearch に移行した際に日本語入力を無効にする
+  (add-hook 'isearch-mode-hook '(lambda ()
+                                  (deactivate-input-method)
+                                  (setq w32-ime-composition-window (minibuffer-window))))
+  (add-hook 'isearch-mode-end-hook '(lambda () (setq w32-ime-composition-window nil)))
+
+  ;; helm 使用中に日本語入力を無効にする
+  (advice-add 'helm :around '(lambda (orig-fun &rest args)
+                               (let ((select-window-functions nil)
+                                     (w32-ime-composition-window (minibuffer-window)))
+                                 (deactivate-input-method)
+                                 (apply orig-fun args))))
+  
 ;;;** バッファ切り替え時にIME状態を引き継ぐ
     (setq w32-ime-buffer-switch-p nil)
-  )
+    )
+  
 )
 
    
