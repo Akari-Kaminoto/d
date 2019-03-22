@@ -1,4 +1,4 @@
-;;;Last Updated:<2019/03/22 16:47:17 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2019/03/22 18:36:35 from ryuichi-VirtualBox by ryuichi>
 
 
 ;;; ロゴの設定
@@ -1432,9 +1432,18 @@ document.addEventListener('DOMContentLoaded', () => {
   (slack-register-team
    :name "hauN-slack"
    :default t
-   :client-id "533b91a1-1552270278.334"
-   :client-secret "dC7JqWG1Rfk"
-   :token "xoxp-4079111369-298588719237-574776894338-21bd99749fa20f2f9b9c2fdc3cb57537"
+   ;; client-id client-secretを調べる 
+   ;; open browser haun.slack.com
+   ;; その他のツール→デベロッパーツール→ネットワークタブ
+   ;; URL = https://haun.slack.com/api/conversations.history?_x_id=21fbb21e-1553246122.380&_x_csid=0UgRr9Zk06U&slack_route=T042B39AV&_x_version_ts=1553211818
+   ;; _x_id=client-id(ex.21fbb21e-1553246122.380)
+   :client-id "21fbb21e-1553246122.380"
+   ;; _x_csid=client-secret(ex.0UgRr9Zk06U)
+   :client-secret "0UgRr9Zk06U"
+   ;; tokenを調べる
+   ;; https://api.slack.com/custom-integrations/legacy-tokens
+   ;; create token
+   :token "xoxp-4079111369-298588719237-584821758724-b8eb4b35f473c9b2d617195c8d7609d6"
    :subscribed-channels '(general random game)
    :full-and-display-names t)
 
