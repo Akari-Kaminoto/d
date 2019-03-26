@@ -1,4 +1,4 @@
-;;;Last Updated:<2019/03/22 18:36:35 from ryuichi-VirtualBox by ryuichi>
+;;;Last Updated:<2019/03/22 19:35:19 from ryuichi-VirtualBox by ryuichi>
 
 
 ;;; ロゴの設定
@@ -1483,6 +1483,17 @@ document.addEventListener('DOMContentLoaded', () => {
   :mode (("CMakeLists\\.txt\\'" . cmake-mode)
 	       (("\\.cmake\\'" . cmake-mode))))
 
+;;;過去のカーソル位置を記憶・閲覧・選択・移動
+(use-package popwin)
+(straight-use-package
+ '(point-history :type git :host github :repo "blue0513/point-history"))
+(use-package point-history
+  :config
+  ;; enable minor mode
+  (point-history-mode t)
+  ;; お好みで
+  (global-set-key (kbd "C-c h") 'point-history-show))
+
 ;;;---------パッケージ毎の設定終わり end of package setting
 
 ;;;
@@ -1549,6 +1560,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ;;
 ;; プログラミング用フォント Myrica
 ;; https://myrica.estable.jp/
+;; ~/.emacs.d/Myrica/の２つのフォントアーカイブを展開してインストール
 ;; 固定等幅フォント
 (set-face-attribute 'default nil
                     :family "Myrica M"
@@ -1592,6 +1604,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ;;rictyfont
   ;; $ cp  ~/.emacs.d/RictyFont/ ~/.fonts/
+  ;; gz圧縮されているフォントファイルを解凍してから
   ;; $ sudo fc-cache -vfでインストール
   (set-frame-font "ricty-12")
     (add-to-list 'default-frame-alist '(font . "ricty-12"))
