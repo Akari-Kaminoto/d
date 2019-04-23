@@ -523,7 +523,7 @@
 	    [(2012 4 7)
 	     nil "replace a word with a synonym looked up in a web service." single])
  (theme-looper .
-	       [(20190322 2113)
+	       [(20190417 2359)
 		((cl-lib
 		  (0 5)))
 		"Loop thru the available color-themes" single])
@@ -1596,7 +1596,7 @@
 	      (0 4)))
 	    "Ert-runner Integration Into Emacs." single])
  (overcast-theme .
-		 [(20180315 1825)
+		 [(20190326 1825)
 		  ((emacs
 		    (24)))
 		  "A dark but vibrant color theme for Emacs" single])
@@ -1870,7 +1870,7 @@
 	  [(20071215)
 	   nil "mode for Notation 3" single])
  (myterminal-controls .
-		      [(20190305 2115)
+		      [(20190331 2315)
 		       ((emacs
 			 (24))
 			(cl-lib

@@ -1,1 +1,1 @@
-("~/.emacs.d/" "/home/share/20tm/" "~/.emacs.d/straight/repos/straight.el/" "~/work/ecu/adx/" "~/gitlab-trainer/" "~/work/ecu/20tm/")
+("~/work/Prj/Mate/" "~/work/Prj/Mate/CalculateManager/" "~/.emacs.d/" "~/.emacs.d/straight/repos/straight.el/")

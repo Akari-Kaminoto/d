@@ -1,4 +1,4 @@
-;;;Last Updated:<2019/03/22 19:35:19 from ryuichi-VirtualBox by ryuichi>
+ ;;;Last Updated:<2019/04/23 16:31:26 from HXHA-B001 by 16896>
 
 
 ;;; ロゴの設定
@@ -12,14 +12,17 @@
 ;;; いらない場合はコメントアウトすること
 
 ;;; Proxy設定
-;; (setq url-proxy-services
-;; 	'(("http" . "proxy-auth.xxxxxx.com:8050")
-;; 	  ("https" . "proxy-auth.xxxxxx.com:8050")))
-
+(setq url-proxy-services
+ ;; '(("http" . "172.16.11.7:8080")
+ ;;   ("https" . "172.16.11.7:8080")))
 ;; (setq url-http-proxy-basic-auth-storage
-;; 	'(("proxy-auth.ntt-el.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
+;; 	'(("proxy-auth.xxxxxxx.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
 
 ;; ここまで
+
+;; 起動時のディレクトリの変更
+(setq default-directory "~/")
+
 
 ;; 予約語を色分けする
 (global-font-lock-mode t)
@@ -49,10 +52,10 @@
 
 ;;; windowsの場合gitのpath設定など先に追加しておく
 (when (eq system-type 'windows-nt) ; Windows
-  ;;magit &git
-  (setq magit-git-executable "C:/Program Files/Git/bin/git.exe")
+;;   ;;magit &git
+   (setq magit-git-executable "C:/Program Files/Git/cmd/git.exe")
   
-  (add-to-list 'exec-path "C:/Program Files/Git/bin"))
+   (add-to-list 'exec-path "C:/Program Files/Git/cmd"))
 
 ;;
 ;; straight.el
@@ -203,13 +206,13 @@
 
 ;;; インデント設定
 
-(setq-default c-basic-offset 2     ;;基本インデント量
-              tab-width 2          ;;タブ幅
-              indent-tabs-mode nil)  ;;インデントをタブでするかスペースでするか
+(setq-default c-basic-offset 4     ;;基本インデント量
+              tab-width 4          ;;タブ幅
+              indent-tabs-mode t)  ;;インデントをタブでするかスペースでするか
 
 ;;; C,C++の設定
-; ヘッダファイル(.h)をc++モードで開く
-; cファイルもC++モードで開く
+;; ヘッダファイル(.h)をc++モードで開く
+;; cファイルもC++モードで開く
 (setq auto-mode-alist
       (append '(("\\.[ch]$" . c++-mode))
               auto-mode-alist))
@@ -217,8 +220,6 @@
 ;; 自分の書き方にあわせて調整
 (add-hook 'c++-mode-hook
           '(lambda ()
-             ;;(setq tab-width 32) ;;タブが有った時にすぐわかる設定だけど要らない
-             (setq tab-width 2)
              (setq c-basic-offset 2)
              ;; 以下 *:*1 -:*-1 ++:*2 --:*-2 *:*0.5 /:*-0.5
              (setq c++-auto-newline nil)
@@ -281,13 +282,13 @@
              ))
 
 (defun my-c-mode-common-conf ()
-  ; ";"や"{"などをを入力した場合現在の行を自動インデントを有効にする
+  ;; ";"や"{"などをを入力した場合現在の行を自動インデントを有効にする
   (c-toggle-electric-state 1)
-  ; カッコを強調表示する  
+  ; ;カッコを強調表示する  
   (show-paren-mode t)
-  ; (自動インデント) 改行をしたら次の行を自動でインデントしてくれる
+  ;; (自動インデント) 改行をしたら次の行を自動でインデントしてくれる
   (c-toggle-auto-newline 1)
-  ; 他のエディタなどがファイルを書き換えたらすぐにそれを反映する
+  ;; 他のエディタなどがファイルを書き換えたらすぐにそれを反映する
   (auto-revert-mode)
   )
 
@@ -340,35 +341,24 @@
 (add-hook 'focus-out-hook 'my-out-focused-mode-line)
 (add-hook 'focus-in-hook 'my-in-focused-mode-line)
 
-
 ;;----
 ;; 行番号表示
-;;----
-(global-linum-mode t)
+;;;;; display-line-number
+(if (version<= "26.0.50" emacs-version)
+ (progn
+      (global-display-line-numbers-mode)
+      ;; 色指定
+      (set-face-attribute 'line-number nil
+                          :foreground "#CCCCCC"
+                          :background "#999999")
+      (set-face-attribute 'line-number-current-line nil
+                          :foreground "gold"))
+  )
 
-;; whitespace-modeで半角SPCを表示している時に行番号表示欄では表示しない
-;; 何故か現在行表示がおかしくなるが仕方ない
- 
-;; Custom face/function to pad the line number in a way that does not conflict with whitespace-mode
-(defface linum-padding
-  `((t :inherit 'linum
-       :foreground ,(face-attribute 'linum :background nil t)))
-  "Face for displaying leading zeroes for line numbers in display margin."
-  :group 'linum)
+;;; 最終行以降の表示
+(setq-default indicate-empty-lines t)
+(setq-default indicate-buffer-boundaries 'left)
 
-(defun linum-format-func (line)
-  (let ((w (length
-            (number-to-string (count-lines (point-min) (point-max))))))
-    (concat
-     (propertize " " 'face 'linum-padding)
-     (propertize (make-string (- w (length (number-to-string line))) ?0)
-                 'face 'linum-padding)
-     (propertize (number-to-string line) 'face 'linum)
-     (propertize " " 'face 'linum-padding)
-     )))
-
-(setq linum-format 'linum-format-func)
-;;(setq linum-format "%5d ")
 
 ;;----
 ;; カラム番号
@@ -385,15 +375,6 @@
 ;;----
 (show-paren-mode t)
  
-;;----
-;; 時計表示
-;;----
-;; Sky-color-clockを使うため表示しない
-;; 不採用    (display-time)
-;;(setq display-time-day-and-date t)  ;; 曜日・月・日
-;;(setq display-time-24hr-format t)   ;; 24時表示
-;;(display-time-mode t)
-
 ;; モードラインの割合表示を総行数表示
 (defvar my-lines-page-mode t)
 (defvar my-mode-line-format)
@@ -412,15 +393,6 @@
   (setq mode-line-position
         '(:eval (format my-mode-line-format
                         (count-lines (point-max) (point-min))))))
-
-;;----
-;; TABの表示幅
-;;----
-
-;; タブをスペースで扱う
-(setq-default indent-tabs-mode nil)
-;;(setq-default tab-width 4)
-(setq-default tab-width 2)
 
 ;;----
 ;; ファイルサイズ表示
@@ -451,6 +423,7 @@
 ;; (global-set-key (kbd "<C-tab>") 'other-window)
 
 (global-set-key (kbd "C-c g") 'goto-line) 
+(global-set-key (kbd "C-x g") 'magit-status) 
  
 ;;----
 ;; 折り返しトグルコマンド
@@ -575,6 +548,9 @@
   
 
 ;;;;; ココらへんからパッケージの話 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; C#
+(use-package csharp-mode) 		  
+
 ;;; モードライン非表示
 (use-package diminish)
 
@@ -682,7 +658,6 @@
 ;;; helm系終わり
 ;;;
 
-
 ;;
 ;; rainbow-delimiter
 ;; 括弧の色を色分けする設定
@@ -692,6 +667,7 @@
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
     (add-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
+    (add-hook 'csharp-mode-hook #'rainbow-delimiters-mode)
     )
 
   ;; 括弧の色を強調する設定
@@ -733,14 +709,14 @@
   (set-face-background 'whitespace-space 'nil)
   ;;  (set-face-bold-p 'whitespace-space t)
   
-  (set-face-foreground 'whitespace-tab "LightSkyBlue")
+  (set-face-foreground 'whitespace-tab "#AADDFF")
   (set-face-background 'whitespace-tab 'nil)
   
-  (set-face-foreground 'whitespace-newline  "#CEEDFF")
+  (set-face-foreground 'whitespace-newline  "#5E8DCF")
   (set-face-background 'whitespace-newline 'nil)
   
   ;; タブや全角空白などを強調表示
-  ;;(global-whitespace-mode 1)
+  ;;;(global-whitespace-mode 1) ;; 常時表示はしない
   
   ;;C-cwで切り替え
   (define-key global-map (kbd "C-c w") 'whitespace-mode)
@@ -831,6 +807,7 @@
 (use-package neotree
   :defer t
   :init
+  (add-hook 'neotree-mode-hook (lambda () (display-line-numbers-mode -1)))
   ;; C-c tでnetreee-windowが開くようにする
   (global-set-key (kbd "C-c t") 'neotree-toggle)
   ;; neotreeでファイルを新規作成した場合のそのファイルを開く
@@ -889,11 +866,6 @@
   :config
     (smooth-scroll-mode t))
 
-;;;hlinum
-(use-package hlinum
-  :config
-  (hlinum-activate))
-
 ;;; undohist
 (use-package undohist
   :config
@@ -912,10 +884,7 @@
   :defer t
   :init
   (setq shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
-  (add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
-  ;;(setq shell-pop-shell-type '("shell" "*shell*" (lambda () (shell))))
-  ;; (setq shell-pop-shell-type '("terminal" "*terminal*" (lambda () (term shell-pop-term-shell))))
-  ;; (setq shell-pop-shell-type '("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell))))
+  (add-hook 'eshell-mode-hook (lambda () (display-line-numbers-mode -1)))
   (global-set-key (kbd "C-c s") 'shell-pop))
 
 ;;; web mode
@@ -1294,7 +1263,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (dashboard-setup-startup-hook)
   ;; set title 
   (setq dashboard-banner-logo-title "Welcome to Emacs Genm Dashboard!!!")
-  ;; Set the banner
+ ;; Set the banner
   (setq dashboard-startup-banner "~/.emacs.d/genm.png")
   (setq dashboard-items '((recents  . 8)
                           (bookmarks . 3))))
@@ -1389,6 +1358,7 @@ document.addEventListener('DOMContentLoaded', () => {
 (use-package smartchr
   :commands (smartchr))
 
+;;; PHP-mode
 (use-package php-mode
   :mode
   (("\\.php\\'" . php-mode))
@@ -1417,60 +1387,6 @@ document.addEventListener('DOMContentLoaded', () => {
              (make-local-variable 'company-backends)
              (add-to-list 'company-backends 'company-ac-php-backend))))
 
-;;; slack 設定不十分
-;;; https://github.com/yuya373/emacs-slack
-;;;
-(use-package slack
-  :commands (slack-start)
-  :init
-  (setq slack-buffer-emojify nil) ;; if you want to enable emoji, default nil
-  (setq slack-prefer-current-team t)
-  :config
-  (bind-key "C-c c" 'slack-select-rooms)
-;;  (bind-key "C-c u" 'slack-room-update-messages) ;; おかしい
-;;  (bind-key "C-c k" 'slack-buffer-kill) ;; おかしい
-  (slack-register-team
-   :name "hauN-slack"
-   :default t
-   ;; client-id client-secretを調べる 
-   ;; open browser haun.slack.com
-   ;; その他のツール→デベロッパーツール→ネットワークタブ
-   ;; URL = https://haun.slack.com/api/conversations.history?_x_id=21fbb21e-1553246122.380&_x_csid=0UgRr9Zk06U&slack_route=T042B39AV&_x_version_ts=1553211818
-   ;; _x_id=client-id(ex.21fbb21e-1553246122.380)
-   :client-id "21fbb21e-1553246122.380"
-   ;; _x_csid=client-secret(ex.0UgRr9Zk06U)
-   :client-secret "0UgRr9Zk06U"
-   ;; tokenを調べる
-   ;; https://api.slack.com/custom-integrations/legacy-tokens
-   ;; create token
-   :token "xoxp-4079111369-298588719237-584821758724-b8eb4b35f473c9b2d617195c8d7609d6"
-   :subscribed-channels '(general random game)
-   :full-and-display-names t)
-
-  ;; (evil-define-key 'normal slack-info-mode-map
-  ;;   ",u" 'slack-room-update-messages)
-  ;; (evil-define-key 'normal slack-mode-map
-  ;;   ",c" 'slack-buffer-kill
-  ;;   ",ra" 'slack-message-add-reaction
-  ;;   ",rr" 'slack-message-remove-reaction
-  ;;   ",rs" 'slack-message-show-reaction-users
-  ;;   ",pl" 'slack-room-pins-list
-  ;;   ",pa" 'slack-message-pins-add
-  ;;   ",pr" 'slack-message-pins-remove
-  ;;   ",mm" 'slack-message-write-another-buffer
-  ;;   ",me" 'slack-message-edit
-  ;;   ",md" 'slack-message-delete
-  ;;   ",u" 'slack-room-update-messages
-  ;;   ",2" 'slack-message-embed-mention
-  ;;   ",3" 'slack-message-embed-channel
-  ;;   "\C-n" 'slack-buffer-goto-next-message
-  ;;   "\C-p" 'slack-buffer-goto-prev-message)
-  ;;  (evil-define-key 'normal slack-edit-message-mode-map
-  ;;   ",k" 'slack-message-cancel-edit
-  ;;   ",s" 'slack-message-send-from-buffer
-  ;;   ",2" 'slack-message-embed-mention
-  ;;   ",3" 'slack-message-embed-channel))
-)
 
 (use-package alert
   :commands (alert)
@@ -1494,7 +1410,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ;; お好みで
   (global-set-key (kbd "C-c h") 'point-history-show))
 
-;;;---------パッケージ毎の設定終わり end of package setting
+;;;---------パッケージ毎の設定終わり end of package setting-----------
 
 ;;;
 ;;; OS によって設定を切り替える部分
@@ -1562,19 +1478,18 @@ document.addEventListener('DOMContentLoaded', () => {
 ;; https://myrica.estable.jp/
 ;; ~/.emacs.d/Myrica/の２つのフォントアーカイブを展開してインストール
 ;; 固定等幅フォント
-(set-face-attribute 'default nil
-                    :family "Myrica M"
-                    :height 140)
-(set-fontset-font (frame-parameter nil 'font)
-                  'japanese-jisx0208
-                  '("Myrica M" . "unicode-bmp")
-                  )
+;; (set-face-attribute 'default nil
+;;                     :family "Myrica M"
+;;                     :height 140)
+;; (set-fontset-font (frame-parameter nil 'font)
+;;                   'japanese-jisx0208
+;;                   '("Myrica M" . "unicode-bmp")
+;;                   )
 
-(set-fontset-font (frame-parameter nil 'font)
-                  'katakana-jisx0201
-                  '("Myrica M" . "unicode-bmp")
-                  )
-
+;; (set-fontset-font (frame-parameter nil 'font)
+;;                   'katakana-jisx0201
+;;                   '("Myrica M" . "unicode-bmp")
+;;                   )
 
 ;;;ctags windows用設定
 ;;;  (setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
@@ -1701,40 +1616,6 @@ document.addEventListener('DOMContentLoaded', () => {
 ;;;なし
 
 );;; ここまでMACOS用
-
-;;;
-;;; モードラインに表示しない
-;;;
-;; (setq my/hidden-minor-modes
-;;       '(undo-tree-mode
-;;         anzu-mode
-;;         flycheck-mode
-;;         vhdl-mode
-;;         rainbow-mode
-;;         scroll-all-mode
-;;         ace-isearch-mode
-;;         global-whitespace-mode
-;;         volatile-highlights-mode
-;;         smooth-scroll-mode
-;;         beacon-mode
-;;         company-mode
-;;         auto-revert-mode
-;;         projectile-mode
-;;         eldoc-mode
-;;         auto-complete-mode
-;;         magit-auto-revert-mode
-;;         abbrev-mode
-;;         context-coloring-mode
-;;         focus-autosave-mode
-;;         yas-minor-mode
-;;         helm-gtags-mode
-;;         helm-mode))
-
-;; (mapc (lambda (mode)
-;;           (setq minor-mode-alist
-;;                 (cons (list mode "") (assq-delete-all mode minor-mode-alist))))
-;;         my/hidden-minor-modes)
-
 
 ;;;
 (custom-set-variables
