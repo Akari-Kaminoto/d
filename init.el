@@ -1,5 +1,4 @@
- ;;;Last Updated:<2019/04/23 16:31:26 from HXHA-B001 by 16896>
-
+;;;;;Last Updated:<2019/04/26 09:51:39 from HXHA-B001 by 16896>
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -13,8 +12,8 @@
 
 ;;; Proxy設定
 (setq url-proxy-services
- ;; '(("http" . "172.16.11.7:8080")
- ;;   ("https" . "172.16.11.7:8080")))
+ '(("http" . "172.16.11.7:8080")
+   ("https" . "172.16.11.7:8080")))
 ;; (setq url-http-proxy-basic-auth-storage
 ;; 	'(("proxy-auth.xxxxxxx.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
 
@@ -99,6 +98,16 @@
 
 (require 'use-package)
 
+(use-package bind-key
+  :ensure t)
+
+(use-package diminish
+  :ensure t)
+
+;; 読み込みに行けないのでコメント(環境依存？)
+;;(use-package quelpa-use-package
+;;  :ensure t)
+
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
@@ -117,9 +126,7 @@
   :config
   (paradox-enable))
 
-
 ;;; package系終わり
-
 
 ;;;
 ;;; FILE CODE設定
@@ -359,7 +366,6 @@
 (setq-default indicate-empty-lines t)
 (setq-default indicate-buffer-boundaries 'left)
 
-
 ;;----
 ;; カラム番号
 ;;----
@@ -379,12 +385,13 @@
 (defvar my-lines-page-mode t)
 (defvar my-mode-line-format)
 
+;;; 総数行、横位置、縦位置を表示(短く)
 (when my-lines-page-mode
   (setq my-mode-line-format "<Max:%d")
   (if size-indication-mode
       (setq my-mode-line-format (concat my-mode-line-format " of %%I")))
   (cond ((and (eq line-number-mode t) (eq column-number-mode t))
-         (setq my-mode-line-format (concat my-mode-line-format " in[%%l,%%c]>")))
+         (setq my-mode-line-format (concat my-mode-line-format " in[%%c,%%l]>")))
         ((eq line-number-mode t)
          (setq my-mode-line-format (concat my-mode-line-format " L%%l")))
         ((eq column-number-mode t)
@@ -393,11 +400,6 @@
   (setq mode-line-position
         '(:eval (format my-mode-line-format
                         (count-lines (point-max) (point-min))))))
-
-;;----
-;; ファイルサイズ表示
-;;----
-(size-indication-mode t)
   
 ;;----
 ;; タイトルバーにフルパス表示
@@ -495,6 +497,9 @@
              (hs-minor-mode 1)))
 (define-key global-map (kbd "C-c q") 'hs-toggle-hiding)
 
+;;; C-zで直前のウィンドウ構成に戻す
+(winner-mode 1)
+(global-set-key (kbd "C-c z") 'winner-undo)
 
 ;;-------------;;
 ;; org-mode    ;;
@@ -548,24 +553,445 @@
   
 
 ;;;;; ココらへんからパッケージの話 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;; 
+;;;; 各言語に対する設定
+;;;; 
+
+;;;
 ;;; C#
-(use-package csharp-mode) 		  
+;;;
+(use-package csharp-mode
+  :mode (("\\.cs\\'" . csharp-mode)))
+
+;;;
+;;; web mode
+;;;
+;;; HTMLモードではhtmlの中のjavascriptなどが色分けされないので導入
+;;; http://web-mode.org/
+;;; http://yanmoo.blogspot.jp/2013/06/html5web-mode.html
+(use-package web-mode
+  :defer t
+  :mode
+  (("\\.html?\\'" . web-mode)
+   ("\\.jsp\\'"   . web-mode)
+   ("\\.ctp\\'"   . web-mode)
+   ("\\.gsp\\'"   . web-mode))
+  :config
+  (defun web-mode-hook ()
+      (setq web-mode-markup-indent-offset 2)
+      (setq web-mode-css-indent-offset 2)
+      (setq web-mode-code-indent-offset 2)
+      (setq web-mode-engines-alist
+            '(("php"    . "\\.ctp\\'"))
+            )
+      )
+  ;; auto tag closing
+  ;;0=no auto-closing
+  ;;1=auto-close with </
+  ;;2=auto-close with > and </
+  (setq web-mode-tag-auto-close-style 2)
+  (add-hook 'web-mode-hook  'web-mode-hook))
+
+;;;
+;;; markdown
+;;;
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown")
+  :config
+  (setq markdown-xhtml-header-content "
+<style>
+body {
+  box-sizing: border-box;
+  max-width: 740px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 10px;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('markdown-body');
+});
+</script>
+" ))
+
+;;; poly-markdown-mode
+(use-package polymode
+  :ensure t
+  :config
+    (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode)))
+
+;;; markdown-preview-mode
+(use-package markdown-preview-mode
+  :commands(markdown-preview-mode))
+
+;;; markdown-preview-eww
+(use-package markdown-preview-eww
+  :commands(markdown-preview-eww))
+
+;; doxymacs mode
+(use-package doxymacs
+  :commands (doxymacs)
+  ;; usage
+  ;; M-x doxymacs-mode
+  ;;
+  ;; C-c d i	ファイルへのコメントを挿入
+  ;; C-c d f	カーソルの下にある関数へのコメントを挿入
+  ;; C-c d ;	メンバへのコメントを挿入
+  ;; C-c d m	複数行の空コメントを挿入
+  ;; C-c d s	一行の空コメントを挿入
+  ;; custom c-mode hook for doxymacs
+  :config
+  (defun doxy-custom-c-mode-hook ()
+    (doxymacs-mode 1)
+    (setq doxymacs-doxygen-style "Qt")
+    (setq doxymacs-command-character "@")
+    
+    (add-hook 'c-mode-common-hook 'doxy-custom-c-mode-hook)))
+
+;;;
+;;; Python
+;;;
+(use-package python-mode
+  :mode (("\\.py\\'" . python-mode)
+         ("python" . python-mode))
+  :config
+;;; company-jedi
+  (use-package jedi
+    :ensure t
+    :init
+    (add-hook 'python-mode-hook 'jedi:setup)
+    (setq jedi:complete-on-dot t)
+    :config
+    (use-package company-jedi
+      :ensure t
+      :init
+      (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
+      (setq  company-jedi-python-bin "python")))
+  
+  (use-package py-yapf
+    :ensure t
+    :config
+    (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
+  
+  ;;
+  ;; linux 初回起動時のみ $ sudo apt-get install virtualenv
+  ;; M-x jedi:install-server RETが必要
+  ;;
+  
+;;; py-autopep8
+  (use-package py-autopep8
+    :ensure t
+    :config
+    (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+    (setq py-autopep8-options '("--max-line-length=100"))))
+
+;;;
+;;; Ruby
+;;; 
+(use-package ruby-mode
+  :mode   (("\\.rb\\'" . ruby-mode))
+  :config
+  (defun my/ruby-mode-hook-function ()
+    (setq ruby-deep-indent-paren-style nil)
+    (make-local-variable 'ac-omni-completion-sources)
+    (make-local-variable 'ac-ignore-case)
+    (setq ac-ignore-case nil)
+    (setq ac-omni-completion-sources '(("\\.\\=" . (ac-source-rcodetools))))
+    t)
+  (add-hook 'ruby-mode-hook 'my/ruby-mode-hook-function)
+
+;;;ruby hash値を見やすくする
+  (setq my-ruby-highlight-keywords '(
+   ("\\(?:^\\s *\\|[[{(,]\\s *\\|\\sw\\s +\\)\\(\\(\\sw\\|_\\)+:\\)[^:]"
+    (1 (progn (forward-char -1) font-lock-preprocessor-face)))))
+
+  (defun my-ruby-highlight ()
+    (font-lock-add-keywords nil my-ruby-highlight-keywords))
+  
+  (add-hook 'ruby-mode-hook #'my-ruby-highlight))
+
+;;;
+;;; PHP
+;;; 
+(use-package php-mode
+  :mode
+  (("\\.php\\'" . php-mode))
+  :config
+  (use-package php-eldoc)
+  (use-package company-php)
+  (defun my/php-mode-hook-function ()
+    (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
+    (define-key php-mode-map (kbd "[") (smartchr "[]" "array()" "[[]]"))
+    (define-key php-mode-map (kbd "]") (smartchr "array " "]" "]]"))
+    (let ((my/php-offset 4))
+      (setq tab-width my/php-offset
+            c-basic-offset my/php-offset
+            indent-tabs-mode nil)
+      (c-set-offset 'case-label' my/php-offset)
+      (c-set-offset 'arglist-intro' my/php-offset)
+      (c-set-offset 'arglist-cont-nonempty' my/php-offset)
+      (c-set-offset 'arglist-close' 0))
+    t)
+  (add-hook 'php-mode-hook 'my/php-mode-hook-function)
+
+  (add-hook 'php-mode-hook
+          '(lambda ()
+             (company-mode t)
+             (ac-php-core-eldoc-setup)
+             (make-local-variable 'company-backends)
+             (add-to-list 'company-backends 'company-ac-php-backend))))
+;;;
+;;; CMake file
+;;;
+(use-package cmake-mode
+  :mode (("CMakeLists\\.txt\\'" . cmake-mode)
+	       (("\\.cmake\\'" . cmake-mode))))
+
+;;;
+;;; org (package依存のもの)
+;;;
+
+;;; org-bullets
+;;; orgモードの見た目を変える
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+;;; org-preview-html-mode
+(use-package org-preview-html
+  :commands (org-preview-html-mode))
+
+
+;;;
+;;; 各言語ごとの設定終わり
+;;;
+
+
+;;;
+;;; モードライン関連
+;;;
 
 ;;; モードライン非表示
-(use-package diminish)
-
-(diminish 'auto-revert-mode)
+(diminish 'auto-revert-verbose)
 (diminish 'abbrev-mode)
 
-;; 最終更新日の自動挿入
-(use-package time-stamp
+;;; anzu
+;;; 検索文字が何個あるか表示
+(use-package anzu
+  :diminish anzu-mode
+  :init
+  (global-anzu-mode +1))
+
+;;; Sky-color-clock
+;;; モードラインに今の外の天気と明るさを表示するエリアを１つ作る
+;;; GitHub: https://github.com/zk-phi/sky-color-clock
+(straight-use-package
+ '(sky-color-clock :type git :host github :repo "zk-phi/sky-color-clock"))
+(use-package sky-color-clock
+  :init
+  (sky-color-clock-initialize 35) ; 東京（例）の緯度で初期化
+  
+  (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 5384214) ; 東京の City ID
+  ;; デフォルトの mode-line-format の先頭に sky-color-clock を追加
+  (push '(:eval (sky-color-clock)) (default-value 'mode-line-format))
+  (setq sky-color-clock-format "%m/%d %H:%M")
+  (setq sky-color-clock-enable-emoji-icon t)
+  
+  (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 1850144) ;天気取得
+  (setq sky-color-clock-enable-temperature-indicator t))
+
+;;; cl-libにより、使用コードと改行コードをわかりやすくする
+(use-package cl-lib
+  :ensure t
   :config
-  (add-hook 'before-save-hook 'time-stamp)
-  (setq time-stamp-active t)
-  (setq time-stamp-start "[lL]ast[ -][uU]pdated[ \t]*:[ \t]*<")
-    (setq time-stamp-format "%:y/%02m/%02d %02H:%02M:%02S from %s by %u")
-    (setq time-stamp-end ">")
-    (setq time-stamp-line-limit 20))
+  ;; 改行文字の文字列表現
+  (set 'eol-mnemonic-dos "(CRLF)")
+  (set 'eol-mnemonic-unix "(LF)")
+  (set 'eol-mnemonic-mac "(CR)")
+  (set 'eol-mnemonic-undecided "(?)")
+  
+  ;; 文字エンコーディングの文字列表現
+  (defun my-coding-system-name-mnemonic (coding-system)
+  (let* ((base (coding-system-base coding-system))
+         (name (symbol-name base)))
+    (cond ((string-prefix-p "utf-8" name) "U8")
+          ((string-prefix-p "utf-16" name) "U16")
+          ((string-prefix-p "utf-7" name) "U7")
+          ((string-prefix-p "japanese-shift-jis" name) "SJIS")
+          ((string-match "cp\\([0-9]+\\)" name) (match-string 1 name))
+          ((string-match "japanese-iso-8bit" name) "EUC")
+          (t "???")
+          )))
+  
+  (defun my-coding-system-bom-mnemonic (coding-system)
+    (let ((name (symbol-name coding-system)))
+      (cond ((string-match "be-with-signature" name) "[BE]")
+            ((string-match "le-with-signature" name) "[LE]")
+            ((string-match "-with-signature" name) "[BOM]")
+            (t ""))))
+
+  (defun my-buffer-coding-system-mnemonic ()
+    "Return a mnemonic for `buffer-file-coding-system'."
+    (let* ((code buffer-file-coding-system)
+           (name (my-coding-system-name-mnemonic code))
+           (bom (my-coding-system-bom-mnemonic code)))
+      (format "%s%s" name bom)))
+
+  ;; `mode-line-mule-info' の文字エンコーディングの文字列表現を差し替える
+  (setq-default mode-line-mule-info
+                (cl-substitute '(:eval (my-buffer-coding-system-mnemonic))
+                               "%z" mode-line-mule-info :test 'equal))
+  )
+
+;;;
+;;; モード行関連設定終わり
+;;; 
+
+;;;
+;;; バッファ、ウィンドウ関連
+;;;
+
+;;----
+;; 全角空白とタブを可視化
+;; 参考：http://d.hatena.ne.jp/t_ume_tky/20120906/1346943019
+;;----
+;; whitespace-mode の 色設定
+;;http://ergoemacs.org/emacs/whitespace-mode.html
+(use-package whitespace
+  :config
+  (setq whitespace-style 
+        '(face tabs tab-mark spaces space-mark newline newline-mark trailng))
+  (setq whitespace-display-mappings
+        '(
+          (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t]);タブ
+          (space-mark ?\u3000 [?□])        ; 全角スペース
+          (space-mark ?\u0020 [?.])  ; 半角スペース
+          (newline-mark ?\n   [?$ ?\n])     ; 改行記号
+          ) )
+  (setq whitespace-space-regexp "\\([\x0020\x3000]+\\)" )
+  ;;正規表現に関する文書。 Emacs Lispには、正規表現リテラルがないことへの言及
+  ;;http://www.mew.org/~kazu/doc/elisp/regexp.html
+  ;;
+  ;;なぜか、全体をグループ化 \(\) しておかないと、うまくマッチしなかった罠
+  ;;
+  (set-face-foreground 'whitespace-space "#CEDDEF")
+  (set-face-background 'whitespace-space 'nil)
+  ;;  (set-face-bold-p 'whitespace-space t)
+  
+  (set-face-foreground 'whitespace-tab "#AADDFF")
+  (set-face-background 'whitespace-tab 'nil)
+  
+  (set-face-foreground 'whitespace-newline  "#5E8DCF")
+  (set-face-background 'whitespace-newline 'nil)
+  
+  ;; タブや全角空白などを強調表示
+  ;;;(global-whitespace-mode 1) ;; 常時表示はしない
+  
+  ;;C-cwで切り替え
+  (define-key global-map (kbd "C-c w") 'whitespace-mode)
+  ;; 保存前に自動でクリーンアップ
+  (setq whitespace-action '(auto-cleanup)))
+
+;;;
+;;; neotree
+;;; 左側にファイルツリーバッファを作る
+;;;
+(use-package neotree
+  :defer t
+  :init
+  (add-hook 'neotree-mode-hook (lambda () (display-line-numbers-mode -1)))
+  ;; C-c tでnetreee-windowが開くようにする
+  (global-set-key (kbd "C-c t") 'neotree-toggle)
+  ;; neotreeでファイルを新規作成した場合のそのファイルを開く
+  (setq neo-create-file-auto-open t)
+  ;; delete-other-window で neotree ウィンドウを消さない
+  (setq neo-persist-show t)
+  :config
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   ))
+
+;;; beacon
+;;; 現在行のカーソルをバッファ移動のたびにわかるようにする
+  (use-package beacon
+    :init
+    (beacon-mode 1)
+    (setq beacon-push-mark 35)
+  (setq beacon-color "#F5DE34")
+  (setq beacon-size 400)
+  (setq beacon-blink-when-focused t)
+  (setq beacon-blink-duration 1))
+
+;;;saveplace: 前回の修正位置を記憶する.
+(use-package saveplace
+  :config
+  (save-place-mode 1)
+  (setq save-place-file (concat "~/.emacs.d/tmp/emacs-places")))
+
+;;; rainbow-mode:#RRGGBB のカラーコードに勝手に色が付く
+(use-package rainbow-mode
+  :diminish rainbow-mode
+  :config
+  (setq rainbow-html-colors t)
+  (setq rainbow-x-colors t)
+  (setq rainbow-latex-colors t)
+  (setq rainbow-ansi-colors t)
+  (add-hook 'css-mode-hook 'rainbow-mode)
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
+  (add-hook 'less-mode-hook 'rainbow-mode)
+  (add-hook 'web-mode-hook 'rainbow-mode)
+  (add-hook 'html-mode-hook 'rainbow-mode)
+  )
+
+;;; focus-autosave-mode
+(use-package focus-autosave-mode
+  :diminish focus-autosave-mode
+  :config
+  (focus-autosave-mode))
+
+;;; buffer-menu-color
+(use-package buffer-menu-color
+  :straight nil)
+
+;;; 非アクティブウインドウの背景色を変更
+(use-package hiwin
+  :diminish hiwin
+  :config
+  (hiwin-activate)
+  (set-face-background 'hiwin-face "#eeeef0"))
+
+;;;過去のカーソル位置を記憶・閲覧・選択・移動
+(use-package popwin)
+(straight-use-package
+ '(point-history :type git :host github :repo "blue0513/point-history"))
+(use-package point-history
+  :diminish point-history-mode
+  :config
+  ;; enable minor mode
+  (point-history-mode t)
+  ;; お好みで
+  (global-set-key (kbd "C-c h") 'point-history-show))
+
+;;; プレゼンテーション用に一時的に文字を大きくする
+(use-package presentation
+  :commands (presentation-mode))
+
+;;;
+;;; バッファ、ウィンドウ関係終わり
+;;;
+
+
 ;;;
 ;;; helm
 ;;;
@@ -658,73 +1084,9 @@
 ;;; helm系終わり
 ;;;
 
-;;
-;; rainbow-delimiter
-;; 括弧の色を色分けする設定
-;;
-(use-package rainbow-delimiters
-    :diminish rainbow-delimiters-mode
-    :config
-    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-    (add-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
-    (add-hook 'csharp-mode-hook #'rainbow-delimiters-mode)
-    )
-
-  ;; 括弧の色を強調する設定
-(use-package cl-lib)
-(use-package color)
-(defun rainbow-delimiters-using-stronger-colors ()
-  (interactive)
-  (cl-loop
-   for index from 1 to rainbow-delimiters-max-face-count
-   do
-   (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
-     (cl-callf color-saturate-name (face-foreground face) 30)))
-  (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors))
-
-;;----
-;; 全角空白とタブを可視化
-;; 参考：http://d.hatena.ne.jp/t_ume_tky/20120906/1346943019
-;;----
-;; whitespace-mode の 色設定
-;;http://ergoemacs.org/emacs/whitespace-mode.html
-(use-package whitespace
-  :config
-  (setq whitespace-style 
-        '(face tabs tab-mark spaces space-mark newline newline-mark trailng))
-  (setq whitespace-display-mappings
-        '(
-          (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t]);タブ
-          (space-mark ?\u3000 [?□])        ; 全角スペース
-          (space-mark ?\u0020 [?.])  ; 半角スペース
-          (newline-mark ?\n   [?$ ?\n])     ; 改行記号
-          ) )
-  (setq whitespace-space-regexp "\\([\x0020\x3000]+\\)" )
-  ;;正規表現に関する文書。 Emacs Lispには、正規表現リテラルがないことへの言及
-  ;;http://www.mew.org/~kazu/doc/elisp/regexp.html
-  ;;
-  ;;なぜか、全体をグループ化 \(\) しておかないと、うまくマッチしなかった罠
-  ;;
-  (set-face-foreground 'whitespace-space "#CEDDEF")
-  (set-face-background 'whitespace-space 'nil)
-  ;;  (set-face-bold-p 'whitespace-space t)
-  
-  (set-face-foreground 'whitespace-tab "#AADDFF")
-  (set-face-background 'whitespace-tab 'nil)
-  
-  (set-face-foreground 'whitespace-newline  "#5E8DCF")
-  (set-face-background 'whitespace-newline 'nil)
-  
-  ;; タブや全角空白などを強調表示
-  ;;;(global-whitespace-mode 1) ;; 常時表示はしない
-  
-  ;;C-cwで切り替え
-  (define-key global-map (kbd "C-c w") 'whitespace-mode)
-  ;; 保存前に自動でクリーンアップ
-  (setq whitespace-action '(auto-cleanup)))
-
 ;;;yasnippet
 (use-package yasnippet
+  :diminish yasnippet
   :config
   (define-key yas-keymap (kbd "<tab>") nil)
   (yas-global-mode 1))
@@ -800,27 +1162,30 @@
      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
      (add-hook 'c-mode-common-hook 'irony-mode)))
 
-;;;
-;;; neotree
-;;; 左側にファイルツリーバッファを作る
-;;;
-(use-package neotree
-  :defer t
-  :init
-  (add-hook 'neotree-mode-hook (lambda () (display-line-numbers-mode -1)))
-  ;; C-c tでnetreee-windowが開くようにする
-  (global-set-key (kbd "C-c t") 'neotree-toggle)
-  ;; neotreeでファイルを新規作成した場合のそのファイルを開く
-  (setq neo-create-file-auto-open t)
-  ;; delete-other-window で neotree ウィンドウを消さない
-  (setq neo-persist-show t)
-  :config
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   ))
+
+;;
+;; rainbow-delimiter
+;; 括弧の色を色分けする設定
+;;
+(use-package rainbow-delimiters
+    :diminish rainbow-delimiters-mode
+    :config
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+    (add-hook 'c-mode-common-hook #'rainbow-delimiters-mode)
+    (add-hook 'csharp-mode-hook #'rainbow-delimiters-mode)
+    )
+
+  ;; 括弧の色を強調する設定
+(use-package cl-lib)
+(use-package color)
+(defun rainbow-delimiters-using-stronger-colors ()
+  (interactive)
+  (cl-loop
+   for index from 1 to rainbow-delimiters-max-face-count
+   do
+   (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
+     (cl-callf color-saturate-name (face-foreground face) 30)))
+  (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors))
 
 ;;; volatile-highlight
 ;;; yank や undoした時のリージョンをハイライト表示
@@ -866,17 +1231,6 @@
   :config
     (smooth-scroll-mode t))
 
-;;; undohist
-(use-package undohist
-  :config
-    (undohist-initialize))
-
-;;; anzu
-;;; 検索文字が何個あるか表示
-(use-package anzu
-  :diminish anzu-mode
-  :init
-  (global-anzu-mode +1))
 
 ;;; shell-pop
 ;;; ちっちゃいシェルウインドウを開いたり閉じたりする
@@ -886,53 +1240,10 @@
   (setq shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
   (add-hook 'eshell-mode-hook (lambda () (display-line-numbers-mode -1)))
   (global-set-key (kbd "C-c s") 'shell-pop))
-
-;;; web mode
-;;; HTMLモードではhtmlの中のjavascriptなどが色分けされないので導入
-;;; http://web-mode.org/
-;;; http://yanmoo.blogspot.jp/2013/06/html5web-mode.html
-(use-package web-mode
-  :defer t
-  :mode
-  (("\\.html?\\'" . web-mode)
-   ("\\.jsp\\'"   . web-mode)
-   ("\\.ctp\\'"   . web-mode)
-   ("\\.gsp\\'"   . web-mode))
-  :config
-  (defun web-mode-hook ()
-      (setq web-mode-markup-indent-offset 2)
-      (setq web-mode-css-indent-offset 2)
-      (setq web-mode-code-indent-offset 2)
-      (setq web-mode-engines-alist
-            '(("php"    . "\\.ctp\\'"))
-            )
-      )
-  ;; auto tag closing
-  ;;0=no auto-closing
-  ;;1=auto-close with </
-  ;;2=auto-close with > and </
-  (setq web-mode-tag-auto-close-style 2)
-  (add-hook 'web-mode-hook  'web-mode-hook))
-
   
-;;; beacon
-;;; 現在行のカーソルをバッファ移動のたびにわかるようにする
-  (use-package beacon
-    :init
-    (beacon-mode 1)
-    (setq beacon-push-mark 35)
-  (setq beacon-color "#F5DE34")
-  (setq beacon-size 400)
-  (setq beacon-blink-when-focused t)
-  (setq beacon-blink-duration 1))
 
-;;;saveplace: 前回の修正位置を記憶する.
-(use-package saveplace
-  :config
-  (save-place-mode 1)
-  (setq save-place-file (concat "~/.emacs.d/tmp/emacs-places")))
-
-;;; japanese-holidays 日本語カレンダー
+;;; japanese-holidays
+;;; 日本語カレンダー
 (use-package japanese-holidays
   :ensure t
   :init
@@ -958,27 +1269,15 @@
   (calendar-set-date-style 'iso)
   )
 
-;;; rainbow-mode:#RRGGBB のカラーコードに勝手に色が付く
-(use-package rainbow-mode
-  :diminish rainbow-mode
-  :config
-  (setq rainbow-html-colors t)
-  (setq rainbow-x-colors t)
-  (setq rainbow-latex-colors t)
-  (setq rainbow-ansi-colors t)
-  (add-hook 'css-mode-hook 'rainbow-mode)
-  (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
-  (add-hook 'less-mode-hook 'rainbow-mode)
-  (add-hook 'web-mode-hook 'rainbow-mode)
-  (add-hook 'html-mode-hook 'rainbow-mode)
-  )
 
 ;;; popup-kill-ring
+;;; yankするkill-ringをポップアップする。一度目に表示したものは消せない。
 (use-package popup-kill-ring
   :config
   (global-set-key "\M-y" 'popup-kill-ring))
 
 ;;; popup-switcher
+;;; バッファ切り替えはhelmではなくpopupで切り替える
 (use-package popup-switcher
     :config
     (global-set-key (kbd "C-x b") 'psw-switch-buffer)
@@ -993,97 +1292,45 @@
 (use-package darkroom
     :commands (darkroom))
 
+;;; undohist
+;;; emacsを立ち上げなおしてもundoできるようにする
+(use-package undohist
+  :diminish undohist
+  :config
+    (undohist-initialize))
+
 ;;; undo-tree
+;;; undo をヒストリー木表示
 (use-package undo-tree
   :diminish undo-tree-mode
   :config
   (global-undo-tree-mode))
 
-;;; markdown-mode
-(use-package markdown-mode
-  :ensure t
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown")
-  :config
-  (setq markdown-xhtml-header-content "
-<style>
-body {
-  box-sizing: border-box;
-  max-width: 740px;
-  width: 100%;
-  margin: 40px auto;
-  padding: 0 10px;
-}
-</style>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  document.body.classList.add('markdown-body');
-});
-</script>
-" ))
-
-;;; poly-markdown-mode
-(use-package polymode
-  :ensure t
-  :config
-    (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode)))
-
-;;; markdown-preview-mode
-(use-package markdown-preview-mode
-  :commands(markdown-preview-mode))
-
-;;; markdown-preview-eww
-(use-package markdown-preview-eww
-  :commands(markdown-preview-eww))
-
 ;;; clang-format
+;;; c++ソースをリージョン指定してフォーマットする
 (use-package clang-format
   :defer t
   :commands
   (clang-format))
 
 ;;; emojify
+;;; 絵文字を入出力する（フォント依存）
 (use-package emojify
   :config
   (global-emojify-mode))
 
-;;; Sky-color-clock
-;;; モードラインに今の外の天気と明るさを表示するエリアを１つ作る
-;;; GitHub: https://github.com/zk-phi/sky-color-clock
-(straight-use-package
- '(sky-color-clock :type git :host github :repo "zk-phi/sky-color-clock"))
-(use-package sky-color-clock
-  :init
-  (sky-color-clock-initialize 35) ; 東京（例）の緯度で初期化
-  
-  (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 5384214) ; 東京の City ID
-  ;; デフォルトの mode-line-format の先頭に sky-color-clock を追加
-  (push '(:eval (sky-color-clock)) (default-value 'mode-line-format))
-  (setq sky-color-clock-format "%m/%d %H:%M")
-  (setq sky-color-clock-enable-emoji-icon t)
-  
-  (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 1850144) ;天気取得
-  (setq sky-color-clock-enable-temperature-indicator t))
-
-
-;;; focus-autosave-mode
-(use-package focus-autosave-mode
-  :diminish focus-autosave-mode
+;;; 最終更新日の自動挿入
+;;;  Last Updated:<2019/04/24 17:15:39 from HXHA-B001 by 16896>
+;;; のようなフォーマットを記述しておくと、セーブするたびに自動的にマシンとユーザー、日付を書き換える
+;;;
+(use-package time-stamp
   :config
-  (focus-autosave-mode))
-
-;;; buffer-menu-color
-(use-package buffer-menu-color
-  :straight nil)
-
-;;; 非アクティブウインドウの背景色を変更
-(use-package hiwin
-  :config
-  (hiwin-activate)
-  (set-face-background 'hiwin-face "#eeeef0"))
+  (add-hook 'before-save-hook 'time-stamp)
+  (setq time-stamp-active t)
+  (setq time-stamp-start "[lL]ast[ -][uU]pdated[ \t]*:[ \t]*<")
+    (setq time-stamp-format "%:y/%02m/%02d %02H:%02M:%02S from %s by %u")
+    (setq time-stamp-end ">")
+    (setq time-stamp-line-limit 20))
 
 ;;; google翻訳
 (use-package google-translate
@@ -1116,7 +1363,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ;; M-x helm-miniは下部に7割の大きさで表示
           ("*helm mini*" :align below :ratio 0.7)
           ;; 他のhelmコマンドは右側に表示 (バッファ名の正規表現マッチ)
-          ("\*helm" :regexp t :align right)
+         ("\*helm" :regexp t :align right)
           ;; 上部に表示
           ("foo" :align above)
           ;; 別フレームで表示
@@ -1133,20 +1380,6 @@ document.addEventListener('DOMContentLoaded', () => {
   (shackle-mode 1)
   (setq shackle-lighter ""))
   
-;;; C-zで直前のウィンドウ構成に戻す
-(winner-mode 1)
-(global-set-key (kbd "C-c z") 'winner-undo)
-
-;;; org-bullets
-(use-package org-bullets
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-
-;;; org-preview-html-mode
-(use-package org-preview-html
-  :commands (org-preview-html-mode))
-
 ;;; context-coloring( not C langeage;;)
 (use-package context-coloring
   :diminish context-coloring-mode
@@ -1183,31 +1416,14 @@ document.addEventListener('DOMContentLoaded', () => {
    '(context-coloring-level-16-face ((t :foreground "#9ea0e5"))))
   )
 
+;;; eshell-git-prompt
 (use-package eshell-git-prompt
   :config
   (eshell-git-prompt-use-theme 'git-radar))
 
-;; doxymacs mode
-(use-package doxymacs
-  :commands (doxymacs)
-  ;; usage
-  ;; M-x doxymacs-mode
-  ;;
-  ;; C-c d i	ファイルへのコメントを挿入
-  ;; C-c d f	カーソルの下にある関数へのコメントを挿入
-  ;; C-c d ;	メンバへのコメントを挿入
-  ;; C-c d m	複数行の空コメントを挿入
-  ;; C-c d s	一行の空コメントを挿入
-  ;; custom c-mode hook for doxymacs
-  :config
-  (defun doxy-custom-c-mode-hook ()
-    (doxymacs-mode 1)
-    (setq doxymacs-doxygen-style "Qt")
-    (setq doxymacs-command-character "@")
-    
-    (add-hook 'c-mode-common-hook 'doxy-custom-c-mode-hook)))
 
 ;;; projectile
+;;; プロジェクトのファイルを管理
 (use-package projectile
   :diminish projectile-mode
   :config
@@ -1215,48 +1431,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ;;;helm-projectile
 (use-package helm-projectile
-    :config
-    (helm-projectile-on))
-
-;;; Python
-
-;;; python-mode
-(use-package python-mode
-  :mode (("\\.py\\'" . python-mode)
-         ("python" . python-mode))
+  :diminish helm-projectile
   :config
-;;; company-jedi
-  (use-package jedi
-    :ensure t
-    :init
-    (add-hook 'python-mode-hook 'jedi:setup)
-    (setq jedi:complete-on-dot t)
-    :config
-    (use-package company-jedi
-      :ensure t
-      :init
-      (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
-      (setq  company-jedi-python-bin "python")))
-  
-  (use-package py-yapf
-    :ensure t
-    :config
-    (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
-  
-  ;;
-  ;; linux 初回起動時のみ $ sudo apt-get install virtualenv
-  ;; M-x jedi:install-server RETが必要
-  ;;
-  
-;;; py-autopep8
-  (use-package py-autopep8
-    :ensure t
-    :config
-    (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-    (setq py-autopep8-options '("--max-line-length=100"))))
-  
+  (helm-projectile-on))
+
 
 ;;; dashboard
+;;; 起動画面を変更する
 (use-package dashboard
   :ensure t
   :config
@@ -1268,50 +1449,9 @@ document.addEventListener('DOMContentLoaded', () => {
   (setq dashboard-items '((recents  . 8)
                           (bookmarks . 3))))
 
-;;; cl-libにより、使用コードと改行コードをわかりやすくする
-(use-package cl-lib
-  :ensure t
-  :config
-  ;; 改行文字の文字列表現
-  (set 'eol-mnemonic-dos "(CRLF)")
-  (set 'eol-mnemonic-unix "(LF)")
-  (set 'eol-mnemonic-mac "(CR)")
-  (set 'eol-mnemonic-undecided "(?)")
-  
-  ;; 文字エンコーディングの文字列表現
-  (defun my-coding-system-name-mnemonic (coding-system)
-  (let* ((base (coding-system-base coding-system))
-         (name (symbol-name base)))
-    (cond ((string-prefix-p "utf-8" name) "U8")
-          ((string-prefix-p "utf-16" name) "U16")
-          ((string-prefix-p "utf-7" name) "U7")
-          ((string-prefix-p "japanese-shift-jis" name) "SJIS")
-          ((string-match "cp\\([0-9]+\\)" name) (match-string 1 name))
-          ((string-match "japanese-iso-8bit" name) "EUC")
-          (t "???")
-          )))
-  
-  (defun my-coding-system-bom-mnemonic (coding-system)
-    (let ((name (symbol-name coding-system)))
-      (cond ((string-match "be-with-signature" name) "[BE]")
-            ((string-match "le-with-signature" name) "[LE]")
-            ((string-match "-with-signature" name) "[BOM]")
-            (t ""))))
-
-  (defun my-buffer-coding-system-mnemonic ()
-    "Return a mnemonic for `buffer-file-coding-system'."
-    (let* ((code buffer-file-coding-system)
-           (name (my-coding-system-name-mnemonic code))
-           (bom (my-coding-system-bom-mnemonic code)))
-      (format "%s%s" name bom)))
-
-  ;; `mode-line-mule-info' の文字エンコーディングの文字列表現を差し替える
-  (setq-default mode-line-mule-info
-                (cl-substitute '(:eval (my-buffer-coding-system-mnemonic))
-                               "%z" mode-line-mule-info :test 'equal))
-  )
 
 ;;; recentf-ext
+;;; 最近使ったファイルを管理する
 (use-package recentf-ext
   :config
   (recentf-mode 1)
@@ -1320,6 +1460,8 @@ document.addEventListener('DOMContentLoaded', () => {
   (setq recentf-auto-cleanup 'never))
 
 ;;; ace-isearch
+;;; 検索時、１文字isearchがace-jump-mode (or avy)、
+;;; 2文字以上6文字以下で通常のisearch、それ以上の文字数でhelm-swoopが発動する。
 (use-package ace-isearch
   :diminish ace-isearch-mode
   :config
@@ -1331,84 +1473,22 @@ document.addEventListener('DOMContentLoaded', () => {
    '(ace-isearch-use-jump 'printing-char))
   (define-key isearch-mode-map (kbd "M-o") 'helm-multi-swoop-all-from-isearch))
 
-;;; ruby mode
-(use-package ruby-mode
-  :mode   (("\\.rb\\'" . ruby-mode))
-  :config
-  (defun my/ruby-mode-hook-function ()
-    (setq ruby-deep-indent-paren-style nil)
-    (make-local-variable 'ac-omni-completion-sources)
-    (make-local-variable 'ac-ignore-case)
-    (setq ac-ignore-case nil)
-    (setq ac-omni-completion-sources '(("\\.\\=" . (ac-source-rcodetools))))
-    t)
-  (add-hook 'ruby-mode-hook 'my/ruby-mode-hook-function)
-
-;;;ruby hash値を見やすくする
-  (setq my-ruby-highlight-keywords '(
-   ("\\(?:^\\s *\\|[[{(,]\\s *\\|\\sw\\s +\\)\\(\\(\\sw\\|_\\)+:\\)[^:]"
-    (1 (progn (forward-char -1) font-lock-preprocessor-face)))))
-
-  (defun my-ruby-highlight ()
-    (font-lock-add-keywords nil my-ruby-highlight-keywords))
-  
-  (add-hook 'ruby-mode-hook #'my-ruby-highlight))
-
-;;; smartchr
-(use-package smartchr
-  :commands (smartchr))
-
-;;; PHP-mode
-(use-package php-mode
-  :mode
-  (("\\.php\\'" . php-mode))
-  :config
-  (use-package php-eldoc)
-  (use-package company-php)
-  (defun my/php-mode-hook-function ()
-    (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
-    (define-key php-mode-map (kbd "[") (smartchr "[]" "array()" "[[]]"))
-    (define-key php-mode-map (kbd "]") (smartchr "array " "]" "]]"))
-    (let ((my/php-offset 4))
-      (setq tab-width my/php-offset
-            c-basic-offset my/php-offset
-            indent-tabs-mode nil)
-      (c-set-offset 'case-label' my/php-offset)
-      (c-set-offset 'arglist-intro' my/php-offset)
-      (c-set-offset 'arglist-cont-nonempty' my/php-offset)
-      (c-set-offset 'arglist-close' 0))
-    t)
-  (add-hook 'php-mode-hook 'my/php-mode-hook-function)
-
-  (add-hook 'php-mode-hook
-          '(lambda ()
-             (company-mode t)
-             (ac-php-core-eldoc-setup)
-             (make-local-variable 'company-backends)
-             (add-to-list 'company-backends 'company-ac-php-backend))))
-
-
+;;; alart
+;;; メッセージ通知ライブラリ、現在はemacs-slackを使っていないので未使用
 (use-package alert
   :commands (alert)
   :init
   (setq alert-default-style 'notifier))
 
 
-;;; CMake mode
-(use-package cmake-mode
-  :mode (("CMakeLists\\.txt\\'" . cmake-mode)
-	       (("\\.cmake\\'" . cmake-mode))))
 
-;;;過去のカーソル位置を記憶・閲覧・選択・移動
-(use-package popwin)
-(straight-use-package
- '(point-history :type git :host github :repo "blue0513/point-history"))
-(use-package point-history
-  :config
-  ;; enable minor mode
-  (point-history-mode t)
-  ;; お好みで
-  (global-set-key (kbd "C-c h") 'point-history-show))
+;;; 変数ごとに色分け (csharp未対応)
+(use-package color-identifiers-mode
+  :diminish color-identifiers-mode
+  :init
+  (add-hook 'after-init-hook 'global-color-identifiers-mode)
+  (global-set-key (kbd "C-c c") 'color-identifiers:refresh))
+
 
 ;;;---------パッケージ毎の設定終わり end of package setting-----------
 
@@ -1524,9 +1604,9 @@ document.addEventListener('DOMContentLoaded', () => {
   (set-frame-font "ricty-12")
     (add-to-list 'default-frame-alist '(font . "ricty-12"))
   
-  ;;;;;;;;;;;;;;;;;;;;
+  ;;
   ;; Dired 
-  ;;;;;;;;;;;;;;;;;;;;
+  ;;
   
   ;; Dired のリストフォーマット設定 (ls へのオプション)
   ;; (setq dired-listing-switches "-aoFLt")
@@ -1535,7 +1615,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '(lambda ()
                (setenv "LANG" "C")))
 
-  ;;;ctags unix用設定
+  ;;　ctags unix用設定
 
   ;;; 注意！exuberant-ctagsを指定する必要がある
   ;;; Emacs標準のctagsでは動作しない！！
@@ -1561,8 +1641,9 @@ document.addEventListener('DOMContentLoaded', () => {
   ;; off
   (add-hook 'input-method-inactivate-hook
             (lambda() (set-cursor-color "red")))
-  
+  ;;
   ;; FLYCHECK
+  ;;
   (use-package flycheck
     :diminish flycheck-mode
     :config
@@ -1581,13 +1662,16 @@ document.addEventListener('DOMContentLoaded', () => {
                                (setq flycheck-gcc-language-standard "c++11")
                                (setq flycheck-clang-language-standard "c++11"))))
 
-
+  ;;
   ;; dired-du
+  ;;
   (use-package dired-du
     :config
     (add-hook 'dired-mode-hook #'dired-du-mode))
 
-  ;; elpy
+  ;;
+  ;; elpy (for python mode)
+  ;;
   (use-package elpy
     :ensure t
     :init (with-eval-after-load `python (elpy-enable))
@@ -1606,6 +1690,19 @@ document.addEventListener('DOMContentLoaded', () => {
       (setq python-shell-interpreter-args "-i --simple-prompt")
       (setq elpy-rpc-backend "jedi")))
 
+  ;; auto-sudoedit
+  ;; コマンドが失敗したら自動的にsudoで入力しなおす
+  (use-package auto-sudoedit
+	:ensure t
+	:config
+	(auto-sudoedit-mode 1))
+
+  ;;システムPATHの引き継ぎ
+  (use-package exec-path-from-shell
+	:ensure t
+	:config
+	(exec-path-from-shell-initialize))
+  
 );;;ここまでUNIX用
 
 ;;;
