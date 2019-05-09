@@ -1,4 +1,4 @@
-;;;;;Last Updated:<2019/04/26 09:51:39 from HXHA-B001 by 16896>
+;;;;;Last Updated:<2019/05/09 16:37:17 from HXHA-B001 by 16896>
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -197,7 +197,12 @@
     (defun track-mouse (e))
     (setq mouse-sel-mode t)
   
-    ))
+    )
+  (set-face-foreground 'font-lock-comment-face "red")
+  (set-face-italic-p 'font-lock-comment-face t)
+  (set-face-bold-p 'font-lock-keyword-face t)
+  (set-face-underline-p 'font-lock-string-face t))
+
 ;;; 共通のhi-line設定
 (defvar global-hl-line-timer-exclude-modes '(todotxt-mode))
 (defun global-hl-line-timer-function ()
@@ -1162,6 +1167,33 @@ document.addEventListener('DOMContentLoaded', () => {
      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
      (add-hook 'c-mode-common-hook 'irony-mode)))
 
+;;; FLYCHECK
+
+;;; windowsの場合はMinGW(gcc)とLLVMのインストールが必要。
+;;; http://yohshiy.blog.fc2.com/blog-entry-292.html(MinGW)
+;;; http://yohshiy.blog.fc2.com/blog-entry-294.html(LLVM=clang)
+;;; pathを通すのを忘れずに。
+
+(use-package flycheck
+  :diminish flycheck-mode
+  :config
+  (global-flycheck-mode)
+  
+  (define-key global-map (kbd "C-c n") 'flycheck-next-error)
+  (define-key global-map (kbd "C-c p") 'flycheck-previous-error)
+  (define-key global-map (kbd "C-c d") 'flycheck-list-errors)
+  
+  (add-hook 'c++-mode-hook (lambda()
+                             (setq flycheck-gcc-language-standard "c++11")
+                             (setq flycheck-clang-language-standard "c++11"))))
+
+  ;;; flycheck-popup-tip
+(straight-use-package
+ '(flycheck-popup-tip :type git :host github :repo "flycheck/flycheck-popup-tip"))
+(use-package flycheck-popup-tip
+  :config
+  (add-hook 'flycheck-mode-hook 'flycheck-popup-tip-mode))
+
 
 ;;
 ;; rainbow-delimiter
@@ -1489,7 +1521,6 @@ document.addEventListener('DOMContentLoaded', () => {
   (add-hook 'after-init-hook 'global-color-identifiers-mode)
   (global-set-key (kbd "C-c c") 'color-identifiers:refresh))
 
-
 ;;;---------パッケージ毎の設定終わり end of package setting-----------
 
 ;;;
@@ -1585,6 +1616,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ;; 環境変数でgitのPATHを通しておくのを忘れずに
 ;;
 
+ 
 );;; ここまでwindows用
 
 ;;;
@@ -1641,26 +1673,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ;; off
   (add-hook 'input-method-inactivate-hook
             (lambda() (set-cursor-color "red")))
-  ;;
-  ;; FLYCHECK
-  ;;
-  (use-package flycheck
-    :diminish flycheck-mode
-    :config
-    (global-flycheck-mode)
-    
-    (define-key global-map (kbd "C-c n") 'flycheck-next-error)
-    (define-key global-map (kbd "C-c p") 'flycheck-previous-error)
-    (define-key global-map (kbd "C-c d") 'flycheck-list-errors)
-    
-    (eval-after-load 'flycheck
-      '(custom-set-variables
-        '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
-    
-    
-    (add-hook 'c++-mode-hook (lambda()
-                               (setq flycheck-gcc-language-standard "c++11")
-                               (setq flycheck-clang-language-standard "c++11"))))
 
   ;;
   ;; dired-du
