@@ -1,4 +1,4 @@
-;;;;;Last Updated:<2019/05/09 16:37:17 from HXHA-B001 by 16896>
+;;;;;Last Updated:<2019/05/30 16:10:32 from HXHA-B001 by 16896>
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -51,10 +51,10 @@
 
 ;;; windowsの場合gitのpath設定など先に追加しておく
 (when (eq system-type 'windows-nt) ; Windows
-;;   ;;magit &git
-   (setq magit-git-executable "C:/Program Files/Git/cmd/git.exe")
+  ;;magit &git
+  (setq magit-git-executable "C:/Program Files/Git/cmd/git.exe")
   
-   (add-to-list 'exec-path "C:/Program Files/Git/cmd"))
+  (add-to-list 'exec-path "C:/Program Files/Git/cmd"))
 
 ;;
 ;; straight.el
@@ -103,10 +103,6 @@
 
 (use-package diminish
   :ensure t)
-
-;; 読み込みに行けないのでコメント(環境依存？)
-;;(use-package quelpa-use-package
-;;  :ensure t)
 
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
@@ -218,8 +214,8 @@
 
 ;;; インデント設定
 
-(setq-default c-basic-offset 4     ;;基本インデント量
-              tab-width 4          ;;タブ幅
+(setq-default c-basic-offset 2     ;;基本インデント量
+              tab-width 2          ;;タブ幅
               indent-tabs-mode t)  ;;インデントをタブでするかスペースでするか
 
 ;;; C,C++の設定
@@ -297,7 +293,6 @@
   ;; ";"や"{"などをを入力した場合現在の行を自動インデントを有効にする
   (c-toggle-electric-state 1)
   ; ;カッコを強調表示する  
-  (show-paren-mode t)
   ;; (自動インデント) 改行をしたら次の行を自動でインデントしてくれる
   (c-toggle-auto-newline 1)
   ;; 他のエディタなどがファイルを書き換えたらすぐにそれを反映する
@@ -365,7 +360,7 @@
                           :background "#999999")
       (set-face-attribute 'line-number-current-line nil
                           :foreground "gold"))
-  )
+ )
 
 ;;; 最終行以降の表示
 (setq-default indicate-empty-lines t)
@@ -385,7 +380,10 @@
 ;; 対応する括弧を強調表示
 ;;----
 (show-paren-mode t)
- 
+
+;; ウィンドウ内に収まらないときだけ、カッコ内も光らせる
+(setq show-paren-style 'mixed)
+
 ;; モードラインの割合表示を総行数表示
 (defvar my-lines-page-mode t)
 (defvar my-mode-line-format)
@@ -443,13 +441,6 @@
 ;; C-hを<del>のキーシーケンスに上書きする
 ;;----
 (keyboard-translate ?\C-h ?\C-?)
-
-;;; マウスの設定
-;; スクロールは1行ごとに
-;(setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))
-;; スクロールの加速をやめる
-;setq mouse-wheel-progressive-speed nil)
-
 
 ;;; GDB 関連
 ;;; 有用なバッファを開くモード
@@ -726,8 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ;;; PHP
 ;;; 
 (use-package php-mode
-  :mode
-  (("\\.php\\'" . php-mode))
+  :mode (("\\.php\\'" . php-mode))
   :config
   (use-package php-eldoc)
   (use-package company-php)
@@ -774,7 +764,6 @@ document.addEventListener('DOMContentLoaded', () => {
 (use-package org-preview-html
   :commands (org-preview-html-mode))
 
-
 ;;;
 ;;; 各言語ごとの設定終わり
 ;;;
@@ -804,13 +793,12 @@ document.addEventListener('DOMContentLoaded', () => {
   :init
   (sky-color-clock-initialize 35) ; 東京（例）の緯度で初期化
   
-  (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 5384214) ; 東京の City ID
+  (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 5384214)  ;; 東京の City ID
   ;; デフォルトの mode-line-format の先頭に sky-color-clock を追加
   (push '(:eval (sky-color-clock)) (default-value 'mode-line-format))
   (setq sky-color-clock-format "%m/%d %H:%M")
   (setq sky-color-clock-enable-emoji-icon t)
-  
-  (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 1850144) ;天気取得
+  (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 1850144)  ;; 天気取得
   (setq sky-color-clock-enable-temperature-indicator t))
 
 ;;; cl-libにより、使用コードと改行コードをわかりやすくする
@@ -1345,11 +1333,6 @@ document.addEventListener('DOMContentLoaded', () => {
   :commands
   (clang-format))
 
-;;; emojify
-;;; 絵文字を入出力する（フォント依存）
-(use-package emojify
-  :config
-  (global-emojify-mode))
 
 ;;; 最終更新日の自動挿入
 ;;;  Last Updated:<2019/04/24 17:15:39 from HXHA-B001 by 16896>
@@ -1475,7 +1458,8 @@ document.addEventListener('DOMContentLoaded', () => {
   :config
   (dashboard-setup-startup-hook)
   ;; set title 
-  (setq dashboard-banner-logo-title "Welcome to Emacs Genm Dashboard!!!")
+  (setq dashboard-banner-logo-title
+		(concat "Welcome to GNU Emacs " emacs-version " Genm Dashboard!!!"))
  ;; Set the banner
   (setq dashboard-startup-banner "~/.emacs.d/genm.png")
   (setq dashboard-items '((recents  . 8)
@@ -1512,14 +1496,26 @@ document.addEventListener('DOMContentLoaded', () => {
   :init
   (setq alert-default-style 'notifier))
 
-
-
 ;;; 変数ごとに色分け (csharp未対応)
 (use-package color-identifiers-mode
   :diminish color-identifiers-mode
   :init
   (add-hook 'after-init-hook 'global-color-identifiers-mode)
   (global-set-key (kbd "C-c c") 'color-identifiers:refresh))
+
+;;; 単純行コピー(その行または選択領域を1コマンドでコピー)
+(use-package duplicate-thing
+  :config
+  (global-set-key (kbd "M-c") 'duplicate-thing))
+
+;;; git-gutter-fringe+ gitの未コミット差分表示
+(use-package git-gutter-fringe+
+  :diminish git-gutter-fringe+
+  :config
+  (global-git-gutter+-mode t)
+  (set-face-foreground 'git-gutter-fr+-modified "#BB0099")
+  (set-face-foreground 'git-gutter-fr+-added    "#339933")
+  (set-face-foreground 'git-gutter-fr+-deleted  "#AA0000"))
 
 ;;;---------パッケージ毎の設定終わり end of package setting-----------
 
@@ -1589,18 +1585,18 @@ document.addEventListener('DOMContentLoaded', () => {
 ;; https://myrica.estable.jp/
 ;; ~/.emacs.d/Myrica/の２つのフォントアーカイブを展開してインストール
 ;; 固定等幅フォント
-;; (set-face-attribute 'default nil
-;;                     :family "Myrica M"
-;;                     :height 140)
-;; (set-fontset-font (frame-parameter nil 'font)
-;;                   'japanese-jisx0208
-;;                   '("Myrica M" . "unicode-bmp")
-;;                   )
+(set-face-attribute 'default nil
+                    :family "Myrica M"
+                    :height 130)
+(set-fontset-font (frame-parameter nil 'font)
+                  'japanese-jisx0208
+                  '("Myrica M" . "unicode-bmp")
+                  )
 
-;; (set-fontset-font (frame-parameter nil 'font)
-;;                   'katakana-jisx0201
-;;                   '("Myrica M" . "unicode-bmp")
-;;                   )
+(set-fontset-font (frame-parameter nil 'font)
+                  'katakana-jisx0201
+                  '("Myrica M" . "unicode-bmp")
+                  )
 
 ;;;ctags windows用設定
 ;;;  (setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
@@ -1626,16 +1622,21 @@ document.addEventListener('DOMContentLoaded', () => {
 (when (eq system-type 'gnu/linux) ; Unix
 
   ;; font
-  ;(set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
-  ;(add-to-list 'face-font-rescale-alist '(".*Takao P.*" . 0.85)) 
-
   ;;rictyfont
   ;; $ cp  ~/.emacs.d/RictyFont/ ~/.fonts/
   ;; gz圧縮されているフォントファイルを解凍してから
   ;; $ sudo fc-cache -vfでインストール
   (set-frame-font "ricty-12")
-    (add-to-list 'default-frame-alist '(font . "ricty-12"))
-  
+  (add-to-list 'default-frame-alist '(font . "ricty-12"))
+
+
+
+ ;;; emojify
+ ;;; 絵文字を入出力する（フォント依存）
+  (use-package emojify
+	:config
+	(global-emojify-mode))
+	
   ;;
   ;; Dired 
   ;;
