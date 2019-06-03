@@ -1,6 +1,6 @@
 el-get/
 elpa/
-etc-el/
+#etc-el/
 straight/
 backup-file/
 undohist/
