@@ -1,2 +1,0 @@
-;;; -*- no-byte-compile: t -*-
-(define-package "japanese-holidays" "20190317.1220" "calendar functions for the Japanese calendar" '((cl-lib "0.3")) :stars '("") :commit "3bb883104eaa48d5fc5969c088e35def64c8d23e" :keywords '("calendar") :authors '(("Takashi Hattori" . "hattori@sfc.keio.ac.jp") ("Hiroya Murata" . "lapis-lazuli@pop06.odn.ne.jp")) :maintainer '("Takashi Hattori" . "hattori@sfc.keio.ac.jp") :url "https://github.com/emacs-jp/japanese-holidays")
