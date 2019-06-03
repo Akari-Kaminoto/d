@@ -1,4 +1,4 @@
-;;;;;Last Updated:<2019/05/30 16:10:32 from HXHA-B001 by 16896>
+;;;;;Last Updated:<2019/06/03 14:25:41 from HXHA-B001 by 16896>
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -953,10 +953,6 @@ document.addEventListener('DOMContentLoaded', () => {
   :config
   (focus-autosave-mode))
 
-;;; buffer-menu-color
-(use-package buffer-menu-color
-  :straight nil)
-
 ;;; 非アクティブウインドウの背景色を変更
 (use-package hiwin
   :diminish hiwin
@@ -1453,6 +1449,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ;;; dashboard
 ;;; 起動画面を変更する
+(use-package all-the-icons)
 (use-package dashboard
   :ensure t
   :config
@@ -1464,6 +1461,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (setq dashboard-startup-banner "~/.emacs.d/genm.png")
   (setq dashboard-items '((recents  . 8)
                           (bookmarks . 3))))
+
 
 
 ;;; recentf-ext
@@ -1478,6 +1476,9 @@ document.addEventListener('DOMContentLoaded', () => {
 ;;; ace-isearch
 ;;; 検索時、１文字isearchがace-jump-mode (or avy)、
 ;;; 2文字以上6文字以下で通常のisearch、それ以上の文字数でhelm-swoopが発動する。
+(use-package ace-jump-mode)
+(use-package helm-swoop)
+
 (use-package ace-isearch
   :diminish ace-isearch-mode
   :config

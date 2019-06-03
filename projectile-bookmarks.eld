@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/work/Prj/Mate/" "~/work/Prj/boiler4/" "~/work/Prj/Mate/CalculateManager/" "~/work/Prj/boiler3/" "~/work/Prj/New_boiler3/" "~/.emacs.d/straight/repos/straight.el/")
+("~/.emacs.d/" "~/.emacs.d/straight/repos/emacs-dashboard/" "~/work/Prj/Mate/" "~/work/Prj/boiler4/" "~/work/Prj/Mate/CalculateManager/" "~/work/Prj/boiler3/" "~/work/Prj/New_boiler3/" "~/.emacs.d/straight/repos/straight.el/")
