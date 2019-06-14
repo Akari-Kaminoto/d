@@ -1,4 +1,4 @@
-;;;;;Last Updated:<2019/06/03 14:25:41 from HXHA-B001 by 16896>
+;;;;;Last Updated:<2019/06/14 17:33:51 from HXHA-B001 by 16896>
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -544,7 +544,7 @@
   
   ;; ショートカットキー
   (global-set-key (kbd "C-c l") 'org-store-link)
-  (global-set-key (kbd "C-c c") 'org-capture)
+  ;;(global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c a") 'org-agenda))
   
 
@@ -559,6 +559,13 @@
 ;;;
 (use-package csharp-mode
   :mode (("\\.cs\\'" . csharp-mode)))
+
+;;;
+;;; CSV
+;;;
+(use-package csv-mode
+  :mode (("\\.[Cc][Ss][Vv]\\'" . csv-mode)))
+
 
 ;;;
 ;;; web mode
@@ -1009,7 +1016,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (define-key global-map (kbd "C-x C-f") 'helm-find-files)
   (define-key global-map (kbd "M-x")     'helm-M-x)
   (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-    ;;fine-fileのみTAB補完
+  ;;fine-fileのみTAB補完
   (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
   (add-hook 'helm-after-initialize-hook
             #'(lambda ()
@@ -1022,7 +1029,6 @@ document.addEventListener('DOMContentLoaded', () => {
   :config
   (global-set-key [remap execute-extended-command] #'helm-smex)
   (global-set-key (kbd "M-X") #'helm-smex-major-mode-commands))
-
 
 ;;;  helm-gtags
 (use-package helm-gtags
@@ -1061,13 +1067,18 @@ document.addEventListener('DOMContentLoaded', () => {
   (eval-after-load 'helm
     '(define-key helm-map (kbd "C-c C-g") 'helm-git-grep-from-helm)))
 
-
 ;;;helm descbinds
 ;;; autoload扱い
 (use-package helm-descbinds
   :commands (helm-descbinds)
   :config
   (helm-descbinds-mode))
+
+;;; helm-img-tiqav
+;;; autoload扱い
+(use-package helm-img)
+(use-package helm-img-tiqav
+	:commands helm-img-tiqav)
 
 ;;;
 ;;; helm系終わり
@@ -1143,6 +1154,13 @@ document.addEventListener('DOMContentLoaded', () => {
       (set-face-attribute 'company-scrollbar-bg nil
                   :background "#002b87"))
 
+;;; git-complete
+(straight-use-package
+ '(git-complete :type git :host github :repo "zk-phi/git-complete"))
+(use-package git-complete 
+	:config
+	(global-set-key (kbd "C-c c") 'git-complete))
+
 ;;;irony
 (eval-after-load "irony"
   '(progn
@@ -1171,7 +1189,7 @@ document.addEventListener('DOMContentLoaded', () => {
                              (setq flycheck-gcc-language-standard "c++11")
                              (setq flycheck-clang-language-standard "c++11"))))
 
-  ;;; flycheck-popup-tip
+;;; flycheck-popup-tip
 (straight-use-package
  '(flycheck-popup-tip :type git :host github :repo "flycheck/flycheck-popup-tip"))
 (use-package flycheck-popup-tip
@@ -1247,7 +1265,6 @@ document.addEventListener('DOMContentLoaded', () => {
   :config
     (smooth-scroll-mode t))
 
-
 ;;; shell-pop
 ;;; ちっちゃいシェルウインドウを開いたり閉じたりする
 (use-package shell-pop
@@ -1256,7 +1273,6 @@ document.addEventListener('DOMContentLoaded', () => {
   (setq shell-pop-shell-type '("eshell" "*eshell*" (lambda () (eshell))))
   (add-hook 'eshell-mode-hook (lambda () (display-line-numbers-mode -1)))
   (global-set-key (kbd "C-c s") 'shell-pop))
-  
 
 ;;; japanese-holidays
 ;;; 日本語カレンダー
@@ -1284,7 +1300,6 @@ document.addEventListener('DOMContentLoaded', () => {
         calendar-week-start-day 1)
   (calendar-set-date-style 'iso)
   )
-
 
 ;;; popup-kill-ring
 ;;; yankするkill-ringをポップアップする。一度目に表示したものは消せない。
@@ -1462,8 +1477,6 @@ document.addEventListener('DOMContentLoaded', () => {
   (setq dashboard-items '((recents  . 8)
                           (bookmarks . 3))))
 
-
-
 ;;; recentf-ext
 ;;; 最近使ったファイルを管理する
 (use-package recentf-ext
@@ -1502,7 +1515,7 @@ document.addEventListener('DOMContentLoaded', () => {
   :diminish color-identifiers-mode
   :init
   (add-hook 'after-init-hook 'global-color-identifiers-mode)
-  (global-set-key (kbd "C-c c") 'color-identifiers:refresh))
+  (global-set-key (kbd "C-c C-r") 'color-identifiers:refresh))
 
 ;;; 単純行コピー(その行または選択領域を1コマンドでコピー)
 (use-package duplicate-thing
@@ -1517,6 +1530,12 @@ document.addEventListener('DOMContentLoaded', () => {
   (set-face-foreground 'git-gutter-fr+-modified "#BB0099")
   (set-face-foreground 'git-gutter-fr+-added    "#339933")
   (set-face-foreground 'git-gutter-fr+-deleted  "#AA0000"))
+
+ ;;; emojify
+ ;;; 絵文字を入出力する（フォント依存）
+  (use-package emojify
+	:config
+	(global-emojify-mode))
 
 ;;;---------パッケージ毎の設定終わり end of package setting-----------
 
@@ -1554,32 +1573,32 @@ document.addEventListener('DOMContentLoaded', () => {
     (add-hook 'input-method-inactivate-hook
               (lambda() (set-cursor-color "green")))
     
- ;; ミニバッファに移動した際は最初に日本語入力が無効な状態にする
-  (add-hook 'minibuffer-setup-hook 'deactivate-input-method)
+		;; ミニバッファに移動した際は最初に日本語入力が無効な状態にする
+		(add-hook 'minibuffer-setup-hook 'deactivate-input-method)
 
-  ;; isearch に移行した際に日本語入力を無効にする
-  (add-hook 'isearch-mode-hook '(lambda ()
-                                  (deactivate-input-method)
-                                  (setq w32-ime-composition-window (minibuffer-window))))
-  (add-hook 'isearch-mode-end-hook '(lambda () (setq w32-ime-composition-window nil)))
-
-  ;; helm 使用中に日本語入力を無効にする
-  (advice-add 'helm :around '(lambda (orig-fun &rest args)
-                               (let ((select-window-functions nil)
-                                     (w32-ime-composition-window (minibuffer-window)))
-                                 (deactivate-input-method)
-                                 (apply orig-fun args))))
-  
+		;; isearch に移行した際に日本語入力を無効にする
+		(add-hook 'isearch-mode-hook '(lambda ()
+																		(deactivate-input-method)
+																		(setq w32-ime-composition-window (minibuffer-window))))
+		(add-hook 'isearch-mode-end-hook '(lambda () (setq w32-ime-composition-window nil)))
+		
+		;; helm 使用中に日本語入力を無効にする
+		(advice-add 'helm :around '(lambda (orig-fun &rest args)
+																 (let ((select-window-functions nil)
+																			 (w32-ime-composition-window (minibuffer-window)))
+																	 (deactivate-input-method)
+																	 (apply orig-fun args))))
+		
 ;;;** バッファ切り替え時にIME状態を引き継ぐ
     (setq w32-ime-buffer-switch-p nil)
     )
   
-)
+	)
 
    
-;;;
-;;; フォント関連の設定
-;;;
+;;
+;; フォント関連の設定
+;;
    
 ;;
 ;; プログラミング用フォント Myrica
@@ -1604,8 +1623,13 @@ document.addEventListener('DOMContentLoaded', () => {
 (setq gtags-update-command "~/.emacs.d/bin/gtags.exe")
 
 ;;sky-color-clockで絵文字を出さない
-(setq sky-color-clock-enable-emoji-icon nil)
- 
+;;(setq sky-color-clock-enable-emoji-icon nil)
+;;もしフォントがあるなら以下で
+(set-face-attribute 'mode-line nil :font "Segoe UI Emoji-12")
+;;(set-face-attribute 'mode-line nil :font "Symbola-12")
+
+
+
 ;;; Windows markdownビューワの指定
 (setq markdown-open-command "~/.emacs.d/etc/markcat.bat")
   
@@ -1630,14 +1654,6 @@ document.addEventListener('DOMContentLoaded', () => {
   (set-frame-font "ricty-12")
   (add-to-list 'default-frame-alist '(font . "ricty-12"))
 
-
-
- ;;; emojify
- ;;; 絵文字を入出力する（フォント依存）
-  (use-package emojify
-	:config
-	(global-emojify-mode))
-	
   ;;
   ;; Dired 
   ;;
