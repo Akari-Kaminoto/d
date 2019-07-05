@@ -1,4 +1,4 @@
-;;;;;Last Updated:<2019/06/14 17:33:51 from HXHA-B001 by 16896>
+;;;;;Last Updated:<2019/06/27 15:44:05 from HXHA-B001 by 16896>
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -967,6 +967,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (hiwin-activate)
   (set-face-background 'hiwin-face "#eeeef0"))
 
+
 ;;;過去のカーソル位置を記憶・閲覧・選択・移動
 (use-package popwin)
 (straight-use-package
@@ -1474,8 +1475,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		(concat "Welcome to GNU Emacs " emacs-version " Genm Dashboard!!!"))
  ;; Set the banner
   (setq dashboard-startup-banner "~/.emacs.d/genm.png")
-  (setq dashboard-items '((recents  . 8)
-                          (bookmarks . 3))))
+  (setq dashboard-items '((projects . 5)
+													(recents  . 8)
+                          (bookmarks . 3)))
+	(setq dashboard-set-heading-icons nil)
+	(setq dashboard-set-file-icons nil)
+	(setq dashboard-set-init-info t)
+	(setq dashboard-set-navigator t))
 
 ;;; recentf-ext
 ;;; 最近使ったファイルを管理する
@@ -1608,6 +1614,7 @@ document.addEventListener('DOMContentLoaded', () => {
 (set-face-attribute 'default nil
                     :family "Myrica M"
                     :height 130)
+
 (set-fontset-font (frame-parameter nil 'font)
                   'japanese-jisx0208
                   '("Myrica M" . "unicode-bmp")
@@ -1627,8 +1634,6 @@ document.addEventListener('DOMContentLoaded', () => {
 ;;もしフォントがあるなら以下で
 (set-face-attribute 'mode-line nil :font "Segoe UI Emoji-12")
 ;;(set-face-attribute 'mode-line nil :font "Symbola-12")
-
-
 
 ;;; Windows markdownビューワの指定
 (setq markdown-open-command "~/.emacs.d/etc/markcat.bat")

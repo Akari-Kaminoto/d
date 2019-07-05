@@ -1,0 +1,72 @@
+;;;Last Updated:<2019/07/05 09:55:30 from HXHA-B001 by 16896>
+
+<2019-07-05 金>
+
+*** 分岐→合流がなぜかダメ
+		
+		逆パターンと、合流＊２のそれぞれのパターンでやってみたが、
+		なぜか全部だめ。分岐→合流の流量がすべて分岐２のものになってしまう。
+
+*** 合流＊２の時、燃焼計算RCに勝手に分岐の番号が入る
+
+		多分CSVにするとき何かやってるんだろうけど
+
+		SaveMaterial_button_Click()でのnSplit
+
+*** 合流画面が２画面ある時、計算後に自由ガス１から持ってきてるデータ部の表示がセンタリングされる
+
+		これも何を引っ張ってきてしまってるのか？チェック
+
+*** ここまでやったのなら、計算開始したらチェックボックスいじれなくしたいよね
+		（続き。）
+
+		試しにCombinationForm.csのSetStatus()で
+
+		#+begin_src C
+		// 計算後の場合、分岐先を選べなくする
+    if (nStatus == (int)Status.CALCULATE)
+    {
+        for (int i = 0; i < CalcName_grid.Rows.Count; i++)
+        {
+            CalcName_grid.Rows[i].Cells[1].ReadOnly = true;
+            CalcName_grid.Rows[i].Cells[2].ReadOnly = true;
+        }
+    }
+		#+end_src
+		という処理を入れてみたら正しい動きをするようになった
+
+		色も塗り替えるか→なぜか１列目の色が変わらない
+
+		計算内容の背景も塗り替える→背景だけ。foregroundは変えちゃダメ
+
+		しかしやはり１列目だけ変わらない。何か上書きされてる？
+
+		#+begin_src C
+		// 計算内容記述がない列は処理しない
+    if (CalcName_grid.Rows[i].Cells[0].Value.ToString() == "")
+    {
+        continue;
+    }
+		#+end_src
+		を追加し、後半の空行に対しての処理をしないよう変更
+
+		CalcName_grid[1, i].Style.ForeColor = Color.LightGray;
+    CalcName_grid[1, i].Style.BackColor = Color.LightGray;
+    CalcName_grid[2, i].Style.ForeColor = Color.LightGray;
+    CalcName_grid[2, i].Style.BackColor = Color.LightGray;
+		
+		と書いても同じ。しかし変わらないのは一緒。
+
+		CalcName_grid.DefaultCellStyle.BackColor = Color.Yellow;
+		などとやってもかわらない。（優先順位のせいか）
+
+		そもそも
+
+		CalcName_grid.Rows[i].Cells[1].Style.ForeColor 
+    CalcName_grid.Rows[i].Cells[1].Style.BackColor 
+
+		自体が優先順位最上で、しかも他に特に変えている箇所が無いのが謎。
+
+		（上記があるのでちょっと保留）
+
+

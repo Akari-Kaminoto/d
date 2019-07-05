@@ -4,5 +4,6 @@ etc-el/
 straight/
 backup-file/
 undohist/
-auto-save-file/
+auto-save-list/
 recentf~
+./#*
