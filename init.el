@@ -1,4 +1,4 @@
-;;;;;Last Updated:<2019/06/27 15:44:05 from HXHA-B001 by 16896>
+;;;;;Last Updated:<2019/09/27 16:29:41 from HXHA-B001 by 16896>
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -218,89 +218,6 @@
               tab-width 2          ;;タブ幅
               indent-tabs-mode t)  ;;インデントをタブでするかスペースでするか
 
-;;; C,C++の設定
-;; ヘッダファイル(.h)をc++モードで開く
-;; cファイルもC++モードで開く
-(setq auto-mode-alist
-      (append '(("\\.[ch]$" . c++-mode))
-              auto-mode-alist))
-
-;; 自分の書き方にあわせて調整
-(add-hook 'c++-mode-hook
-          '(lambda ()
-             (setq c-basic-offset 2)
-             ;; 以下 *:*1 -:*-1 ++:*2 --:*-2 *:*0.5 /:*-0.5
-             (setq c++-auto-newline nil)
-             (setq c++-tab-always-indent t)
-             (c-set-offset 'access-label '/)
-             (c-set-offset 'arglist-close 0)
-             (c-set-offset 'arglist-cont 0)
-             (c-set-offset 'arglist-cont-nonempty '++)
-             (c-set-offset 'arglist-intro '+)
-             (c-set-offset 'block-close 0)
-             (c-set-offset 'block-open 0)
-             (c-set-offset 'brace-entry-open 0)
-             (c-set-offset 'brace-list-close 0)
-             (c-set-offset 'brace-list-entry 0)
-             (c-set-offset 'brace-list-intro '+)
-             (c-set-offset 'brace-list-open 0)
-             (c-set-offset 'c 1)
-             (c-set-offset 'case-label '*)
-             (c-set-offset 'catch-clause 0)
-             (c-set-offset 'class-close '-)
-             (c-set-offset 'class-open '-)
-             (c-set-offset 'comment-intro 0)
-             (c-set-offset 'cpp-macro 0)
-             (c-set-offset 'cpp-macro-cont '+)
-             (c-set-offset 'defun-block-intro '+)
-             (c-set-offset 'defun-close '-)
-             (c-set-offset 'defun-open '-)
-             (c-set-offset 'do-while-closure 0)
-             (c-set-offset 'else-clause 0)
-             (c-set-offset 'extern-lang-close '+)
-             (c-set-offset 'extern-lang-open '+)
-             (c-set-offset 'friend 0)
-             (c-set-offset 'func-decl-cont '+)
-             (c-set-offset 'inclass '+)
-             (c-set-offset 'inextern-lang '+)
-             (c-set-offset 'inexpr-statement 0)
-             (c-set-offset 'inexpr-class '+)
-             (c-set-offset 'inher-cont '+)
-             (c-set-offset 'inher-intro '+)
-             (c-set-offset 'inline-close 0)
-             (c-set-offset 'inline-open '+)
-             (c-set-offset 'innamespace '+)
-             (c-set-offset 'label 0)
-             (c-set-offset 'member-init-cont 0)
-             (c-set-offset 'member-init-intro 0)
-             (c-set-offset 'namespace-close 0)
-             (c-set-offset 'namespace-open 0)
-             (c-set-offset 'statement 0)
-             (c-set-offset 'statement-block-intro '+)
-             (c-set-offset 'statement-case-intro '*)
-             (c-set-offset 'statement-case-open '*)
-             (c-set-offset 'statement-cont '+)
-             (c-set-offset 'stream-op '+)
-             (c-set-offset 'string 0)
-             (c-set-offset 'substatement '*)
-             (c-set-offset 'substatement-open 0)
-             (c-set-offset 'template-args-cont '+)
-             (c-set-offset 'topmost-intro 0)
-             (c-set-offset 'topmost-intro-cont 0)
-             ))
-
-(defun my-c-mode-common-conf ()
-  ;; ";"や"{"などをを入力した場合現在の行を自動インデントを有効にする
-  (c-toggle-electric-state 1)
-  ; ;カッコを強調表示する  
-  ;; (自動インデント) 改行をしたら次の行を自動でインデントしてくれる
-  (c-toggle-auto-newline 1)
-  ;; 他のエディタなどがファイルを書き換えたらすぐにそれを反映する
-  (auto-revert-mode)
-  )
-
-;; c言語系全部にフックを設定する
-(add-hook 'c-mode-common-hook 'my-c-mode-common-conf)
 
 ;;; デフォルトで勝手に作られるbackupファイルの保存先を任意箇所にする
 (setq backup-directory-alist
@@ -417,6 +334,8 @@
           'executable-make-buffer-file-executable-if-script-p)
 
 
+;; マウスで選択した領域を自動コピー
+(setq mouse-drag-copy-region t)
 ;;===========================================
 ;; キーボード操作系
 ;;===========================================
@@ -544,236 +463,10 @@
   
   ;; ショートカットキー
   (global-set-key (kbd "C-c l") 'org-store-link)
-  ;;(global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c a") 'org-agenda))
   
 
 ;;;;; ココらへんからパッケージの話 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;; 
-;;;; 各言語に対する設定
-;;;; 
-
-;;;
-;;; C#
-;;;
-(use-package csharp-mode
-  :mode (("\\.cs\\'" . csharp-mode)))
-
-;;;
-;;; CSV
-;;;
-(use-package csv-mode
-  :mode (("\\.[Cc][Ss][Vv]\\'" . csv-mode)))
-
-
-;;;
-;;; web mode
-;;;
-;;; HTMLモードではhtmlの中のjavascriptなどが色分けされないので導入
-;;; http://web-mode.org/
-;;; http://yanmoo.blogspot.jp/2013/06/html5web-mode.html
-(use-package web-mode
-  :defer t
-  :mode
-  (("\\.html?\\'" . web-mode)
-   ("\\.jsp\\'"   . web-mode)
-   ("\\.ctp\\'"   . web-mode)
-   ("\\.gsp\\'"   . web-mode))
-  :config
-  (defun web-mode-hook ()
-      (setq web-mode-markup-indent-offset 2)
-      (setq web-mode-css-indent-offset 2)
-      (setq web-mode-code-indent-offset 2)
-      (setq web-mode-engines-alist
-            '(("php"    . "\\.ctp\\'"))
-            )
-      )
-  ;; auto tag closing
-  ;;0=no auto-closing
-  ;;1=auto-close with </
-  ;;2=auto-close with > and </
-  (setq web-mode-tag-auto-close-style 2)
-  (add-hook 'web-mode-hook  'web-mode-hook))
-
-;;;
-;;; markdown
-;;;
-(use-package markdown-mode
-  :ensure t
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown")
-  :config
-  (setq markdown-xhtml-header-content "
-<style>
-body {
-  box-sizing: border-box;
-  max-width: 740px;
-  width: 100%;
-  margin: 40px auto;
-  padding: 0 10px;
-}
-</style>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  document.body.classList.add('markdown-body');
-});
-</script>
-" ))
-
-;;; poly-markdown-mode
-(use-package polymode
-  :ensure t
-  :config
-    (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode)))
-
-;;; markdown-preview-mode
-(use-package markdown-preview-mode
-  :commands(markdown-preview-mode))
-
-;;; markdown-preview-eww
-(use-package markdown-preview-eww
-  :commands(markdown-preview-eww))
-
-;; doxymacs mode
-(use-package doxymacs
-  :commands (doxymacs)
-  ;; usage
-  ;; M-x doxymacs-mode
-  ;;
-  ;; C-c d i	ファイルへのコメントを挿入
-  ;; C-c d f	カーソルの下にある関数へのコメントを挿入
-  ;; C-c d ;	メンバへのコメントを挿入
-  ;; C-c d m	複数行の空コメントを挿入
-  ;; C-c d s	一行の空コメントを挿入
-  ;; custom c-mode hook for doxymacs
-  :config
-  (defun doxy-custom-c-mode-hook ()
-    (doxymacs-mode 1)
-    (setq doxymacs-doxygen-style "Qt")
-    (setq doxymacs-command-character "@")
-    
-    (add-hook 'c-mode-common-hook 'doxy-custom-c-mode-hook)))
-
-;;;
-;;; Python
-;;;
-(use-package python-mode
-  :mode (("\\.py\\'" . python-mode)
-         ("python" . python-mode))
-  :config
-;;; company-jedi
-  (use-package jedi
-    :ensure t
-    :init
-    (add-hook 'python-mode-hook 'jedi:setup)
-    (setq jedi:complete-on-dot t)
-    :config
-    (use-package company-jedi
-      :ensure t
-      :init
-      (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
-      (setq  company-jedi-python-bin "python")))
-  
-  (use-package py-yapf
-    :ensure t
-    :config
-    (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
-  
-  ;;
-  ;; linux 初回起動時のみ $ sudo apt-get install virtualenv
-  ;; M-x jedi:install-server RETが必要
-  ;;
-  
-;;; py-autopep8
-  (use-package py-autopep8
-    :ensure t
-    :config
-    (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-    (setq py-autopep8-options '("--max-line-length=100"))))
-
-;;;
-;;; Ruby
-;;; 
-(use-package ruby-mode
-  :mode   (("\\.rb\\'" . ruby-mode))
-  :config
-  (defun my/ruby-mode-hook-function ()
-    (setq ruby-deep-indent-paren-style nil)
-    (make-local-variable 'ac-omni-completion-sources)
-    (make-local-variable 'ac-ignore-case)
-    (setq ac-ignore-case nil)
-    (setq ac-omni-completion-sources '(("\\.\\=" . (ac-source-rcodetools))))
-    t)
-  (add-hook 'ruby-mode-hook 'my/ruby-mode-hook-function)
-
-;;;ruby hash値を見やすくする
-  (setq my-ruby-highlight-keywords '(
-   ("\\(?:^\\s *\\|[[{(,]\\s *\\|\\sw\\s +\\)\\(\\(\\sw\\|_\\)+:\\)[^:]"
-    (1 (progn (forward-char -1) font-lock-preprocessor-face)))))
-
-  (defun my-ruby-highlight ()
-    (font-lock-add-keywords nil my-ruby-highlight-keywords))
-  
-  (add-hook 'ruby-mode-hook #'my-ruby-highlight))
-
-;;;
-;;; PHP
-;;; 
-(use-package php-mode
-  :mode (("\\.php\\'" . php-mode))
-  :config
-  (use-package php-eldoc)
-  (use-package company-php)
-  (defun my/php-mode-hook-function ()
-    (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
-    (define-key php-mode-map (kbd "[") (smartchr "[]" "array()" "[[]]"))
-    (define-key php-mode-map (kbd "]") (smartchr "array " "]" "]]"))
-    (let ((my/php-offset 4))
-      (setq tab-width my/php-offset
-            c-basic-offset my/php-offset
-            indent-tabs-mode nil)
-      (c-set-offset 'case-label' my/php-offset)
-      (c-set-offset 'arglist-intro' my/php-offset)
-      (c-set-offset 'arglist-cont-nonempty' my/php-offset)
-      (c-set-offset 'arglist-close' 0))
-    t)
-  (add-hook 'php-mode-hook 'my/php-mode-hook-function)
-
-  (add-hook 'php-mode-hook
-          '(lambda ()
-             (company-mode t)
-             (ac-php-core-eldoc-setup)
-             (make-local-variable 'company-backends)
-             (add-to-list 'company-backends 'company-ac-php-backend))))
-;;;
-;;; CMake file
-;;;
-(use-package cmake-mode
-  :mode (("CMakeLists\\.txt\\'" . cmake-mode)
-	       (("\\.cmake\\'" . cmake-mode))))
-
-;;;
-;;; org (package依存のもの)
-;;;
-
-;;; org-bullets
-;;; orgモードの見た目を変える
-(use-package org-bullets
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-
-;;; org-preview-html-mode
-(use-package org-preview-html
-  :commands (org-preview-html-mode))
-
-;;;
-;;; 各言語ごとの設定終わり
-;;;
 
 
 ;;;
@@ -1224,40 +917,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ;;; volatile-highlight
 ;;; yank や undoした時のリージョンをハイライト表示
-(use-package volatile-highlights
-  :diminish volatile-highlights-mode
-  :init
-  (volatile-highlights-mode t)
-  :config
-  ;; ふわっとエフェクトの追加（ペースト時の色 => カーソル色 => 本来色）
-  (defun my:vhl-change-color ()
-    (let
-        ((next 0.2)
-         (reset 0.5)
-         (colors '("#F8D3D7" "#F2DAE1" "#EBE0EB" "#E5E7F5" "#DEEDFF")))
-      (dolist (color colors)
-        (run-at-time next nil
-                     'set-face-attribute
-                     'vhl/default-face
-                     nil :foreground "#FF3333" :background color)
-        (setq next (+ 0.05 next)))
-        (run-at-time reset nil 'vhl/clear-all))
-    (set-face-attribute 'vhl/default-face
-                        nil :foreground "#FF3333"
-                        :background "#FFCDCD"))
-  
-  (defun my:yank (&optional ARG)
-    (interactive)
-    (yank ARG)
-    (my:vhl-change-color))
-  (global-set-key (kbd "M-v") 'my:yank)
-  (global-set-key (kbd "C-y") 'my:yank)
-  
-  (with-eval-after-load "org"
-    (define-key org-mode-map (kbd "C-y")
-      '(lambda () (interactive)
-         (org-yank)
-         (my:vhl-change-color)))))
+ (use-package volatile-highlights
+   :diminish volatile-highlights-mode
+   :init
+   (volatile-highlights-mode t))
 
 ;;; smoooth-scroll
 ;;; スクロールをスムーズに
@@ -1449,20 +1112,6 @@ document.addEventListener('DOMContentLoaded', () => {
   (eshell-git-prompt-use-theme 'git-radar))
 
 
-;;; projectile
-;;; プロジェクトのファイルを管理
-(use-package projectile
-  :diminish projectile-mode
-  :config
-  (projectile-global-mode))
-
-;;;helm-projectile
-(use-package helm-projectile
-  :diminish helm-projectile
-  :config
-  (helm-projectile-on))
-
-
 ;;; dashboard
 ;;; 起動画面を変更する
 (use-package all-the-icons)
@@ -1475,8 +1124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		(concat "Welcome to GNU Emacs " emacs-version " Genm Dashboard!!!"))
  ;; Set the banner
   (setq dashboard-startup-banner "~/.emacs.d/genm.png")
-  (setq dashboard-items '((projects . 5)
-													(recents  . 8)
+  (setq dashboard-items '((recents  . 8)
                           (bookmarks . 3)))
 	(setq dashboard-set-heading-icons nil)
 	(setq dashboard-set-file-icons nil)
@@ -1542,6 +1190,333 @@ document.addEventListener('DOMContentLoaded', () => {
   (use-package emojify
 	:config
 	(global-emojify-mode))
+
+;;;; 
+;;;; 各言語に対する設定
+;;;; 
+
+;;;
+;;; C,C++の設定
+;;; ヘッダファイル(.h)をc++モードで開く
+;;; cファイルもC++モードで開く
+(setq auto-mode-alist
+      (append '(("\\.[ch]$" . c++-mode))
+              auto-mode-alist))
+
+;; 自分の書き方にあわせて調整
+(add-hook 'c++-mode-hook
+          '(lambda ()
+             (setq c-basic-offset 2)
+             ;; 以下 *:*1 -:*-1 ++:*2 --:*-2 *:*0.5 /:*-0.5
+             (setq c++-auto-newline nil)
+             (setq c++-tab-always-indent t)
+             (c-set-offset 'access-label '/)
+             (c-set-offset 'arglist-close 0)
+             (c-set-offset 'arglist-cont 0)
+             (c-set-offset 'arglist-cont-nonempty '++)
+             (c-set-offset 'arglist-intro '+)
+             (c-set-offset 'block-close 0)
+             (c-set-offset 'block-open 0)
+             (c-set-offset 'brace-entry-open 0)
+             (c-set-offset 'brace-list-close 0)
+             (c-set-offset 'brace-list-entry 0)
+             (c-set-offset 'brace-list-intro '+)
+             (c-set-offset 'brace-list-open 0)
+             (c-set-offset 'c 1)
+             (c-set-offset 'case-label '*)
+             (c-set-offset 'catch-clause 0)
+             (c-set-offset 'class-close '-)
+             (c-set-offset 'class-open '-)
+             (c-set-offset 'comment-intro 0)
+             (c-set-offset 'cpp-macro 0)
+             (c-set-offset 'cpp-macro-cont '+)
+             (c-set-offset 'defun-block-intro '+)
+             (c-set-offset 'defun-close '-)
+             (c-set-offset 'defun-open '-)
+             (c-set-offset 'do-while-closure 0)
+             (c-set-offset 'else-clause 0)
+             (c-set-offset 'extern-lang-close '+)
+             (c-set-offset 'extern-lang-open '+)
+             (c-set-offset 'friend 0)
+             (c-set-offset 'func-decl-cont '+)
+             (c-set-offset 'inclass '+)
+             (c-set-offset 'inextern-lang '+)
+             (c-set-offset 'inexpr-statement 0)
+             (c-set-offset 'inexpr-class '+)
+             (c-set-offset 'inher-cont '+)
+             (c-set-offset 'inher-intro '+)
+             (c-set-offset 'inline-close 0)
+             (c-set-offset 'inline-open '+)
+             (c-set-offset 'innamespace '+)
+             (c-set-offset 'label 0)
+             (c-set-offset 'member-init-cont 0)
+             (c-set-offset 'member-init-intro 0)
+             (c-set-offset 'namespace-close 0)
+             (c-set-offset 'namespace-open 0)
+             (c-set-offset 'statement 0)
+             (c-set-offset 'statement-block-intro '+)
+             (c-set-offset 'statement-case-intro '*)
+             (c-set-offset 'statement-case-open '*)
+             (c-set-offset 'statement-cont '+)
+             (c-set-offset 'stream-op '+)
+             (c-set-offset 'string 0)
+             (c-set-offset 'substatement '*)
+             (c-set-offset 'substatement-open 0)
+             (c-set-offset 'template-args-cont '+)
+             (c-set-offset 'topmost-intro 0)
+             (c-set-offset 'topmost-intro-cont 0)
+             ))
+
+(defun my-c-mode-common-conf ()
+  ;; ";"や"{"などをを入力した場合現在の行を自動インデントを有効にする
+  (c-toggle-electric-state 1)
+  ; ;カッコを強調表示する  
+  ;; (自動インデント) 改行をしたら次の行を自動でインデントしてくれる
+  (c-toggle-auto-newline 1)
+  ;; 他のエディタなどがファイルを書き換えたらすぐにそれを反映する
+  (auto-revert-mode)
+  )
+
+;; c言語系全部にフックを設定する
+(add-hook 'c-mode-common-hook 'my-c-mode-common-conf)
+
+
+;;;
+;;; C#（あんまり使えない）
+;;;
+(use-package omnisharp
+	:defer t
+  :mode (("\\.cs\\'" . csharp-mode))
+	:config
+	(define-key omnisharp-mode-map (kbd "<C-tab>") 'omnisharp-auto-complete)
+		(define-key omnisharp-mode-map (kbd "C-c C-s") 'omnisharp-start-omnisharp-server)
+	(define-key omnisharp-mode-map "." 'omnisharp-add-dot-and-auto-complete))
+
+(use-package csharp-mode
+	:defer t
+  :mode (("\\.cs\\'" . csharp-mode))
+	:config
+	(add-hook 'csharp-mode-hook '(lambda () (omnisharp-mode) (flycheck-mode))))
+
+
+;;;
+;;; CSV
+;;;
+(use-package csv-mode
+	:defer t
+  :mode (("\\.[Cc][Ss][Vv]\\'" . csv-mode)))
+
+
+;;;
+;;; web mode
+;;;
+;;; HTMLモードではhtmlの中のjavascriptなどが色分けされないので導入
+;;; http://web-mode.org/
+;;; http://yanmoo.blogspot.jp/2013/06/html5web-mode.html
+(use-package web-mode
+  :defer t
+  :mode
+  (("\\.html?\\'" . web-mode)
+   ("\\.jsp\\'"   . web-mode)
+   ("\\.ctp\\'"   . web-mode)
+   ("\\.gsp\\'"   . web-mode))
+  :config
+  (defun web-mode-hook ()
+      (setq web-mode-markup-indent-offset 2)
+      (setq web-mode-css-indent-offset 2)
+      (setq web-mode-code-indent-offset 2)
+      (setq web-mode-engines-alist
+            '(("php"    . "\\.ctp\\'"))
+            )
+      )
+  ;; auto tag closing
+  ;;0=no auto-closing
+  ;;1=auto-close with </
+  ;;2=auto-close with > and </
+  (setq web-mode-tag-auto-close-style 2)
+  (add-hook 'web-mode-hook  'web-mode-hook))
+
+;;;
+;;; markdown
+;;;
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown")
+  :config
+  (setq markdown-xhtml-header-content "
+<style>
+body {
+  box-sizing: border-box;
+  max-width: 740px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 10px;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('markdown-body');
+});
+</script>
+" ))
+
+;;; poly-markdown-mode
+(use-package polymode
+  :ensure t
+  :config
+    (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode)))
+
+;;; markdown-preview-mode
+(use-package markdown-preview-mode
+  :commands(markdown-preview-mode))
+
+;;; markdown-preview-eww
+(use-package markdown-preview-eww
+  :commands(markdown-preview-eww))
+
+;; doxymacs mode
+(use-package doxymacs
+  :commands (doxymacs)
+  ;; usage
+  ;; M-x doxymacs-mode
+  ;;
+  ;; C-c d i	ファイルへのコメントを挿入
+  ;; C-c d f	カーソルの下にある関数へのコメントを挿入
+  ;; C-c d ;	メンバへのコメントを挿入
+  ;; C-c d m	複数行の空コメントを挿入
+  ;; C-c d s	一行の空コメントを挿入
+  ;; custom c-mode hook for doxymacs
+  :config
+  (defun doxy-custom-c-mode-hook ()
+    (doxymacs-mode 1)
+    (setq doxymacs-doxygen-style "Qt")
+    (setq doxymacs-command-character "@")
+    
+    (add-hook 'c-mode-common-hook 'doxy-custom-c-mode-hook)))
+
+;;;
+;;; Python
+;;;
+(use-package python-mode
+  :mode (("\\.py\\'" . python-mode)
+         ("python" . python-mode))
+  :config
+;;; company-jedi
+  (use-package jedi
+    :ensure t
+    :init
+    (add-hook 'python-mode-hook 'jedi:setup)
+    (setq jedi:complete-on-dot t)
+    :config
+    (use-package company-jedi
+      :ensure t
+      :init
+      (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
+      (setq  company-jedi-python-bin "python")))
+  
+  (use-package py-yapf
+    :ensure t
+    :config
+    (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
+  
+  ;;
+  ;; linux 初回起動時のみ $ sudo apt-get install virtualenv
+  ;; M-x jedi:install-server RETが必要
+  ;;
+  
+;;; py-autopep8
+  (use-package py-autopep8
+    :ensure t
+    :config
+    (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+    (setq py-autopep8-options '("--max-line-length=100"))))
+
+;;;
+;;; Ruby
+;;; 
+(use-package ruby-mode
+  :mode   (("\\.rb\\'" . ruby-mode))
+  :config
+  (defun my/ruby-mode-hook-function ()
+    (setq ruby-deep-indent-paren-style nil)
+    (make-local-variable 'ac-omni-completion-sources)
+    (make-local-variable 'ac-ignore-case)
+    (setq ac-ignore-case nil)
+    (setq ac-omni-completion-sources '(("\\.\\=" . (ac-source-rcodetools))))
+    t)
+  (add-hook 'ruby-mode-hook 'my/ruby-mode-hook-function)
+
+;;;ruby hash値を見やすくする
+  (setq my-ruby-highlight-keywords '(
+   ("\\(?:^\\s *\\|[[{(,]\\s *\\|\\sw\\s +\\)\\(\\(\\sw\\|_\\)+:\\)[^:]"
+    (1 (progn (forward-char -1) font-lock-preprocessor-face)))))
+
+  (defun my-ruby-highlight ()
+    (font-lock-add-keywords nil my-ruby-highlight-keywords))
+  
+  (add-hook 'ruby-mode-hook #'my-ruby-highlight))
+
+;;;
+;;; PHP
+;;; 
+(use-package php-mode
+  :mode (("\\.php\\'" . php-mode))
+  :config
+  (use-package php-eldoc)
+  (use-package company-php)
+  (defun my/php-mode-hook-function ()
+    (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
+    (define-key php-mode-map (kbd "[") (smartchr "[]" "array()" "[[]]"))
+    (define-key php-mode-map (kbd "]") (smartchr "array " "]" "]]"))
+    (let ((my/php-offset 4))
+      (setq tab-width my/php-offset
+            c-basic-offset my/php-offset
+            indent-tabs-mode nil)
+      (c-set-offset 'case-label' my/php-offset)
+      (c-set-offset 'arglist-intro' my/php-offset)
+      (c-set-offset 'arglist-cont-nonempty' my/php-offset)
+      (c-set-offset 'arglist-close' 0))
+    t)
+  (add-hook 'php-mode-hook 'my/php-mode-hook-function)
+
+  (add-hook 'php-mode-hook
+          '(lambda ()
+             (company-mode t)
+             (ac-php-core-eldoc-setup)
+             (make-local-variable 'company-backends)
+             (add-to-list 'company-backends 'company-ac-php-backend))))
+;;;
+;;; CMake file
+;;;
+(use-package cmake-mode
+  :mode (("CMakeLists\\.txt\\'" . cmake-mode)
+	       (("\\.cmake\\'" . cmake-mode))))
+
+;;;
+;;; org (package依存のもの)
+;;;
+
+;;; org-bullets
+;;; orgモードの見た目を変える
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+;;; org-preview-html-mode
+(use-package org-preview-html
+  :commands (org-preview-html-mode))
+
+
+;;;
+;;; 各言語ごとの設定終わり
+;;;
+
+
 
 ;;;---------パッケージ毎の設定終わり end of package setting-----------
 
@@ -1642,7 +1617,23 @@ document.addEventListener('DOMContentLoaded', () => {
 ;; 環境変数でgitのPATHを通しておくのを忘れずに
 ;;
 
- 
+;;;Visual Studio 201xとの連携
+
+;;; https://blog.piyo.tech/posts/2014-07-13-200000/
+;;; https://qiita.com/fujimotok/items/6a363c50b97c19ca7c38
+
+; server start for emacs-client
+(use-package server
+	:init
+	(unless (server-running-p)
+  (server-start)))
+
+
+;; emacsで開いているファイルをVSで開く。うまく動いてない
+(straight-use-package
+ '(open-in-msvs :type git :host github :repo "evgeny-panasyuk/open-in-msvs"))
+(use-package open-in-msvs)
+
 );;; ここまでwindows用
 
 ;;;
