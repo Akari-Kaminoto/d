@@ -1,4 +1,4 @@
-;;;;;Last Updated:<2019/09/27 16:29:41 from HXHA-B001 by 16896>
+;;;;;Last Updated:<2019/10/09 17:23:03 from HXHA-B001 by 16896>
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -541,7 +541,8 @@
   ;; `mode-line-mule-info' の文字エンコーディングの文字列表現を差し替える
   (setq-default mode-line-mule-info
                 (cl-substitute '(:eval (my-buffer-coding-system-mnemonic))
-                               "%z" mode-line-mule-info :test 'equal))
+                               "%z"
+															 mode-line-mule-info :test 'equal))
   )
 
 ;;;
@@ -1526,56 +1527,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ;;;
 ;;; For Windows (NTEmacs)
-;;; 
+;;;
 (when (eq system-type 'windows-nt) ; Windows
 
 ;;;
 ;;; IME関連の設定
 ;;;
-  
-;;;** 標準IMEの設定
-(when (locate-library "w32-ime")
-  (progn
-    (setq default-input-method "W32-IME")
-    
+
+;;; 26.3以降はパッチがなくなったためW32-IMEは使えない？
+	(if (version<= "26.3.00" emacs-version)
+			(progn
+				;;(setq default-input-method "japanese"))
+				(setq locate-library "w32-ime"))
+		)
+
+;;; IME-PATCH版の設定
+	(when (locate-library "w32-ime")
+		(progn
+			(setq default-input-method "W32-IME")
+
 ;;;** IMEの初期化
-    (w32-ime-initialize)
-    
+			(w32-ime-initialize)
+   
 ;;;** IME状態のモードライン表示
-    (setq-default w32-ime-mode-line-state-indicator "[--]")
-    (setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
+			(setq-default w32-ime-mode-line-state-indicator "[--]")
+			(setq w32-ime-mode-line-state-indicator-list '("[--]" "[あ]" "[--]"))
     
 ;;;** IME OFF時の初期カーソルカラー
-    (set-cursor-color "green")
+			(set-cursor-color "green")
     
 ;;;** IME ON/OFF時のカーソルカラー
-    (add-hook 'input-method-activate-hook
-              (lambda() (set-cursor-color "red")))
-    (add-hook 'input-method-inactivate-hook
-              (lambda() (set-cursor-color "green")))
-    
-		;; ミニバッファに移動した際は最初に日本語入力が無効な状態にする
-		(add-hook 'minibuffer-setup-hook 'deactivate-input-method)
-
-		;; isearch に移行した際に日本語入力を無効にする
-		(add-hook 'isearch-mode-hook '(lambda ()
-																		(deactivate-input-method)
-																		(setq w32-ime-composition-window (minibuffer-window))))
-		(add-hook 'isearch-mode-end-hook '(lambda () (setq w32-ime-composition-window nil)))
-		
-		;; helm 使用中に日本語入力を無効にする
-		(advice-add 'helm :around '(lambda (orig-fun &rest args)
-																 (let ((select-window-functions nil)
-																			 (w32-ime-composition-window (minibuffer-window)))
-																	 (deactivate-input-method)
-																	 (apply orig-fun args))))
-		
+			(add-hook 'input-method-activate-hook
+								(lambda() (set-cursor-color "red")))
+			(add-hook 'input-method-inactivate-hook
+								(lambda() (set-cursor-color "green")))
+			
+			;; ミニバッファに移動した際は最初に日本語入力が無効な状態にする
+			(add-hook 'minibuffer-setup-hook 'deactivate-input-method)
+			
+			;; isearch に移行した際に日本語入力を無効にする
+			(add-hook 'isearch-mode-hook '(lambda ()
+																			(deactivate-input-method)
+																			(setq w32-ime-composition-window (minibuffer-window))))
+			(add-hook 'isearch-mode-end-hook '(lambda () (setq w32-ime-composition-window nil)))
+			
+			;; helm 使用中に日本語入力を無効にする
+			(advice-add 'helm :around '(lambda (orig-fun &rest args)
+																	 (let ((select-window-functions nil)
+																				 (w32-ime-composition-window (minibuffer-window)))
+																		 (deactivate-input-method)
+																		 (apply orig-fun args))))
+			
 ;;;** バッファ切り替え時にIME状態を引き継ぐ
-    (setq w32-ime-buffer-switch-p nil)
-    )
-  
-	)
-
+			(setq w32-ime-buffer-switch-p nil)
+			)
+		
+		)
    
 ;;
 ;; フォント関連の設定
@@ -1606,9 +1613,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ;;sky-color-clockで絵文字を出さない
 ;;(setq sky-color-clock-enable-emoji-icon nil)
-;;もしフォントがあるなら以下で
-(set-face-attribute 'mode-line nil :font "Segoe UI Emoji-12")
-;;(set-face-attribute 'mode-line nil :font "Symbola-12")
+;;;																				
+;;;もしフォントがあるなら以下で
+;;;絵文字ありフォントを使う
+;;; モードライン
+;;(set-face-font 'mode-line "Segoe UI Emoji-12");カラー用なので見づらい
+(set-face-font 'mode-line "Segoe UI Symbol-12")
+;; 非アクティブなウィンドウのモードライン（同じ)
+(set-face-font 'mode-line-inactive "Segoe UI Symbol-12")
 
 ;;; Windows markdownビューワの指定
 (setq markdown-open-command "~/.emacs.d/etc/markcat.bat")
