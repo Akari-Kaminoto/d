@@ -1,4 +1,4 @@
-;;;;;Last Updated:<2019/10/09 17:23:03 from HXHA-B001 by 16896>
+;;;;;Last Updated:<2019/10/17 15:38:40 from HXHA-B001 by 16896>
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -317,10 +317,10 @@
         ((eq column-number-mode t)
          (setq my-mode-line-format (concat my-mode-line-format " C%%c"))))
 
-  (setq mode-line-position
+	(setq mode-line-position
         '(:eval (format my-mode-line-format
                         (count-lines (point-max) (point-min))))))
-  
+
 ;;----
 ;; タイトルバーにフルパス表示
 ;;----
@@ -1115,7 +1115,6 @@
 
 ;;; dashboard
 ;;; 起動画面を変更する
-(use-package all-the-icons)
 (use-package dashboard
   :ensure t
   :config
@@ -1130,7 +1129,8 @@
 	(setq dashboard-set-heading-icons nil)
 	(setq dashboard-set-file-icons nil)
 	(setq dashboard-set-init-info t)
-	(setq dashboard-set-navigator t))
+	(setq dashboard-set-navigator t)
+	(setq dashboard-set-fotter-icons nil))
 
 ;;; recentf-ext
 ;;; 最近使ったファイルを管理する
@@ -1185,12 +1185,6 @@
   (set-face-foreground 'git-gutter-fr+-modified "#BB0099")
   (set-face-foreground 'git-gutter-fr+-added    "#339933")
   (set-face-foreground 'git-gutter-fr+-deleted  "#AA0000"))
-
- ;;; emojify
- ;;; 絵文字を入出力する（フォント依存）
-  (use-package emojify
-	:config
-	(global-emojify-mode))
 
 ;;;; 
 ;;;; 各言語に対する設定
@@ -1607,23 +1601,23 @@ document.addEventListener('DOMContentLoaded', () => {
                   '("Myrica M" . "unicode-bmp")
                   )
 
+;;; sky-color-clock用emoji
+(set-fontset-font (frame-parameter nil 'font)
+                 '(#x1F004 . #x1FFFD)
+                  (font-spec :family "Segoe UI Symbol")
+								 )
+
 ;;;ctags windows用設定
 ;;;  (setq ctags-update-command "~/.emacs.d/bin/ctags.exe")
 (setq gtags-update-command "~/.emacs.d/bin/gtags.exe")
 
-;;sky-color-clockで絵文字を出さない
-;;(setq sky-color-clock-enable-emoji-icon nil)
-;;;																				
-;;;もしフォントがあるなら以下で
-;;;絵文字ありフォントを使う
-;;; モードライン
-;;(set-face-font 'mode-line "Segoe UI Emoji-12");カラー用なので見づらい
-(set-face-font 'mode-line "Segoe UI Symbol-12")
+;; モードラインのフォントを変える
+;(set-face-font 'mode-line "Segoe UI Symbol-12")
 ;; 非アクティブなウィンドウのモードライン（同じ)
-(set-face-font 'mode-line-inactive "Segoe UI Symbol-12")
+;(set-face-font 'mode-line-inactive "Segoe UI Symbol-12")
 
 ;;; Windows markdownビューワの指定
-(setq markdown-open-command "~/.emacs.d/etc/markcat.bat")
+;(setq markdown-open-command "~/.emacs.d/etc/markcat.bat")
   
 ;;
 ;; 環境変数でgitのPATHを通しておくのを忘れずに
@@ -1756,24 +1750,30 @@ document.addEventListener('DOMContentLoaded', () => {
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should conatin only one such instance.
+ ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ace-isearch-function (quote ace-jump-word-mode))
+ '(ace-isearch-input-length 7)
+ '(ace-isearch-jump-delay 1.0)
  '(ace-isearch-use-jump (quote printing-char))
  '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
+ '(google-translate-default-source-language "en")
+ '(google-translate-default-target-language "ja")
  '(irony-additional-clang-options (quote ("-std=c++11")))
  '(package-selected-packages
-   (quote
-    (neotree flylisp dired-du beacon company-math flycheck-pos-tip csv-mode shell-pop leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
+	 (quote
+		(neotree flylisp dired-du beacon company-math flycheck-pos-tip csv-mode shell-pop leuven-theme web-mode helm-swoop ace-jump-mode anzu ace-isearch ctags-update w3 use-package-el-get smooth-scroll rainbow-mode rainbow-delimiters package-utils mozc melpa-upstream-visit magit irony hlinum helm fuzzy forecast flycheck company auto-read-only auto-complete anti-zenburn-theme)))
  '(paradox-github-token t)
  '(yas-trigger-key "TAB"))
 
 (provide 'init)
 
-(custom-set-faces
+;(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+; '(dashboard-heading ((t (:inherit font-lock-keyword-face :family "Segoe UI Symbol-12"))))
+; '(dashboard-text-banner ((t (:inherit font-lock-keyword-face :family "Segoe UI Symbol-12"))))
+; '(dashboard-banner-logo-title ((t (:inherit font-lock-keyword-face :family "Segoe UI Symbol-12")))))
 
