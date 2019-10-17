@@ -1,0 +1,7 @@
+open-in-msvs.vbs
+
+を
+
+.emacs.d\straight\build\open-in-msvs
+
+に置く必要がある。
