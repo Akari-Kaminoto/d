@@ -2,16 +2,18 @@
 ;; Automatically generated file!!! DO NOT EDIT!!!
 
 (setq url-cookie-storage
- '((".qiita.com"
-  [url-cookie "_qiita_login_session" "YzIxQUZXaDFsOUJodUJjb1ltOWUrV1pzM0FmZmtrRm8zWEptVnFGWU5JakZxbFdqMkJNZWI4RW5xVENTZ0xpeGNGNEprRHpJQWVVYXJzMnR6R0x6U3QzeUlmaHFHMGxWWkNMSzZ4MXJBN0h3K2NqSzRnSm1UMEJpNXdRUjFIS2xlcVl3TnJWVndrbmJ2SUdNYkNNZndyVUNzNmFHNUd4ejY5QkpKRlBwa3ZrWUxaVTE5ZDYrR1RzVEczcGdkUmJOLS1VZkprRjVhcjFDV1FYUk1vZ2xjbm1nPT0%3D--a535a1bc9582b8b7e29ed4063adf16811e4ff808" "Tue, 06 Aug 2019 07:54:10 -0000" "/" ".qiita.com" nil])
- (".google.com"
-  [url-cookie "1P_JAR" "2018-08-06-07" "Wed, 05-Sep-2018 07:53:59 GMT" "/" ".google.com" nil]
-  [url-cookie "NID" "133=VOXPFgnuY0N6zYboln8uKnJeMH1pSmc0-RaBuL8xuhccFlEcRh0ZaaotJszOP7lNIRMXsZU-njMkomCZ9y-LZI7D_kMdnR0Ui2FYicptqrgvxxseSE2Zgp95qUXQX9u3" "Wed, 26-Dec-2018 06:33:52 GMT" "/" ".google.com" nil]
-  [url-cookie "CGIC" "IgMqLyo" "Mon, 04-Feb-2019 22:48:35 GMT" "/complete/search" ".google.com" nil]
-  [url-cookie "CGIC" "IgMqLyo" "Mon, 04-Feb-2019 22:48:35 GMT" "/search" ".google.com" nil]))
+ '((".google.com"
+	[url-cookie "CGIC" "IgMqLyo" "Mon, 20-Apr-2020 00:20:57 GMT" "/search" ".google.com" nil]
+	[url-cookie "CGIC" "IgMqLyo" "Mon, 20-Apr-2020 00:20:57 GMT" "/complete/search" ".google.com" nil]
+	[url-cookie "NID" "189=UX54DCwdfrz0yTWpu3GfGp0hsYJdQfkG4xSY2TFavB-70nCO57JXqbFXwrnDJPQ3JGP-t0Uk9DBDorb1Dxx4yxN6L8kfUWxKb3zrfi-gesuokhot0DFfsm4vyhSOzvHOgCZKxxbK_d3oi0SuFY2jqwH3xyib_xXnFMv-c_u0yh0" "Thu, 23-Apr-2020 00:20:57 GMT" "/" ".google.com" nil]
+	[url-cookie "1P_JAR" "2019-10-23-00" "Fri, 22-Nov-2019 00:20:57 GMT" "/" ".google.com" nil])
+ (".yahoo.co.jp"
+	[url-cookie "B" "0asqtjheqv77d&b=3&s=us" "Sat, 23-Oct-2021 00:21:01 GMT" "/" ".yahoo.co.jp" nil]))
 )
 (setq url-cookie-secure-storage
- 'nil)
+ '((".yahoo.co.jp"
+	[url-cookie "XB" "0asqtjheqv77d&b=3&s=us" "Sat, 23-Oct-2021 00:21:01 GMT" "/" ".yahoo.co.jp" t]))
+)
 
 ;; Local Variables:
 ;; version-control: never

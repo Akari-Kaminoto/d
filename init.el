@@ -1,4 +1,4 @@
-;;;;;Last Updated:<2019/10/17 15:38:40 from HXHA-B001 by 16896>
+;;;;;Last Updated:<2019/12/16 10:15:28 from HXHA-B001 by 16896>
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -120,7 +120,9 @@
 ;;; paradox
 (use-package paradox
   :config
-  (paradox-enable))
+  (paradox-enable)
+	;; versionが日付の時途中で切れてしまうので設定変更
+	(setq paradox-column-width-version 15))
 
 ;;; package系終わり
 
@@ -1617,7 +1619,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ;(set-face-font 'mode-line-inactive "Segoe UI Symbol-12")
 
 ;;; Windows markdownビューワの指定
-;(setq markdown-open-command "~/.emacs.d/etc/markcat.bat")
+(setq markdown-open-command "~/.emacs.d/etc/markcat.bat")
   
 ;;
 ;; 環境変数でgitのPATHを通しておくのを忘れずに
