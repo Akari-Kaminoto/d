@@ -1,0 +1,5 @@
+;; Tue Dec 31 14:15:36 2019 1.1
+mf-lib-mp4.el: Change `mf-mp4-write-buffer' mc-flag 判断条件変更. "uuid" -> "ID32".
+wtag.el:       Change `wtag-writable-mode-map' の C-x C-q のキャンセルを復活.
+               Add    `wtag-log-save' log save.
+               Fix    `wtag' interactive に directory 引数の展開がなかった.

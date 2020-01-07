@@ -1,0 +1,15 @@
+このアーカイブには以下の Emacs lisp (26.3用)ファイルが含まれています。
+利用配布規定は各ファイル冒頭に書かれています(GPL3です)。
+
+  mf-tag-write.el   - mp4 mp3 oma のタグの書き換え関数(メインの関数)
+  mf-lib-mp4.el     - mp4(m4a) ライブラリ
+  mf-lib-mp3.el     - oma(atrac3plus), mp3(ID3.2v2, ID3.2v3) ライブラリ
+  
+  mf-lib-utility.el - mf-tag-write を利用したサンプルのジャンク小物集
+  wtag.el           - mf-tag-write を使ったサンプルのフルスクリーン・インターエイス
+
+load-path の通った処にすべてのファイルを置き
+"wtag" と "mf-lib-utility" だけ require すれば利用できるようになります。
+主な関数の詳しい使い方は後程 https://qiita.com/s-fubuki に投稿します。
+
+;; Fri Dec 27 14:29:18 2019 fubuki@frill.org
