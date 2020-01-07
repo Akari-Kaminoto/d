@@ -1,4 +1,4 @@
-;;;;;Last Updated:<2019/12/16 10:15:28 from HXHA-B001 by 16896>
+;;;;;Last Updated:<2020/01/06 10:05:20 from HXHA-B001 by 16896>
 
 ;;; ロゴの設定
 (setq fancy-splash-image (expand-file-name "~/.emacs.d/genm.png"))
@@ -501,7 +501,24 @@
   (setq sky-color-clock-format "%m/%d %H:%M")
   (setq sky-color-clock-enable-emoji-icon t)
   (sky-color-clock-initialize-openweathermap-client "29f05637d7c752d82783da6ddc756cf5" 1850144)  ;; 天気取得
-  (setq sky-color-clock-enable-temperature-indicator t))
+  (setq sky-color-clock-enable-temperature-indicator t)
+	:config	
+	(defvar sky-color-clock--timer (run-at-time t 60 #'sky-color-clock-handler))
+	(defun sky-color-clock-handler ()
+		(force-mode-line-update 'all)
+		(let* ((current (current-time))
+					 (timer sky-color-clock--timer))
+			(timer-set-time timer (timer-next-integral-multiple-of-time current 60) 60)))
+	;; 右にしたい場合・・・ただ、git branch表示などがあると表示が出ないのでだめ
+	;;:config
+	;;(defun sky-color-clock--form ()
+  ;;(let* ((sky-color-clock-str
+  ;;        (propertize (sky-color-clock) 'help-echo (format-time-string "Sky color clock\n%F (%a)")))
+  ;;       (mode-line-right-margin
+  ;;        (propertize " " 'display `(space :align-to (- right-fringe ,(length sky-color-clock-str))))))
+  ;;  (concat mode-line-right-margin sky-color-clock-str)))
+	;;(setq mode-line-end-spaces '(:eval (sky-color-clock--form)))
+	)
 
 ;;; cl-libにより、使用コードと改行コードをわかりやすくする
 (use-package cl-lib
@@ -1187,6 +1204,12 @@
   (set-face-foreground 'git-gutter-fr+-modified "#BB0099")
   (set-face-foreground 'git-gutter-fr+-added    "#339933")
   (set-face-foreground 'git-gutter-fr+-deleted  "#AA0000"))
+
+
+;;; wtag (mp3,m4aタグ書き換え)
+(setq load-path (cons "~/.emacs.d/etc-el/wtag/" load-path))
+(require 'wtag)
+(add-hook 'dired-mode-hook '(lambda () (local-set-key (kbd "C-ci") 'dired-wtag)))
 
 ;;;; 
 ;;;; 各言語に対する設定
