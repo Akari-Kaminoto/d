@@ -11,9 +11,9 @@
 ;;; いらない場合はコメントアウトすること
 
 ;;; Proxy設定
-(setq url-proxy-services
- '(("http" . "172.16.11.7:8080")
-   ("https" . "172.16.11.7:8080")))
+;(setq url-proxy-services
+; '(("http" . "172.16.11.7:8080")
+;   ("https" . "172.16.11.7:8080")))
 ;; (setq url-http-proxy-basic-auth-storage
 ;; 	'(("proxy-auth.xxxxxxx.com:8050" ("Proxy" . "NjY1MTpha2FyaTNrYW1p"))))
 
@@ -61,16 +61,27 @@
 ;;
 
 ;; straight.el自身のインストールと初期設定を行ってくれる
-(let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el"))
-      (bootstrap-version 3))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
          'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+;;emacs Ver27以上は以下がいる
+;(setq package-enable-at-startup nil)
+;
+;判断文併せて後で追加
+;
 
 ;; use-packageをインストールする
 (straight-use-package 'use-package)
